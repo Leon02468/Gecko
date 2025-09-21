@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "P:\\UnityProjects\\GeckoDemo\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{DFFF381B-74FD-3E30-70D6-018DF6B45084}|Assembly-CSharp.csproj|p:\\unityprojects\\geckodemo\\assets\\scripts\\attack.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DFFF381B-74FD-3E30-70D6-018DF6B45084}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\attack.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{DFFF381B-74FD-3E30-70D6-018DF6B45084}|Assembly-CSharp.csproj|p:\\unityprojects\\geckodemo\\assets\\scripts\\playermovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{DFFF381B-74FD-3E30-70D6-018DF6B45084}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\playermovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
@@ -19,6 +23,19 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "attack.cs",
+              "DocumentMoniker": "P:\\UnityProjects\\GeckoDemo\\Assets\\Scripts\\attack.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\attack.cs",
+              "ToolTip": "P:\\UnityProjects\\GeckoDemo\\Assets\\Scripts\\attack.cs",
+              "RelativeToolTip": "Assets\\Scripts\\attack.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-13T12:16:54.297Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "PlayerMovement.cs",
               "DocumentMoniker": "P:\\UnityProjects\\GeckoDemo\\Assets\\Scripts\\PlayerMovement.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\PlayerMovement.cs",
