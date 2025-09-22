@@ -1,0 +1,1001 @@
+fileFormatVersion: 2
+guid: 6135c0bbfbd60644184c905a9532fee3
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -1586632688753730480
+    second: WizardFrog_IDLE_0
+  - first:
+      213: 643173029431294600
+    second: WizardFrog_IDLE_1
+  - first:
+      213: -5811684375949775937
+    second: WizardFrog_IDLE_2
+  - first:
+      213: 7013318181554918166
+    second: WizardFrog_IDLE_3
+  - first:
+      213: 8776049570940710656
+    second: WizardFrog_IDLE_4
+  - first:
+      213: 6280871055403542432
+    second: WizardFrog_IDLE_5
+  - first:
+      213: -7292158595100831186
+    second: WizardFrog_IDLE_6
+  - first:
+      213: 5322020153907574016
+    second: WizardFrog_IDLE_7
+  - first:
+      213: 7509384307954404779
+    second: WizardFrog_IDLE_8
+  - first:
+      213: 1044370464021812399
+    second: WizardFrog_IDLE_9
+  - first:
+      213: 5168108259524062243
+    second: WizardFrog_IDLE_10
+  - first:
+      213: 8629099815527578961
+    second: WizardFrog_IDLE_11
+  - first:
+      213: 3293878671732264965
+    second: WizardFrog_IDLE_12
+  - first:
+      213: 8217156952386563306
+    second: WizardFrog_IDLE_13
+  - first:
+      213: 2761349663768530477
+    second: WizardFrog_IDLE_14
+  - first:
+      213: 8091376337027517785
+    second: WizardFrog_IDLE_15
+  - first:
+      213: -7340552280495495447
+    second: WizardFrog_IDLE_16
+  - first:
+      213: 3322504060346617572
+    second: WizardFrog_IDLE_17
+  - first:
+      213: 5235677583882816328
+    second: WizardFrog_IDLE_18
+  - first:
+      213: -3718139692541213771
+    second: WizardFrog_IDLE_19
+  - first:
+      213: 6818901085182909833
+    second: WizardFrog_IDLE_20
+  - first:
+      213: -3515198917595863833
+    second: WizardFrog_IDLE_21
+  - first:
+      213: -6955477088198878553
+    second: WizardFrog_IDLE_22
+  - first:
+      213: -2412746668149984592
+    second: WizardFrog_IDLE_23
+  - first:
+      213: 272964029828422223
+    second: WizardFrog_IDLE_24
+  - first:
+      213: 8226685554550468768
+    second: WizardFrog_IDLE_25
+  - first:
+      213: -5423427598490237552
+    second: WizardFrog_IDLE_26
+  - first:
+      213: 7681899590689906659
+    second: WizardFrog_IDLE_27
+  - first:
+      213: 2311924853852188545
+    second: WizardFrog_IDLE_28
+  - first:
+      213: 1867577888640446948
+    second: WizardFrog_IDLE_29
+  - first:
+      213: 170799641791669352
+    second: WizardFrog_IDLE_30
+  - first:
+      213: 7048149265674887832
+    second: WizardFrog_IDLE_31
+  - first:
+      213: -6754938461339445867
+    second: WizardFrog_IDLE_32
+  - first:
+      213: -3976784403687179641
+    second: WizardFrog_IDLE_33
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: WizardFrog_IDLE_0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 0
+        width: 31
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 05c9fc5d9f52bf9e0800000000000000
+      internalID: -1586632688753730480
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WizardFrog_IDLE_1
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 0
+        width: 31
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 88a3d5c66720de800800000000000000
+      internalID: 643173029431294600
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WizardFrog_IDLE_2
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 0
+        width: 31
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fbb63d80adfb85fa0800000000000000
+      internalID: -5811684375949775937
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WizardFrog_IDLE_3
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 0
+        width: 31
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6139e5c5abf445160800000000000000
+      internalID: 7013318181554918166
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WizardFrog_IDLE_4
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 0
+        width: 31
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00fe327569acac970800000000000000
+      internalID: 8776049570940710656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WizardFrog_IDLE_5
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 0
+        width: 31
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a76c5982f22a2750800000000000000
+      internalID: 6280871055403542432
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WizardFrog_IDLE_6
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 0
+        width: 31
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e22143da46c0dca90800000000000000
+      internalID: -7292158595100831186
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WizardFrog_IDLE_7
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 0
+        width: 31
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0057129f12d9bd940800000000000000
+      internalID: 5322020153907574016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WizardFrog_IDLE_8
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 0
+        width: 31
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: badc38ddd31b63860800000000000000
+      internalID: 7509384307954404779
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WizardFrog_IDLE_9
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 0
+        width: 31
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa41ee957695e7e00800000000000000
+      internalID: 1044370464021812399
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WizardFrog_IDLE_10
+      rect:
+        serializedVersion: 2
+        x: 321
+        y: 0
+        width: 31
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 32ca1b9841fc8b740800000000000000
+      internalID: 5168108259524062243
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WizardFrog_IDLE_11
+      rect:
+        serializedVersion: 2
+        x: 353
+        y: 0
+        width: 31
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 15df8e33098b0c770800000000000000
+      internalID: 8629099815527578961
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WizardFrog_IDLE_12
+      rect:
+        serializedVersion: 2
+        x: 385
+        y: 0
+        width: 31
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 50056d1433536bd20800000000000000
+      internalID: 3293878671732264965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WizardFrog_IDLE_13
+      rect:
+        serializedVersion: 2
+        x: 417
+        y: 0
+        width: 31
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aece1aa36b4390270800000000000000
+      internalID: 8217156952386563306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WizardFrog_IDLE_14
+      rect:
+        serializedVersion: 2
+        x: 449
+        y: 0
+        width: 31
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d2e419193e8425620800000000000000
+      internalID: 2761349663768530477
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WizardFrog_IDLE_15
+      rect:
+        serializedVersion: 2
+        x: 481
+        y: 0
+        width: 31
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 95dc68898e75a4070800000000000000
+      internalID: 8091376337027517785
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WizardFrog_IDLE_16
+      rect:
+        serializedVersion: 2
+        x: 513
+        y: 0
+        width: 31
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e6e1e1c79e112a90800000000000000
+      internalID: -7340552280495495447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WizardFrog_IDLE_17
+      rect:
+        serializedVersion: 2
+        x: 545
+        y: 0
+        width: 31
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4eec0c9e6d7eb1e20800000000000000
+      internalID: 3322504060346617572
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WizardFrog_IDLE_18
+      rect:
+        serializedVersion: 2
+        x: 577
+        y: 0
+        width: 31
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 84b8fc1d50dd8a840800000000000000
+      internalID: 5235677583882816328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WizardFrog_IDLE_19
+      rect:
+        serializedVersion: 2
+        x: 609
+        y: 0
+        width: 31
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b30dc036a3866cc0800000000000000
+      internalID: -3718139692541213771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WizardFrog_IDLE_20
+      rect:
+        serializedVersion: 2
+        x: 641
+        y: 0
+        width: 31
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 98d5adca86a91ae50800000000000000
+      internalID: 6818901085182909833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WizardFrog_IDLE_21
+      rect:
+        serializedVersion: 2
+        x: 673
+        y: 0
+        width: 31
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e46cd17531873fc0800000000000000
+      internalID: -3515198917595863833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WizardFrog_IDLE_22
+      rect:
+        serializedVersion: 2
+        x: 705
+        y: 0
+        width: 31
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7aa9982a07e297f90800000000000000
+      internalID: -6955477088198878553
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WizardFrog_IDLE_23
+      rect:
+        serializedVersion: 2
+        x: 737
+        y: 0
+        width: 31
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0b2b9e740b3348ed0800000000000000
+      internalID: -2412746668149984592
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WizardFrog_IDLE_24
+      rect:
+        serializedVersion: 2
+        x: 769
+        y: 0
+        width: 31
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f4ad162c653c9c300800000000000000
+      internalID: 272964029828422223
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WizardFrog_IDLE_25
+      rect:
+        serializedVersion: 2
+        x: 801
+        y: 0
+        width: 31
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a071ddccee0b2270800000000000000
+      internalID: 8226685554550468768
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WizardFrog_IDLE_26
+      rect:
+        serializedVersion: 2
+        x: 833
+        y: 0
+        width: 31
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 09580fe655d1cb4b0800000000000000
+      internalID: -5423427598490237552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WizardFrog_IDLE_27
+      rect:
+        serializedVersion: 2
+        x: 865
+        y: 0
+        width: 31
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3ef5a4f2af69b9a60800000000000000
+      internalID: 7681899590689906659
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WizardFrog_IDLE_28
+      rect:
+        serializedVersion: 2
+        x: 897
+        y: 0
+        width: 31
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18fa14dc76b951020800000000000000
+      internalID: 2311924853852188545
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WizardFrog_IDLE_29
+      rect:
+        serializedVersion: 2
+        x: 929
+        y: 0
+        width: 31
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4e1b9c2e138fae910800000000000000
+      internalID: 1867577888640446948
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WizardFrog_IDLE_30
+      rect:
+        serializedVersion: 2
+        x: 961
+        y: 0
+        width: 31
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 864a1c88e5dce5200800000000000000
+      internalID: 170799641791669352
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WizardFrog_IDLE_31
+      rect:
+        serializedVersion: 2
+        x: 993
+        y: 0
+        width: 31
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8926b781a6e00d160800000000000000
+      internalID: 7048149265674887832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WizardFrog_IDLE_32
+      rect:
+        serializedVersion: 2
+        x: 1025
+        y: 0
+        width: 31
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5951d343243a142a0800000000000000
+      internalID: -6754938461339445867
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WizardFrog_IDLE_33
+      rect:
+        serializedVersion: 2
+        x: 1057
+        y: 0
+        width: 31
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 78a79ed97af9fc8c0800000000000000
+      internalID: -3976784403687179641
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      WizardFrog_IDLE_0: -1586632688753730480
+      WizardFrog_IDLE_1: 643173029431294600
+      WizardFrog_IDLE_10: 5168108259524062243
+      WizardFrog_IDLE_11: 8629099815527578961
+      WizardFrog_IDLE_12: 3293878671732264965
+      WizardFrog_IDLE_13: 8217156952386563306
+      WizardFrog_IDLE_14: 2761349663768530477
+      WizardFrog_IDLE_15: 8091376337027517785
+      WizardFrog_IDLE_16: -7340552280495495447
+      WizardFrog_IDLE_17: 3322504060346617572
+      WizardFrog_IDLE_18: 5235677583882816328
+      WizardFrog_IDLE_19: -3718139692541213771
+      WizardFrog_IDLE_2: -5811684375949775937
+      WizardFrog_IDLE_20: 6818901085182909833
+      WizardFrog_IDLE_21: -3515198917595863833
+      WizardFrog_IDLE_22: -6955477088198878553
+      WizardFrog_IDLE_23: -2412746668149984592
+      WizardFrog_IDLE_24: 272964029828422223
+      WizardFrog_IDLE_25: 8226685554550468768
+      WizardFrog_IDLE_26: -5423427598490237552
+      WizardFrog_IDLE_27: 7681899590689906659
+      WizardFrog_IDLE_28: 2311924853852188545
+      WizardFrog_IDLE_29: 1867577888640446948
+      WizardFrog_IDLE_3: 7013318181554918166
+      WizardFrog_IDLE_30: 170799641791669352
+      WizardFrog_IDLE_31: 7048149265674887832
+      WizardFrog_IDLE_32: -6754938461339445867
+      WizardFrog_IDLE_33: -3976784403687179641
+      WizardFrog_IDLE_4: 8776049570940710656
+      WizardFrog_IDLE_5: 6280871055403542432
+      WizardFrog_IDLE_6: -7292158595100831186
+      WizardFrog_IDLE_7: 5322020153907574016
+      WizardFrog_IDLE_8: 7509384307954404779
+      WizardFrog_IDLE_9: 1044370464021812399
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
