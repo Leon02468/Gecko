@@ -3,12 +3,20 @@
   "WorkspaceRootPath": "P:\\UnityProjects\\GeckoDemo\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{DFFF381B-74FD-3E30-70D6-018DF6B45084}|Assembly-CSharp.csproj|p:\\unityprojects\\geckodemo\\assets\\scripts\\attack.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DFFF381B-74FD-3E30-70D6-018DF6B45084}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\attack.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|P:\\UnityProjects\\GeckoDemo\\Library\\PackageCache\\com.unity.ai.generators@f55909672e13\\Modules\\Unity.AI.Generators.Sdk\\Logger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Library\\PackageCache\\com.unity.ai.generators@f55909672e13\\Modules\\Unity.AI.Generators.Sdk\\Logger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DFFF381B-74FD-3E30-70D6-018DF6B45084}|Assembly-CSharp.csproj|p:\\unityprojects\\geckodemo\\assets\\scripts\\playermovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{DFFF381B-74FD-3E30-70D6-018DF6B45084}|Assembly-CSharp.csproj|p:\\unityprojects\\geckodemo\\assets\\scripts\\playerattack.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DFFF381B-74FD-3E30-70D6-018DF6B45084}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\playerattack.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DFFF381B-74FD-3E30-70D6-018DF6B45084}|Assembly-CSharp.csproj|P:\\UnityProjects\\GeckoDemo\\assets\\scripts\\playermovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{DFFF381B-74FD-3E30-70D6-018DF6B45084}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\playermovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|P:\\UnityProjects\\GeckoDemo\\Assets\\Scripts\\attack.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\attack.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -23,28 +31,51 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "attack.cs",
-              "DocumentMoniker": "P:\\UnityProjects\\GeckoDemo\\Assets\\Scripts\\attack.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\attack.cs",
-              "ToolTip": "P:\\UnityProjects\\GeckoDemo\\Assets\\Scripts\\attack.cs",
-              "RelativeToolTip": "Assets\\Scripts\\attack.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAARAAAAAAAAAA==",
+              "Title": "Logger.cs",
+              "DocumentMoniker": "P:\\UnityProjects\\GeckoDemo\\Library\\PackageCache\\com.unity.ai.generators@f55909672e13\\Modules\\Unity.AI.Generators.Sdk\\Logger.cs",
+              "RelativeDocumentMoniker": "Library\\PackageCache\\com.unity.ai.generators@f55909672e13\\Modules\\Unity.AI.Generators.Sdk\\Logger.cs",
+              "ToolTip": "P:\\UnityProjects\\GeckoDemo\\Library\\PackageCache\\com.unity.ai.generators@f55909672e13\\Modules\\Unity.AI.Generators.Sdk\\Logger.cs",
+              "RelativeToolTip": "Library\\PackageCache\\com.unity.ai.generators@f55909672e13\\Modules\\Unity.AI.Generators.Sdk\\Logger.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-13T12:16:54.297Z",
+              "WhenOpened": "2025-09-22T11:02:42.129Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "PlayerAttack.cs",
+              "DocumentMoniker": "P:\\UnityProjects\\GeckoDemo\\Assets\\Scripts\\PlayerAttack.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\PlayerAttack.cs",
+              "ToolTip": "P:\\UnityProjects\\GeckoDemo\\Assets\\Scripts\\PlayerAttack.cs",
+              "RelativeToolTip": "Assets\\Scripts\\PlayerAttack.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-21T14:46:53.849Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "attack.cs",
+              "DocumentMoniker": "P:\\UnityProjects\\GeckoDemo\\Assets\\Scripts\\attack.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\attack.cs",
+              "ToolTip": "P:\\UnityProjects\\GeckoDemo\\Assets\\Scripts\\attack.cs",
+              "RelativeToolTip": "Assets\\Scripts\\attack.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-13T12:16:54.297Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "PlayerMovement.cs",
               "DocumentMoniker": "P:\\UnityProjects\\GeckoDemo\\Assets\\Scripts\\PlayerMovement.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\PlayerMovement.cs",
               "ToolTip": "P:\\UnityProjects\\GeckoDemo\\Assets\\Scripts\\PlayerMovement.cs",
               "RelativeToolTip": "Assets\\Scripts\\PlayerMovement.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAAwAwAAAAhAAAAAAAAAA==",
+              "ViewState": "AgIAAH0AAAAAAAAAAAAcwBcAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-07T02:50:48.81Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-07T02:50:48.81Z"
             }
           ]
         }

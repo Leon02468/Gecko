@@ -109,6 +109,14 @@ public class PlayerMovement : MonoBehaviour
                 facingDirection = 1;
             else if (horizontalMovement < 0)
                 facingDirection = -1;
+
+            // Flip sprite
+            if (transform != null)
+            {
+                Vector3 scale = transform.localScale;
+                scale.x = Mathf.Abs(scale.x) * facingDirection;
+                transform.localScale = scale;
+            }
         }
         else if (context.canceled)
         {

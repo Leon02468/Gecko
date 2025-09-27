@@ -24581,6 +24581,18 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: eada4a6a-7235-45ee-b1d1-3c54994f566e
     m_ActionName: 'Player/Jump[/Keyboard/space]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8b4beec7-5b28-4d6a-9a19-debd348d7f63
+    m_ActionName: 'Player/GroundAttack[/Keyboard/x]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: eb4d476c-042b-48a5-a289-561e9484ec3b
+    m_ActionName: 'Player/TopAttack[/Keyboard/upArrow,/Keyboard/x]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4b6453e1-5b32-4dbe-a48c-104996a78404
+    m_ActionName: 'Player/DownAttack[/Keyboard/downArrow,/Keyboard/x]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -24602,6 +24614,8 @@ MonoBehaviour:
   speed: 5
   jumpForce: 10
   maxJump: 1
+  coyoteTime: 0.1
+  jumpBufferTime: 0.1
   groundCheckPos: {fileID: 546990219}
   groundCheckSize: {x: 0.43, y: 0.04}
   groundLayer:
