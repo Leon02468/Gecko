@@ -9,16 +9,19 @@ public class PlayerAttack : MonoBehaviour
     public Vector2 sideAttackBoxSize = new Vector2(1f, 1f);
     public float sideAttackRange = 1f;
     public float sideAttackCooldown = 0.5f;
+    public int sideAttackDamage = 1;
 
     [Header("Top Attack")]
     public Vector2 topAttackBoxSize = new Vector2(1f, 1f);
     public float topAttackRange = 1f;
     public float topAttackCooldown = 0.5f;
+    public int topAttackDamage = 1;
 
     [Header("Down Attack")]
     public Vector2 downAttackBoxSize = new Vector2(1f, 1f);
     public float downAttackRange = 1f;
     public float downAttackCooldown = 0.6f;
+    public int downAttackDamage = 1;
 
     [Header("Attack Layer")]
     public LayerMask attackLayer;
@@ -206,63 +209,26 @@ public class PlayerAttack : MonoBehaviour
         return false;
     }
 
-    // common hit handling: call damage and apply knockback
-    // Modified: allow forcing vertical velocity assignment for top attacks to avoid side motion
-    private void HandleHit(Collider2D col, Vector2 knockback, bool forceSetVelocity = false)
+    // common hit handling: call damage on the target (health components handle knockback)
+    private void HandleHit(Collider2D col, Vector2 knockback, int damage = 1, bool forceSetVelocity = false)
     {
         if (col == null) return;
 
-        // Notify enemy of damage (optional)
-        col.SendMessage("TakeDamage", SendMessageOptions.DontRequireReceiver);
+        // Adjust knockback if caller requested forcing vertical-only velocity
+        // (we encode that by zeroing horizontal component when forceSetVelocity == true)
+        Vector2 kb = forceSetVelocity ? new Vector2(0f, knockback.y) : knockback;
 
-        // Try to get the Rigidbody2D (attached or on the collider)
-        Rigidbody2D enemyRb = col.attachedRigidbody != null ? col.attachedRigidbody : col.GetComponent<Rigidbody2D>();
-
-        if (enemyRb != null)
+        // Prefer typed interface call to notify entity of damage
+        var dmg = col.GetComponentInParent<IDamageable>();
+        if (dmg != null)
         {
-            // If caller requested direct velocity set (useful for vertical-only knockback),
-            // replace horizontal velocity with zero and set vertical velocity.
-            if (forceSetVelocity)
-            {
-                // Ensure we set velocity using the correct field depending on bodyType
-                switch (enemyRb.bodyType)
-                {
-                    case RigidbodyType2D.Dynamic:
-                    case RigidbodyType2D.Kinematic:
-                        // zero horizontal, set vertical directly for a clean upward knock
-                        enemyRb.linearVelocity = new Vector2(0f, knockback.y);
-                        break;
-
-                    case RigidbodyType2D.Static:
-                        // Static can't move, small transform nudge
-                        col.transform.position += (Vector3)(new Vector2(0f, knockback.y) * 0.02f);
-                        break;
-                }
-                return;
-            }
-
-            switch (enemyRb.bodyType)
-            {
-                case RigidbodyType2D.Dynamic:
-                    // Preferred: impulse respects mass
-                    enemyRb.AddForce(knockback, ForceMode2D.Impulse);
-                    break;
-
-                case RigidbodyType2D.Kinematic:
-                    // Kinematic bodies don't respond to AddForce — set velocity for immediate effect
-                    enemyRb.linearVelocity = knockback;
-                    break;
-
-                case RigidbodyType2D.Static:
-                    // Static bodies won't move; try slight transform shift (fallback)
-                    col.transform.position += (Vector3)(knockback * 0.02f);
-                    break;
-            }
+            dmg.TakeDamage(damage, kb);
         }
         else
         {
-            // No Rigidbody2D found — try calling a script method (e.g. enemy controller)
-            col.SendMessage("ApplyKnockback", knockback, SendMessageOptions.DontRequireReceiver);
+            // fallback for legacy scripts: try to send damage amount, then knockback separately
+            col.SendMessage("TakeDamage", damage, SendMessageOptions.DontRequireReceiver);
+            col.SendMessage("ApplyKnockback", kb, SendMessageOptions.DontRequireReceiver);
         }
     }
 
@@ -285,10 +251,10 @@ public class PlayerAttack : MonoBehaviour
                 if (hitSet.Contains(hit)) continue;
                 if (!IsValidTarget(hit)) continue;
 
-                // apply enemy knockback
+                // apply enemy knockback (diagonal downwards)
                 int facing = playerMovement != null ? playerMovement.facingDirection : 1;
                 Vector2 kb = new Vector2(facing * knockbackForce * 0.8f, -knockbackForce * 0.6f);
-                HandleHit(hit, kb, false);
+                HandleHit(hit, kb, downAttackDamage, false);
                 hitSet.Add(hit);
 
                 // bounce player (only once)
@@ -326,7 +292,7 @@ public class PlayerAttack : MonoBehaviour
             // knockback horizontally away from player with small upward component
             Vector2 away = (hit.transform.position.x >= transform.position.x) ? Vector2.right : Vector2.left;
             Vector2 kb = away * knockbackForce + Vector2.up * (knockbackForce * knockbackUpMultiplier);
-            HandleHit(hit, kb, false);
+            HandleHit(hit, kb, sideAttackDamage, false);
             Debug.Log("Side Hit: " + hit.name);
         }
     }
@@ -344,7 +310,7 @@ public class PlayerAttack : MonoBehaviour
 
             // knockback mostly upward (force vertical directly to avoid lateral motion)
             Vector2 kb = Vector2.up * knockbackForce;
-            HandleHit(hit, kb, true); // forceSetVelocity = true
+            HandleHit(hit, kb, topAttackDamage, true); // forceSetVelocity = true
             Debug.Log("Top Hit: " + hit.name);
         }
     }

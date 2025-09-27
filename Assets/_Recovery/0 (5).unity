@@ -339,6 +339,37 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
   CustomBlends: {fileID: 0}
+--- !u!1 &546990218
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 546990219}
+  m_Layer: 0
+  m_Name: GroundCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &546990219
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 546990218}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.991, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1798282180}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &767059738
 GameObject:
   m_ObjectHideFlags: 0
@@ -385,37 +416,6 @@ Transform:
   - {fileID: 1367051430}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &791938226
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 791938227}
-  m_Layer: 3
-  m_Name: GroundCheck
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &791938227
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 791938226}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.99099994, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1798282180}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1277458683
 GameObject:
   m_ObjectHideFlags: 0
@@ -429,7 +429,6 @@ GameObject:
   - component: {fileID: 1277458685}
   - component: {fileID: 1277458684}
   - component: {fileID: 1277458688}
-  - component: {fileID: 1277458689}
   m_Layer: 7
   m_Name: NPC_Gundalf
   m_TagString: Enemy
@@ -595,41 +594,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8597042e863b564aa9826f13b4b110b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  speed: 2.5
+  speed: 2
   patrolDistance: 4
-  outOfBoundsTolerance: 0.01
-  arrivalThreshold: 0.03
+  outOfBoundsTolerance: 0.1
+  arrivalThreshold: 0.05
   velocityAcceleration: 8
-  flipDeadzone: 0.5
-  flipCooldown: 0.12
-  showGizmos: 1
-  gizmoColor: {r: 0, g: 0.6, b: 1, a: 0.25}
-  gizmoWireColor: {r: 0, g: 0.6, b: 1, a: 1}
-  gizmoPadding: 0.08
-  pillarHeight: 2
---- !u!114 &1277458689
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1277458683}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d702c4d130cce9c44a3604fcf067081b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MobHealth
-  maxHP: 3
-  destroyOnDeath: 1
-  deathDelay: 0.1
-  useInvulnerability: 1
-  invulnerabilityDuration: 0.25
-  OnDamaged:
-    m_PersistentCalls:
-      m_Calls: []
-  OnDead:
-    m_PersistentCalls:
-      m_Calls: []
+  flipDeadzone: 0.05
+  flipCooldown: 0.18
 --- !u!1 &1367051429
 GameObject:
   m_ObjectHideFlags: 0
@@ -24380,7 +24351,6 @@ GameObject:
   - component: {fileID: 1798282182}
   - component: {fileID: 1798282183}
   - component: {fileID: 1798282184}
-  - component: {fileID: 1798282185}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -24486,7 +24456,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 791938227}
+  - {fileID: 546990219}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1798282181
@@ -24703,7 +24673,7 @@ MonoBehaviour:
   maxJump: 1
   coyoteTime: 0.1
   jumpBufferTime: 0.1
-  groundCheckPos: {fileID: 791938227}
+  groundCheckPos: {fileID: 546990219}
   groundCheckSize: {x: 0.43, y: 0.04}
   groundLayer:
     serializedVersion: 2
@@ -24726,21 +24696,18 @@ MonoBehaviour:
   sideAttackBoxSize: {x: 2, y: 1}
   sideAttackRange: 1
   sideAttackCooldown: 0.5
-  sideAttackDamage: 1
   topAttackBoxSize: {x: 1, y: 2}
   topAttackRange: 1.25
   topAttackCooldown: 0.5
-  topAttackDamage: 1
   downAttackBoxSize: {x: 1.75, y: 0.75}
   downAttackRange: 1.25
   downAttackCooldown: 0.4
-  downAttackDamage: 1
   attackLayer:
     serializedVersion: 2
     m_Bits: 128
   useTag: 0
   enemyTag: Enemy
-  knockbackForce: 3.75
+  knockbackForce: 4.5
   knockbackUpMultiplier: 0.4
   downAttackBoost: 10
   downAttackHorizontalMultiplier: 1.25
@@ -24751,29 +24718,6 @@ MonoBehaviour:
   downAttackBounceLock: 0.04
   downAttackRequireAir: 1
   flashDuration: 0.15
---- !u!114 &1798282185
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1798282177}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a88c1771d3b2fe4db720fa7d39bcdb5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
-  maxHP: 5
-  destroyOnDeath: 1
-  useInvulnerability: 1
-  invulnerabilityDuration: 0.75
-  velocityLockDuration: 0.12
-  OnDamaged:
-    m_PersistentCalls:
-      m_Calls: []
-  OnDead:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
