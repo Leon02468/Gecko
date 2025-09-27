@@ -24723,6 +24723,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53b964f8f3f45064781d69e1b1e7eb32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAttack
+  sideAttackEffectPrefab: {fileID: 0}
+  topAttackEffectPrefab: {fileID: 0}
+  downAttackEffectPrefab: {fileID: 0}
   sideAttackBoxSize: {x: 2, y: 1}
   sideAttackRange: 1
   sideAttackCooldown: 0.5

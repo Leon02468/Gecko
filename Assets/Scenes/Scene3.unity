@@ -633,7 +633,7 @@ Transform:
   m_GameObject: {fileID: 454101833}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -24.035198, y: 0.032999992, z: -10}
+  m_LocalPosition: {x: -24.041964, y: 0.032999992, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6116,12 +6116,15 @@ MonoBehaviour:
   sideAttackBoxSize: {x: 2, y: 1}
   sideAttackRange: 1
   sideAttackCooldown: 0.5
+  sideAttackDamage: 1
   topAttackBoxSize: {x: 1, y: 2}
   topAttackRange: 1.25
   topAttackCooldown: 0.5
+  topAttackDamage: 1
   downAttackBoxSize: {x: 1.75, y: 0.75}
   downAttackRange: 1.25
   downAttackCooldown: 0.4
+  downAttackDamage: 1
   attackLayer:
     serializedVersion: 2
     m_Bits: 128
