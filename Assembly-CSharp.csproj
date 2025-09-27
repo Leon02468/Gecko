@@ -63,8 +63,12 @@
     <Analyzer Include="C:\Users\HungWah\A.Study\1LuanAn\NetHero-Github\Gecko\Library\PackageCache\com.unity.dt.app-ui@7b87c8225c06\Runtime\SourceGenerators\netstandard2.0\EnumToLowerCase.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\PlayerHealth.cs" />
+    <Compile Include="Assets\Scripts\MobMovement.cs" />
+    <Compile Include="Assets\Scripts\MobHealth.cs" />
     <Compile Include="Assets\Scripts\PlayerAttack.cs" />
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
+    <Compile Include="Assets\Scripts\IDamageable.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
