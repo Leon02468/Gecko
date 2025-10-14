@@ -393,6 +393,8 @@ GameObject:
   - component: {fileID: 112176715}
   - component: {fileID: 112176718}
   - component: {fileID: 112176717}
+  - component: {fileID: 112176719}
+  - component: {fileID: 112176720}
   m_Layer: 7
   m_Name: Mad Mantis
   m_TagString: Enemy
@@ -444,8 +446,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1356362289
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 665313845716424348, guid: 051f2fd674453c44594717c7920ae01b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -546,6 +548,53 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &112176719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 112176714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8597042e863b564aa9826f13b4b110b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MobMovement
+  speed: 2
+  patrolDistance: 3
+  outOfBoundsTolerance: 0.1
+  arrivalThreshold: 0.05
+  velocityAcceleration: 8
+  flipDeadzone: 0.05
+  flipCooldown: 0.18
+  showGizmos: 1
+  gizmoColor: {r: 0, g: 0.6, b: 1, a: 0.25}
+  gizmoWireColor: {r: 0, g: 0.6, b: 1, a: 1}
+  gizmoPadding: 0.08
+  pillarHeight: 2
+--- !u!114 &112176720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 112176714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d702c4d130cce9c44a3604fcf067081b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MobHealth
+  maxHP: 10
+  destroyOnDeath: 1
+  deathDelay: 0.1
+  useInvulnerability: 1
+  invulnerabilityDuration: 0.25
+  OnDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDead:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &454101833
 GameObject:
   m_ObjectHideFlags: 0
@@ -5700,8 +5749,8 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 59.663223, y: 15.60676}
-      - {x: -12.2976, y: 15.606762}
+    - - {x: 59.663223, y: 18}
+      - {x: -12.2976, y: 18}
       - {x: -12.297599, y: -8.488295}
       - {x: 43.314217, y: -8.488295}
       - {x: 43.220787, y: 5}
