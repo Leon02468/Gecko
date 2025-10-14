@@ -63,12 +63,26 @@
     <Analyzer Include="P:\UnityProjects\GeckoDemo\Library\PackageCache\com.unity.dt.app-ui@7b87c8225c06\Runtime\SourceGenerators\netstandard2.0\EnumToLowerCase.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Jump.cs" />
     <Compile Include="Assets\Scripts\PlayerHealth.cs" />
+    <Compile Include="Assets\Scripts\PlayerAnimation.cs" />
+    <Compile Include="Assets\Scripts\MobAI.cs" />
     <Compile Include="Assets\Scripts\MobMovement.cs" />
+    <Compile Include="Assets\Scripts\MobAnimation.cs" />
     <Compile Include="Assets\Scripts\MobHealth.cs" />
     <Compile Include="Assets\Scripts\PlayerAttack.cs" />
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\IDamageable.cs" />
+    <Compile Include="Assets\Scripts\ParallaxMaterial.cs" />
+    <Compile Include="Assets\Scripts\CameraFollow.cs" />
+    <Compile Include="Assets\Scripts\ParallaxLayer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Sprites\parallax_demon_woods_pack\license.txt" />
+    <None Include="Assets\Sprites\Free Pixel Art Forest\Contact.txt" />
+    <None Include="Assets\Sprites\Free Pixel Art Forest\license.txt" />
+    <None Include="Assets\Sprites\Free Pixel Art Forest\changelog.txt" />
+    <None Include="Assets\Sprites\Free Pixel Art Forest\readme.txt" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

@@ -3,36 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\HungWah\\A.Study\\1LuanAn\\NetHero-Github\\Gecko\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|c:\\users\\hungwah\\a.study\\1luanan\\nethero-github\\gecko\\assets\\scripts\\playerhealth.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\playerhealth.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|c:\\users\\hungwah\\a.study\\1luanan\\nethero-github\\gecko\\assets\\scripts\\mobai.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\mobai.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|c:\\users\\hungwah\\a.study\\1luanan\\nethero-github\\gecko\\assets\\scripts\\mobhealth.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\mobhealth.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|c:\\users\\hungwah\\a.study\\1luanan\\nethero-github\\gecko\\assets\\scripts\\playerhitbox.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:assets\\scripts\\playerhitbox.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|C:\\Users\\HungWah\\A.Study\\1LuanAn\\NetHero-Github\\Gecko\\assets\\scripts\\playerattack.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\playerattack.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|C:\\Users\\HungWah\\A.Study\\1LuanAn\\NetHero-Github\\Gecko\\assets\\scripts\\idamageable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\idamageable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|C:\\Users\\HungWah\\A.Study\\1LuanAn\\NetHero-Github\\Gecko\\assets\\scripts\\mobmovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\mobmovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|C:\\Users\\HungWah\\A.Study\\1LuanAn\\NetHero-Github\\Gecko\\assets\\scripts\\playermovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\playermovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\HungWah\\A.Study\\1LuanAn\\NetHero-Github\\Gecko\\Assets\\Scripts\\MobHitbox.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\MobHitbox.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|c:\\users\\hungwah\\a.study\\1luanan\\nethero-github\\gecko\\assets\\scripts\\mobanimation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\mobanimation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,8 +18,21 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MobAI.cs",
+              "DocumentMoniker": "C:\\Users\\HungWah\\A.Study\\1LuanAn\\NetHero-Github\\Gecko\\Assets\\Scripts\\MobAI.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\MobAI.cs",
+              "ToolTip": "C:\\Users\\HungWah\\A.Study\\1LuanAn\\NetHero-Github\\Gecko\\Assets\\Scripts\\MobAI.cs",
+              "RelativeToolTip": "Assets\\Scripts\\MobAI.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAJgAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-10T17:33:52.111Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{e1b7d1f8-9b3c-49b1-8f4f-bfc63a88835d}"
@@ -51,100 +40,15 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "MobHealth.cs",
-              "DocumentMoniker": "C:\\Users\\HungWah\\A.Study\\1LuanAn\\NetHero-Github\\Gecko\\Assets\\Scripts\\MobHealth.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\MobHealth.cs",
-              "ToolTip": "C:\\Users\\HungWah\\A.Study\\1LuanAn\\NetHero-Github\\Gecko\\Assets\\Scripts\\MobHealth.cs",
-              "RelativeToolTip": "Assets\\Scripts\\MobHealth.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Title": "MobAnimation.cs",
+              "DocumentMoniker": "C:\\Users\\HungWah\\A.Study\\1LuanAn\\NetHero-Github\\Gecko\\Assets\\Scripts\\MobAnimation.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\MobAnimation.cs",
+              "ToolTip": "C:\\Users\\HungWah\\A.Study\\1LuanAn\\NetHero-Github\\Gecko\\Assets\\Scripts\\MobAnimation.cs",
+              "RelativeToolTip": "Assets\\Scripts\\MobAnimation.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-26T12:38:19.271Z",
+              "WhenOpened": "2025-10-10T17:33:22.008Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "PlayerHealth.cs",
-              "DocumentMoniker": "C:\\Users\\HungWah\\A.Study\\1LuanAn\\NetHero-Github\\Gecko\\Assets\\Scripts\\PlayerHealth.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\PlayerHealth.cs",
-              "ToolTip": "C:\\Users\\HungWah\\A.Study\\1LuanAn\\NetHero-Github\\Gecko\\Assets\\Scripts\\PlayerHealth.cs",
-              "RelativeToolTip": "Assets\\Scripts\\PlayerHealth.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAZAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-26T12:37:20.705Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "MobHitbox.cs",
-              "DocumentMoniker": "C:\\Users\\HungWah\\A.Study\\1LuanAn\\NetHero-Github\\Gecko\\Assets\\Scripts\\MobHitbox.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\MobHitbox.cs",
-              "ToolTip": "C:\\Users\\HungWah\\A.Study\\1LuanAn\\NetHero-Github\\Gecko\\Assets\\Scripts\\MobHitbox.cs",
-              "RelativeToolTip": "Assets\\Scripts\\MobHitbox.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-26T12:28:01.932Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "PlayerHitbox.cs",
-              "DocumentMoniker": "C:\\Users\\HungWah\\A.Study\\1LuanAn\\NetHero-Github\\Gecko\\Assets\\Scripts\\PlayerHitbox.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\PlayerHitbox.cs",
-              "ToolTip": "C:\\Users\\HungWah\\A.Study\\1LuanAn\\NetHero-Github\\Gecko\\Assets\\Scripts\\PlayerHitbox.cs",
-              "RelativeToolTip": "Assets\\Scripts\\PlayerHitbox.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-26T12:28:08.723Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "IDamageable.cs",
-              "DocumentMoniker": "C:\\Users\\HungWah\\A.Study\\1LuanAn\\NetHero-Github\\Gecko\\Assets\\Scripts\\IDamageable.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\IDamageable.cs",
-              "ToolTip": "C:\\Users\\HungWah\\A.Study\\1LuanAn\\NetHero-Github\\Gecko\\Assets\\Scripts\\IDamageable.cs",
-              "RelativeToolTip": "Assets\\Scripts\\IDamageable.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-26T12:18:57.555Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "MobMovement.cs",
-              "DocumentMoniker": "C:\\Users\\HungWah\\A.Study\\1LuanAn\\NetHero-Github\\Gecko\\Assets\\Scripts\\MobMovement.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\MobMovement.cs",
-              "ToolTip": "C:\\Users\\HungWah\\A.Study\\1LuanAn\\NetHero-Github\\Gecko\\Assets\\Scripts\\MobMovement.cs",
-              "RelativeToolTip": "Assets\\Scripts\\MobMovement.cs",
-              "ViewState": "AgIAAGMAAAAAAAAAAAD4v2AAAAAUAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-24T13:53:39.647Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "PlayerAttack.cs",
-              "DocumentMoniker": "C:\\Users\\HungWah\\A.Study\\1LuanAn\\NetHero-Github\\Gecko\\Assets\\Scripts\\PlayerAttack.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\PlayerAttack.cs",
-              "ToolTip": "C:\\Users\\HungWah\\A.Study\\1LuanAn\\NetHero-Github\\Gecko\\Assets\\Scripts\\PlayerAttack.cs",
-              "RelativeToolTip": "Assets\\Scripts\\PlayerAttack.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-20T12:57:18.173Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "PlayerMovement.cs",
-              "DocumentMoniker": "C:\\Users\\HungWah\\A.Study\\1LuanAn\\NetHero-Github\\Gecko\\Assets\\Scripts\\PlayerMovement.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\PlayerMovement.cs",
-              "ToolTip": "C:\\Users\\HungWah\\A.Study\\1LuanAn\\NetHero-Github\\Gecko\\Assets\\Scripts\\PlayerMovement.cs",
-              "RelativeToolTip": "Assets\\Scripts\\PlayerMovement.cs",
-              "ViewState": "AgIAAEMAAAAAAAAAAAAqwFIAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-18T02:56:49.708Z"
             }
           ]
         }

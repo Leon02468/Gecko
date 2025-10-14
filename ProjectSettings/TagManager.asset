@@ -42,17 +42,47 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: background
+  - name: background dark color
     uniqueID: 3137114741
     locked: 0
-  - name: platform
+  - name: background light color
     uniqueID: 1023652391
+    locked: 0
+  - name: background slight detail
+    uniqueID: 2000938733
+    locked: 0
+  - name: background detail 1
+    uniqueID: 1773353457
+    locked: 0
+  - name: lighting 1
+    uniqueID: 2669150473
+    locked: 0
+  - name: background detail 2
+    uniqueID: 3880824379
+    locked: 0
+  - name: background detail 3
+    uniqueID: 3613768805
+    locked: 0
+  - name: lighting 2
+    uniqueID: 960865815
+    locked: 0
+  - name: background detail 4
+    uniqueID: 3822270967
+    locked: 0
+  - name: ground
+    uniqueID: 825408081
+    locked: 0
+  - name: Player
+    uniqueID: 3076942057
     locked: 0
   - name: Enemy
     uniqueID: 2938605007
     locked: 0
-  - name: Player
-    uniqueID: 3076942057
+  - name: foreground
+    uniqueID: 3751811361
+    locked: 0
+  - name: grass
+    uniqueID: 3781693747
     locked: 0
   m_RenderingLayers:
   - Default
