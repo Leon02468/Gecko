@@ -29204,7 +29204,7 @@ MonoBehaviour:
   maxVelocityMagnitude: 100
   jumpForce: 15
   maxJump: 1
-  playerAnimation: {fileID: 0}
+  playerAnimation: {fileID: 1798282187}
   coyoteTime: 0.1
   jumpBufferTime: 0.1
   groundCheckPos: {fileID: 791938227}
@@ -29255,7 +29255,7 @@ MonoBehaviour:
   downAttackBounceLock: 0.04
   downAttackRequireAir: 1
   flashDuration: 0.15
-  animator: {fileID: 1798282186}
+  animator: {fileID: 0}
 --- !u!114 &1798282185
 MonoBehaviour:
   m_ObjectHideFlags: 0

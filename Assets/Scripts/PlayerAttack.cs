@@ -5,11 +5,6 @@ using UnityEngine.InputSystem;
 
 public class PlayerAttack : MonoBehaviour
 {
-    [Header("Visual Effects")]
-    public GameObject sideAttackEffectPrefab;
-    public GameObject topAttackEffectPrefab;
-    public GameObject downAttackEffectPrefab;
-
     [Header("Side Attack (X)")]
     public Vector2 sideAttackBoxSize = new Vector2(1f, 1f);
     public float sideAttackRange = 1f;
@@ -200,7 +195,7 @@ public class PlayerAttack : MonoBehaviour
         // Check keyboard
         if (Keyboard.current != null)
         {
-            if (Keyboard.current.downArrowKey.isPressed)
+            if (Keyboard.current.downArrowKey.isPressed || Keyboard.current.sKey.isPressed)
                 return true;
         }
 
@@ -275,19 +270,6 @@ public class PlayerAttack : MonoBehaviour
         {
             Vector2 origin = (Vector2)transform.position + diag * downAttackRange;
 
-            //// Instantiate visual effect
-            //if (sideAttackEffectPrefab != null)
-            //{
-            //    GameObject effect = Instantiate(sideAttackEffectPrefab, origin, Quaternion.identity);
-            //    //// Optionally flip effect based on facing
-            //    //if (facing == -1)
-            //    //{
-            //    //    Vector3 scale = effect.transform.localScale;
-            //    //    scale.x *= -1;
-            //    //    effect.transform.localScale = scale;
-            //    //}
-            //}
-
             // sample with layer mask
             Collider2D[] hits = Physics2D.OverlapBoxAll(origin, downAttackBoxSize, 0f, attackLayer);
 
@@ -330,19 +312,6 @@ public class PlayerAttack : MonoBehaviour
         Vector2 dir = (facing == 1) ? Vector2.right : Vector2.left;
         Vector2 origin = (Vector2)transform.position + dir * sideAttackRange;
 
-        //// Instantiate visual effect
-        //if (sideAttackEffectPrefab != null)
-        //{
-        //    GameObject effect = Instantiate(sideAttackEffectPrefab, origin, Quaternion.identity);
-        //    // Optionally flip effect based on facing
-        //    if (facing == -1)
-        //    {
-        //        Vector3 scale = effect.transform.localScale;
-        //        scale.x *= -1;
-        //        effect.transform.localScale = scale;
-        //    }
-        //}
-
         Collider2D[] hits = Physics2D.OverlapBoxAll(origin, sideAttackBoxSize, 0f, attackLayer);
         foreach (var hit in hits)
         {
@@ -359,12 +328,6 @@ public class PlayerAttack : MonoBehaviour
     private void PerformTopAttack()
     {
         Vector2 origin = (Vector2)transform.position + Vector2.up * topAttackRange;
-
-        //// Instantiate visual effect
-        //if (topAttackEffectPrefab != null)
-        //{
-        //    GameObject effect = Instantiate(sideAttackEffectPrefab, origin, Quaternion.identity);
-        //}
 
         Collider2D[] hits = Physics2D.OverlapBoxAll(origin, topAttackBoxSize, 0f, attackLayer);
         foreach (var hit in hits)
