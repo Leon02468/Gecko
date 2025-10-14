@@ -9,10 +9,24 @@ public class PlayerMovement : MonoBehaviour
     public float speed = 5f;
     float horizontalMovement = 0f;
 
+    // Expose the last input horizontally so other systems can read it safely
+    public float HorizontalInput { get; private set; } = 0f;
+
+    [Header("Input")]
+    [Tooltip("Deadzone below which stick/axis input is treated as no input (zero).")]
+    public float inputDeadzone = 0.1f;
+
+    [Header("Velocity Safety")]
+    [Tooltip("Clamp magnitude of any velocity assigned to the Rigidbody to avoid runaway values.")]
+    public float maxVelocityMagnitude = 100f;
+
     [Header("Jumping")]
     public float jumpForce = 10f;
     public int maxJump = 1;
     int jumpRemaining;
+
+    // Reference to animation driver so we can trigger jump animation immediately
+    public PlayerAnimation playerAnimation;
 
     // Coyote time + jump buffer
     [Header("Jump Assist")]
@@ -49,6 +63,11 @@ public class PlayerMovement : MonoBehaviour
     {
         // ensure we start with the configured number of jumps
         jumpRemaining = Mathf.Max(1, maxJump);
+        if (rb != null) rb.interpolation = RigidbodyInterpolation2D.Interpolate;
+
+        // auto-find animation driver if not assigned
+        if (playerAnimation == null)
+            playerAnimation = GetComponent<PlayerAnimation>();
     }
 
     void Update()
@@ -70,7 +89,9 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            rb.linearVelocity = new Vector2(horizontalMovement * speed, rb.linearVelocity.y);
+            // set horizontal velocity safely
+            Vector2 target = new Vector2(horizontalMovement * speed, rb != null ? rb.linearVelocity.y : 0f);
+            SetClampedVelocity(target, "Update movement");
         }
 
         // Ground check must run before using grounded state for jump buffering
@@ -83,15 +104,18 @@ public class PlayerMovement : MonoBehaviour
             ExecuteJump();
         }
 
-        Debug.Log(rb.linearVelocity);
+        // optional debug
+        // Debug.Log(rb.linearVelocity);
     }
 
     private void Gravity()
     {
-        if (rb.linearVelocity.y < -0.01f)
+        float vy = rb != null ? rb.linearVelocity.y : 0f;
+        if (vy < -0.01f)
         {
             rb.gravityScale = baseGravity * fallSpeedMultiplier;
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, Mathf.Max(rb.linearVelocity.y, maxFallSpeed));
+            float clampedY = Mathf.Max(vy, maxFallSpeed);
+            SetClampedVelocity(new Vector2(rb.linearVelocity.x, clampedY), "Gravity");
         }
         else
         {
@@ -105,6 +129,13 @@ public class PlayerMovement : MonoBehaviour
         if (context.performed)
         {
             horizontalMovement = context.ReadValue<Vector2>().x;
+
+            // Apply deadzone: treat small axis values as zero so "no input" is stable
+            if (Mathf.Abs(horizontalMovement) < inputDeadzone)
+                horizontalMovement = 0f;
+
+            HorizontalInput = horizontalMovement;
+
             if (horizontalMovement > 0)
                 facingDirection = 1;
             else if (horizontalMovement < 0)
@@ -121,6 +152,7 @@ public class PlayerMovement : MonoBehaviour
         else if (context.canceled)
         {
             horizontalMovement = 0f;
+            HorizontalInput = 0f;
         }
     }
 
@@ -131,12 +163,15 @@ public class PlayerMovement : MonoBehaviour
         {
             // buffer jump input
             jumpBufferTimer = jumpBufferTime;
+
+            // start jump animation immediately on button press
+            playerAnimation?.PlayJumpTrigger();
         }
         else if (context.canceled)
         {
             // short hop: if still rising, reduce upward velocity
             if (rb.linearVelocity.y > 0f)
-                rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * 0.5f);
+                SetClampedVelocity(new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * 0.5f), "Short hop");
         }
     }
 
@@ -146,7 +181,7 @@ public class PlayerMovement : MonoBehaviour
         if (jumpRemaining <= 0 && coyoteTimer <= 0f)
             return;
 
-        rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+        SetClampedVelocity(new Vector2(rb.linearVelocity.x, jumpForce), "ExecuteJump");
 
         // consume a jump if available, otherwise consume coyote time
         if (jumpRemaining > 0)
@@ -181,12 +216,37 @@ public class PlayerMovement : MonoBehaviour
     public void ApplyVelocityLock(Vector2 velocity, float duration)
     {
         if (rb == null) return;
-        rb.linearVelocity = velocity;
+
+        SetClampedVelocity(velocity, "ApplyVelocityLock");
         velocityLockTimer = Mathf.Max(velocityLockTimer, duration);
+    }
+
+    // helper to safely assign rb.linearVelocity with clamping + logging
+    private void SetClampedVelocity(Vector2 v, string source)
+    {
+        if (rb == null) return;
+
+        // guard non-finite
+        if (!float.IsFinite(v.x) || !float.IsFinite(v.y))
+        {
+            Debug.LogWarning($"[PlayerMovement] {source} attempted to set non-finite velocity ({v}). Zeroing.");
+            rb.linearVelocity = Vector2.zero;
+            return;
+        }
+
+        // clamp magnitude
+        if (v.magnitude > maxVelocityMagnitude)
+        {
+            Debug.LogWarning($"[PlayerMovement] {source} attempted to set a large velocity ({v.magnitude}). Clamping to {maxVelocityMagnitude}.");
+            v = Vector2.ClampMagnitude(v, maxVelocityMagnitude);
+        }
+
+        rb.linearVelocity = v;
     }
 
     public void OnDrawGizmosSelected()
     {
+        if (groundCheckPos == null) return;
         Gizmos.color = Color.white;
         Gizmos.DrawWireCube(groundCheckPos.position, groundCheckSize);
     }
