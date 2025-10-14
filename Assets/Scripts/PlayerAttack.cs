@@ -55,6 +55,10 @@ public class PlayerAttack : MonoBehaviour
     public float flashDuration = 0.15f; // How long the flash lasts (seconds)
     private float flashTimer = 0f;
 
+    [Header("Animation")]
+    [Tooltip("Animator used for attack animations. Triggers used: Attack1, Attack2, JumpAttack")]
+    public Animator animator;
+
     // separate last-used timestamps per attack
     private float lastSideAttackTime = -Mathf.Infinity;
     private float lastTopAttackTime = -Mathf.Infinity;
@@ -69,9 +73,14 @@ public class PlayerAttack : MonoBehaviour
     // coroutine handle so subsequent down-attacks can be ignored/replace previous
     private Coroutine downHitboxCoroutine;
 
+    // toggle to alternate side attack variants (Attack1 / Attack2)
+    private bool nextSideAttackIsVariant2 = false;
+
     void Awake()
     {
         playerMovement = GetComponent<PlayerMovement>();
+        if (animator == null)
+            animator = GetComponentInChildren<Animator>();
     }
 
     // Main attack (X). If player is holding down (keyboard/gamepad) this will attempt a down attack even in air.
@@ -94,6 +103,18 @@ public class PlayerAttack : MonoBehaviour
         lastSideAttackTime = Time.time;
         lastAttackType = AttackType.Side;
         flashTimer = flashDuration;
+
+        // Alternate between Attack1 and Attack2 for the normal side attack
+        if (nextSideAttackIsVariant2)
+        {
+            animator?.SetTrigger("Attack2");
+        }
+        else
+        {
+            animator?.SetTrigger("Attack1");
+        }
+        nextSideAttackIsVariant2 = !nextSideAttackIsVariant2;
+
         PerformSideAttack();
     }
 
@@ -108,6 +129,10 @@ public class PlayerAttack : MonoBehaviour
         lastTopAttackTime = Time.time;
         lastAttackType = AttackType.Top;
         flashTimer = flashDuration;
+
+        // Animator: top attack (keep as Attack2 or change in Animator as needed)
+        animator?.SetTrigger("Attack2");
+
         PerformTopAttack();
     }
 
@@ -132,6 +157,9 @@ public class PlayerAttack : MonoBehaviour
         lastDownAttackTime = Time.time;
         lastAttackType = AttackType.Down;
         flashTimer = flashDuration;
+
+        // Animator: jump/down attack (JumpAttack)
+        animator?.SetTrigger("JumpAttack");
 
         // Determine facing
         int facing = 1;
