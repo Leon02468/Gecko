@@ -29199,7 +29199,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   rb: {fileID: 1798282178}
-  speed: 4
+  speed: 5
   inputDeadzone: 0.1
   maxVelocityMagnitude: 100
   jumpForce: 15
@@ -29268,10 +29268,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a88c1771d3b2fe4db720fa7d39bcdb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
-  maxHP: 5
+  maxHP: 50
   destroyOnDeath: 1
   useInvulnerability: 1
-  invulnerabilityDuration: 0.75
+  invulnerabilityDuration: 0.25
   velocityLockDuration: 0.12
   OnDamaged:
     m_PersistentCalls:
@@ -29320,6 +29320,7 @@ MonoBehaviour:
   paramVelY: VelY
   paramIsGrounded: IsGrounded
   paramJumpTrigger: Jump
+  paramHurtTrigger: Hurt
   maxReportedSpeed: 25
   minReportedSpeed: 0.01
 --- !u!1 &1800259655

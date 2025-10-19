@@ -12,6 +12,7 @@ public class PlayerAnimation : MonoBehaviour
     public string paramVelY = "VelY";
     public string paramIsGrounded = "IsGrounded";
     public string paramJumpTrigger = "Jump"; // trigger name for immediate jump transitions
+    public string paramHurtTrigger = "Hurt"; // trigger name for hurt animation
 
     [Header("Safety / clamping")]
     [Tooltip("Clamp Speed parameter sent to Animator to avoid extremely large values.")]
@@ -31,10 +32,12 @@ public class PlayerAnimation : MonoBehaviour
             rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
 
-        // If animation is driven by physics (velocity from Rigidbody), prefer AnimatePhysics so transitions
-        // are evaluated in sync with physics. This helps remove one-frame latency between physics change and animator.
+        // Sync animator with physics: evaluate in FixedUpdate and keep transforms synced to physics.
         if (animator != null && rb != null)
+        {
             animator.updateMode = AnimatorUpdateMode.Fixed;
+            animator.animatePhysics = true;
+        }
     }
 
     void Update()
@@ -88,5 +91,13 @@ public class PlayerAnimation : MonoBehaviour
         animator.SetTrigger(paramJumpTrigger);
         // Also proactively set IsGrounded = false to help parameter-based transitions (defensive)
         animator.SetBool(paramIsGrounded, false);
+    }
+
+    // Play Hurt animation (call this when the player takes damage).
+    // Animator should have a Trigger parameter matching paramHurtTrigger and a transition (Any State -> Hurt) without Exit Time.
+    public void PlayHurt()
+    {
+        if (animator == null) return;
+        animator.SetTrigger(paramHurtTrigger);
     }
 }

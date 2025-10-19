@@ -25,10 +25,12 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
     private bool isInvulnerable;
     private PlayerMovement playerMovement;
+    private PlayerAnimation playerAnimation;
 
     void Awake()
     {
         playerMovement = GetComponent<PlayerMovement>();
+        playerAnimation = GetComponent<PlayerAnimation>();
         CurrentHP = Mathf.Max(0, maxHP);
     }
 
@@ -39,6 +41,9 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
         CurrentHP -= amount;
         OnDamaged?.Invoke();
+
+        // Play hurt animation (if available)
+        playerAnimation?.PlayHurt();
 
         // apply knockback: prefer PlayerMovement velocity lock for consistent player behavior
         if (knockback.HasValue && playerMovement != null)
