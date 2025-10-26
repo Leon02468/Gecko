@@ -1,18 +1,18 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\HungWah\\A.Study\\1LuanAn\\NetHero-Github\\Gecko\\",
+  "WorkspaceRootPath": "E:\\Unity-project\\Gecko\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|c:\\users\\hungwah\\a.study\\1luanan\\nethero-github\\gecko\\assets\\scripts\\playermovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\playermovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|e:\\unity-project\\gecko\\assets\\scripts\\inventory\\inventorymanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\inventory\\inventorymanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|C:\\Users\\HungWah\\A.Study\\1LuanAn\\NetHero-Github\\Gecko\\assets\\scripts\\playerattack.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\playerattack.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|e:\\unity-project\\gecko\\assets\\scripts\\inventory\\itemslot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\inventory\\itemslot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|C:\\Users\\HungWah\\A.Study\\1LuanAn\\NetHero-Github\\Gecko\\assets\\scripts\\mobanimation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\mobanimation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|E:\\Unity-project\\Gecko\\assets\\scripts\\inventory\\item.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\inventory\\item.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,52 +22,46 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 1,
           "Children": [
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{e1b7d1f8-9b3c-49b1-8f4f-bfc63a88835d}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
-            {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "PlayerMovement.cs",
-              "DocumentMoniker": "C:\\Users\\HungWah\\A.Study\\1LuanAn\\NetHero-Github\\Gecko\\Assets\\Scripts\\PlayerMovement.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\PlayerMovement.cs",
-              "ToolTip": "C:\\Users\\HungWah\\A.Study\\1LuanAn\\NetHero-Github\\Gecko\\Assets\\Scripts\\PlayerMovement.cs",
-              "RelativeToolTip": "Assets\\Scripts\\PlayerMovement.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAA5AAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "ItemSlot.cs",
+              "DocumentMoniker": "E:\\Unity-project\\Gecko\\Assets\\Scripts\\Inventory\\ItemSlot.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Inventory\\ItemSlot.cs",
+              "ToolTip": "E:\\Unity-project\\Gecko\\Assets\\Scripts\\Inventory\\ItemSlot.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Inventory\\ItemSlot.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-14T17:13:43.121Z",
+              "WhenOpened": "2025-10-26T07:17:54.385Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "PlayerAttack.cs",
-              "DocumentMoniker": "C:\\Users\\HungWah\\A.Study\\1LuanAn\\NetHero-Github\\Gecko\\Assets\\Scripts\\PlayerAttack.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\PlayerAttack.cs",
-              "ToolTip": "C:\\Users\\HungWah\\A.Study\\1LuanAn\\NetHero-Github\\Gecko\\Assets\\Scripts\\PlayerAttack.cs",
-              "RelativeToolTip": "Assets\\Scripts\\PlayerAttack.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "InventoryManager.cs",
+              "DocumentMoniker": "E:\\Unity-project\\Gecko\\Assets\\Scripts\\Inventory\\InventoryManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Inventory\\InventoryManager.cs",
+              "ToolTip": "E:\\Unity-project\\Gecko\\Assets\\Scripts\\Inventory\\InventoryManager.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Inventory\\InventoryManager.cs",
+              "ViewState": "AgIAADoAAAAAAAAAAAAcwFMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-14T17:13:02.958Z"
+              "WhenOpened": "2025-10-25T16:59:50.652Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "MobAnimation.cs",
-              "DocumentMoniker": "C:\\Users\\HungWah\\A.Study\\1LuanAn\\NetHero-Github\\Gecko\\Assets\\Scripts\\MobAnimation.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\MobAnimation.cs",
-              "ToolTip": "C:\\Users\\HungWah\\A.Study\\1LuanAn\\NetHero-Github\\Gecko\\Assets\\Scripts\\MobAnimation.cs",
-              "RelativeToolTip": "Assets\\Scripts\\MobAnimation.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAQAAAAAAAAAA==",
+              "Title": "Item.cs",
+              "DocumentMoniker": "E:\\Unity-project\\Gecko\\Assets\\Scripts\\Inventory\\Item.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Inventory\\Item.cs",
+              "ToolTip": "E:\\Unity-project\\Gecko\\Assets\\Scripts\\Inventory\\Item.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Inventory\\Item.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-10T17:33:22.008Z"
+              "WhenOpened": "2025-10-25T16:54:55.569Z",
+              "EditorCaption": ""
             }
           ]
         }

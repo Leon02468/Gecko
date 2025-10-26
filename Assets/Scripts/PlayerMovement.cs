@@ -126,6 +126,8 @@ public class PlayerMovement : MonoBehaviour
     // Called by PlayerInput when move input changes
     public void Move(InputAction.CallbackContext context)
     {
+        Debug.Log("Move called: " + context);
+
         if (context.performed)
         {
             horizontalMovement = context.ReadValue<Vector2>().x;
@@ -151,6 +153,7 @@ public class PlayerMovement : MonoBehaviour
     // Jump input - buffer performed, apply short-hop on release
     public void Jump(InputAction.CallbackContext context)
     {
+        // on jump press, buffer the input and trigger jump animation
         if (context.performed)
         {
             // buffer jump input
