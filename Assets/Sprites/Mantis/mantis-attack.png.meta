@@ -1,52 +1,61 @@
 fileFormatVersion: 2
-guid: 1b2a26d07fbfea84ab4d6ffe1cc5f55f
+guid: 25a09fabd72710d42a497b2c228bb03c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4219156811514964234
-    second: geck_attack_0
+      213: 7746744505069876363
+    second: mantis-attack_0
   - first:
-      213: -2195622729641007909
-    second: geck_attack_1
+      213: 2007695650228971618
+    second: mantis-attack_1
   - first:
-      213: 8703570132911748855
-    second: geck_attack_2
+      213: -7503702372905929724
+    second: mantis-attack_2
   - first:
-      213: -6475338616625710327
-    second: geck_attack_3
+      213: -3060665040640961295
+    second: mantis-attack_3
   - first:
-      213: 6540077148208830962
-    second: geck_attack_4
+      213: 5630263547463712244
+    second: mantis-attack_4
   - first:
-      213: -8869984524545523753
-    second: geck_attack_5
+      213: -244943776448649700
+    second: mantis-attack_5
   - first:
-      213: 8627362745707572879
-    second: geck_attack_6
+      213: -1431183711997273177
+    second: mantis-attack_6
   - first:
-      213: 3762809594260308426
-    second: geck_attack_7
+      213: 5212419419652346272
+    second: mantis-attack_7
   - first:
-      213: -4987194762303050098
-    second: geck_attack_8
+      213: -5392585282957666866
+    second: mantis-attack_8
   - first:
-      213: 2359578907306075704
-    second: geck_attack_9
+      213: -1943078694660619890
+    second: mantis-attack_9
   - first:
-      213: 7358547248052976000
-    second: geck_attack_10
+      213: -1259515725286903246
+    second: mantis-attack_10
   - first:
-      213: -2238161760402000309
-    second: geck_attack_11
+      213: 1682284535971780825
+    second: mantis-attack_11
   - first:
-      213: 3994254797639519214
-    second: geck_attack_12
+      213: 1629463809630750800
+    second: mantis-attack_12
   - first:
-      213: 1392195565611679165
-    second: geck_attack_13
+      213: -514625871218648200
+    second: mantis-attack_13
   - first:
-      213: -3499693906628874437
-    second: geck_attack_14
+      213: -6606719826367122058
+    second: mantis-attack_14
+  - first:
+      213: 1577298520189154024
+    second: mantis-attack_15
+  - first:
+      213: 7308015109118676581
+    second: mantis-attack_16
+  - first:
+      213: -4570060250025584168
+    second: mantis-attack_17
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -115,7 +124,7 @@ TextureImporter:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
-    resizeAlgorithm: 1
+    resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
     compressionQuality: 50
@@ -142,331 +151,397 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: geck_attack_0
+      name: mantis-attack_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 19
         y: 0
-        width: 48
-        height: 32
-      alignment: 9
-      pivot: {x: 0.33333334, y: 0.5}
+        width: 27
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6f61bf5eb3b8275c0800000000000000
-      internalID: -4219156811514964234
+      spriteID: b8436665517f18b60800000000000000
+      internalID: 7746744505069876363
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: geck_attack_1
+      name: mantis-attack_1
       rect:
         serializedVersion: 2
-        x: 48
+        x: 68
         y: 0
-        width: 48
-        height: 32
-      alignment: 9
-      pivot: {x: 0.33333334, y: 0.5}
+        width: 27
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: bd469f2a2c49781e0800000000000000
-      internalID: -2195622729641007909
+      spriteID: 268aef08e84ccdb10800000000000000
+      internalID: 2007695650228971618
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: geck_attack_2
+      name: mantis-attack_2
       rect:
         serializedVersion: 2
-        x: 96
+        x: 114
         y: 0
-        width: 48
-        height: 32
-      alignment: 9
-      pivot: {x: 0.33333334, y: 0.5}
+        width: 29
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7f677e12cea49c870800000000000000
-      internalID: 8703570132911748855
+      spriteID: 404bfaab27e7dd790800000000000000
+      internalID: -7503702372905929724
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: geck_attack_3
+      name: mantis-attack_3
       rect:
         serializedVersion: 2
-        x: 144
+        x: 162
         y: 0
-        width: 48
-        height: 32
-      alignment: 9
-      pivot: {x: 0.33333334, y: 0.5}
+        width: 28
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 90bb7a306d9f226a0800000000000000
-      internalID: -6475338616625710327
+      spriteID: 1f493249c555685d0800000000000000
+      internalID: -3060665040640961295
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: geck_attack_4
+      name: mantis-attack_4
       rect:
         serializedVersion: 2
-        x: 192
+        x: 209
         y: 0
-        width: 48
+        width: 29
         height: 32
-      alignment: 9
-      pivot: {x: 0.33333334, y: 0.5}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2f913a6f38503ca50800000000000000
-      internalID: 6540077148208830962
+      spriteID: 4fdb762bdd6b22e40800000000000000
+      internalID: 5630263547463712244
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: geck_attack_5
+      name: mantis-attack_5
       rect:
         serializedVersion: 2
-        x: 240
+        x: 258
         y: 0
-        width: 48
-        height: 32
-      alignment: 9
-      pivot: {x: 0.33333334, y: 0.5}
+        width: 28
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7df7043f11c77e480800000000000000
-      internalID: -8869984524545523753
+      spriteID: c16e5dedee8c99cf0800000000000000
+      internalID: -244943776448649700
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: geck_attack_6
+      name: mantis-attack_6
       rect:
         serializedVersion: 2
-        x: 288
+        x: 305
         y: 0
-        width: 48
+        width: 29
         height: 32
-      alignment: 9
-      pivot: {x: 0.33333334, y: 0.5}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f8ea65e15bc8ab770800000000000000
-      internalID: 8627362745707572879
+      spriteID: 7abd3162ff9632ce0800000000000000
+      internalID: -1431183711997273177
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: geck_attack_7
+      name: mantis-attack_7
       rect:
         serializedVersion: 2
-        x: 336
+        x: 335
         y: 0
         width: 48
         height: 32
-      alignment: 9
-      pivot: {x: 0.33333334, y: 0.5}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ac14157c36f283430800000000000000
-      internalID: 3762809594260308426
+      spriteID: 0a1d9b878db365840800000000000000
+      internalID: 5212419419652346272
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: geck_attack_8
+      name: mantis-attack_8
       rect:
         serializedVersion: 2
-        x: 384
+        x: 383
         y: 0
         width: 48
-        height: 32
-      alignment: 9
-      pivot: {x: 0.33333334, y: 0.5}
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e8eec3779cce9cab0800000000000000
-      internalID: -4987194762303050098
+      spriteID: ec51f4c9140b925b0800000000000000
+      internalID: -5392585282957666866
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: geck_attack_9
+      name: mantis-attack_9
       rect:
         serializedVersion: 2
-        x: 432
+        x: 431
         y: 0
         width: 48
-        height: 32
-      alignment: 9
-      pivot: {x: 0.33333334, y: 0.5}
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 836ab7db388eeb020800000000000000
-      internalID: 2359578907306075704
+      spriteID: e81cf1ad83cc805e0800000000000000
+      internalID: -1943078694660619890
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: geck_attack_10
+      name: mantis-attack_10
       rect:
         serializedVersion: 2
         x: 480
         y: 0
-        width: 48
-        height: 32
-      alignment: 9
-      pivot: {x: 0.33333334, y: 0.5}
+        width: 47
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 089302f1cbfce1660800000000000000
-      internalID: 7358547248052976000
+      spriteID: 232714dfe1d458ee0800000000000000
+      internalID: -1259515725286903246
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: geck_attack_11
+      name: mantis-attack_11
       rect:
         serializedVersion: 2
-        x: 528
+        x: 539
         y: 0
-        width: 48
-        height: 32
-      alignment: 9
-      pivot: {x: 0.33333334, y: 0.5}
+        width: 36
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b463069bcb370f0e0800000000000000
-      internalID: -2238161760402000309
+      spriteID: 9d81bb15fdca85710800000000000000
+      internalID: 1682284535971780825
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: geck_attack_12
+      name: mantis-attack_12
       rect:
         serializedVersion: 2
-        x: 576
+        x: 589
         y: 0
-        width: 48
-        height: 32
-      alignment: 9
-      pivot: {x: 0.33333334, y: 0.5}
+        width: 34
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: eeb04b373917e6730800000000000000
-      internalID: 3994254797639519214
+      spriteID: 058456b93b40d9610800000000000000
+      internalID: 1629463809630750800
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: geck_attack_13
+      name: mantis-attack_13
       rect:
         serializedVersion: 2
-        x: 624
+        x: 623
         y: 0
         width: 48
-        height: 32
-      alignment: 9
-      pivot: {x: 0.33333334, y: 0.5}
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: dbd7822ad72125310800000000000000
-      internalID: 1392195565611679165
+      spriteID: 87b59c92f7eabd8f0800000000000000
+      internalID: -514625871218648200
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: geck_attack_14
+      name: mantis-attack_14
       rect:
         serializedVersion: 2
-        x: 672
+        x: 671
         y: 0
         width: 48
-        height: 32
-      alignment: 9
-      pivot: {x: 0.33333334, y: 0.5}
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b3f69c02fe69e6fc0800000000000000
-      internalID: -3499693906628874437
+      spriteID: 6757bd262573054a0800000000000000
+      internalID: -6606719826367122058
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mantis-attack_15
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 0
+        width: 47
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e2bf90b5a0b3e510800000000000000
+      internalID: 1577298520189154024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mantis-attack_16
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 47
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 56ec430b5094b6560800000000000000
+      internalID: 7308015109118676581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mantis-attack_17
+      rect:
+        serializedVersion: 2
+        x: 826
+        y: 0
+        width: 37
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d997137a62e390c0800000000000000
+      internalID: -4570060250025584168
       vertices: []
       indices: 
       edges: []
@@ -475,7 +550,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: c00a9eab244d51b4f8d370624da77136
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -483,25 +558,26 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries:
-      - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":48.0,"y":32.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.3333333432674408,"y":0.5},"pivotPixels":{"x":18.0,"y":32.0},"autoSlicingMethod":0,"spriteAlignment":9,"pivotUnitMode":1,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+      entries: []
     nameFileIdTable:
-      geck_attack_0: -4219156811514964234
-      geck_attack_1: -2195622729641007909
-      geck_attack_10: 7358547248052976000
-      geck_attack_11: -2238161760402000309
-      geck_attack_12: 3994254797639519214
-      geck_attack_13: 1392195565611679165
-      geck_attack_14: -3499693906628874437
-      geck_attack_2: 8703570132911748855
-      geck_attack_3: -6475338616625710327
-      geck_attack_4: 6540077148208830962
-      geck_attack_5: -8869984524545523753
-      geck_attack_6: 8627362745707572879
-      geck_attack_7: 3762809594260308426
-      geck_attack_8: -4987194762303050098
-      geck_attack_9: 2359578907306075704
+      mantis-attack_0: 7746744505069876363
+      mantis-attack_1: 2007695650228971618
+      mantis-attack_10: -1259515725286903246
+      mantis-attack_11: 1682284535971780825
+      mantis-attack_12: 1629463809630750800
+      mantis-attack_13: -514625871218648200
+      mantis-attack_14: -6606719826367122058
+      mantis-attack_15: 1577298520189154024
+      mantis-attack_16: 7308015109118676581
+      mantis-attack_17: -4570060250025584168
+      mantis-attack_2: -7503702372905929724
+      mantis-attack_3: -3060665040640961295
+      mantis-attack_4: 5630263547463712244
+      mantis-attack_5: -244943776448649700
+      mantis-attack_6: -1431183711997273177
+      mantis-attack_7: 5212419419652346272
+      mantis-attack_8: -5392585282957666866
+      mantis-attack_9: -1943078694660619890
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

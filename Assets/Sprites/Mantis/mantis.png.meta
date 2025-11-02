@@ -1,37 +1,31 @@
 fileFormatVersion: 2
-guid: 07293c109f8b98f40b2d2d211330c405
+guid: 404039c561c696b4d915cfbbce45aba8
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3944511651313545926
-    second: geck_walk_2_0
+      213: 665313845716424348
+    second: mantis_0
   - first:
-      213: 2312980991728045824
-    second: geck_walk_2_1
+      213: 3086637298595965778
+    second: mantis_1
   - first:
-      213: 6012611247893346032
-    second: geck_walk_2_2
+      213: -7305290213527782163
+    second: mantis_2
   - first:
-      213: -4416532202774592582
-    second: geck_walk_2_3
+      213: -9176327825334237166
+    second: mantis_3
   - first:
-      213: 7416350085860911843
-    second: geck_walk_2_4
+      213: 8153344302342835542
+    second: mantis_4
   - first:
-      213: 6080830101364372950
-    second: geck_walk_2_5
+      213: 7936252081672345754
+    second: mantis_5
   - first:
-      213: 3667197251254458842
-    second: geck_walk_2_6
+      213: -1283915195449972802
+    second: mantis_6
   - first:
-      213: 4570273418566003941
-    second: geck_walk_2_7
-  - first:
-      213: -3606377169594070545
-    second: geck_walk_2_8
-  - first:
-      213: -3028396508842288563
-    second: geck_walk_2_9
+      213: 7448006278323579663
+    second: mantis_7
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,7 +94,7 @@ TextureImporter:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
-    resizeAlgorithm: 1
+    resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
     compressionQuality: 50
@@ -127,13 +121,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: geck_walk_2_0
+      name: mantis_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 4
         y: 0
-        width: 40
-        height: 32
+        width: 25
+        height: 29
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -142,20 +136,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6c2feeca278bdb630800000000000000
-      internalID: 3944511651313545926
+      spriteID: c96931eea6bab3900800000000000000
+      internalID: 665313845716424348
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: geck_walk_2_1
+      name: mantis_1
       rect:
         serializedVersion: 2
-        x: 40
+        x: 37
         y: 0
-        width: 40
-        height: 32
+        width: 24
+        height: 28
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -164,20 +158,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 00f4e2015fb591020800000000000000
-      internalID: 2312980991728045824
+      spriteID: 25ba845f440f5da20800000000000000
+      internalID: 3086637298595965778
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: geck_walk_2_2
+      name: mantis_2
       rect:
         serializedVersion: 2
-        x: 80
+        x: 69
         y: 0
-        width: 40
-        height: 32
+        width: 24
+        height: 27
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -186,20 +180,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0f67333e216117350800000000000000
-      internalID: 6012611247893346032
+      spriteID: decf98181456e9a90800000000000000
+      internalID: -7305290213527782163
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: geck_walk_2_3
+      name: mantis_3
       rect:
         serializedVersion: 2
-        x: 120
+        x: 101
         y: 0
-        width: 40
-        height: 32
+        width: 24
+        height: 28
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -208,20 +202,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ab30c828c5355b2c0800000000000000
-      internalID: -4416532202774592582
+      spriteID: 2188b6c067227a080800000000000000
+      internalID: -9176327825334237166
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: geck_walk_2_4
+      name: mantis_4
       rect:
         serializedVersion: 2
-        x: 160
+        x: 132
         y: 0
-        width: 40
-        height: 32
+        width: 25
+        height: 29
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -230,20 +224,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3ea6dad0c1b2ce660800000000000000
-      internalID: 7416350085860911843
+      spriteID: 65d8998d17f762170800000000000000
+      internalID: 8153344302342835542
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: geck_walk_2_5
+      name: mantis_5
       rect:
         serializedVersion: 2
-        x: 200
+        x: 165
         y: 0
-        width: 40
-        height: 32
+        width: 24
+        height: 28
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -252,20 +246,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6d5735372c2736450800000000000000
-      internalID: 6080830101364372950
+      spriteID: a98d800683b332e60800000000000000
+      internalID: 7936252081672345754
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: geck_walk_2_6
+      name: mantis_6
       rect:
         serializedVersion: 2
-        x: 240
+        x: 197
         y: 0
-        width: 40
-        height: 32
+        width: 24
+        height: 30
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -274,20 +268,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ad99f4a687084e230800000000000000
-      internalID: 3667197251254458842
+      spriteID: eb76a75aeed9e2ee0800000000000000
+      internalID: -1283915195449972802
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: geck_walk_2_7
+      name: mantis_7
       rect:
         serializedVersion: 2
-        x: 280
+        x: 229
         y: 0
-        width: 40
-        height: 32
+        width: 24
+        height: 28
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -296,52 +290,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5ec6908b57fdc6f30800000000000000
-      internalID: 4570273418566003941
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: geck_walk_2_8
-      rect:
-        serializedVersion: 2
-        x: 320
-        y: 0
-        width: 40
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: fe94448521393fdc0800000000000000
-      internalID: -3606377169594070545
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: geck_walk_2_9
-      rect:
-        serializedVersion: 2
-        x: 360
-        y: 0
-        width: 40
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d4a1c6b9b69f8f5d0800000000000000
-      internalID: -3028396508842288563
+      spriteID: f0b2b58bf32ac5760800000000000000
+      internalID: 7448006278323579663
       vertices: []
       indices: 
       edges: []
@@ -350,7 +300,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 363b218c63ab05543ae8b8073845763c
+    spriteID: 193f14b9288c5ed48a3a5bb20b28e0cc
     internalID: 0
     vertices: []
     indices: 
@@ -360,18 +310,16 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":40.0,"y":32.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":32.0,"y":32.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      geck_walk_2_0: 3944511651313545926
-      geck_walk_2_1: 2312980991728045824
-      geck_walk_2_2: 6012611247893346032
-      geck_walk_2_3: -4416532202774592582
-      geck_walk_2_4: 7416350085860911843
-      geck_walk_2_5: 6080830101364372950
-      geck_walk_2_6: 3667197251254458842
-      geck_walk_2_7: 4570273418566003941
-      geck_walk_2_8: -3606377169594070545
-      geck_walk_2_9: -3028396508842288563
+      mantis_0: 665313845716424348
+      mantis_1: 3086637298595965778
+      mantis_2: -7305290213527782163
+      mantis_3: -9176327825334237166
+      mantis_4: 8153344302342835542
+      mantis_5: 7936252081672345754
+      mantis_6: -1283915195449972802
+      mantis_7: 7448006278323579663
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
