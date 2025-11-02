@@ -1,25 +1,29 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "P:\\UnityProjects\\Gecko\\",
+  "WorkspaceRootPath": "E:\\Unity-project\\Gecko\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|p:\\unityprojects\\gecko\\assets\\scripts\\boss\\bossphase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\boss\\bossphase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|P:\\UnityProjects\\Gecko\\assets\\scripts\\boss\\bossattack.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\boss\\bossattack.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|P:\\UnityProjects\\Gecko\\assets\\scripts\\inventory\\inventorymanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|E:\\Unity-project\\Gecko\\assets\\scripts\\inventory\\inventorymanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\inventory\\inventorymanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|P:\\UnityProjects\\Gecko\\assets\\scripts\\inventory\\itemslot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|E:\\Unity-project\\Gecko\\assets\\scripts\\inventory\\itemslot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\inventory\\itemslot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|P:\\UnityProjects\\Gecko\\assets\\scripts\\inventory\\item.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|E:\\Unity-project\\Gecko\\assets\\scripts\\boss\\bossattack.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\boss\\bossattack.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|E:\\Unity-project\\Gecko\\assets\\scripts\\boss\\bossphase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\boss\\bossphase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|e:\\unity-project\\gecko\\assets\\scripts\\boss\\bosscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\boss\\bosscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|E:\\Unity-project\\Gecko\\assets\\scripts\\inventory\\item.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\inventory\\item.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -30,15 +34,28 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 4,
+              "Title": "BossController.cs",
+              "DocumentMoniker": "E:\\Unity-project\\Gecko\\Assets\\Scripts\\Boss\\BossController.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Boss\\BossController.cs",
+              "ToolTip": "E:\\Unity-project\\Gecko\\Assets\\Scripts\\Boss\\BossController.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Boss\\BossController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAKYAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-02T04:53:15.518Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "BossPhase.cs",
-              "DocumentMoniker": "P:\\UnityProjects\\Gecko\\Assets\\Scripts\\Boss\\BossPhase.cs",
+              "DocumentMoniker": "E:\\Unity-project\\Gecko\\Assets\\Scripts\\Boss\\BossPhase.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Boss\\BossPhase.cs",
-              "ToolTip": "P:\\UnityProjects\\Gecko\\Assets\\Scripts\\Boss\\BossPhase.cs",
+              "ToolTip": "E:\\Unity-project\\Gecko\\Assets\\Scripts\\Boss\\BossPhase.cs",
               "RelativeToolTip": "Assets\\Scripts\\Boss\\BossPhase.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -47,48 +64,50 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "BossAttack.cs",
-              "DocumentMoniker": "P:\\UnityProjects\\Gecko\\Assets\\Scripts\\Boss\\BossAttack.cs",
+              "DocumentMoniker": "E:\\Unity-project\\Gecko\\Assets\\Scripts\\Boss\\BossAttack.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Boss\\BossAttack.cs",
-              "ToolTip": "P:\\UnityProjects\\Gecko\\Assets\\Scripts\\Boss\\BossAttack.cs",
+              "ToolTip": "E:\\Unity-project\\Gecko\\Assets\\Scripts\\Boss\\BossAttack.cs",
               "RelativeToolTip": "Assets\\Scripts\\Boss\\BossAttack.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-30T04:59:14.229Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "ItemSlot.cs",
-              "DocumentMoniker": "P:\\UnityProjects\\Gecko\\Assets\\Scripts\\Inventory\\ItemSlot.cs",
+              "DocumentMoniker": "E:\\Unity-project\\Gecko\\Assets\\Scripts\\Inventory\\ItemSlot.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Inventory\\ItemSlot.cs",
-              "ToolTip": "P:\\UnityProjects\\Gecko\\Assets\\Scripts\\Inventory\\ItemSlot.cs",
+              "ToolTip": "E:\\Unity-project\\Gecko\\Assets\\Scripts\\Inventory\\ItemSlot.cs",
               "RelativeToolTip": "Assets\\Scripts\\Inventory\\ItemSlot.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAlAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-26T07:17:54.385Z"
+              "WhenOpened": "2025-10-26T07:17:54.385Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "InventoryManager.cs",
-              "DocumentMoniker": "P:\\UnityProjects\\Gecko\\Assets\\Scripts\\Inventory\\InventoryManager.cs",
+              "DocumentMoniker": "E:\\Unity-project\\Gecko\\Assets\\Scripts\\Inventory\\InventoryManager.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Inventory\\InventoryManager.cs",
-              "ToolTip": "P:\\UnityProjects\\Gecko\\Assets\\Scripts\\Inventory\\InventoryManager.cs",
+              "ToolTip": "E:\\Unity-project\\Gecko\\Assets\\Scripts\\Inventory\\InventoryManager.cs",
               "RelativeToolTip": "Assets\\Scripts\\Inventory\\InventoryManager.cs",
               "ViewState": "AgIAADoAAAAAAAAAAAAcwFMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-25T16:59:50.652Z"
+              "WhenOpened": "2025-10-25T16:59:50.652Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "Item.cs",
-              "DocumentMoniker": "P:\\UnityProjects\\Gecko\\Assets\\Scripts\\Inventory\\Item.cs",
+              "DocumentMoniker": "E:\\Unity-project\\Gecko\\Assets\\Scripts\\Inventory\\Item.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Inventory\\Item.cs",
-              "ToolTip": "P:\\UnityProjects\\Gecko\\Assets\\Scripts\\Inventory\\Item.cs",
+              "ToolTip": "E:\\Unity-project\\Gecko\\Assets\\Scripts\\Inventory\\Item.cs",
               "RelativeToolTip": "Assets\\Scripts\\Inventory\\Item.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
