@@ -71,6 +71,7 @@
     <Compile Include="Assets\Scripts\PlayerHealth.cs" />
     <Compile Include="Assets\Scripts\Caterpillar\CaterpillarMovement.cs" />
     <Compile Include="Assets\Scripts\PlayerAnimation.cs" />
+    <Compile Include="Assets\Scripts\JumpPad\JumpPad.cs" />
     <Compile Include="Assets\Scripts\MobAI.cs" />
     <Compile Include="Assets\Scripts\MobMovement.cs" />
     <Compile Include="Assets\Scripts\MobAnimation.cs" />
