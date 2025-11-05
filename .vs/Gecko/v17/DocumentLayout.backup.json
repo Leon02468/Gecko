@@ -3,11 +3,27 @@
   "WorkspaceRootPath": "C:\\Users\\HungWah\\A.Study\\1LuanAn\\NetHero-Github\\Gecko\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|c:\\users\\hungwah\\a.study\\1luanan\\nethero-github\\gecko\\assets\\scripts\\playermovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|c:\\users\\hungwah\\a.study\\1luanan\\nethero-github\\gecko\\assets\\scripts\\projectile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\projectile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|c:\\users\\hungwah\\a.study\\1luanan\\nethero-github\\gecko\\assets\\scripts\\bossai.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\bossai.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|c:\\users\\hungwah\\a.study\\1luanan\\nethero-github\\gecko\\assets\\scripts\\mobai.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\mobai.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|c:\\users\\hungwah\\a.study\\1luanan\\nethero-github\\gecko\\assets\\scripts\\idamageable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\idamageable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|C:\\Users\\HungWah\\A.Study\\1LuanAn\\NetHero-Github\\Gecko\\assets\\scripts\\playermovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\playermovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|c:\\users\\hungwah\\a.study\\1luanan\\nethero-github\\gecko\\assets\\scripts\\playerattack.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|C:\\Users\\HungWah\\A.Study\\1LuanAn\\NetHero-Github\\Gecko\\assets\\scripts\\playerattack.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\playerattack.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -35,6 +51,58 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "Projectile.cs",
+              "DocumentMoniker": "C:\\Users\\HungWah\\A.Study\\1LuanAn\\NetHero-Github\\Gecko\\Assets\\Scripts\\Projectile.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Projectile.cs",
+              "ToolTip": "C:\\Users\\HungWah\\A.Study\\1LuanAn\\NetHero-Github\\Gecko\\Assets\\Scripts\\Projectile.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Projectile.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-25T19:59:10.393Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "BossAI.cs",
+              "DocumentMoniker": "C:\\Users\\HungWah\\A.Study\\1LuanAn\\NetHero-Github\\Gecko\\Assets\\Scripts\\BossAI.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\BossAI.cs",
+              "ToolTip": "C:\\Users\\HungWah\\A.Study\\1LuanAn\\NetHero-Github\\Gecko\\Assets\\Scripts\\BossAI.cs",
+              "RelativeToolTip": "Assets\\Scripts\\BossAI.cs",
+              "ViewState": "AgIAAAQBAAAAAAAAAAAUwCsBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-25T19:49:34.774Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "MobAI.cs",
+              "DocumentMoniker": "C:\\Users\\HungWah\\A.Study\\1LuanAn\\NetHero-Github\\Gecko\\Assets\\Scripts\\MobAI.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\MobAI.cs",
+              "ToolTip": "C:\\Users\\HungWah\\A.Study\\1LuanAn\\NetHero-Github\\Gecko\\Assets\\Scripts\\MobAI.cs",
+              "RelativeToolTip": "Assets\\Scripts\\MobAI.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-25T19:32:46.44Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "IDamageable.cs",
+              "DocumentMoniker": "C:\\Users\\HungWah\\A.Study\\1LuanAn\\NetHero-Github\\Gecko\\Assets\\Scripts\\IDamageable.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\IDamageable.cs",
+              "ToolTip": "C:\\Users\\HungWah\\A.Study\\1LuanAn\\NetHero-Github\\Gecko\\Assets\\Scripts\\IDamageable.cs",
+              "RelativeToolTip": "Assets\\Scripts\\IDamageable.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-25T19:30:55.187Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "PlayerMovement.cs",
               "DocumentMoniker": "C:\\Users\\HungWah\\A.Study\\1LuanAn\\NetHero-Github\\Gecko\\Assets\\Scripts\\PlayerMovement.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\PlayerMovement.cs",
@@ -42,12 +110,11 @@
               "RelativeToolTip": "Assets\\Scripts\\PlayerMovement.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAA5AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-14T17:13:43.121Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-14T17:13:43.121Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 5,
               "Title": "PlayerAttack.cs",
               "DocumentMoniker": "C:\\Users\\HungWah\\A.Study\\1LuanAn\\NetHero-Github\\Gecko\\Assets\\Scripts\\PlayerAttack.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\PlayerAttack.cs",
@@ -55,12 +122,11 @@
               "RelativeToolTip": "Assets\\Scripts\\PlayerAttack.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-14T17:13:02.958Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-14T17:13:02.958Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 6,
               "Title": "MobAnimation.cs",
               "DocumentMoniker": "C:\\Users\\HungWah\\A.Study\\1LuanAn\\NetHero-Github\\Gecko\\Assets\\Scripts\\MobAnimation.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\MobAnimation.cs",
@@ -68,8 +134,7 @@
               "RelativeToolTip": "Assets\\Scripts\\MobAnimation.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-10T17:33:22.008Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-10T17:33:22.008Z"
             }
           ]
         }
