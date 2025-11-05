@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "E:\\Unity-project\\Gecko\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|e:\\unity-project\\gecko\\assets\\scripts\\caterpillar\\caterpillarmovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\caterpillar\\caterpillarmovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|E:\\Unity-project\\Gecko\\assets\\scripts\\jumppad\\jumppad.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\jumppad\\jumppad.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|e:\\unity-project\\gecko\\assets\\scripts\\caterpillar\\caterpillarmovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\caterpillar\\caterpillarmovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|E:\\Unity-project\\Gecko\\assets\\scripts\\inventory\\inventorymanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -42,11 +42,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "JumpPad.cs",
               "DocumentMoniker": "E:\\Unity-project\\Gecko\\Assets\\Scripts\\JumpPad\\JumpPad.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\JumpPad\\JumpPad.cs",
@@ -54,11 +54,12 @@
               "RelativeToolTip": "Assets\\Scripts\\JumpPad\\JumpPad.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-03T12:19:48.103Z"
+              "WhenOpened": "2025-11-03T12:19:48.103Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "CaterpillarMovement.cs",
               "DocumentMoniker": "E:\\Unity-project\\Gecko\\Assets\\Scripts\\Caterpillar\\CaterpillarMovement.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Caterpillar\\CaterpillarMovement.cs",
