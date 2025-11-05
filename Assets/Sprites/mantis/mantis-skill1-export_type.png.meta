@@ -1,0 +1,715 @@
+fileFormatVersion: 2
+guid: bca4335b939751441827f008fd900df1
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -8471497256853539220
+    second: mantis-skill1-export_type_0
+  - first:
+      213: 3523452439058213831
+    second: mantis-skill1-export_type_1
+  - first:
+      213: -7145664166691647174
+    second: mantis-skill1-export_type_2
+  - first:
+      213: 5894557371558758334
+    second: mantis-skill1-export_type_3
+  - first:
+      213: 8368975886826696569
+    second: mantis-skill1-export_type_4
+  - first:
+      213: 7391642125134769927
+    second: mantis-skill1-export_type_5
+  - first:
+      213: -2260052168409356609
+    second: mantis-skill1-export_type_6
+  - first:
+      213: -4440938953581867504
+    second: mantis-skill1-export_type_7
+  - first:
+      213: -3730857826260817139
+    second: mantis-skill1-export_type_8
+  - first:
+      213: 3639918894664367292
+    second: mantis-skill1-export_type_9
+  - first:
+      213: 599191160346805582
+    second: mantis-skill1-export_type_10
+  - first:
+      213: 7654301677032444916
+    second: mantis-skill1-export_type_11
+  - first:
+      213: 3023788271622421268
+    second: mantis-skill1-export_type_12
+  - first:
+      213: -5475083636182344387
+    second: mantis-skill1-export_type_13
+  - first:
+      213: -7660361288437294381
+    second: mantis-skill1-export_type_14
+  - first:
+      213: 2929462613953966196
+    second: mantis-skill1-export_type_15
+  - first:
+      213: -1081625518540793165
+    second: mantis-skill1-export_type_16
+  - first:
+      213: -7143350742954414211
+    second: mantis-skill1-export_type_17
+  - first:
+      213: 1845028686583294558
+    second: mantis-skill1-export_type_18
+  - first:
+      213: 4181220097819066052
+    second: mantis-skill1-export_type_19
+  - first:
+      213: 8016731665530331683
+    second: mantis-skill1-export_type_20
+  - first:
+      213: -887086570417274962
+    second: mantis-skill1-export_type_21
+  - first:
+      213: -1815663073538149178
+    second: mantis-skill1-export_type_22
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 1
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: mantis-skill1-export_type_0
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 0
+        width: 27
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c667c89f0223f6a80800000000000000
+      internalID: -8471497256853539220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mantis-skill1-export_type_1
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 0
+        width: 27
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7cb6c054351d5e030800000000000000
+      internalID: 3523452439058213831
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mantis-skill1-export_type_2
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 0
+        width: 29
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a315b1cbc4085dc90800000000000000
+      internalID: -7145664166691647174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mantis-skill1-export_type_3
+      rect:
+        serializedVersion: 2
+        x: 219
+        y: 0
+        width: 36
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb78befd2bcadc150800000000000000
+      internalID: 5894557371558758334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mantis-skill1-export_type_4
+      rect:
+        serializedVersion: 2
+        x: 279
+        y: 0
+        width: 41
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 97f6d147a33942470800000000000000
+      internalID: 8368975886826696569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mantis-skill1-export_type_5
+      rect:
+        serializedVersion: 2
+        x: 343
+        y: 0
+        width: 42
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 70fa877a953649660800000000000000
+      internalID: 7391642125134769927
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mantis-skill1-export_type_6
+      rect:
+        serializedVersion: 2
+        x: 408
+        y: 0
+        width: 41
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb6eb10f68ea2a0e0800000000000000
+      internalID: -2260052168409356609
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mantis-skill1-export_type_7
+      rect:
+        serializedVersion: 2
+        x: 472
+        y: 0
+        width: 41
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 01ece820d8d9e52c0800000000000000
+      internalID: -4440938953581867504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mantis-skill1-export_type_8
+      rect:
+        serializedVersion: 2
+        x: 536
+        y: 0
+        width: 41
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d0bec3ee294593cc0800000000000000
+      internalID: -3730857826260817139
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mantis-skill1-export_type_9
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 8
+        width: 37
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cbcb3b713f6938230800000000000000
+      internalID: 3639918894664367292
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mantis-skill1-export_type_10
+      rect:
+        serializedVersion: 2
+        x: 660
+        y: 16
+        width: 40
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e4586098f21c05800800000000000000
+      internalID: 599191160346805582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mantis-skill1-export_type_11
+      rect:
+        serializedVersion: 2
+        x: 714
+        y: 13
+        width: 51
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f3123f22da893a60800000000000000
+      internalID: 7654301677032444916
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mantis-skill1-export_type_12
+      rect:
+        serializedVersion: 2
+        x: 773
+        y: 2
+        width: 58
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 41bfb0e8967a6f920800000000000000
+      internalID: 3023788271622421268
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mantis-skill1-export_type_13
+      rect:
+        serializedVersion: 2
+        x: 836
+        y: 0
+        width: 56
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d3d1ccde0789404b0800000000000000
+      internalID: -5475083636182344387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mantis-skill1-export_type_14
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 0
+        width: 56
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3da9a879efde0b590800000000000000
+      internalID: -7660361288437294381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mantis-skill1-export_type_15
+      rect:
+        serializedVersion: 2
+        x: 962
+        y: 0
+        width: 43
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4707387f9ba87a820800000000000000
+      internalID: 2929462613953966196
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mantis-skill1-export_type_16
+      rect:
+        serializedVersion: 2
+        x: 1028
+        y: 0
+        width: 39
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3bad063525b4df0f0800000000000000
+      internalID: -1081625518540793165
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mantis-skill1-export_type_17
+      rect:
+        serializedVersion: 2
+        x: 1093
+        y: 0
+        width: 38
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d7fed2ca858bddc90800000000000000
+      internalID: -7143350742954414211
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mantis-skill1-export_type_18
+      rect:
+        serializedVersion: 2
+        x: 1157
+        y: 0
+        width: 38
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e5ae338a0dbda9910800000000000000
+      internalID: 1845028686583294558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mantis-skill1-export_type_19
+      rect:
+        serializedVersion: 2
+        x: 1221
+        y: 0
+        width: 38
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ceba32a68da60a30800000000000000
+      internalID: 4181220097819066052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mantis-skill1-export_type_20
+      rect:
+        serializedVersion: 2
+        x: 1285
+        y: 0
+        width: 38
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 322af8fa9f6214f60800000000000000
+      internalID: 8016731665530331683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mantis-skill1-export_type_21
+      rect:
+        serializedVersion: 2
+        x: 1351
+        y: 0
+        width: 34
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eaf3245d67f60b3f0800000000000000
+      internalID: -887086570417274962
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mantis-skill1-export_type_22
+      rect:
+        serializedVersion: 2
+        x: 1422
+        y: 0
+        width: 27
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c4f6fded087dc6e0800000000000000
+      internalID: -1815663073538149178
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      mantis-skill1-export_type_0: -8471497256853539220
+      mantis-skill1-export_type_1: 3523452439058213831
+      mantis-skill1-export_type_10: 599191160346805582
+      mantis-skill1-export_type_11: 7654301677032444916
+      mantis-skill1-export_type_12: 3023788271622421268
+      mantis-skill1-export_type_13: -5475083636182344387
+      mantis-skill1-export_type_14: -7660361288437294381
+      mantis-skill1-export_type_15: 2929462613953966196
+      mantis-skill1-export_type_16: -1081625518540793165
+      mantis-skill1-export_type_17: -7143350742954414211
+      mantis-skill1-export_type_18: 1845028686583294558
+      mantis-skill1-export_type_19: 4181220097819066052
+      mantis-skill1-export_type_2: -7145664166691647174
+      mantis-skill1-export_type_20: 8016731665530331683
+      mantis-skill1-export_type_21: -887086570417274962
+      mantis-skill1-export_type_22: -1815663073538149178
+      mantis-skill1-export_type_3: 5894557371558758334
+      mantis-skill1-export_type_4: 8368975886826696569
+      mantis-skill1-export_type_5: 7391642125134769927
+      mantis-skill1-export_type_6: -2260052168409356609
+      mantis-skill1-export_type_7: -4440938953581867504
+      mantis-skill1-export_type_8: -3730857826260817139
+      mantis-skill1-export_type_9: 3639918894664367292
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

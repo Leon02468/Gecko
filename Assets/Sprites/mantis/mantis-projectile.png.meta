@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: 7b4c3d6724ddb2147b61e267c0407c06
+guid: 52bc3ffe7bbc2614a886fa32dcc763b9
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4570538037665054336
-    second: Cherries_0
+      213: -8380255736263739032
+    second: mantis-projectile_0
+  - first:
+      213: 382848237175030327
+    second: mantis-projectile_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +103,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Cherries_0
+      name: mantis-projectile_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 16
-        height: 16
+        x: 4
+        y: 4
+        width: 24
+        height: 7
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +118,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0814098dedf2290c0800000000000000
-      internalID: -4570538037665054336
+      spriteID: 869f111fec953bb80800000000000000
+      internalID: -8380255736263739032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mantis-projectile_1
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 4
+        width: 24
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 732c3bb7176205500800000000000000
+      internalID: 382848237175030327
       vertices: []
       indices: 
       edges: []
@@ -135,7 +160,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Cherries_0: -4570538037665054336
+      mantis-projectile_0: -8380255736263739032
+      mantis-projectile_1: 382848237175030327
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
