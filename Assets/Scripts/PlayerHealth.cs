@@ -1,12 +1,13 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(PlayerMovement))]
 public class PlayerHealth : MonoBehaviour, IDamageable
 {
     [Header("Health")]
-    [SerializeField] private int maxHP = 5;
+    [SerializeField] private float maxHP = 5;
     [SerializeField] private bool destroyOnDeath = false;
 
     [Header("Invulnerability")]
@@ -17,26 +18,43 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     [Tooltip("Duration passed to PlayerMovement.ApplyVelocityLock when knockback is applied.")]
     [SerializeField] private float velocityLockDuration = 0.12f;
 
+    [Header("Grab / Escape")]
+    [SerializeField] private bool allowButtonMashToEscape = true;
+    [SerializeField] private int mashCountToEscape = 8;
+    [SerializeField] private InputActionReference mashActionRef;
+    [SerializeField] private float grabDisableMoveDuration = 0f; // if >0, disables movement for that time when grabbed
+    private int mashCount = 0;
+    private bool isGrabbed = false;
+
     [Header("Events")]
     public UnityEvent OnDamaged;
     public UnityEvent OnDead;
 
-    public int CurrentHP { get; private set; }
+    public float CurrentHP { get; private set; }
 
     private bool isInvulnerable;
     private PlayerMovement playerMovement;
     private PlayerAnimation playerAnimation;
+    private Coroutine invulCor;
+    private Coroutine grabCor;
 
     void Awake()
     {
         playerMovement = GetComponent<PlayerMovement>();
         playerAnimation = GetComponent<PlayerAnimation>();
-        CurrentHP = Mathf.Max(0, maxHP);
+        CurrentHP = Mathf.Max(0f, maxHP);
     }
 
+    //Back up if need to use old code
+    //This line to make sure other classes use this method works normally
     public void TakeDamage(int amount, Vector2? knockback = null)
     {
-        if (amount <= 0) return;
+        TakeDamage((float)amount, knockback ?? null, 0f);
+    }
+
+    public void TakeDamage(float amount, Vector2? knockbackVector = null, float? optionalKnockbackMagnitude = null)
+    {
+        if (amount <= 0f) return;
         if (useInvulnerability && isInvulnerable) return;
 
         CurrentHP -= amount;
@@ -45,44 +63,67 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         // Play hurt animation (if available)
         playerAnimation?.PlayHurt();
 
-        // apply knockback: prefer PlayerMovement velocity lock for consistent player behavior
-        if (knockback.HasValue && playerMovement != null)
-        {
-            playerMovement.ApplyVelocityLock(knockback.Value, velocityLockDuration);
-        }
-        else if (knockback.HasValue)
-        {
-            var rb = GetComponent<Rigidbody2D>();
-            if (rb != null)
-            {
-                switch (rb.bodyType)
-                {
-                    case RigidbodyType2D.Dynamic:
-                        rb.AddForce(knockback.Value, ForceMode2D.Impulse);
-                        break;
-                    case RigidbodyType2D.Kinematic:
-                        rb.linearVelocity = knockback.Value;
-                        break;
-                    case RigidbodyType2D.Static:
-                        transform.position += (Vector3)(knockback.Value * 0.02f);
-                        break;
-                }
-            }
-        }
+        // Apply knockback:
+        ApplyKnockback(knockbackVector, optionalKnockbackMagnitude);
 
-        if (CurrentHP <= 0)
+        if (CurrentHP <= 0f)
         {
             Die();
             return;
         }
 
         if (useInvulnerability)
-            StartCoroutine(InvulnerabilityCoroutine(invulnerabilityDuration));
+        {
+            if (invulCor != null) StopCoroutine(invulCor);
+            invulCor = StartCoroutine(InvulnerabilityCoroutine(invulnerabilityDuration));
+        }
     }
 
-    public void Heal(int amount)
+    void ApplyKnockback(Vector2? knockbackVector, float? optionalMagnitude)
     {
-        if (amount <= 0) return;
+        // Prefer PlayerMovement.ApplyVelocityLock if available
+        if (knockbackVector.HasValue && playerMovement != null)
+        {
+            playerMovement.ApplyVelocityLock(knockbackVector.Value, velocityLockDuration);
+            return;
+        }
+
+        // fallback apply on rigidbody
+        var rb = GetComponent<Rigidbody2D>();
+        if (rb == null) return;
+
+        if (knockbackVector.HasValue)
+        {
+            Vector2 kv = knockbackVector.Value;
+            switch (rb.bodyType)
+            {
+                case RigidbodyType2D.Dynamic:
+                    rb.AddForce(kv, ForceMode2D.Impulse);
+                    break;
+                case RigidbodyType2D.Kinematic:
+                    rb.linearVelocity = kv;
+                    break;
+                case RigidbodyType2D.Static:
+                    transform.position += (Vector3)(kv * 0.02f);
+                    break;
+            }
+        }
+        else if (optionalMagnitude.HasValue)
+        {
+            // apply away from attacker if only magnitude is provided (caller should set proper direction)
+            Vector2 dir = Vector2.zero;
+            // keep existing Y velocity with a small upward kick
+            dir = new Vector2(Mathf.Sign(transform.localScale.x) * optionalMagnitude.Value, 3f);
+            if (rb.bodyType == RigidbodyType2D.Dynamic)
+                rb.AddForce(dir, ForceMode2D.Impulse);
+            else if (rb.bodyType == RigidbodyType2D.Kinematic)
+                rb.linearVelocity = dir;
+        }
+    }
+
+    public void Heal(float amount)
+    {
+        if (amount <= 0f) return;
         CurrentHP = Mathf.Min(maxHP, CurrentHP + amount);
     }
 
@@ -104,4 +145,93 @@ public class PlayerHealth : MonoBehaviour, IDamageable
             if (pm != null) pm.enabled = false;
         }
     }
+
+
+    // --- Grab API ---
+    // Called by boss when player is grabbed. holdDuration = how long boss holds, dotInterval/dotDamage handled by boss or this.
+    public void ApplyGrab(float holdDuration, System.Action onReleased = null)
+    {
+        if (grabCor != null) StopCoroutine(grabCor);
+        grabCor = StartCoroutine(GrabCoroutine(holdDuration, onReleased));
+    }
+
+    private IEnumerator GrabCoroutine(float holdDuration, System.Action onReleased)
+    {
+        // disable movement if PlayerMovement supports it
+        if (playerMovement != null)
+        {
+            playerMovement.enabled = false;
+        }
+
+        mashCount = 0;
+        isGrabbed = true;
+
+        InputAction action = mashActionRef != null ? mashActionRef.action : null;
+        bool actionEnableByUs = false;
+
+        System.Action<InputAction.CallbackContext> performedHandler = ctx =>
+        {
+            mashCount++;
+        };
+
+        if(action != null)
+        {
+            //subcribe
+            action.performed += performedHandler;
+            //enable if not already
+            if (!action.enabled)
+            {
+                action.Enable();
+                actionEnableByUs = true;
+            }
+        }
+        else
+        {
+            Debug.LogWarning("PlayerHealth.ApplyGrab: mashActionRef is not set, cannot mash to escape.");
+        }
+
+        float elapsed = 0f;
+        while (elapsed < holdDuration)
+        {
+            //This condition is an double check if input system not working
+            if (action == null)
+            {
+                if(Keyboard.current != null && Keyboard.current.zKey.wasPressedThisFrame)
+                {
+                    mashCount++;
+                }
+            }
+
+            if (mashCount >= mashCountToEscape) break;
+
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        // cleanup subscription
+        if(action != null)
+        {
+            action.performed -= performedHandler;
+            if (actionEnableByUs)
+            {
+                action.Disable();
+            }
+        }
+
+        isGrabbed = false;
+        // re-enable movement after short delay
+        if (playerMovement != null)
+        {
+            yield return new WaitForSeconds(0.08f);
+            playerMovement.enabled = true;
+        }
+
+        // notify caller (boss)
+        onReleased?.Invoke();
+
+        grabCor = null;
+    }
+
+    // small helper to check alive
+    public bool IsAlive => CurrentHP > 0f;
 }

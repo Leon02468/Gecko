@@ -3,7 +3,19 @@
   "WorkspaceRootPath": "P:\\UnityProjects\\Gecko\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|p:\\unityprojects\\gecko\\assets\\scripts\\boss\\bossphase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|p:\\unityprojects\\gecko\\assets\\scripts\\mantis\\mantishitbox.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\mantis\\mantishitbox.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|p:\\unityprojects\\gecko\\assets\\scripts\\mantis\\mantisbosscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\mantis\\mantisbosscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|p:\\unityprojects\\gecko\\assets\\scripts\\mantis\\vineprojectile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\mantis\\vineprojectile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|P:\\UnityProjects\\Gecko\\assets\\scripts\\boss\\bossphase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\boss\\bossphase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -11,16 +23,8 @@
       "RelativeMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\boss\\bossattack.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|P:\\UnityProjects\\Gecko\\assets\\scripts\\inventory\\inventorymanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\inventory\\inventorymanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|P:\\UnityProjects\\Gecko\\assets\\scripts\\inventory\\itemslot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\inventory\\itemslot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|P:\\UnityProjects\\Gecko\\assets\\scripts\\inventory\\item.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\inventory\\item.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|P:\\UnityProjects\\Gecko\\assets\\scripts\\playerhealth.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\playerhealth.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,69 +34,82 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "BossPhase.cs",
-              "DocumentMoniker": "P:\\UnityProjects\\Gecko\\Assets\\Scripts\\Boss\\BossPhase.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Boss\\BossPhase.cs",
-              "ToolTip": "P:\\UnityProjects\\Gecko\\Assets\\Scripts\\Boss\\BossPhase.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Boss\\BossPhase.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "MantisBossController.cs",
+              "DocumentMoniker": "P:\\UnityProjects\\Gecko\\Assets\\Scripts\\Mantis\\MantisBossController.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Mantis\\MantisBossController.cs",
+              "ToolTip": "P:\\UnityProjects\\Gecko\\Assets\\Scripts\\Mantis\\MantisBossController.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Mantis\\MantisBossController.cs",
+              "ViewState": "AgIAAIoAAAAAAAAAAAAIwJEAAAA4AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-30T05:00:08.349Z",
+              "WhenOpened": "2025-11-06T11:42:17.564Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
+              "Title": "VineProjectile.cs",
+              "DocumentMoniker": "P:\\UnityProjects\\Gecko\\Assets\\Scripts\\Mantis\\VineProjectile.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Mantis\\VineProjectile.cs",
+              "ToolTip": "P:\\UnityProjects\\Gecko\\Assets\\Scripts\\Mantis\\VineProjectile.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Mantis\\VineProjectile.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAAwAIAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-06T11:29:57.849Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "PlayerHealth.cs",
+              "DocumentMoniker": "P:\\UnityProjects\\Gecko\\Assets\\Scripts\\PlayerHealth.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\PlayerHealth.cs",
+              "ToolTip": "P:\\UnityProjects\\Gecko\\Assets\\Scripts\\PlayerHealth.cs",
+              "RelativeToolTip": "Assets\\Scripts\\PlayerHealth.cs",
+              "ViewState": "AgIAALMAAAAAAAAAAAAUwA4AAABDAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-04T14:27:20.558Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "BossAttack.cs",
               "DocumentMoniker": "P:\\UnityProjects\\Gecko\\Assets\\Scripts\\Boss\\BossAttack.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Boss\\BossAttack.cs",
               "ToolTip": "P:\\UnityProjects\\Gecko\\Assets\\Scripts\\Boss\\BossAttack.cs",
               "RelativeToolTip": "Assets\\Scripts\\Boss\\BossAttack.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-30T04:59:14.229Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-30T04:59:14.229Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "ItemSlot.cs",
-              "DocumentMoniker": "P:\\UnityProjects\\Gecko\\Assets\\Scripts\\Inventory\\ItemSlot.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Inventory\\ItemSlot.cs",
-              "ToolTip": "P:\\UnityProjects\\Gecko\\Assets\\Scripts\\Inventory\\ItemSlot.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Inventory\\ItemSlot.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAlAAAAAAAAAA==",
+              "Title": "BossPhase.cs",
+              "DocumentMoniker": "P:\\UnityProjects\\Gecko\\Assets\\Scripts\\Boss\\BossPhase.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Boss\\BossPhase.cs",
+              "ToolTip": "P:\\UnityProjects\\Gecko\\Assets\\Scripts\\Boss\\BossPhase.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Boss\\BossPhase.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-26T07:17:54.385Z"
+              "WhenOpened": "2025-10-30T05:00:08.349Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "InventoryManager.cs",
-              "DocumentMoniker": "P:\\UnityProjects\\Gecko\\Assets\\Scripts\\Inventory\\InventoryManager.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Inventory\\InventoryManager.cs",
-              "ToolTip": "P:\\UnityProjects\\Gecko\\Assets\\Scripts\\Inventory\\InventoryManager.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Inventory\\InventoryManager.cs",
-              "ViewState": "AgIAADoAAAAAAAAAAAAcwFMAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "MantisHitbox.cs",
+              "DocumentMoniker": "P:\\UnityProjects\\Gecko\\Assets\\Scripts\\Mantis\\MantisHitbox.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Mantis\\MantisHitbox.cs",
+              "ToolTip": "P:\\UnityProjects\\Gecko\\Assets\\Scripts\\Mantis\\MantisHitbox.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Mantis\\MantisHitbox.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-25T16:59:50.652Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Item.cs",
-              "DocumentMoniker": "P:\\UnityProjects\\Gecko\\Assets\\Scripts\\Inventory\\Item.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Inventory\\Item.cs",
-              "ToolTip": "P:\\UnityProjects\\Gecko\\Assets\\Scripts\\Inventory\\Item.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Inventory\\Item.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-25T16:54:55.569Z"
+              "WhenOpened": "2025-11-04T22:19:36.499Z",
+              "EditorCaption": ""
             }
           ]
         }
