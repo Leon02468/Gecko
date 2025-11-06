@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 523aac053fdecc34098e69ab92cdf810
+guid: 60dc5b7ed1693624ca303cd8989b65fc
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -115,7 +115,7 @@ TextureImporter:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
-    resizeAlgorithm: 0
+    resizeAlgorithm: 1
     textureFormat: -1
     textureCompression: 0
     compressionQuality: 50
@@ -145,12 +145,12 @@ TextureImporter:
       name: mantis-skill2_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 19
         y: 0
-        width: 48
-        height: 32
+        width: 27
+        height: 30
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -167,12 +167,12 @@ TextureImporter:
       name: mantis-skill2_1
       rect:
         serializedVersion: 2
-        x: 48
+        x: 68
         y: 0
-        width: 48
-        height: 32
+        width: 27
+        height: 30
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -189,12 +189,12 @@ TextureImporter:
       name: mantis-skill2_2
       rect:
         serializedVersion: 2
-        x: 96
+        x: 109
         y: 0
-        width: 48
-        height: 32
+        width: 35
+        height: 26
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -211,12 +211,12 @@ TextureImporter:
       name: mantis-skill2_3
       rect:
         serializedVersion: 2
-        x: 144
+        x: 156
         y: 0
-        width: 48
-        height: 32
+        width: 36
+        height: 26
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -233,12 +233,12 @@ TextureImporter:
       name: mantis-skill2_4
       rect:
         serializedVersion: 2
-        x: 192
+        x: 204
         y: 0
-        width: 48
+        width: 36
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -255,12 +255,12 @@ TextureImporter:
       name: mantis-skill2_5
       rect:
         serializedVersion: 2
-        x: 240
+        x: 254
         y: 0
-        width: 48
+        width: 34
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -277,12 +277,12 @@ TextureImporter:
       name: mantis-skill2_6
       rect:
         serializedVersion: 2
-        x: 288
+        x: 300
         y: 0
-        width: 48
-        height: 32
+        width: 36
+        height: 31
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -299,12 +299,12 @@ TextureImporter:
       name: mantis-skill2_7
       rect:
         serializedVersion: 2
-        x: 336
+        x: 345
         y: 0
-        width: 48
-        height: 32
+        width: 39
+        height: 29
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -321,12 +321,12 @@ TextureImporter:
       name: mantis-skill2_8
       rect:
         serializedVersion: 2
-        x: 384
+        x: 394
         y: 0
-        width: 48
-        height: 32
+        width: 38
+        height: 29
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -343,12 +343,12 @@ TextureImporter:
       name: mantis-skill2_9
       rect:
         serializedVersion: 2
-        x: 432
+        x: 440
         y: 0
-        width: 48
-        height: 32
+        width: 40
+        height: 29
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -365,12 +365,12 @@ TextureImporter:
       name: mantis-skill2_10
       rect:
         serializedVersion: 2
-        x: 480
+        x: 490
         y: 0
-        width: 48
-        height: 32
+        width: 14
+        height: 21
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -387,12 +387,12 @@ TextureImporter:
       name: mantis-skill2_11
       rect:
         serializedVersion: 2
-        x: 528
+        x: 495
         y: 0
-        width: 48
-        height: 32
+        width: 33
+        height: 29
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -409,12 +409,12 @@ TextureImporter:
       name: mantis-skill2_12
       rect:
         serializedVersion: 2
-        x: 576
+        x: 527
         y: 0
-        width: 48
-        height: 32
+        width: 22
+        height: 7
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -427,11 +427,55 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: mantis-skill2_13
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 0
+        width: 32
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c2a840255f3a359f0800000000000000
+      internalID: -480860461160166868
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mantis-skill2_14
+      rect:
+        serializedVersion: 2
+        x: 595
+        y: 0
+        width: 27
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dab46ebc574c948f0800000000000000
+      internalID: -555697068792460371
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: fc5cd140f2b604c41a5b8edcc495fac4
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -439,15 +483,15 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries:
-      - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":48.0,"y":32.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+      entries: []
     nameFileIdTable:
       mantis-skill2_0: -2060711628190938818
       mantis-skill2_1: 6479162409357140735
       mantis-skill2_10: -7020986386605002020
       mantis-skill2_11: 4776183551181039312
       mantis-skill2_12: -701823108473207885
+      mantis-skill2_13: -480860461160166868
+      mantis-skill2_14: -555697068792460371
       mantis-skill2_2: -8947722714889012162
       mantis-skill2_3: 3731476942056124401
       mantis-skill2_4: 6417899334441722449
