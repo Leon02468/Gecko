@@ -4,3 +4,7 @@
 /Build*/
 /Logs/
 /UserSettings/".vs/" 
+.vs/
+UserSettings/
+.vscode/
+*.suo
