@@ -68,8 +68,8 @@
     <Compile Include="Assets\Scripts\Boss\BossController.cs" />
     <Compile Include="Assets\Scripts\Inventory\ItemSlot.cs" />
     <Compile Include="Assets\Jump.cs" />
+    <Compile Include="Assets\Scripts\Hurtbox.cs" />
     <Compile Include="Assets\Scripts\PlayerHealth.cs" />
-    <Compile Include="Assets\Scripts\Caterpillar\CaterpillarMovement.cs" />
     <Compile Include="Assets\Scripts\PlayerAnimation.cs" />
     <Compile Include="Assets\Scripts\JumpPad\JumpPad.cs" />
     <Compile Include="Assets\Scripts\MobAI.cs" />

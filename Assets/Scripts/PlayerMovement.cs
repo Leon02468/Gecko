@@ -59,6 +59,9 @@ public class PlayerMovement : MonoBehaviour
     // Track previous grounded state to only refill jumps on landing
     private bool wasGrounded = false;
 
+    // Ref player health
+    public PlayerHealth playerHealth;
+
     void Awake()
     {
         // ensure we start with the configured number of jumps
@@ -237,6 +240,17 @@ public class PlayerMovement : MonoBehaviour
         }
 
         rb.linearVelocity = v;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            //deal 1 damage and apply knockback from collision direction
+            Vector2 knockback = (transform.position - collision.transform.position).normalized * 5f;
+            playerHealth.TakeDamage(1, knockback);
+        }
     }
 
     public void OnDrawGizmosSelected()
