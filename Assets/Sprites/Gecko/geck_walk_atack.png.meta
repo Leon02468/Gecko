@@ -139,13 +139,13 @@ TextureImporter:
       name: geck_walk_atack_0
       rect:
         serializedVersion: 2
-        x: 3
+        x: 0
         y: 0
-        width: 34
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+        width: 56
+        height: 32
+      alignment: 9
+      pivot: {x: 0.35, y: 0.5}
+      border: {x: 0, y: 0, z: 16, w: 0}
       customData: 
       outline: []
       physicsShape: []
@@ -161,13 +161,13 @@ TextureImporter:
       name: geck_walk_atack_1
       rect:
         serializedVersion: 2
-        x: 57
+        x: 56
         y: 0
-        width: 36
-        height: 28
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+        width: 56
+        height: 32
+      alignment: 9
+      pivot: {x: 0.35, y: 0.5}
+      border: {x: 0, y: 0, z: 16, w: 0}
       customData: 
       outline: []
       physicsShape: []
@@ -185,11 +185,11 @@ TextureImporter:
         serializedVersion: 2
         x: 112
         y: 0
-        width: 40
-        height: 29
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+        width: 56
+        height: 32
+      alignment: 9
+      pivot: {x: 0.35, y: 0.5}
+      border: {x: 0, y: 0, z: 16, w: 0}
       customData: 
       outline: []
       physicsShape: []
@@ -207,11 +207,11 @@ TextureImporter:
         serializedVersion: 2
         x: 168
         y: 0
-        width: 37
-        height: 29
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+        width: 56
+        height: 32
+      alignment: 9
+      pivot: {x: 0.35, y: 0.5}
+      border: {x: 0, y: 0, z: 16, w: 0}
       customData: 
       outline: []
       physicsShape: []
@@ -227,13 +227,13 @@ TextureImporter:
       name: geck_walk_atack_4
       rect:
         serializedVersion: 2
-        x: 225
+        x: 224
         y: 0
-        width: 36
-        height: 28
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+        width: 56
+        height: 32
+      alignment: 9
+      pivot: {x: 0.35, y: 0.5}
+      border: {x: 0, y: 0, z: 16, w: 0}
       customData: 
       outline: []
       physicsShape: []
@@ -249,13 +249,13 @@ TextureImporter:
       name: geck_walk_atack_5
       rect:
         serializedVersion: 2
-        x: 281
+        x: 280
         y: 0
-        width: 47
-        height: 28
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+        width: 56
+        height: 32
+      alignment: 9
+      pivot: {x: 0.35, y: 0.5}
+      border: {x: 0, y: 0, z: 16, w: 0}
       customData: 
       outline: []
       physicsShape: []
@@ -271,13 +271,13 @@ TextureImporter:
       name: geck_walk_atack_6
       rect:
         serializedVersion: 2
-        x: 339
+        x: 336
         y: 0
-        width: 53
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+        width: 56
+        height: 32
+      alignment: 9
+      pivot: {x: 0.35, y: 0.5}
+      border: {x: 0, y: 0, z: 16, w: 0}
       customData: 
       outline: []
       physicsShape: []
@@ -293,13 +293,13 @@ TextureImporter:
       name: geck_walk_atack_7
       rect:
         serializedVersion: 2
-        x: 393
+        x: 392
         y: 0
-        width: 55
-        height: 28
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+        width: 56
+        height: 32
+      alignment: 9
+      pivot: {x: 0.35, y: 0.5}
+      border: {x: 0, y: 0, z: 16, w: 0}
       customData: 
       outline: []
       physicsShape: []
@@ -315,13 +315,13 @@ TextureImporter:
       name: geck_walk_atack_8
       rect:
         serializedVersion: 2
-        x: 449
+        x: 448
         y: 0
-        width: 36
-        height: 28
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+        width: 56
+        height: 32
+      alignment: 9
+      pivot: {x: 0.35, y: 0.5}
+      border: {x: 0, y: 0, z: 16, w: 0}
       customData: 
       outline: []
       physicsShape: []
@@ -337,13 +337,13 @@ TextureImporter:
       name: geck_walk_atack_9
       rect:
         serializedVersion: 2
-        x: 505
+        x: 504
         y: 0
-        width: 36
-        height: 28
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+        width: 56
+        height: 32
+      alignment: 9
+      pivot: {x: 0.35, y: 0.5}
+      border: {x: 0, y: 0, z: 16, w: 0}
       customData: 
       outline: []
       physicsShape: []
@@ -361,11 +361,11 @@ TextureImporter:
         serializedVersion: 2
         x: 560
         y: 0
-        width: 37
-        height: 29
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+        width: 56
+        height: 32
+      alignment: 9
+      pivot: {x: 0.35, y: 0.5}
+      border: {x: 0, y: 0, z: 16, w: 0}
       customData: 
       outline: []
       physicsShape: []
@@ -381,13 +381,13 @@ TextureImporter:
       name: geck_walk_atack_11
       rect:
         serializedVersion: 2
-        x: 617
+        x: 616
         y: 0
-        width: 36
-        height: 28
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+        width: 56
+        height: 32
+      alignment: 9
+      pivot: {x: 0.35, y: 0.5}
+      border: {x: 0, y: 0, z: 16, w: 0}
       customData: 
       outline: []
       physicsShape: []
@@ -403,13 +403,13 @@ TextureImporter:
       name: geck_walk_atack_12
       rect:
         serializedVersion: 2
-        x: 673
+        x: 672
         y: 0
-        width: 36
-        height: 28
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+        width: 56
+        height: 32
+      alignment: 9
+      pivot: {x: 0.35, y: 0.5}
+      border: {x: 0, y: 0, z: 16, w: 0}
       customData: 
       outline: []
       physicsShape: []
@@ -425,7 +425,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: f060d4903fee3c7488de047929231ea7
     internalID: 0
     vertices: []
     indices: 
@@ -433,7 +433,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":13.0,"y":1.0},"gridSpriteSize":{"x":56.0,"y":32.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       geck_walk_atack_0: -1549917826974961115
       geck_walk_atack_1: -2977486490316330665

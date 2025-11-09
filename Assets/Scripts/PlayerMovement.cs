@@ -31,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
     // Coyote time + jump buffer
     [Header("Jump Assist")]
     [Tooltip("How long after leaving ground the player can still jump")]
-    public float coyoteTime = 0.1f;
+    public float coyoteTime = 0.1f; // kept for compatibility but not used to allow jumps while falling
     [Tooltip("How long a jump input is buffered before landing")]
     public float jumpBufferTime = 0.1f;
     private float coyoteTimer = 0f;
@@ -59,8 +59,10 @@ public class PlayerMovement : MonoBehaviour
     // Track previous grounded state to only refill jumps on landing
     private bool wasGrounded = false;
 
-    // Ref player health
-    public PlayerHealth playerHealth;
+    // Track recent jump time to implement short-hop without reading vertical velocity
+    private float lastJumpTime = -10f;
+    [Tooltip("Time window after jumping where releasing the button will cause a short hop")]
+    public float shortHopWindow = 0.2f;
 
     void Awake()
     {
@@ -101,8 +103,9 @@ public class PlayerMovement : MonoBehaviour
         GroundedCheck();
         Gravity();
 
-        // If we have a buffered jump and we can jump (either on ground or within coyote time), do it immediately
-        if (jumpBufferTimer > 0f && (jumpRemaining > 0 || coyoteTimer > 0f))
+        // If we have a buffered jump and we are on ground, do it immediately.
+        // This prevents jumping while falling; jump will only occur after touching ground (buffer still useful).
+        if (jumpBufferTimer > 0f && IsGrounded)
         {
             ExecuteJump();
         }
@@ -167,25 +170,30 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (context.canceled)
         {
-            // short hop: if still rising, reduce upward velocity
-            if (rb.linearVelocity.y > 0f)
-                SetClampedVelocity(new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * 0.5f), "Short hop");
+            // short hop: if jump was just performed recently, apply a reduced upward velocity without reading current velY
+            if (Time.time - lastJumpTime <= shortHopWindow)
+            {
+                // set vertical to half of jumpForce to create a short hop effect
+                SetClampedVelocity(new Vector2(rb != null ? rb.linearVelocity.x : 0f, jumpForce * 0.5f), "Short hop");
+            }
         }
     }
 
     private void ExecuteJump()
     {
-        // Only jump if we have jumps remaining or are in coyote window
-        if (jumpRemaining <= 0 && coyoteTimer <= 0f)
+        // Only allow jump when grounded (touch ground required). Also ensure jump counts are respected.
+        if (!IsGrounded && jumpRemaining <= 0)
             return;
 
-        SetClampedVelocity(new Vector2(rb.linearVelocity.x, jumpForce), "ExecuteJump");
+        // set vertical velocity to jumpForce
+        SetClampedVelocity(new Vector2(rb != null ? rb.linearVelocity.x : 0f, jumpForce), "ExecuteJump");
 
-        // consume a jump if available, otherwise consume coyote time
+        // record jump time for short-hop handling
+        lastJumpTime = Time.time;
+
+        // consume a jump if available
         if (jumpRemaining > 0)
             jumpRemaining--;
-        else
-            coyoteTimer = 0f;
 
         jumpBufferTimer = 0f;
     }
@@ -200,7 +208,7 @@ public class PlayerMovement : MonoBehaviour
             jumpRemaining = Mathf.Max(1, maxJump);
         }
 
-        // left ground this frame -> start coyote window
+        // left ground this frame -> start coyote window (kept for compatibility but not used to allow jumps while falling)
         if (!grounded && wasGrounded)
         {
             coyoteTimer = coyoteTime;
@@ -242,16 +250,6 @@ public class PlayerMovement : MonoBehaviour
         rb.linearVelocity = v;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-
-        if (collision.gameObject.CompareTag("Enemy"))
-        {
-            //deal 1 damage and apply knockback from collision direction
-            Vector2 knockback = (transform.position - collision.transform.position).normalized * 5f;
-            playerHealth.TakeDamage(1, knockback);
-        }
-    }
 
     public void OnDrawGizmosSelected()
     {
