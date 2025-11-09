@@ -34,6 +34,10 @@ public class MobAI : MonoBehaviour
     private Transform targetPlayer;
     private bool isAttacking = false;
 
+    // desired facing set by AI (1 = right, -1 = left). Applied in LateUpdate to override other components.
+    // When zero, AI does not force facing and lets other components (e.g. patrol movement) control it.
+    private int desiredFacing = 0;
+
     void Awake()
     {
         if (mobAnimation == null)
@@ -42,11 +46,15 @@ public class MobAI : MonoBehaviour
 
     void Update()
     {
+        // If mobAnimation was added later or is null for some instances, try to refresh reference each frame
+        if (mobAnimation == null)
+            mobAnimation = GetComponentInChildren<MobAnimation>();
+
         targetPlayer = FindPlayerInRange();
 
         if (targetPlayer != null)
         {
-            // Face player immediately via transform (keeps physics/movement consistent)
+            // Face player immediately via animation driver when available (keeps flipping consistent)
             FaceTarget(targetPlayer.position);
 
             // If close enough and cooldown passed, attack
@@ -55,6 +63,56 @@ public class MobAI : MonoBehaviour
             {
                 StartCoroutine(PerformAttack(targetPlayer));
             }
+        }
+        else
+        {
+            // No player detected: stop forcing facing so patrol movement or other systems can control it
+            desiredFacing = 0;
+        }
+    }
+
+    void LateUpdate()
+    {
+        // Apply desired facing here so it wins over other components that might run in FixedUpdate/Update
+        if (desiredFacing == 0) return;
+
+        int dir = desiredFacing;
+
+        if (mobAnimation != null)
+        {
+            // ensure animation-facing applied
+            try { mobAnimation.SetFacing(dir); } catch { }
+
+            // apply flip to all SpriteRenderers under mob so visuals consistently match
+            var allSrs = GetComponentsInChildren<SpriteRenderer>(true);
+            bool flipAll = dir < 0;
+            bool useFlip = false;
+            try { useFlip = mobAnimation.useSpriteFlip; } catch { useFlip = false; }
+
+            foreach (var srAll in allSrs)
+            {
+                if (srAll == null) continue;
+                if (useFlip)
+                    srAll.flipX = flipAll;
+                else
+                {
+                    var t = srAll.transform;
+                    Vector3 ls = t.localScale;
+                    ls.x = Mathf.Abs(ls.x) * (dir < 0 ? -1f : 1f);
+                    t.localScale = ls;
+                }
+            }
+
+            // keep root scale consistent
+            Vector3 rootScale = transform.localScale;
+            rootScale.x = Mathf.Abs(rootScale.x) * (dir < 0 ? -1f : 1f);
+            transform.localScale = rootScale;
+        }
+        else
+        {
+            Vector3 localScale = transform.localScale;
+            localScale.x = Mathf.Abs(localScale.x) * (dir < 0 ? -1f : 1f);
+            transform.localScale = localScale;
         }
     }
 
@@ -93,11 +151,18 @@ public class MobAI : MonoBehaviour
 
     private void FaceTarget(Vector3 pos)
     {
-        Vector3 localScale = transform.localScale;
-        float dir = Mathf.Sign(pos.x - transform.position.x);
-        if (dir == 0) return;
-        localScale.x = Mathf.Abs(localScale.x) * (dir < 0 ? -1f : 1f);
-        transform.localScale = localScale;
+        float raw = pos.x - transform.position.x;
+        if (Mathf.Approximately(raw, 0f)) return;
+        int dir = raw > 0f ? 1 : -1;
+
+        // record desired facing and attempt immediate visual update; final application is in LateUpdate
+        desiredFacing = dir;
+
+        // Also try immediate small update so visuals are responsive in editor/play
+        if (mobAnimation != null)
+        {
+            try { mobAnimation.SetFacing(dir); } catch { }
+        }
     }
 
     private IEnumerator PerformAttack(Transform player)
