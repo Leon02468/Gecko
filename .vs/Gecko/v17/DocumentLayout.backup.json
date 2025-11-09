@@ -3,48 +3,28 @@
   "WorkspaceRootPath": "E:\\Unity-project\\Gecko\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|E:\\Unity-project\\Gecko\\assets\\scripts\\flyingenemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\flyingenemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|e:\\unity-project\\gecko\\assets\\scripts\\playerattack.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\playerattack.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|e:\\unity-project\\gecko\\assets\\scripts\\mobanimation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\mobanimation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|E:\\Unity-project\\Gecko\\assets\\scripts\\mobmovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\mobmovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|E:\\Unity-project\\Gecko\\assets\\scripts\\mobhealth.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|e:\\unity-project\\gecko\\assets\\scripts\\mobhealth.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\mobhealth.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|E:\\Unity-project\\Gecko\\assets\\scripts\\jumppad\\jumppad.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\jumppad\\jumppad.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|e:\\unity-project\\gecko\\assets\\scripts\\chasetrigger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\chasetrigger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|E:\\Unity-project\\Gecko\\assets\\scripts\\inventory\\inventorymanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\inventory\\inventorymanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|E:\\Unity-project\\Gecko\\assets\\scripts\\inventory\\itemslot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\inventory\\itemslot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|E:\\Unity-project\\Gecko\\assets\\scripts\\boss\\bossattack.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\boss\\bossattack.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|E:\\Unity-project\\Gecko\\assets\\scripts\\boss\\bossphase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\boss\\bossphase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|E:\\Unity-project\\Gecko\\assets\\scripts\\boss\\bosscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\boss\\bosscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|E:\\Unity-project\\Gecko\\assets\\scripts\\inventory\\item.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\inventory\\item.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\Unity-project\\Gecko\\assets\\scripts\\caterpillar\\caterpillarmovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:assets\\scripts\\caterpillar\\caterpillarmovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|e:\\unity-project\\gecko\\assets\\scripts\\mobmovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{58985637-047E-78FF-D837-2812E8C0A02D}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\mobmovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -54,140 +34,85 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "MobAnimation.cs",
               "DocumentMoniker": "E:\\Unity-project\\Gecko\\Assets\\Scripts\\MobAnimation.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\MobAnimation.cs",
               "ToolTip": "E:\\Unity-project\\Gecko\\Assets\\Scripts\\MobAnimation.cs",
               "RelativeToolTip": "Assets\\Scripts\\MobAnimation.cs",
-              "ViewState": "AgIAAFMAAAAAAAAAAAAIwA4AAAASAAAAAAAAAA==",
+              "ViewState": "AgIAABwAAAAAAAAAAAAgwDoAAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-05T17:22:41.073Z",
+              "WhenOpened": "2025-11-09T18:08:34.915Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "MobMovement.cs",
-              "DocumentMoniker": "E:\\Unity-project\\Gecko\\Assets\\Scripts\\MobMovement.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\MobMovement.cs",
-              "ToolTip": "E:\\Unity-project\\Gecko\\Assets\\Scripts\\MobMovement.cs",
-              "RelativeToolTip": "Assets\\Scripts\\MobMovement.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAALkAAAAcAAAAAAAAAA==",
+              "Title": "PlayerAttack.cs",
+              "DocumentMoniker": "E:\\Unity-project\\Gecko\\Assets\\Scripts\\PlayerAttack.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\PlayerAttack.cs",
+              "ToolTip": "E:\\Unity-project\\Gecko\\Assets\\Scripts\\PlayerAttack.cs",
+              "RelativeToolTip": "Assets\\Scripts\\PlayerAttack.cs",
+              "ViewState": "AgIAAOMAAAAAAAAAAAAewAIBAABDAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-05T16:56:06.453Z"
+              "WhenOpened": "2025-11-09T17:35:01.185Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "MobHealth.cs",
               "DocumentMoniker": "E:\\Unity-project\\Gecko\\Assets\\Scripts\\MobHealth.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\MobHealth.cs",
               "ToolTip": "E:\\Unity-project\\Gecko\\Assets\\Scripts\\MobHealth.cs",
               "RelativeToolTip": "Assets\\Scripts\\MobHealth.cs",
-              "ViewState": "AgIAAA0AAAAAAAAAAAAAAHIAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAC8AAAAAAAAAAAAcwEAAAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-05T16:13:31.03Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "JumpPad.cs",
-              "DocumentMoniker": "E:\\Unity-project\\Gecko\\Assets\\Scripts\\JumpPad\\JumpPad.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\JumpPad\\JumpPad.cs",
-              "ToolTip": "E:\\Unity-project\\Gecko\\Assets\\Scripts\\JumpPad\\JumpPad.cs",
-              "RelativeToolTip": "Assets\\Scripts\\JumpPad\\JumpPad.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAqAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-03T12:19:48.103Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "CaterpillarMovement.cs",
-              "DocumentMoniker": "E:\\Unity-project\\Gecko\\Assets\\Scripts\\Caterpillar\\CaterpillarMovement.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Caterpillar\\CaterpillarMovement.cs",
-              "ToolTip": "E:\\Unity-project\\Gecko\\Assets\\Scripts\\Caterpillar\\CaterpillarMovement.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Caterpillar\\CaterpillarMovement.cs",
-              "ViewState": "AgIAACUAAAAAAAAAAAAgwD4AAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-02T18:15:23.825Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "BossController.cs",
-              "DocumentMoniker": "E:\\Unity-project\\Gecko\\Assets\\Scripts\\Boss\\BossController.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Boss\\BossController.cs",
-              "ToolTip": "E:\\Unity-project\\Gecko\\Assets\\Scripts\\Boss\\BossController.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Boss\\BossController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAKYAAAAtAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-02T04:53:15.518Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "BossPhase.cs",
-              "DocumentMoniker": "E:\\Unity-project\\Gecko\\Assets\\Scripts\\Boss\\BossPhase.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Boss\\BossPhase.cs",
-              "ToolTip": "E:\\Unity-project\\Gecko\\Assets\\Scripts\\Boss\\BossPhase.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Boss\\BossPhase.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-30T05:00:08.349Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "BossAttack.cs",
-              "DocumentMoniker": "E:\\Unity-project\\Gecko\\Assets\\Scripts\\Boss\\BossAttack.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Boss\\BossAttack.cs",
-              "ToolTip": "E:\\Unity-project\\Gecko\\Assets\\Scripts\\Boss\\BossAttack.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Boss\\BossAttack.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAnAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-30T04:59:14.229Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "ItemSlot.cs",
-              "DocumentMoniker": "E:\\Unity-project\\Gecko\\Assets\\Scripts\\Inventory\\ItemSlot.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Inventory\\ItemSlot.cs",
-              "ToolTip": "E:\\Unity-project\\Gecko\\Assets\\Scripts\\Inventory\\ItemSlot.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Inventory\\ItemSlot.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-26T07:17:54.385Z"
+              "WhenOpened": "2025-11-09T17:33:28.877Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "InventoryManager.cs",
-              "DocumentMoniker": "E:\\Unity-project\\Gecko\\Assets\\Scripts\\Inventory\\InventoryManager.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Inventory\\InventoryManager.cs",
-              "ToolTip": "E:\\Unity-project\\Gecko\\Assets\\Scripts\\Inventory\\InventoryManager.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Inventory\\InventoryManager.cs",
-              "ViewState": "AgIAADoAAAAAAAAAAAAcwFMAAAAAAAAAAAAAAA==",
+              "Title": "ChaseTrigger.cs",
+              "DocumentMoniker": "E:\\Unity-project\\Gecko\\Assets\\Scripts\\ChaseTrigger.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\ChaseTrigger.cs",
+              "ToolTip": "E:\\Unity-project\\Gecko\\Assets\\Scripts\\ChaseTrigger.cs",
+              "RelativeToolTip": "Assets\\Scripts\\ChaseTrigger.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-25T16:59:50.652Z"
+              "WhenOpened": "2025-11-09T16:57:52.253Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Item.cs",
-              "DocumentMoniker": "E:\\Unity-project\\Gecko\\Assets\\Scripts\\Inventory\\Item.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Inventory\\Item.cs",
-              "ToolTip": "E:\\Unity-project\\Gecko\\Assets\\Scripts\\Inventory\\Item.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Inventory\\Item.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAJAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "FlyingEnemy.cs",
+              "DocumentMoniker": "E:\\Unity-project\\Gecko\\Assets\\Scripts\\FlyingEnemy.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\FlyingEnemy.cs",
+              "ToolTip": "E:\\Unity-project\\Gecko\\Assets\\Scripts\\FlyingEnemy.cs",
+              "RelativeToolTip": "Assets\\Scripts\\FlyingEnemy.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAADAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-25T16:54:55.569Z"
+              "WhenOpened": "2025-11-07T19:12:55.537Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "MobMovement.cs",
+              "DocumentMoniker": "E:\\Unity-project\\Gecko\\Assets\\Scripts\\MobMovement.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\MobMovement.cs",
+              "ToolTip": "E:\\Unity-project\\Gecko\\Assets\\Scripts\\MobMovement.cs",
+              "RelativeToolTip": "Assets\\Scripts\\MobMovement.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-09T17:31:01.674Z",
+              "EditorCaption": ""
             }
           ]
         }
