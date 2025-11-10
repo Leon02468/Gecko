@@ -22,7 +22,6 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     [SerializeField] private bool allowButtonMashToEscape = true;
     [SerializeField] private int mashCountToEscape = 8;
     [SerializeField] private InputActionReference mashActionRef;
-    [SerializeField] private float grabDisableMoveDuration = 0f; // if >0, disables movement for that time when grabbed
     private int mashCount = 0;
     private bool isGrabbed = false;
 

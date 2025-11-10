@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BossPhase
   enterAtHPPercent: 52
   attacks:
-  - {fileID: 11400000, guid: ed1fb1ba0c30f0c468bc4db322e6192c, type: 2}
-  - {fileID: 11400000, guid: 4a700800886774e4a81f9147f539519d, type: 2}
-  - {fileID: 11400000, guid: 2369041b5aa7dc045b7e22c36ef07f5d, type: 2}
+  - {fileID: 11400000, guid: 1b9af4b56e1fcd34da174a42e73be7f5, type: 2}
+  - {fileID: 11400000, guid: 3c96d06e8e68d034aba5a8eef9e604ef, type: 2}
+  - {fileID: 11400000, guid: acf7ad976e56bbf438dc46a884fd3799, type: 2}
   minDecisionGap: 0.5
   maxDecisionGap: 0.9
   moveSpeed: 4.6

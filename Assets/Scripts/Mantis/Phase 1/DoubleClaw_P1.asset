@@ -12,11 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51be234ff2dc6b8489fca1ba51bc8897, type: 3}
   m_Name: DoubleClaw_P1
   m_EditorClassIdentifier: Assembly-CSharp::BossAttack
-  windup: 0.4
+  windup: 0.28
   active: 0.25
   recovery: 0.7
+  windupTrigger: DoubleClaw-Windup
+  attackTrigger: DoubleClaw-Attack
   dashVelocity: {x: 0, y: 0}
   lockFacingDuringAttack: 1
-  hitboxName: 
+  hitboxName: Hitboxes/ClawFront
   damage: 1
-  preferredRange: 2.5
+  preferredRange: 2.4
