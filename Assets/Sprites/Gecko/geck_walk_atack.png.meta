@@ -144,8 +144,8 @@ TextureImporter:
         width: 56
         height: 32
       alignment: 9
-      pivot: {x: 0.42857143, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.35, y: 0.5}
+      border: {x: 0, y: 0, z: 16, w: 0}
       customData: 
       outline: []
       physicsShape: []
@@ -166,8 +166,8 @@ TextureImporter:
         width: 56
         height: 32
       alignment: 9
-      pivot: {x: 0.42857143, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.35, y: 0.5}
+      border: {x: 0, y: 0, z: 16, w: 0}
       customData: 
       outline: []
       physicsShape: []
@@ -188,8 +188,8 @@ TextureImporter:
         width: 56
         height: 32
       alignment: 9
-      pivot: {x: 0.42857143, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.35, y: 0.5}
+      border: {x: 0, y: 0, z: 16, w: 0}
       customData: 
       outline: []
       physicsShape: []
@@ -210,8 +210,8 @@ TextureImporter:
         width: 56
         height: 32
       alignment: 9
-      pivot: {x: 0.42857143, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.35, y: 0.5}
+      border: {x: 0, y: 0, z: 16, w: 0}
       customData: 
       outline: []
       physicsShape: []
@@ -232,8 +232,8 @@ TextureImporter:
         width: 56
         height: 32
       alignment: 9
-      pivot: {x: 0.42857143, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.35, y: 0.5}
+      border: {x: 0, y: 0, z: 16, w: 0}
       customData: 
       outline: []
       physicsShape: []
@@ -254,8 +254,8 @@ TextureImporter:
         width: 56
         height: 32
       alignment: 9
-      pivot: {x: 0.42857143, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.35, y: 0.5}
+      border: {x: 0, y: 0, z: 16, w: 0}
       customData: 
       outline: []
       physicsShape: []
@@ -276,8 +276,8 @@ TextureImporter:
         width: 56
         height: 32
       alignment: 9
-      pivot: {x: 0.42857143, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.35, y: 0.5}
+      border: {x: 0, y: 0, z: 16, w: 0}
       customData: 
       outline: []
       physicsShape: []
@@ -298,8 +298,8 @@ TextureImporter:
         width: 56
         height: 32
       alignment: 9
-      pivot: {x: 0.42857143, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.35, y: 0.5}
+      border: {x: 0, y: 0, z: 16, w: 0}
       customData: 
       outline: []
       physicsShape: []
@@ -320,8 +320,8 @@ TextureImporter:
         width: 56
         height: 32
       alignment: 9
-      pivot: {x: 0.42857143, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.35, y: 0.5}
+      border: {x: 0, y: 0, z: 16, w: 0}
       customData: 
       outline: []
       physicsShape: []
@@ -342,8 +342,8 @@ TextureImporter:
         width: 56
         height: 32
       alignment: 9
-      pivot: {x: 0.42857143, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.35, y: 0.5}
+      border: {x: 0, y: 0, z: 16, w: 0}
       customData: 
       outline: []
       physicsShape: []
@@ -364,8 +364,8 @@ TextureImporter:
         width: 56
         height: 32
       alignment: 9
-      pivot: {x: 0.42857143, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.35, y: 0.5}
+      border: {x: 0, y: 0, z: 16, w: 0}
       customData: 
       outline: []
       physicsShape: []
@@ -386,8 +386,8 @@ TextureImporter:
         width: 56
         height: 32
       alignment: 9
-      pivot: {x: 0.42857143, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.35, y: 0.5}
+      border: {x: 0, y: 0, z: 16, w: 0}
       customData: 
       outline: []
       physicsShape: []
@@ -408,8 +408,8 @@ TextureImporter:
         width: 56
         height: 32
       alignment: 9
-      pivot: {x: 0.42857143, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.35, y: 0.5}
+      border: {x: 0, y: 0, z: 16, w: 0}
       customData: 
       outline: []
       physicsShape: []
@@ -425,7 +425,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: b176c21230ed448458f9137399d520a6
+    spriteID: f060d4903fee3c7488de047929231ea7
     internalID: 0
     vertices: []
     indices: 
@@ -434,10 +434,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries:
-      - key: SpriteEditor.SliceOnImport
-        value: False
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":56.0,"y":32.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.4285714328289032,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":9,"pivotUnitMode":1,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":13.0,"y":1.0},"gridSpriteSize":{"x":56.0,"y":32.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       geck_walk_atack_0: -1549917826974961115
       geck_walk_atack_1: -2977486490316330665

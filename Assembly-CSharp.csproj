@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <!-- Generated file, do not modify, your changes will be overwritten (use AssetPostprocessor.OnGeneratedCSProject) -->
   <PropertyGroup>
@@ -61,6 +61,8 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\6000.2.2f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
     <Analyzer Include="P:\UnityProjects\Gecko\Library\PackageCache\com.unity.ai.inference@4ac711cab9a3\Runtime\Core\SourceGenerator\SourceGenerators.dll" />
     <Analyzer Include="P:\UnityProjects\Gecko\Library\PackageCache\com.unity.dt.app-ui@7b87c8225c06\Runtime\SourceGenerators\netstandard2.0\EnumToLowerCase.dll" />
+    <Analyzer Include="E:\Unity-project\Gecko\Library\PackageCache\com.unity.ai.inference@4ac711cab9a3\Runtime\Core\SourceGenerator\SourceGenerators.dll" />
+    <Analyzer Include="E:\Unity-project\Gecko\Library\PackageCache\com.unity.dt.app-ui@7b87c8225c06\Runtime\SourceGenerators\netstandard2.0\EnumToLowerCase.dll" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Boss\BossAttack.cs" />
@@ -68,14 +70,17 @@
     <Compile Include="Assets\Scripts\Inventory\ItemSlot.cs" />
     <Compile Include="Assets\Jump.cs" />
     <Compile Include="Assets\Scripts\Mantis\VineProjectile.cs" />
+    <Compile Include="Assets\Scripts\Hurtbox.cs" />
     <Compile Include="Assets\Scripts\PlayerHealth.cs" />
     <Compile Include="Assets\Scripts\PlayerAnimation.cs" />
+    <Compile Include="Assets\Scripts\JumpPad\JumpPad.cs" />
     <Compile Include="Assets\Scripts\BossAI.cs" />
     <Compile Include="Assets\Scripts\MobAI.cs" />
     <Compile Include="Assets\Scripts\MobMovement.cs" />
     <Compile Include="Assets\Scripts\MobAnimation.cs" />
     <Compile Include="Assets\Scripts\Boss\BossPhase.cs" />
     <Compile Include="Assets\Scripts\MobHealth.cs" />
+    <Compile Include="Assets\Scripts\FlyingEnemy.cs" />
     <Compile Include="Assets\Scripts\PlayerAttack.cs" />
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\Mantis\MantisBossController.cs" />
@@ -85,6 +90,7 @@
     <Compile Include="Assets\Scripts\ParallaxMaterial.cs" />
     <Compile Include="Assets\PlayerControls.cs" />
     <Compile Include="Assets\Scripts\CameraFollow.cs" />
+    <Compile Include="Assets\Scripts\ChaseTrigger.cs" />
     <Compile Include="Assets\Scripts\Mantis\MantisHitbox.cs" />
     <Compile Include="Assets\Scripts\ParallaxLayer.cs" />
   </ItemGroup>
@@ -625,6 +631,10 @@
     </Reference>
     <Reference Include="Mono.Cecil">
       <HintPath>Library\PackageCache\com.unity.nuget.mono-cecil@d78732e851eb\Mono.Cecil.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Pathfinding.Ionic.Zip.Reduced">
+      <HintPath>Assets\AstarPathfindingProject\Plugins\DotNetZip\Pathfinding.Ionic.Zip.Reduced.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="netstandard">
@@ -1397,6 +1407,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="AstarPathfindingProject.csproj">
+      <Project>{338BFABE-DCBA-DCA9-4679-97A1AF3BBDCB}</Project>
+      <Name>AstarPathfindingProject</Name>
+    </ProjectReference>
+    <ProjectReference Include="PackageToolsEditor.csproj">
+      <Project>{74980458-94BC-3C54-96C6-68FDC5FBCDA1}</Project>
+      <Name>PackageToolsEditor</Name>
+    </ProjectReference>
+    <ProjectReference Include="AstarPathfindingProjectEditor.csproj">
+      <Project>{1139D91C-15E1-1235-59D3-6C28DC58F42B}</Project>
+      <Name>AstarPathfindingProjectEditor</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
