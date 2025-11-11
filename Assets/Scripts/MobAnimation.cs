@@ -20,7 +20,7 @@ public class MobAnimation : MonoBehaviour
     [Tooltip("Minimum horizontal speed to count as moving (so tiny drift won't trigger walk)")]
     public float minMoveSpeed = 0.05f;
     [Tooltip("If true flips sprite via SpriteRenderer.flipX; otherwise flips via localScale.x")]
-    private bool useSpriteFlip = false;
+    public bool useSpriteFlip = false;
 
     SpriteRenderer spriteRenderer;
 
