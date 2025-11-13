@@ -1,3 +1,4 @@
+using Pathfinding;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
@@ -54,21 +55,27 @@ public class MobHealth : MonoBehaviour, IDamageable
             StartCoroutine(InvulnerabilityCoroutine(invulnerabilityDuration));
     }
 
+    private IEnumerator ReenableAIPathAfterDelay(AIPath aiPath, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        if (aiPath != null)
+            aiPath.enabled = true;
+    }
     private void ApplyKnockback(Vector2 kb)
     {
         if (rb != null)
         {
-            switch (rb.bodyType)
+            //Temporarily Disable AIPath so the any enemies have A* can have knockback
+            var aiPath = GetComponent<Pathfinding.AIPath>();
+            if (aiPath != null)
             {
-                case RigidbodyType2D.Dynamic:
-                    rb.AddForce(kb, ForceMode2D.Impulse);
-                    break;
-                case RigidbodyType2D.Kinematic:
-                    rb.linearVelocity = kb;
-                    break;
-                case RigidbodyType2D.Static:
-                    transform.position += (Vector3)(kb * 0.02f);
-                    break;
+                aiPath.enabled = false;
+                rb.AddForce(kb, ForceMode2D.Impulse);
+                StartCoroutine(ReenableAIPathAfterDelay(aiPath, 0.25f)); // Adjust delay as needed
+            }
+            else
+            {
+                rb.AddForce(kb, ForceMode2D.Impulse);
             }
             return;
         }
