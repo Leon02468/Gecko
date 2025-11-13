@@ -19,6 +19,6 @@ MonoBehaviour:
   attackTrigger: SpikeAttack-Attack
   dashVelocity: {x: 0, y: 0}
   lockFacingDuringAttack: 1
-  hitboxName: 
+  hitboxName: VINE_PROJECTILE
   damage: 1
   preferredRange: 10

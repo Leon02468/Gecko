@@ -236,13 +236,13 @@ GameObject:
   - component: {fileID: 304520686}
   - component: {fileID: 304520687}
   - component: {fileID: 304520688}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: StretchHead
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &304520686
 Transform:
   m_ObjectHideFlags: 0
@@ -630,8 +630,8 @@ Transform:
   m_GameObject: {fileID: 1311556991}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 340, y: -96.873, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 331.95, y: -96.37, z: 0}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 920916719}
@@ -35945,7 +35945,7 @@ Transform:
   m_GameObject: {fileID: 1864533904}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.066, y: -0.181, z: 0}
+  m_LocalPosition: {x: -1.066, y: -0.384, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -35962,7 +35962,7 @@ GameObject:
   - component: {fileID: 1874657087}
   - component: {fileID: 1874657088}
   - component: {fileID: 1874657089}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ClawFront
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35978,7 +35978,7 @@ Transform:
   m_GameObject: {fileID: 1874657086}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.5690002, y: 0.4260025, z: 0}
+  m_LocalPosition: {x: -0.354, y: 0.381, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -36018,7 +36018,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.5270386, y: -0.14612198}
+  m_Offset: {x: -0.5749542, y: -0.14612198}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -36028,7 +36028,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 2.0540771, y: 1.292244}
+  m_Size: {x: 2.1514688, y: 1.292244}
   m_EdgeRadius: 0
 --- !u!114 &1874657089
 MonoBehaviour:

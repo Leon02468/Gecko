@@ -44,6 +44,7 @@ public class MantisBossController : MonoBehaviour
 
     void Update()
     {
+        Debug.Log("Facing: " + GetFacingSign());
         if (dead || player == null) return;
 
         if (!busy)
@@ -166,9 +167,9 @@ public class MantisBossController : MonoBehaviour
                 hbScript.damage = atk.damage;
                 for (int i = 0; i < 2; i++)
                 {
-                    hbScript.enabled = true;
-                    yield return new WaitForSeconds(0.12f);
-                    hbScript.enabled = false;
+                    hb.gameObject.SetActive(true);
+                    yield return new WaitForSeconds(0.5f);
+                    hb.gameObject.SetActive(false);
                     yield return new WaitForSeconds(0.03f);
                 }
             }
@@ -240,13 +241,13 @@ public class MantisBossController : MonoBehaviour
     {
         if (vineProjectilePrefab == null || projectileSpawnPoint == null) return;
         int count = (currentPhaseIndex >= 1) ? 3 : 1;
-        float[] anglesLocal = (count == 1) ? new float[] { 0f } : new float[] { -20f, 0f, 20f };
+        float[] anglesLocal = (count == 0) ? new float[] { 0f } : new float[] { 0f, 30f, 60f };
         int facing = GetFacingSign();
-        float baseAngle = (facing == 1) ? 180f : 0f; // left:180, right:0
+        float baseAngle = (facing == 1) ? 0f : 180f;  //left:0, right:180
 
         foreach (var a in anglesLocal)
         {
-            float final = baseAngle + a;
+            float final = baseAngle + a * facing;
             var go = Instantiate(vineProjectilePrefab, projectileSpawnPoint.position, Quaternion.Euler(0, 0, final));
             var vp = go.GetComponent<VineProjectile>();
             if (vp != null)

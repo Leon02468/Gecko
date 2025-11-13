@@ -8,18 +8,23 @@ public class MantisHitbox : MonoBehaviour
 
     private void Awake()
     {
-        var col = GetComponent<Collider2D>();
-        col.isTrigger = true;
-        enabled = false; // default off
+        Debug.Log("MantisHitbox Awake");
+    }
+
+    private void Update()
+    {
+        Debug.Log("MantisHitbox Update: " + Time.deltaTime);
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log("MantisHitbox triggered by " + other.gameObject.name);
         if (!enabled) return;
+        Debug.Log("MantisHitbox enabled");
         if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             var ph = other.GetComponent<PlayerHealth>();
-            ph?.TakeDamage(damage, (Vector2)transform.position, knockback);
+            ph?.TakeDamage(damage, (ph.transform.position - transform.position).normalized * knockback, null);
         }
     }
 }
