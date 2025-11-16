@@ -97609,6 +97609,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4777453286381906853, guid: a8268ad42ca059747a075a9a4d40b1f5, type: 3}
+      propertyPath: useSpriteFlip
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5969111958349748056, guid: a8268ad42ca059747a075a9a4d40b1f5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 164.99
