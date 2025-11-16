@@ -6,25 +6,27 @@ public class MantisHitbox : MonoBehaviour
     public float damage = 1f;
     public float knockback = 6f;
 
-    private void Awake()
-    {
-        Debug.Log("MantisHitbox Awake");
-    }
 
-    private void Update()
+    public void ApplyHit()
     {
-        Debug.Log("MantisHitbox Update: " + Time.deltaTime);
-    }
+        var col = GetComponent<Collider2D>();
+        if (col == null) return;
 
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        Debug.Log("MantisHitbox triggered by " + other.gameObject.name);
-        if (!enabled) return;
-        Debug.Log("MantisHitbox enabled");
-        if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
+        Vector2 center = col.bounds.center;
+        float radius = Mathf.Max(col.bounds.extents.x, col.bounds.extents.y);
+
+        // Prefer OverlapBox for box-like colliders; use OverlapCircle as fallback
+        Collider2D hit = Physics2D.OverlapBox(center, col.bounds.size, 0f, LayerMask.GetMask("Player"));
+        if (hit == null)
+            hit = Physics2D.OverlapCircle(center, radius, LayerMask.GetMask("Player"));
+
+        if (hit != null)
         {
-            var ph = other.GetComponent<PlayerHealth>();
-            ph?.TakeDamage(damage, (ph.transform.position - transform.position).normalized * knockback, null);
+            var ph = hit.GetComponent<PlayerHealth>();
+            if (ph != null)
+            {
+                ph.TakeDamage(damage, (hit.transform.position - transform.position).normalized * knockback, null);
+            }
         }
     }
 }

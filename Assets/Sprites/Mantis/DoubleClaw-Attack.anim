@@ -42,6 +42,10 @@ AnimationClip:
       value: {fileID: 7308015109118676581, guid: 16c3cc81a2a59a944b65a9316af5faef, type: 3}
     - time: 0.76666665
       value: {fileID: -4570060250025584168, guid: 16c3cc81a2a59a944b65a9316af5faef, type: 3}
+    - time: 0.81666666
+      value: {fileID: 2007695650228971618, guid: 16c3cc81a2a59a944b65a9316af5faef, type: 3}
+    - time: 0.85
+      value: {fileID: 7746744505069876363, guid: 16c3cc81a2a59a944b65a9316af5faef, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -75,12 +79,14 @@ AnimationClip:
     - {fileID: 1577298520189154024, guid: 16c3cc81a2a59a944b65a9316af5faef, type: 3}
     - {fileID: 7308015109118676581, guid: 16c3cc81a2a59a944b65a9316af5faef, type: 3}
     - {fileID: -4570060250025584168, guid: 16c3cc81a2a59a944b65a9316af5faef, type: 3}
+    - {fileID: 2007695650228971618, guid: 16c3cc81a2a59a944b65a9316af5faef, type: 3}
+    - {fileID: 7746744505069876363, guid: 16c3cc81a2a59a944b65a9316af5faef, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.78333336
+    m_StopTime: 0.8666667
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -99,4 +105,39 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 0
+    functionName: EnableHitboxByName
+    data: Hitboxes/ClawFront
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.4
+    functionName: DisableHitboxByName
+    data: Hitboxes/ClawFront
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.5833333
+    functionName: EnableHitboxByName
+    data: Hitboxes/ClawFront
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.81666666
+    functionName: DisableHitboxByName
+    data: Hitboxes/ClawFront
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.85
+    functionName: AnimAttackFinished
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0

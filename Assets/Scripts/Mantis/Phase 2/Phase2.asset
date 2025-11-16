@@ -19,5 +19,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: acf7ad976e56bbf438dc46a884fd3799, type: 2}
   minDecisionGap: 0.5
   maxDecisionGap: 0.9
-  moveSpeed: 4.6
+  moveSpeed: 8
   gravityScale: 3.8
