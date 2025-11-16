@@ -322,6 +322,7 @@ public class PlayerAttack : MonoBehaviour
             Vector2 kb = away * knockbackForce + Vector2.up * (knockbackForce * knockbackUpMultiplier);
             HandleHit(hit, kb, sideAttackDamage, false);
             Debug.Log("Side Hit: " + hit.name);
+            break;//only hit the first valid enemy
         }
     }
 
@@ -340,6 +341,7 @@ public class PlayerAttack : MonoBehaviour
             Vector2 kb = Vector2.up * knockbackForce;
             HandleHit(hit, kb, topAttackDamage, true); // forceSetVelocity = true
             Debug.Log("Top Hit: " + hit.name);
+            break; //only hit the first valid enemy
         }
     }
 
