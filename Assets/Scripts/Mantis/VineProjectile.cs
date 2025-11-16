@@ -8,7 +8,7 @@ public class VineProjectile : MonoBehaviour
     public float damage = 1f;
     public float knockback = 6f;
     Rigidbody2D rb;
-
+        
     void Awake() => rb = GetComponent<Rigidbody2D>();
 
     public void Launch(float angleDegrees)
@@ -23,12 +23,15 @@ public class VineProjectile : MonoBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             var ph = other.GetComponent<PlayerHealth>();
-            ph?.TakeDamage(damage, (Vector2)transform.position, knockback);
+            ph?.TakeDamage(damage, (ph.transform.position - transform.position).normalized * knockback, null);
+            Debug.Log("VineProjectile hit player for " + damage + " damage.");
             Destroy(gameObject);
+            Debug.Log("VineProjectile destroyed after hitting player.");
         }
         else if (other.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
             Destroy(gameObject);
+            Debug.Log("VineProjectile destroyed after hitting ground.");
         }
     }
 }

@@ -22,7 +22,6 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     [SerializeField] private bool allowButtonMashToEscape = true;
     [SerializeField] private int mashCountToEscape = 8;
     [SerializeField] private InputActionReference mashActionRef;
-    [SerializeField] private float grabDisableMoveDuration = 0f; // if >0, disables movement for that time when grabbed
     private int mashCount = 0;
     private bool isGrabbed = false;
 
@@ -79,45 +78,55 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         }
     }
 
-    void ApplyKnockback(Vector2? knockbackVector, float? optionalMagnitude)
+    void ApplyKnockback(Vector2? knockbackVector, float? optionalMagnitude, Transform attacker = null)
     {
         // Prefer PlayerMovement.ApplyVelocityLock if available
-        if (knockbackVector.HasValue && playerMovement != null)
-        {
-            playerMovement.ApplyVelocityLock(knockbackVector.Value, velocityLockDuration);
-            return;
-        }
-
-        // fallback apply on rigidbody
-        var rb = GetComponent<Rigidbody2D>();
-        if (rb == null) return;
-
         if (knockbackVector.HasValue)
         {
             Vector2 kv = knockbackVector.Value;
-            switch (rb.bodyType)
+            if(playerMovement != null)
             {
-                case RigidbodyType2D.Dynamic:
-                    rb.AddForce(kv, ForceMode2D.Impulse);
-                    break;
-                case RigidbodyType2D.Kinematic:
-                    rb.linearVelocity = kv;
-                    break;
-                case RigidbodyType2D.Static:
-                    transform.position += (Vector3)(kv * 0.02f);
-                    break;
+                playerMovement.ApplyVelocityLock(kv, velocityLockDuration);
+                return;
             }
-        }
-        else if (optionalMagnitude.HasValue)
-        {
-            // apply away from attacker if only magnitude is provided (caller should set proper direction)
-            Vector2 dir = Vector2.zero;
-            // keep existing Y velocity with a small upward kick
-            dir = new Vector2(Mathf.Sign(transform.localScale.x) * optionalMagnitude.Value, 3f);
+
+            // fallback apply on rigidbody
+            var rb = GetComponent<Rigidbody2D>();
+            if (rb == null) return;
+
+            Vector2 clamped = Vector2.ClampMagnitude(kv, playerMovement != null ? playerMovement.maxVelocityMagnitude : 20f);
             if (rb.bodyType == RigidbodyType2D.Dynamic)
-                rb.AddForce(dir, ForceMode2D.Impulse);
+                rb.linearVelocity = clamped;
             else if (rb.bodyType == RigidbodyType2D.Kinematic)
-                rb.linearVelocity = dir;
+                rb.linearVelocity = clamped;
+            else // static fallback
+                transform.position += (Vector3)(clamped * 0.02f);
+
+            return;
+        }
+
+        // If only magnitude provided, compute away-from-attacker direction
+        if (optionalMagnitude.HasValue)
+        {
+            var rb = GetComponent<Rigidbody2D>();
+            if (rb == null) return;
+
+            // attacker may be null; try to infer direction from localScale as fallback
+            float sign = transform.localScale.x >= 0f ? 1f : -1f; // fallback
+            if (attacker != null)
+                sign = Mathf.Sign(transform.position.x - attacker.position.x);
+
+            Vector2 kv = new Vector2(sign * optionalMagnitude.Value, 3f); // small y kick
+            if (playerMovement != null)
+            {
+                playerMovement.ApplyVelocityLock(kv, velocityLockDuration);
+            }
+            else
+            {
+                kv = Vector2.ClampMagnitude(kv, playerMovement != null ? playerMovement.maxVelocityMagnitude : 20f);
+                if (rb.bodyType == RigidbodyType2D.Dynamic) rb.linearVelocity = kv;
+                else if (rb.bodyType == RigidbodyType2D.Kinematic) rb.linearVelocity = kv;
+            }
         }
     }
 

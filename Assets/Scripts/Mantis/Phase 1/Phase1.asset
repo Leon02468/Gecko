@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: Phase1
   m_EditorClassIdentifier: Assembly-CSharp::BossPhase
   enterAtHPPercent: 100
-  attacks: []
-  minDecisionGap: 0.6
+  attacks:
+  - {fileID: 11400000, guid: 351b0ba43fa25bf49a43fbfe6577f3d7, type: 2}
+  - {fileID: 11400000, guid: 709c538ba5a592249843b6f1670db0f6, type: 2}
+  minDecisionGap: 0.8
   maxDecisionGap: 1.2
-  moveSpeed: 4
+  moveSpeed: 100
   gravityScale: 3.5

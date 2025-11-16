@@ -103,15 +103,15 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: mantis-projectile_0
+      name: mantis-projectile_1
       rect:
         serializedVersion: 2
-        x: 4
+        x: 20
         y: 4
-        width: 24
+        width: 8
         height: 7
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -125,15 +125,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mantis-projectile_1
+      name: mantis-projectile_2
       rect:
         serializedVersion: 2
         x: 36
         y: 4
-        width: 24
+        width: 8
         height: 7
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -146,11 +146,55 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: mantis-projectile_0
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 4
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a017496cc89ba848bf94992ef5a62a0
+      internalID: -1200905297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mantis-projectile_3
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 4
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d997e57d5d13bc498e04ef10e7cdc17
+      internalID: -1673594826
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 1183c03efc83f2e46963653a5ccda226
     internalID: 0
     vertices: []
     indices: 
@@ -160,8 +204,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      mantis-projectile_0: -8380255736263739032
-      mantis-projectile_1: 382848237175030327
+      mantis-projectile_0: -1200905297
+      mantis-projectile_1: -8380255736263739032
+      mantis-projectile_2: 382848237175030327
+      mantis-projectile_3: -1673594826
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

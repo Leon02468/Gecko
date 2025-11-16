@@ -13,7 +13,6 @@ public class MantisBossController : MonoBehaviour
     [Header("Refs")]
     public Transform player;
     public Animator anim;
-    public SpriteRenderer sr;
     public AudioSource audioSource;
 
     [Header("Prefabs")]
@@ -29,7 +28,16 @@ public class MantisBossController : MonoBehaviour
     int currentHP;
     int currentPhaseIndex = 0;
     bool busy = false;
+    bool lockedFacing = false;
     bool dead = false;
+
+    private BossAttack lastAttack = null;
+    private bool animAttackFinished = false;
+
+    int GetFacingSign()
+    {
+        return transform.localScale.x >= 0 ? -1 : 1;
+    }
 
     void Awake()
     {
@@ -40,18 +48,26 @@ public class MantisBossController : MonoBehaviour
 
     void Update()
     {
+        Debug.Log("Facing: " + GetFacingSign());
         if (dead || player == null) return;
-        UpdateFacing();
-        TryPhaseTransition();
 
+        if (!lockedFacing)
+            UpdateFacing();
         if (!busy)
+        {
+            TryPhaseTransition();
             StartCoroutine(DecisionLoop());
+        }
     }
 
     void UpdateFacing()
     {
-        float dx = player.position.x - transform.position.x;
-        if (Mathf.Abs(dx) > 0.1f) sr.flipX = dx < 0f;
+        float dx = transform.position.x - player.position.x;
+        if (Mathf.Abs(dx) < 0.1f) return;
+        int facingSign = dx > 0f ? 1 : -1;        // +1 => facing left(no rotate), -1 => right(rotate)
+        var s = transform.localScale;
+        s.x = Mathf.Abs(s.x) * facingSign;
+        transform.localScale = s;
     }
 
     void TryPhaseTransition()
@@ -91,13 +107,14 @@ public class MantisBossController : MonoBehaviour
         float dist = Mathf.Abs(player.position.x - transform.position.x);
         if (dist > atk.preferredRange + 0.5f)
         {
-            yield return MoveHorizontallyToward(player.position.x, phase.moveSpeed, atk.preferredRange);
+            yield return MoveHorizontally(player.position.x, phase.moveSpeed, atk.preferredRange);
         }
         else if (dist < atk.preferredRange - 0.5f)
         {
-            // step back a little
-            float dir = sr.flipX ? -1f : 1f;
-            yield return MoveHorizontallyToward(transform.position.x + dir * -2f, phase.moveSpeed, 0.8f);
+            float stepBackDistance = 2.0f;
+            float awayDir = Mathf.Sign(transform.position.x - player.position.x);
+            float targetX = transform.position.x + awayDir * stepBackDistance;
+            yield return MoveHorizontally(targetX, phase.moveSpeed, 0.6f);
         }
 
         // execute
@@ -107,7 +124,7 @@ public class MantisBossController : MonoBehaviour
         busy = false;
     }
 
-    IEnumerator MoveHorizontallyToward(float targetX, float speed, float stopWithin)
+    IEnumerator MoveHorizontally(float targetX, float speed, float stopWithin)
     {
         float timeout = 3f;
         float t = 0f;
@@ -123,115 +140,94 @@ public class MantisBossController : MonoBehaviour
 
     IEnumerator ExecuteAttack(BossAttack atk)
     {
+        lastAttack = atk;
+        animAttackFinished = false;
+
+        CacheAttackDataToHitbox(atk);
+
         // windup
-        anim.SetTrigger("Windup");
+        if (!string.IsNullOrEmpty(atk.windupTrigger))
+            anim.SetTrigger(atk.windupTrigger);
+        else
+            anim.SetTrigger("Windup");
+        
         PlaySfx(atk); // placeholder
-        if (atk.lockFacingDuringAttack) { /* keep facing */ }
-        yield return new WaitForSeconds(atk.windup);
+        if (atk.lockFacingDuringAttack) lockedFacing = true;
 
         // ACTIVE behavior based on hitboxName
-        anim.SetTrigger("Attack");
-
-        if (atk.hitboxName == "VINE_PROJECTILE")
-        {
-            // spawn projectiles
-            SpawnVineProjectiles();
-            yield return new WaitForSeconds(atk.active);
-        }
-        else if (atk.hitboxName == "Hitboxes/ClawFront")
-        {
-            // two quick pulses
-            var hb = FindHitbox(atk.hitboxName);
-            var col = hb?.GetComponent<Collider2D>();
-            var hbScript = hb?.GetComponent<MantisHitbox>();
-            if (hbScript != null)
-            {
-                hbScript.damage = atk.damage;
-                for (int i = 0; i < 2; i++)
-                {
-                    hbScript.enabled = true;
-                    yield return new WaitForSeconds(0.12f);
-                    hbScript.enabled = false;
-                    yield return new WaitForSeconds(0.03f);
-                }
-            }
-            else
-            {
-                yield return new WaitForSeconds(atk.active);
-            }
-        }
-        else if (atk.hitboxName == "Hitboxes/StretchHead")
-        {
-            var hb = FindHitbox(atk.hitboxName);
-            var hbScript = hb?.GetComponent<MantisHitbox>();
-            if (hbScript != null)
-            {
-                // lunge forward
-                float xdir = sr.flipX ? -1f : 1f;
-                rb.linearVelocity = new Vector2(6f * xdir, rb.linearVelocity.y);
-                hbScript.enabled = true;
-                hbScript.damage = atk.damage;
-                yield return new WaitForSeconds(atk.active);
-                // check overlap
-                Collider2D hit = Physics2D.OverlapCircle(hbScript.transform.position, 0.3f, LayerMask.GetMask("Player"));
-                if (hit)
-                {
-                    var ph = hit.GetComponent<PlayerHealth>();
-                    if (ph != null)
-                    {
-                        // initial damage
-                        ph.TakeDamage(atk.damage, transform.position, 0f);
-                        // start grab + DOT controlled by this boss
-                        ph.ApplyGrab(stretchHoldTime, () => { /* on released callback � nothing here */ });
-                        StartCoroutine(StretchDotCoroutine(ph, stretchHoldTime));
-                    }
-                }
-                hbScript.enabled = false;
-            }
-            else
-            {
-                yield return new WaitForSeconds(atk.active);
-            }
-        }
+        if(!string.IsNullOrEmpty(atk.attackTrigger))
+            anim.SetTrigger(atk.attackTrigger);
         else
-        {
-            // default: enable hitbox for duration
-            var hb = FindHitbox(atk.hitboxName);
-            var hbScript = hb?.GetComponent<MantisHitbox>();
-            if (hbScript != null)
-            {
-                hbScript.damage = atk.damage;
-                hbScript.enabled = true;
-                // movement burst
-                float xdir = sr.flipX ? -1f : 1f;
-                rb.linearVelocity = new Vector2(atk.dashVelocity.x * xdir, rb.linearVelocity.y + atk.dashVelocity.y);
-                yield return new WaitForSeconds(atk.active);
-                hbScript.enabled = false;
-            }
-            else
-            {
-                yield return new WaitForSeconds(atk.active);
-            }
-        }
+            anim.SetTrigger("Attack");
+
+        yield return new WaitUntil(() => animAttackFinished);
 
         // recovery
+        lockedFacing = false;
         yield return new WaitForSeconds(atk.recovery);
+
+        //clean
+        lastAttack = null;
+        animAttackFinished = false;
     }
 
-    void SpawnVineProjectiles()
+    private void CacheAttackDataToHitbox(BossAttack atk)
+    {
+        var t = transform.Find(atk.hitboxName);
+        if (t == null) return;
+        var hb = t.GetComponent<MantisHitbox>();
+        if (hb != null)
+        {
+            hb.damage = atk.damage;
+        }
+    }
+
+    // Enable hitbox by path
+    public void EnableHitboxByName(string path)
+    {
+        var t = transform.Find(path);
+        if (t == null)
+        {
+            Debug.LogWarning("MantisBossController: Hitbox not found: " + path);
+            return;
+        }
+        var col = t.GetComponent<Collider2D>();
+        if (col) col.enabled = true;
+
+        var mh = t.GetComponent<MantisHitbox>();
+        mh?.ApplyHit();
+    }
+
+    // Disable hitbox by path
+    public void DisableHitboxByName(string path)
+    {
+        var t = transform.Find(path);
+        if (t == null)
+        {
+            Debug.LogWarning("MantisBossController: Hitbox not found: " + path);
+            return;
+        }
+        var col = t.GetComponent<Collider2D>();
+        if (col) col.enabled = false;
+    }
+
+    // Spawn vine projectiles
+    public void SpawnVineProjectiles()
     {
         if (vineProjectilePrefab == null || projectileSpawnPoint == null) return;
         int count = (currentPhaseIndex >= 1) ? 3 : 1;
-        float[] angles = (count == 1) ? new float[] { 0f } : new float[] { -20f, 0f, 20f };
-        float baseAngle = sr.flipX ? 180f : 0f;
-        foreach (var a in angles)
+        float[] anglesLocal = (count == 0) ? new float[] { 0f } : new float[] { 0f, 30f, 60f };
+        int facing = GetFacingSign();
+        float baseAngle = (facing == 1) ? 0f : 180f;  //left:0, right:180
+
+        foreach (var a in anglesLocal)
         {
-            float final = baseAngle + a;
-            var go = Instantiate(vineProjectilePrefab, projectileSpawnPoint.position, Quaternion.identity);
+            float final = baseAngle + a * facing;
+            var go = Instantiate(vineProjectilePrefab, projectileSpawnPoint.position, Quaternion.Euler(0, 0, final));
             var vp = go.GetComponent<VineProjectile>();
             if (vp != null)
             {
-                vp.damage = phases[Mathf.Clamp(currentPhaseIndex, 0, phases.Length - 1)].attacks[0].damage; // cheap right now
+                vp.damage = lastAttack.damage;
                 vp.Launch(final);
             }
         }
@@ -248,14 +244,15 @@ public class MantisBossController : MonoBehaviour
         }
     }
 
-    Collider2D FindHitbox(string path)
+    public void AnimAttackFinished()
     {
-        if (string.IsNullOrEmpty(path)) return null;
-        var t = transform.Find(path);
-        return t?.GetComponent<Collider2D>();
+        animAttackFinished = true;
     }
 
-    void PlaySfx(BossAttack a) { if (audioSource && a != null) { /* audioSource.PlayOneShot(a.sfxWindup) if exists */ } }
+    void PlaySfx(BossAttack a)
+    {
+        if (audioSource && a != null) { /* audioSource.PlayOneShot(a.sfxWindup) if exists */ } 
+    }
 
     // Damage API from player's weapon/projectile should call this
     public void TakeDamageFromPlayer(float dmg)

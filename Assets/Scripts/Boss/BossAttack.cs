@@ -8,6 +8,10 @@ public class BossAttack : ScriptableObject
     public float active = 0.25f;
     public float recovery = 0.7f;
 
+    [Header("Animation (optional)")]
+    public string windupTrigger = "";
+    public string attackTrigger = "";
+
     [Header("Movement")]
     public Vector2 dashVelocity = Vector2.zero;
     public bool lockFacingDuringAttack = true;
