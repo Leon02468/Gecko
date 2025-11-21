@@ -14,6 +14,7 @@ public class PlayerInteraction : MonoBehaviour
         if (hit != null)
         {
             currentInteractable = hit.GetComponent<IInteractable>();
+            Debug.Log("Interactable found: " + hit.name);
         }
         else
         {
@@ -25,6 +26,8 @@ public class PlayerInteraction : MonoBehaviour
 
     public void OnInteract(InputAction.CallbackContext context)
     {
+
+        Debug.Log("OnInteract called: " + context);
         if (context.performed && currentInteractable != null && currentInteractable.CanInteract())
         {
             currentInteractable.Interact();

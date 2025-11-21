@@ -89656,6 +89656,7 @@ GameObject:
   - component: {fileID: 989228558}
   - component: {fileID: 989228557}
   - component: {fileID: 989228561}
+  - component: {fileID: 989228562}
   m_Layer: 8
   m_Name: WizardFrog
   m_TagString: Npc
@@ -89779,7 +89780,7 @@ Transform:
   m_GameObject: {fileID: 989228556}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 36.33, y: -168.79, z: 0}
+  m_LocalPosition: {x: 35.69, y: -168.82, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -89802,6 +89803,52 @@ MonoBehaviour:
   dialogueText: {fileID: 1181188401}
   nameText: {fileID: 1616555602}
   portraitImage: {fileID: 319875971}
+--- !u!61 &989228562
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 989228556}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: -0.12224007, y: -0.28191376}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.9375, y: 2.1875}
+    newSize: {x: 1.9375, y: 2.1875}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 0.94667435, y: 1.5479584}
+  m_EdgeRadius: 0
 --- !u!1 &991458345
 GameObject:
   m_ObjectHideFlags: 0
@@ -91096,7 +91143,6 @@ MonoBehaviour:
   allowButtonMashToEscape: 1
   mashCountToEscape: 8
   mashActionRef: {fileID: 0}
-  grabDisableMoveDuration: 0
   OnDamaged:
     m_PersistentCalls:
       m_Calls: []
@@ -91343,6 +91389,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 90720d26-3a04-4ed2-9d3f-96ae7d052b4b
     m_ActionName: 'Inventory/NavigateDown[/Keyboard/downArrow]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1441218434}
+        m_TargetAssemblyTypeName: PlayerInteraction, Assembly-CSharp
+        m_MethodName: OnInteract
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 4bb55de7-bb80-4aa3-9323-ee5b1203c72e
+    m_ActionName: 'Player/Interact[/Keyboard/e]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

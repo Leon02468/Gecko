@@ -15,9 +15,9 @@ MonoBehaviour:
   npcName: WizardFrog
   npcSprite: {fileID: 4260454996820610053, guid: fa2ac9540a0c19e4ea3297d1e0cfe0af, type: 3}
   dialogueLines:
-  - Jessie...We need to cook...
-  - I'm gay Jessie...
-  autoProgressLines: 0100
+  - Huh? Did you just fell on my roof?
+  - Who are you anyway?
+  autoProgressLines: 0000
   autoProgressDelay: 1.5
   typingSpeed: 0.05
   voiceSound: {fileID: 0}

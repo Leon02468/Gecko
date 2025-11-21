@@ -15,6 +15,8 @@ MonoBehaviour:
   windup: 0.22
   active: 0.25
   recovery: 0.6
+  windupTrigger: DoubleClaw-Windup
+  attackTrigger: DoubleClaw-Attack
   dashVelocity: {x: 0, y: 0}
   lockFacingDuringAttack: 1
   hitboxName: Hitboxes/ClawFront

@@ -20,7 +20,7 @@ public class NPC : MonoBehaviour, IInteractable
         if (playerObj) playerMovement = playerObj.GetComponent<PlayerMovement>();
     }
 
-    public bool CanInteract() => !isDialogueActive;
+    public bool CanInteract() => true;
 
     public void Interact()
     {
@@ -36,7 +36,15 @@ public class NPC : MonoBehaviour, IInteractable
         nameText.SetText(dialogueData.npcName);
         portraitImage.sprite = dialogueData.npcSprite;
         dialoguePanel.SetActive(true);
-        if (playerMovement) playerMovement.enabled = false;
+
+        // Disable player movement and stop velocity
+        if (playerMovement)
+        {
+            playerMovement.enabled = false;
+            if (playerMovement.rb != null)
+                playerMovement.rb.linearVelocity = Vector2.zero;
+        }
+
         StartCoroutine(TypeLine());
     }
 
