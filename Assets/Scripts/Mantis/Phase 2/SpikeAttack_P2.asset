@@ -15,8 +15,8 @@ MonoBehaviour:
   windup: 0.42
   active: 0.18
   recovery: 0.75
-  windupTrigger: 
-  attackTrigger: 
+  windupTrigger: SpikeAttack-Windup
+  attackTrigger: SpikeAttack-Attack
   dashVelocity: {x: 0, y: 0}
   lockFacingDuringAttack: 1
   hitboxName: VINE_PROJECTILE
