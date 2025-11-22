@@ -756,7 +756,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   phases:
   - {fileID: 11400000, guid: 01ab3db6ce4c5db48bc44b61d61b8295, type: 2}
-  - {fileID: 11400000, guid: f87c85bb8d2b59440ad7f091cc889268, type: 2}
+  - {fileID: 11400000, guid: d7ce812f0c6198741bff930da9715039, type: 2}
   maxHP: 25
   player: {fileID: 871054279}
   anim: {fileID: 1311556994}

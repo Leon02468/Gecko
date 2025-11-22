@@ -26,6 +26,7 @@ public class MantisHitbox : MonoBehaviour
             if (ph != null)
             {
                 ph.TakeDamage(damage, (hit.transform.position - transform.position).normalized * knockback, null);
+                Debug.Log($"[MantisHitbox] Applied {damage} damage to {hit.gameObject.name} with knockback {knockback}.");
             }
         }
     }
