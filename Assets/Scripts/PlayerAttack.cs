@@ -91,6 +91,10 @@ public class PlayerAttack : MonoBehaviour
         // If the player is holding "down" while pressing attack, prefer down-attack input
         if (IsDownHeld())
         {
+            // If the player is grounded, ignore down input (do nothing) — down has no ground function
+            if (playerMovement != null && playerMovement.IsGrounded)
+                return;
+
             // If airborne, do NOT perform the downward boost attack for now — treat as air-side attack instead
             if (playerMovement != null && !playerMovement.IsGrounded)
             {
@@ -168,6 +172,10 @@ public class PlayerAttack : MonoBehaviour
     {
         if (!context.performed) return;
 
+        // If grounded, ignore down-attack input entirely
+        if (playerMovement != null && playerMovement.IsGrounded)
+            return;
+
         // Mirror OnAttack behavior: if airborne, treat as air-side (JumpAttack) instead of down-boost attack
         if (playerMovement != null && !playerMovement.IsGrounded)
         {
@@ -227,6 +235,10 @@ public class PlayerAttack : MonoBehaviour
 
     private bool IsDownHeld()
     {
+        // If player exists and is grounded, treat Down as not held (ignore on ground)
+        if (playerMovement != null && playerMovement.IsGrounded)
+            return false;
+
         // Check keyboard
         if (Keyboard.current != null)
         {

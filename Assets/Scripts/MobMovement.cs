@@ -40,6 +40,9 @@ public class MobMovement : MonoBehaviour
     // runtime
     private float lastFlipTime = -10f;
 
+    // Movement enabled flag (can be toggled by AI to pause movement while attacking)
+    private bool movementEnabled = true;
+
     void Start()
     {
         startPosition = transform.position;
@@ -58,13 +61,24 @@ public class MobMovement : MonoBehaviour
     {
         // Non-physics movement runs in Update
         if (!hasRb)
-            UpdateTransformMovement();
+        {
+            if (movementEnabled)
+                UpdateTransformMovement();
+        }
     }
 
     void FixedUpdate()
     {
         if (!hasRb)
             return;
+
+        // If movement is disabled, ensure horizontal velocity is zero and skip logic
+        if (!movementEnabled)
+        {
+            // preserve vertical velocity (gravity, knockback) but stop horizontal movement
+            rb2d.linearVelocity = new Vector2(0f, rb2d.linearVelocity.y);
+            return;
+        }
 
         UpdateLogicOnly();
 
@@ -73,6 +87,20 @@ public class MobMovement : MonoBehaviour
             FixedPhysicsMovementDynamic();
         else // Kinematic or Static (we'll treat Kinematic specially)
             FixedPhysicsMovementKinematic();
+    }
+
+    /// <summary>
+    /// Enable or disable autonomous movement. When disabled, the mob will stop horizontal motion but physics (vertical)
+    /// will continue (so knockbacks, gravity, etc. still work).
+    /// </summary>
+    public void SetMovementEnabled(bool enabled)
+    {
+        movementEnabled = enabled;
+        if (!movementEnabled && hasRb)
+        {
+            // zero horizontal velocity immediately
+            rb2d.linearVelocity = new Vector2(0f, rb2d.linearVelocity.y);
+        }
     }
 
     // Shared logic: state transitions & target decisions (run inside FixedUpdate for physics)
