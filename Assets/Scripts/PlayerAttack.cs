@@ -96,6 +96,10 @@ public class PlayerAttack : MonoBehaviour
             return;
         }
 
+        // Ignore side attacks while airborne to avoid them being spammed while in air and triggering on landing
+        if (playerMovement != null && !playerMovement.IsGrounded)
+            return;
+
         // Normal side attack
         if (Time.time < lastSideAttackTime + sideAttackCooldown)
             return;
@@ -122,6 +126,10 @@ public class PlayerAttack : MonoBehaviour
     public void OnTopAttack(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
+
+        // Do not allow top attack while airborne
+        if (playerMovement != null && !playerMovement.IsGrounded)
+            return;
 
         if (Time.time < lastTopAttackTime + topAttackCooldown)
             return;
