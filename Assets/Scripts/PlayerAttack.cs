@@ -83,23 +83,32 @@ public class PlayerAttack : MonoBehaviour
             animator = GetComponentInChildren<Animator>();
     }
 
-    // Main attack (X). If player is holding down (keyboard/gamepad) this will attempt a down attack even in air.
+    // Main attack (X). If player is holding down (keyboard/gamepad) this will attempt a down attack on ground.
     public void OnAttack(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
 
-        // If the player is holding "down" while pressing attack, prefer down-attack input.
+        // If the player is holding "down" while pressing attack, prefer down-attack input
         if (IsDownHeld())
         {
-            // delegate to shared down-attack logic (this respects the down cooldown and air requirement)
+            // If airborne, do NOT perform the downward boost attack for now — treat as air-side attack instead
+            if (playerMovement != null && !playerMovement.IsGrounded)
+            {
+                PerformNormalSideAttackWithCooldown();
+                return;
+            }
+
+            // delegate to shared down-attack logic (this respects the down cooldown and any config)
             HandleDownAttackInput();
             return;
         }
 
-        // Ignore side attacks while airborne to avoid them being spammed while in air and triggering on landing
-        if (playerMovement != null && !playerMovement.IsGrounded)
-            return;
+        // Normal side attack (on ground or in air)
+        PerformNormalSideAttackWithCooldown();
+    }
 
+    private void PerformNormalSideAttackWithCooldown()
+    {
         // Normal side attack
         if (Time.time < lastSideAttackTime + sideAttackCooldown)
             return;
@@ -108,16 +117,26 @@ public class PlayerAttack : MonoBehaviour
         lastAttackType = AttackType.Side;
         flashTimer = flashDuration;
 
-        // Alternate between Attack1 and Attack2 for the normal side attack
-        if (nextSideAttackIsVariant2)
+        // If airborne, use JumpAttack animator trigger for side attack visuals
+        bool isAir = playerMovement != null && !playerMovement.IsGrounded;
+        if (isAir)
         {
-            animator?.SetTrigger("Attack2");
+            // use JumpAttack parameter for air-side visuals
+            animator?.SetTrigger("JumpAttack");
         }
         else
         {
-            animator?.SetTrigger("Attack1");
+            // Alternate between Attack1 and Attack2 for the normal side attack on ground
+            if (nextSideAttackIsVariant2)
+            {
+                animator?.SetTrigger("Attack2");
+            }
+            else
+            {
+                animator?.SetTrigger("Attack1");
+            }
+            nextSideAttackIsVariant2 = !nextSideAttackIsVariant2;
         }
-        nextSideAttackIsVariant2 = !nextSideAttackIsVariant2;
 
         PerformSideAttack();
     }
@@ -148,6 +167,14 @@ public class PlayerAttack : MonoBehaviour
     public void OnDownAttack(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
+
+        // Mirror OnAttack behavior: if airborne, treat as air-side (JumpAttack) instead of down-boost attack
+        if (playerMovement != null && !playerMovement.IsGrounded)
+        {
+            PerformNormalSideAttackWithCooldown();
+            return;
+        }
+
         HandleDownAttackInput();
     }
 

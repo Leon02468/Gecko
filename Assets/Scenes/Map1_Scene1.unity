@@ -26388,7 +26388,6 @@ MonoBehaviour:
   allowButtonMashToEscape: 1
   mashCountToEscape: 8
   mashActionRef: {fileID: 0}
-  grabDisableMoveDuration: 0
   OnDamaged:
     m_PersistentCalls:
       m_Calls: []
