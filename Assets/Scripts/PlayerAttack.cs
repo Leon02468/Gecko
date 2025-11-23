@@ -51,8 +51,30 @@ public class PlayerAttack : MonoBehaviour
     [Tooltip("When enabled the down attack will only work while the player is airborne (grounded = false).")]
     public bool downAttackRequireAir = true;
 
+    [Header("Jump/Thrust Options")]
+    [Tooltip("Horizontal thrust applied for the ground second attack (Attack2) — applied as velocity lock")]
+    public float thrustForce = 12f;
+    [Tooltip("Duration to lock player velocity when thrusting")]
+    public float thrustLockDuration = 0.12f;
+    [Tooltip("How long the thrust moving hitbox stays active (in seconds)")]
+    public float thrustHitboxDuration = 0.3f;
+    [Tooltip("Sampling interval for the thrust moving hitbox (in seconds)")]
+    public float thrustHitboxInterval = 0.02f;
+
+    [Header("Thrust Hitbox")]
+    [Tooltip("When true the thrust moving hitbox will use the side attack box/ range. If false, use custom size/range below.")]
+    public bool thrustUseSideBox = true;
+    [Tooltip("Custom hitbox size to use for thrust if not using side box")]
+    public Vector2 thrustBoxSize = new Vector2(1f, 1f);
+    [Tooltip("Custom hitbox range (distance from player) to use for thrust if not using side box")]
+    public float thrustBoxRange = 1f;
+
+    [Header("Animation Triggers")]
+    [Tooltip("Trigger used for the airborne side attack. Default: AirAttack (create this in Animator)")]
+    public string airAttackTrigger = "AirAttack";
+
     [Header("Gizmo Flash")]
-    public float flashDuration = 0.15f; // How long the flash lasts (seconds)
+    public float flashDuration = 0.3f; // How long the flash lasts (seconds)
     private float flashTimer = 0f;
 
     [Header("Animation")]
@@ -73,8 +95,15 @@ public class PlayerAttack : MonoBehaviour
     // coroutine handle so subsequent down-attacks can be ignored/replace previous
     private Coroutine downHitboxCoroutine;
 
-    // toggle to alternate side attack variants (Attack1 / Attack2)
-    private bool nextSideAttackIsVariant2 = false;
+    // Combo handling for side attacks (2-stage)
+    [Header("Combo")]
+    [Tooltip("Time window after the first side attack during which a second press will chain into Attack2 (thrust).")]
+    public float sideComboWindow = 0.35f;
+    private bool comboWaiting = false; // waiting for second press
+    private Coroutine comboCoroutine = null;
+
+    // prevent multiple air attacks in short succession
+    private bool airAttackInProgress = false;
 
     void Awake()
     {
@@ -113,36 +142,94 @@ public class PlayerAttack : MonoBehaviour
 
     private void PerformNormalSideAttackWithCooldown()
     {
-        // Normal side attack
-        if (Time.time < lastSideAttackTime + sideAttackCooldown)
+        // If not waiting for combo, respect cooldown
+        if (!comboWaiting && Time.time < lastSideAttackTime + sideAttackCooldown)
             return;
 
+        bool isAir = playerMovement != null && !playerMovement.IsGrounded;
+
+        // If airborne, do single air attack and block further air attacks until cooldown
+        if (isAir)
+        {
+            if (airAttackInProgress) return;
+            airAttackInProgress = true;
+            // trigger air attack animation (separate from ground Attack2)
+            animator?.SetTrigger(airAttackTrigger);
+            lastAttackType = AttackType.Side;
+            flashTimer = flashDuration;
+
+            PerformSideAttack();
+            lastSideAttackTime = Time.time;
+            StartCoroutine(ResetAirAttackAfterCooldown(sideAttackCooldown));
+            return;
+        }
+
+        // If we're waiting for the second press (combo)
+        if (comboWaiting)
+        {
+            // chain Attack2: play Attack2 animation, apply thrust and moving hitbox
+            animator?.SetTrigger("Attack2");
+            lastAttackType = AttackType.Side;
+            flashTimer = flashDuration;
+
+            // Determine facing
+            int facing = 1;
+            if (playerMovement != null)
+                facing = playerMovement.facingDirection != 0 ? playerMovement.facingDirection : 1;
+
+            // Apply horizontal thrust (no upward jump)
+            Vector2 thrustVel = new Vector2(thrustForce * facing, 0f);
+            if (playerMovement != null)
+                playerMovement.ApplyVelocityLock(thrustVel, thrustLockDuration);
+
+            // Start moving hitbox that follows player in the horizontal side direction with horizontal knockback
+            Vector2 sideDir = (facing == 1) ? Vector2.right : Vector2.left;
+
+            if (downHitboxCoroutine != null)
+                StopCoroutine(downHitboxCoroutine);
+            downHitboxCoroutine = StartCoroutine(RunMovingHitbox(sideDir, false, true, thrustHitboxDuration, thrustHitboxInterval, true)); // use side box with thrust timing and horizontal knockback
+
+            // consume combo and start cooldown
+            if (comboCoroutine != null) { StopCoroutine(comboCoroutine); comboCoroutine = null; }
+            comboWaiting = false;
+            lastSideAttackTime = Time.time;
+            return;
+        }
+
+        // Otherwise start a fresh Attack1
         lastSideAttackTime = Time.time;
         lastAttackType = AttackType.Side;
         flashTimer = flashDuration;
 
-        // If airborne, use JumpAttack animator trigger for side attack visuals
-        bool isAir = playerMovement != null && !playerMovement.IsGrounded;
-        if (isAir)
-        {
-            // use JumpAttack parameter for air-side visuals
-            animator?.SetTrigger("JumpAttack");
-        }
-        else
-        {
-            // Alternate between Attack1 and Attack2 for the normal side attack on ground
-            if (nextSideAttackIsVariant2)
-            {
-                animator?.SetTrigger("Attack2");
-            }
-            else
-            {
-                animator?.SetTrigger("Attack1");
-            }
-            nextSideAttackIsVariant2 = !nextSideAttackIsVariant2;
-        }
+        animator?.SetTrigger("Attack1");
+
+        // open combo window on ground so a subsequent press within the window will chain
+        if (comboCoroutine != null)
+            StopCoroutine(comboCoroutine);
+        comboWaiting = true;
+        comboCoroutine = StartCoroutine(ComboWindow());
 
         PerformSideAttack();
+    }
+
+    private IEnumerator ResetAirAttackAfterCooldown(float cooldown)
+    {
+        yield return new WaitForSeconds(cooldown);
+        airAttackInProgress = false;
+    }
+
+    private IEnumerator ComboWindow()
+    {
+        float t = 0f;
+        while (t < sideComboWindow)
+        {
+            t += Time.deltaTime;
+            yield return null;
+        }
+
+        // combo window expired
+        comboWaiting = false;
+        comboCoroutine = null;
     }
 
     // Explicit top attack binding (Up + X or separate action)
@@ -176,7 +263,7 @@ public class PlayerAttack : MonoBehaviour
         if (playerMovement != null && playerMovement.IsGrounded)
             return;
 
-        // Mirror OnAttack behavior: if airborne, treat as air-side (JumpAttack) instead of down-boost attack
+        // Mirror OnAttack behavior: if airborne, treat as air-side (AirAttack) instead of down-boost attack
         if (playerMovement != null && !playerMovement.IsGrounded)
         {
             PerformNormalSideAttackWithCooldown();
@@ -224,7 +311,7 @@ public class PlayerAttack : MonoBehaviour
 
         if (downHitboxCoroutine != null)
             StopCoroutine(downHitboxCoroutine);
-        downHitboxCoroutine = StartCoroutine(RunMovingDownHitbox(diag));
+        downHitboxCoroutine = StartCoroutine(RunMovingHitbox(diag, true)); // bounce player on down attack
     }
 
     void Update()
@@ -307,18 +394,26 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
-    private IEnumerator RunMovingDownHitbox(Vector2 diag)
+    private IEnumerator RunMovingHitbox(Vector2 diag, bool bouncePlayer, bool useSideBox = false, float? customDuration = null, float? customInterval = null, bool useHorizontalKnockback = false)
     {
         float timer = 0f;
         var hitSet = new HashSet<Collider2D>();
         bool playerBounced = false;
 
-        while (timer < downAttackHitboxDuration)
+        // choose box size and range based on caller preference (thrust uses side box)
+        Vector2 boxSize = useSideBox ? sideAttackBoxSize : downAttackBoxSize;
+        float range = useSideBox ? sideAttackRange : downAttackRange;
+        
+        // use custom duration/interval if provided, otherwise use down attack defaults
+        float duration = customDuration ?? downAttackHitboxDuration;
+        float interval = customInterval ?? downAttackHitboxInterval;
+
+        while (timer < duration)
         {
-            Vector2 origin = (Vector2)transform.position + diag * downAttackRange;
+            Vector2 origin = (Vector2)transform.position + diag * range;
 
             // sample with layer mask
-            Collider2D[] hits = Physics2D.OverlapBoxAll(origin, downAttackBoxSize, 0f, attackLayer);
+            Collider2D[] hits = Physics2D.OverlapBoxAll(origin, boxSize, 0f, attackLayer);
 
             foreach (var hit in hits)
             {
@@ -326,25 +421,37 @@ public class PlayerAttack : MonoBehaviour
                 if (hitSet.Contains(hit)) continue;
                 if (!IsValidTarget(hit)) continue;
 
-                // apply enemy knockback (diagonal downwards)
+                // apply enemy knockback based on attack type
                 int facing = playerMovement != null ? playerMovement.facingDirection : 1;
-                Vector2 kb = new Vector2(facing * knockbackForce * 0.8f, -knockbackForce * 0.6f);
-                HandleHit(hit, kb, downAttackDamage, false);
+                Vector2 kb;
+                
+                if (useHorizontalKnockback)
+                {
+                    // Horizontal knockback for thrust attack (side direction with small upward component)
+                    kb = new Vector2(facing * knockbackForce, knockbackForce * knockbackUpMultiplier);
+                }
+                else
+                {
+                    // Diagonal downward knockback for down attack
+                    kb = new Vector2(facing * knockbackForce * 0.8f, -knockbackForce * 0.6f);
+                }
+                
+                HandleHit(hit, kb, sideAttackDamage, false);
                 hitSet.Add(hit);
 
-                // bounce player (only once)
-                if (!playerBounced && playerMovement != null && playerMovement.rb != null)
+                // bounce player if requested (only once)
+                if (bouncePlayer && !playerBounced && playerMovement != null && playerMovement.rb != null)
                 {
                     playerMovement.ApplyVelocityLock(new Vector2(playerMovement.rb.linearVelocity.x, downAttackBounce), downAttackBounceLock);
                     playerBounced = true;
                 }
             }
 
-            timer += downAttackHitboxInterval;
+            timer += interval;
             // draw for debugging briefly
-            DebugDrawBox((Vector2)transform.position + diag * downAttackRange, downAttackBoxSize, Color.cyan, downAttackHitboxInterval);
+            DebugDrawBox((Vector2)transform.position + diag * range, boxSize, Color.cyan, interval);
 
-            yield return new WaitForSeconds(downAttackHitboxInterval);
+            yield return new WaitForSeconds(interval);
         }
 
         downHitboxCoroutine = null;
