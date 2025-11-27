@@ -12,15 +12,15 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
     public bool isFull;
     public string itemDescription;
 
-    [SerializeField]
-    private int maxNumberOfItems;
+    public int maxNumberOfItems;
 
     //===ITEM SLOT===//
-    [SerializeField]
-    private TMP_Text quantityText;
+   
+    public TMP_Text quantityText;
 
-    [SerializeField]
-    private Image itemImage;
+ 
+    public Image itemImage;
+
 
     //===ITEM DESCRIPTION SLOT===//
     public Image itemDescriptionImage;

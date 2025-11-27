@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.IO;
+using System.Collections.Generic;
 public class InventoryManager : MonoBehaviour
 {
     // Reference to the inventory panel UI
@@ -13,11 +15,25 @@ public class InventoryManager : MonoBehaviour
     //Add a field to track the currently selected slot
     private int selectedIndex = 0;
 
+    //Instance
+    public static InventoryManager Instance;
+
     [SerializeField]
     private int columns = 5;
 
     private void Awake()
     {
+        // Singleton so only one inventory exists
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+        DontDestroyOnLoad(gameObject);  // <--- THIS IS THE IMPORTANT LINE
+
+
         inputActions = new PlayerControls();
         inputActions.Player.Inventory.performed += ToggleInventory;
         inputActions.Inventory.CloseInventory.performed += ToggleInventory;
@@ -37,11 +53,6 @@ public class InventoryManager : MonoBehaviour
     private void OnDisable()
     {
         inputActions.Player.Disable();
-    }
-
-    void Start()
-    {
-        inventoryPanel.SetActive(false);
     }
 
     private void ToggleInventory(InputAction.CallbackContext context)
@@ -166,5 +177,129 @@ public class InventoryManager : MonoBehaviour
         }
         SelectSlot(below);
     }
-    
+
+    private string savePath => Path.Combine(Application.persistentDataPath, "inventory.json");
+
+    public void SaveInventory()
+    {
+        List<ItemSlotData> slotDataList = new List<ItemSlotData>();
+        foreach (var slot in itemSlot)
+        {
+            var data = new ItemSlotData
+            {
+                itemName = slot.itemName,
+                quantity = slot.quantity,
+                itemSpriteName = slot.itemSprite != null ? slot.itemSprite.name : "",
+                isFull = slot.isFull,
+                itemDescription = slot.itemDescription
+            };
+            slotDataList.Add(data);
+        }
+        string json = JsonUtility.ToJson(new SerializationWrapper<ItemSlotData>(slotDataList));
+        File.WriteAllText(savePath, json);
+        Debug.Log("Inventory saved to " + savePath);
+    }
+
+    public void LoadInventory()
+    {
+        if (!File.Exists(savePath)) return;
+
+        string json = File.ReadAllText(savePath);
+        Debug.Log($"Loading inventory JSON: {json}"); // Add this line
+
+        var wrapper = JsonUtility.FromJson<SerializationWrapper<ItemSlotData>>(json);
+        for (int i = 0; i < itemSlot.Length && i < wrapper.items.Count; i++)
+        {
+            var data = wrapper.items[i];
+            Debug.Log($"Loading slot {i}: name={data.itemName}, qty={data.quantity}, spriteName={data.itemSpriteName}"); // Add this line
+
+            itemSlot[i].itemName = data.itemName;
+            itemSlot[i].quantity = data.quantity;
+            itemSlot[i].itemSprite = LoadSpriteByName(data.itemSpriteName);
+            itemSlot[i].isFull = data.isFull;
+            itemSlot[i].itemDescription = data.itemDescription;
+
+            // Update visuals
+            itemSlot[i].itemImage.sprite = itemSlot[i].itemSprite;
+            itemSlot[i].itemImage.enabled = itemSlot[i].itemSprite != null;
+            itemSlot[i].quantityText.text = itemSlot[i].quantity.ToString();
+            itemSlot[i].quantityText.enabled = itemSlot[i].quantity > 0;
+        }
+        Debug.Log("Inventory loaded from " + savePath);
+    }
+
+    private Sprite LoadSpriteByName(string spriteName)
+    {
+
+        if (string.IsNullOrEmpty(spriteName))
+        {
+            Debug.Log("LoadSpriteByName: spriteName is null or empty");
+            return null;
+        }
+
+        Debug.Log($"Trying to load sprite: {spriteName}");
+
+        // Debug: List all available sprites in the folder
+        Sprite[] allSprites = Resources.LoadAll<Sprite>("Sprites/Items");
+        Debug.Log($"Found {allSprites.Length} sprites in Sprites/Items:");
+        foreach (var sprite in allSprites)
+        {
+            Debug.Log($"  Available sprite: '{sprite.name}'");
+        }
+
+        // Try to load the specific sprite
+        string resourcePath = "Sprites/Items/" + spriteName;
+        Sprite loadedSprite = Resources.Load<Sprite>(resourcePath);
+
+        if (loadedSprite == null)
+        {
+            Debug.LogError($"Failed to load sprite: {resourcePath}");
+            Debug.LogError($"Looking for sprite named: '{spriteName}'");
+            Debug.LogError($"Make sure the sprite exists at: Assets/Resources/{resourcePath}");
+
+            // Try loading without the path to see if it exists at all
+            Sprite testSprite = Resources.Load<Sprite>(spriteName);
+            if (testSprite != null)
+            {
+                Debug.Log($"Found sprite '{spriteName}' at root level, but expected it in Sprites/Items/");
+            }
+        }
+        else
+        {
+            Debug.Log($"Successfully loaded sprite: {spriteName}");
+        }
+
+        return loadedSprite;
+    }
+
+    [System.Serializable]
+    private class SerializationWrapper<T>
+    {
+        public List<T> items;
+        public SerializationWrapper(List<T> items) { this.items = items; }
+    }
+
+    // Call SaveInventory() when quitting, and LoadInventory() on Awake/Start
+    private void OnApplicationQuit()
+    {
+        SaveInventory();
+    }
+
+    private void Start()
+    {
+        Sprite testSprite = Resources.Load<Sprite>("Sprites/Items/Cherries_0");
+        if (testSprite != null)
+        {
+            Debug.Log($"SUCCESS: Found sprite directly: {testSprite.name}");
+        }
+        else
+        {
+            Debug.LogError("FAILED: Could not load sprite directly");
+        }
+
+        LoadInventory();
+        inventoryPanel.SetActive(false);
+    }
+
+
 }

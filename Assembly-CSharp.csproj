@@ -64,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Boss\BossAttack.cs" />
+    <Compile Include="Assets\Scripts\Inventory\ItemSlotData.cs" />
     <Compile Include="Assets\Scripts\Inventory\Item.cs" />
     <Compile Include="Assets\Scripts\Npc\NPCDialogue.cs" />
     <Compile Include="Assets\Scripts\IInteract.cs" />
@@ -75,6 +76,8 @@
     <Compile Include="Assets\Scripts\Npc\NPC.cs" />
     <Compile Include="Assets\Scripts\PlayerAnimation.cs" />
     <Compile Include="Assets\Scripts\JumpPad\JumpPad.cs" />
+    <Compile Include="Assets\Scripts\SpawnPointSetter.cs" />
+    <Compile Include="Assets\Scripts\SceneChanger.cs" />
     <Compile Include="Assets\Scripts\BossAI.cs" />
     <Compile Include="Assets\Scripts\MobAI.cs" />
     <Compile Include="Assets\Scripts\MobMovement.cs" />
@@ -91,6 +94,7 @@
     <Compile Include="Assets\Scripts\ParallaxMaterial.cs" />
     <Compile Include="Assets\Scripts\PlayerInteraction.cs" />
     <Compile Include="Assets\PlayerControls.cs" />
+    <Compile Include="Assets\Scripts\SpawnManager.cs" />
     <Compile Include="Assets\Scripts\CameraFollow.cs" />
     <Compile Include="Assets\Scripts\ChaseTrigger.cs" />
     <Compile Include="Assets\Scripts\Mantis\MantisHitbox.cs" />
