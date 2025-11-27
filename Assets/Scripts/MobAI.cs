@@ -38,10 +38,15 @@ public class MobAI : MonoBehaviour
     // When zero, AI does not force facing and lets other components (e.g. patrol movement) control it.
     private int desiredFacing = 0;
 
+    // reference to movement component so we can pause movement while attacking
+    private MobMovement mobMovement;
+
     void Awake()
     {
         if (mobAnimation == null)
             mobAnimation = GetComponentInChildren<MobAnimation>();
+
+        mobMovement = GetComponent<MobMovement>();
     }
 
     void Update()
@@ -59,7 +64,7 @@ public class MobAI : MonoBehaviour
 
             // If close enough and cooldown passed, attack
             float dist = Vector2.Distance(transform.position, targetPlayer.position);
-            if (!isAttacking && Time.time >= lastAttackTime + attackCooldown && dist <= detectionRadius)
+            if (!isAttacking && Time.time >= lastAttackTime + attackCooldown && dist <= attackRange)
             {
                 StartCoroutine(PerformAttack(targetPlayer));
             }
@@ -172,6 +177,9 @@ public class MobAI : MonoBehaviour
         isAttacking = true;
         lastAttackTime = Time.time;
 
+        // disable autonomous movement while attacking
+        mobMovement?.SetMovementEnabled(false);
+
         // compute facing towards player and pass it to animation so sprite flips before attack plays
         int facing = (player.position.x >= transform.position.x) ? 1 : -1;
         mobAnimation?.PlayAttack(facing);
@@ -182,6 +190,7 @@ public class MobAI : MonoBehaviour
         if (player == null)
         {
             isAttacking = false;
+            mobMovement?.SetMovementEnabled(true);
             yield break;
         }
 
@@ -203,7 +212,11 @@ public class MobAI : MonoBehaviour
             }
         }
 
+        // short recovery tick before allowing movement again
         yield return new WaitForSeconds(0.02f);
+
+        // re-enable movement when attack finished
+        mobMovement?.SetMovementEnabled(true);
         isAttacking = false;
     }
 

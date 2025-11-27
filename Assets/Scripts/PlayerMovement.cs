@@ -136,7 +136,30 @@ public class PlayerMovement : MonoBehaviour
 
         if (context.performed)
         {
-            horizontalMovement = context.ReadValue<Vector2>().x;
+            var vec = context.ReadValue<Vector2>();
+
+            // For keyboard, prefer discrete left/right keys so up/down won't reduce horizontal magnitude.
+            var kb = Keyboard.current;
+            if (kb != null)
+            {
+                bool left = kb.leftArrowKey.isPressed || kb.aKey.isPressed;
+                bool right = kb.rightArrowKey.isPressed || kb.dKey.isPressed;
+
+                if (left || right)
+                {
+                    horizontalMovement = right ? 1f : -1f;
+                }
+                else
+                {
+                    // no horizontal keyboard keys: fall back to axis x (gamepad/joystick)
+                    horizontalMovement = vec.x;
+                }
+            }
+            else
+            {
+                // non-keyboard devices: use x axis directly
+                horizontalMovement = vec.x;
+            }
 
             // Apply deadzone: treat small axis values as zero so "no input" is stable
             if (Mathf.Abs(horizontalMovement) < inputDeadzone)

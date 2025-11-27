@@ -3,7 +3,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class VineProjectile : MonoBehaviour
 {
-    public float speed = 6f;
+    public float speed = 10f;
     public float life = 4f;
     public float damage = 1f;
     public float knockback = 6f;
@@ -24,14 +24,11 @@ public class VineProjectile : MonoBehaviour
         {
             var ph = other.GetComponent<PlayerHealth>();
             ph?.TakeDamage(damage, (ph.transform.position - transform.position).normalized * knockback, null);
-            Debug.Log("VineProjectile hit player for " + damage + " damage.");
             Destroy(gameObject);
-            Debug.Log("VineProjectile destroyed after hitting player.");
         }
         else if (other.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
             Destroy(gameObject);
-            Debug.Log("VineProjectile destroyed after hitting ground.");
         }
     }
 }

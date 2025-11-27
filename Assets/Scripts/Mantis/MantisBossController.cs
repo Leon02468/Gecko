@@ -112,6 +112,7 @@ public class MantisBossController : MonoBehaviour, IDamageable
         float dist = Mathf.Abs(player.position.x - transform.position.x);
         if (dist > atk.preferredRange + 0.5f)
         {
+            anim.SetFloat("MoveDir", 1f);
             yield return MoveHorizontally(player.position.x, phase.moveSpeed, atk.preferredRange);
         }
         else if (dist < atk.preferredRange - 0.5f)
@@ -119,9 +120,10 @@ public class MantisBossController : MonoBehaviour, IDamageable
             float stepBackDistance = 2.0f;
             float awayDir = Mathf.Sign(transform.position.x - player.position.x);
             float targetX = transform.position.x + awayDir * stepBackDistance;
+            anim.SetFloat("MoveDir", -1f);
             yield return MoveHorizontally(targetX, phase.moveSpeed, 0.6f);
         }
-
+        anim.SetFloat("MoveDir", 0f);
         // execute
         yield return StartCoroutine(ExecuteAttack(atk));
         // decision gap
@@ -131,8 +133,11 @@ public class MantisBossController : MonoBehaviour, IDamageable
 
     IEnumerator MoveHorizontally(float targetX, float speed, float stopWithin)
     {
-        float timeout = 3f;
+        float timeout = 10f;
         float t = 0f;
+
+        anim.SetBool("IsMoving", true);
+
         while (Mathf.Abs(targetX - transform.position.x) > stopWithin && t < timeout)
         {
             float dir = Mathf.Sign(targetX - transform.position.x);
@@ -141,6 +146,7 @@ public class MantisBossController : MonoBehaviour, IDamageable
             t += Time.deltaTime;
         }
         rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
+        anim.SetBool("IsMoving", false);
     }
 
     IEnumerator ExecuteAttack(BossAttack atk)
@@ -193,7 +199,6 @@ public class MantisBossController : MonoBehaviour, IDamageable
             PlaySfx(atk);
             if (atk.lockFacingDuringAttack) lockedFacing = true;
 
-            // ACTIVE behavior based on attackTrigger
             if (!string.IsNullOrEmpty(atk.attackTrigger))
                 anim.SetTrigger(atk.attackTrigger);
             else
@@ -306,7 +311,7 @@ public class MantisBossController : MonoBehaviour, IDamageable
     {
         if (vineProjectilePrefab == null || projectileSpawnPoint == null) return;
         int count = (currentPhaseIndex >= 1) ? 3 : 1;
-        float[] anglesLocal = (count == 0) ? new float[] { 0f } : new float[] { 0f, 30f, 60f };
+        float[] anglesLocal = (count == 1) ? new float[] { 0f } : new float[] { 0f, 30f, 60f };
         int facing = GetFacingSign();
         float baseAngle = (facing == 1) ? 0f : 180f;  //left:0, right:180
 
