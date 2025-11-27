@@ -83,6 +83,8 @@
     <Compile Include="Assets\Scripts\MobHealth.cs" />
     <Compile Include="Assets\Scripts\FlyingEnemy.cs" />
     <Compile Include="Assets\Scripts\PlayerAttack.cs" />
+    <Compile Include="Assets\Scripts\Mantis\ConfinerSwitcher.cs" />
+    <Compile Include="Assets\Scripts\DamageOnContact.cs" />
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\Mantis\MantisBossController.cs" />
     <Compile Include="Assets\Scripts\IDamageable.cs" />
