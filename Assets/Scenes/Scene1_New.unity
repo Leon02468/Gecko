@@ -210,7 +210,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneEdgeLoader
   targetScene: Scene2_New
-  spawnPointName: SpawnFromScene2
+  spawnPointName: SpawnFromScene1
 --- !u!61 &516503100
 BoxCollider2D:
   m_ObjectHideFlags: 0
