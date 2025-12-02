@@ -5,90 +5,78 @@ using UnityEngine.EventSystems;
 
 public class ItemSlot : MonoBehaviour, IPointerClickHandler
 {
-    //===ITEM DATA===//
-    public string itemName;
+    public ItemObject item;   //Item Object
     public int quantity;
-    public Sprite itemSprite;
-    public bool isFull;
-    public string itemDescription;
 
-    [SerializeField]
-    private int maxNumberOfItems;
+    public Image icon;
+    public TMP_Text quantityText;
 
-    //===ITEM SLOT===//
-    [SerializeField]
-    private TMP_Text quantityText;
-
-    [SerializeField]
-    private Image itemImage;
-
-    //===ITEM DESCRIPTION SLOT===//
+    // Description section
     public Image itemDescriptionImage;
     public TMP_Text itemDescriptionNameText;
     public TMP_Text itemDescriptionDetailsText;
 
-
     public GameObject selectedRect;
     public bool thisItemSelected;
 
-    private InventoryManager inventoryManager; // Enable this script to talk to InventoryManager
+    private InventoryManager inventoryManager;
 
     private void Start()
     {
-        inventoryManager = GameObject.Find("InventoryCanvas").GetComponent<InventoryManager>();
+        inventoryManager = InventoryManager.Instance;
+        UpdateSlotUI();
     }
 
-    public int AddItem(string itemName, int quantity, Sprite itemSprite, string itemDescription)
+    public int AddItem(ItemObject newItem, int amount)
     {
-        // If this slot is full, skip
-        if (isFull)
+        // If empty slot Å® assign item
+        if (item == null)
         {
-            Debug.Log($"Slot {gameObject.name} is full, skipping.");
-            return quantity;
+            item = newItem;
+            quantity = 0;
         }
 
-        // Update name and description
-        this.itemName = itemName;
-        this.itemDescription = itemDescription;
-        this.itemSprite = itemSprite;
+        // If different item in slot Å® cannot store
+        if (item != newItem)
+            return amount;
 
-        // Update visuals
-        itemImage.sprite = itemSprite;
-        itemImage.enabled = true;
+        int spaceLeft = item.maxStack - quantity;
+        int addAmount = Mathf.Min(spaceLeft, amount);
 
-        // Add quantity
-        this.quantity += quantity;
+        quantity += addAmount;
+        amount -= addAmount;
 
-        // Cap at max
-        int extraItems = 0;
-        if (this.quantity >= maxNumberOfItems)
-        {
-            extraItems = this.quantity - maxNumberOfItems;
-            this.quantity = maxNumberOfItems;
-            isFull = true;
-        }
-
-        // Update text
-        quantityText.text = this.quantity.ToString();
-        quantityText.enabled = true;
-
-        Debug.Log($"[{gameObject.name}] Added {quantity}, now has {this.quantity}, leftover = {extraItems}");
-
-        return extraItems;
-
+        UpdateSlotUI();
+        return amount;
     }
 
+    public void UpdateSlotUI()
+    {
+        if (item == null || quantity == 0)
+        {
+            icon.enabled = false;
+            quantityText.enabled = false;
+            return;
+        }
+
+        icon.enabled = true;
+        icon.sprite = item.icon;
+
+        quantityText.enabled = true;
+        quantityText.text = quantity.ToString();
+    }
+
+    public void ClearSlot()
+    {
+        item = null;
+        quantity = 0;
+       
+    }
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if(eventData.button == PointerEventData.InputButton.Left)
-        {
+        if (eventData.button == PointerEventData.InputButton.Left)
             OnLeftClick();
-        }
-        else if (eventData.button == PointerEventData.InputButton.Right)
-        {
-            OnRightClick();
-        }
     }
 
     public void OnLeftClick()
@@ -96,13 +84,21 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
         inventoryManager.DeselectAllSlots();
         selectedRect.SetActive(true);
         thisItemSelected = true;
-        itemDescriptionNameText.text = itemName;
-        itemDescriptionDetailsText.text = itemDescription;
-        itemDescriptionImage.sprite = itemSprite;
+
+        if (item != null)
+        {
+            // show details
+            itemDescriptionNameText.text = item.itemName;
+            itemDescriptionDetailsText.text = item.description;
+            itemDescriptionImage.sprite = item.icon;
+        }
+        else
+        {
+            // empty slot Å® clear description
+            itemDescriptionNameText.text = "";
+            itemDescriptionDetailsText.text = "";
+            itemDescriptionImage.sprite = null;
+        }
     }
 
-    public void OnRightClick()
-    {
-       
-    }
 }

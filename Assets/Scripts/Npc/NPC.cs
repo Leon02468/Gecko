@@ -14,6 +14,10 @@ public class NPC : MonoBehaviour, IInteractable
     bool isTyping, isDialogueActive;
     PlayerMovement playerMovement;
 
+    public ShopUI shopUI;
+    bool shopOpen = false;
+    bool dialogueFinished = false;
+
     void Awake()
     {
         var playerObj = GameObject.FindGameObjectWithTag("Player");
@@ -24,20 +28,56 @@ public class NPC : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        if (dialogueData == null) return;
-        if (isDialogueActive) NextLine();
-        else StartDialogue();
+        // -----------------------------------------
+        // 1. If dialogue is happening Å® continue it
+        // -----------------------------------------
+        if (isDialogueActive)
+        {
+            NextLine();
+            return;
+        }
+
+        // ------------------------------------------------
+        // 2. If dialogue is done Å® toggle shop open/close
+        // ------------------------------------------------
+        if (dialogueFinished)
+        {
+            ToggleShop();
+            return;
+        }
+
+        // -----------------------------------------
+        // 3. Otherwise Å® start dialogue normally
+        // -----------------------------------------
+        StartDialogue();
+    }
+
+    void ToggleShop()
+    {
+        if (shopUI == null)
+            return;
+
+        if (!shopOpen)
+        {
+            shopUI.OpenShop();
+            shopOpen = true;
+        }
+        else
+        {
+            shopUI.CloseShop();
+            shopOpen = false;
+        }
     }
 
     void StartDialogue()
     {
         isDialogueActive = true;
         dialogueIndex = 0;
+
         nameText.SetText(dialogueData.npcName);
         portraitImage.sprite = dialogueData.npcSprite;
         dialoguePanel.SetActive(true);
 
-        // Disable player movement and stop velocity
         if (playerMovement)
         {
             playerMovement.enabled = false;
@@ -55,24 +95,34 @@ public class NPC : MonoBehaviour, IInteractable
             StopAllCoroutines();
             dialogueText.SetText(dialogueData.dialogueLines[dialogueIndex]);
             isTyping = false;
+            return;
         }
-        else if (++dialogueIndex < dialogueData.dialogueLines.Length)
+
+        if (++dialogueIndex < dialogueData.dialogueLines.Length)
+        {
             StartCoroutine(TypeLine());
+        }
         else
+        {
             EndDialogue();
+        }
     }
 
     IEnumerator TypeLine()
     {
         isTyping = true;
         dialogueText.SetText("");
+
         foreach (char letter in dialogueData.dialogueLines[dialogueIndex])
         {
             dialogueText.text += letter;
             yield return new WaitForSeconds(dialogueData.typingSpeed);
         }
+
         isTyping = false;
-        if (dialogueData.autoProgressLines.Length > dialogueIndex && dialogueData.autoProgressLines[dialogueIndex])
+
+        if (dialogueData.autoProgressLines.Length > dialogueIndex &&
+            dialogueData.autoProgressLines[dialogueIndex])
         {
             yield return new WaitForSeconds(dialogueData.autoProgressDelay);
             NextLine();
@@ -85,6 +135,9 @@ public class NPC : MonoBehaviour, IInteractable
         isDialogueActive = false;
         dialogueText.SetText("");
         dialoguePanel.SetActive(false);
+
+        dialogueFinished = true;  // Shop mode activates after this
+
         if (playerMovement) playerMovement.enabled = true;
     }
 }

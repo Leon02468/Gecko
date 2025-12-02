@@ -1,23 +1,45 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
+using System.IO;
+using System.Collections.Generic;
+
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
 public class InventoryManager : MonoBehaviour
 {
-    // Reference to the inventory panel UI
+    public static InventoryManager Instance;
+
+
+    [Header("UI / Slots")]
     public GameObject inventoryPanel;
-    // Input action asset
-    private PlayerControls inputActions;
-    // Add reference to the PlayerInput component
-    private PlayerInput playerInput;
-    // Reference to ItemSlot
     public ItemSlot[] itemSlot;
-    //Add a field to track the currently selected slot
+
+    [Header("Navigation")]
+    private PlayerControls inputActions;
+    private PlayerInput playerInput;
     private int selectedIndex = 0;
+    [SerializeField] private int columns = 5;
 
-    [SerializeField]
-    private int columns = 5;
+    // Save path (visible in logs)
+    private string savePath => Path.Combine(Application.persistentDataPath, "inventory.json");
 
+    // ========== Unity lifecycle ==========
     private void Awake()
     {
+        // singleton
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+
+        // Input actions (keep your existing bindings)
         inputActions = new PlayerControls();
         inputActions.Player.Inventory.performed += ToggleInventory;
         inputActions.Inventory.CloseInventory.performed += ToggleInventory;
@@ -25,99 +47,136 @@ public class InventoryManager : MonoBehaviour
         inputActions.Inventory.NavigateRight.performed += ctx => SelectNextSlot();
         inputActions.Inventory.NavigateUp.performed += ctx => SelectSlotAbove();
         inputActions.Inventory.NavigateDown.performed += ctx => SelectSlotBelow();
+
         playerInput = FindAnyObjectByType<PlayerInput>();
 
-        Debug.Log("InventoryManager: PlayerControls created");
+        // Hook scene unload to save (e.g. when switching scenes)
+        SceneManager.sceneUnloaded += OnSceneUnloaded;
+
+#if UNITY_EDITOR
+        // In Editor, Play Mode stop does not call OnApplicationQuit reliably.
+        EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
+#endif
     }
+
+    private void Start()
+    {
+        // Load in Start so ItemDatabase Awake() has run already
+        LoadInventory();
+        if (inventoryPanel != null) inventoryPanel.SetActive(false);
+
+        Debug.Log($"InventoryManager initialized. Save path: {savePath}");
+    }
+
     private void OnEnable()
     {
-        inputActions.Player.Enable();
+        if (inputActions != null) inputActions.Player.Enable();
     }
 
     private void OnDisable()
     {
-        inputActions.Player.Disable();
+        if (inputActions != null) inputActions.Player.Disable();
     }
 
-    void Start()
+    private void OnDestroy()
     {
-        inventoryPanel.SetActive(false);
+        SceneManager.sceneUnloaded -= OnSceneUnloaded;
+#if UNITY_EDITOR
+        EditorApplication.playModeStateChanged -= OnPlayModeStateChanged;
+#endif
     }
 
+    // ========== Inventory UI toggle ==========
     private void ToggleInventory(InputAction.CallbackContext context)
     {
+        if (inventoryPanel == null) return;
+
         bool isActive = inventoryPanel.activeSelf;
         inventoryPanel.SetActive(!isActive);
+
         if (!isActive)
         {
-            Time.timeScale = 0f; // Pause the game
+            
 
-            // Disable the PlayerInput component to block all gameplay input
-            if (playerInput != null)
-                playerInput.enabled = false;
+            Time.timeScale = 0f;
+            if (playerInput != null) playerInput.enabled = false;
 
-            // Disable input action maps
             inputActions.Player.Disable();
             inputActions.Inventory.Enable();
-
-            //Select first slot when opening inventory
+            
             SelectSlot(selectedIndex);
-
-            Debug.Log($"PlayerInput disabled: {!playerInput.enabled}");
         }
         else
         {
-            Time.timeScale = 1f; // Resume the game
+            Time.timeScale = 1f;
+            if (playerInput != null) playerInput.enabled = true;
 
-            // Re-enable the PlayerInput component
-            if (playerInput != null)
-                playerInput.enabled = true;
-
-            // Re-enable input action maps
             inputActions.Player.Enable();
             inputActions.Inventory.Disable();
 
-            Debug.Log($"PlayerInput enabled: {playerInput.enabled}");
+            // Optional: save when closing inventory (helps ensure persistence)
+            SaveInventory();
         }
     }
 
-    public int AddItem(string itemName, int quantity, Sprite itemSprite, string itemDescription)
+    // ========== Add item (stacks and fills) ==========
+    public int AddItem(ItemObject itemObject, int quantity)
     {
-        int leftOverItems = quantity;
-        Debug.Log($"Trying to add {quantity}x {itemName}...");
+        if (itemObject == null || quantity <= 0) return quantity;
 
-        //Filling the existing stack first
-        for (int i = 0; i < itemSlot.Length; i++)
+        int original = quantity;
+        int leftOver = quantity;
+
+        // Stack into existing slots
+        foreach (var slot in itemSlot)
         {
-            if (itemSlot[i].quantity == 0 || (itemSlot[i].isFull == false && itemSlot[i].itemName == itemName))
+            if (slot.item == itemObject)
             {
-                leftOverItems = itemSlot[i].AddItem(itemName, leftOverItems, itemSprite, itemDescription);
-                
-                if (leftOverItems <= 0)
+                leftOver = slot.AddItem(itemObject, leftOver);
+                if (leftOver <= 0)
                 {
+                    SaveInventoryIfChanged(original, leftOver);
                     return 0;
                 }
             }
-            Debug.Log($"Slot {i}: now has {itemSlot[i].quantity}, leftover = {leftOverItems}");
-
         }
 
-
-        for (int i = 0; i < itemSlot.Length; i++)
+        // Fill empty slots
+        foreach (var slot in itemSlot)
         {
-            Debug.Log($"[Slot {i}] name={itemSlot[i].itemName}, qty={itemSlot[i].quantity}, full={itemSlot[i].isFull}");
+            if (slot.item == null)
+            {
+                leftOver = slot.AddItem(itemObject, leftOver);
+                if (leftOver <= 0)
+                {
+                    SaveInventoryIfChanged(original, leftOver);
+                    return 0;
+                }
+            }
         }
 
-
-        return leftOverItems; // return left over items if inventory is full
+        // If we reach here, inventory couldn't accept everything
+        SaveInventoryIfChanged(original, leftOver);
+        return leftOver;
     }
 
+    // Helper: save only if something actually changed
+    private void SaveInventoryIfChanged(int originalQuantity, int leftOver)
+    {
+        if (leftOver != originalQuantity)
+        {
+            SaveInventory();
+        }
+    }
+
+    // ========== Slot selection (unchanged logic) ==========
     public void DeselectAllSlots()
     {
-        for (int i = 0; i < itemSlot.Length; i++) 
+        foreach (var slot in itemSlot)
         {
-            itemSlot[i].selectedRect.SetActive(false);
-            itemSlot[i].thisItemSelected = false;
+            if (slot == null) continue;
+            slot.selectedRect.SetActive(false);
+            slot.thisItemSelected = false;
         }
     }
 
@@ -127,44 +186,154 @@ public class InventoryManager : MonoBehaviour
         selectedIndex = Mathf.Clamp(index, 0, itemSlot.Length - 1);
         itemSlot[selectedIndex].selectedRect.SetActive(true);
         itemSlot[selectedIndex].thisItemSelected = true;
+
+        // Update description for keyboard navigation
+        itemSlot[selectedIndex].OnLeftClick();
     }
 
-    public void SelectNextSlot()
-    {
-        int next = (selectedIndex + 1) % itemSlot.Length;
-        SelectSlot(next);
-    }
 
-    public void SelectPreviousSlot()
-    {
-        int previous = (selectedIndex - 1 + itemSlot.Length) % itemSlot.Length;
-        SelectSlot(previous);
-    }
+    public void SelectNextSlot() => SelectSlot((selectedIndex + 1) % itemSlot.Length);
+    public void SelectPreviousSlot() => SelectSlot((selectedIndex - 1 + itemSlot.Length) % itemSlot.Length);
 
     public void SelectSlotAbove()
     {
         int above = selectedIndex - columns;
-        if (above < 0 )
-        {
-            // Calculate the last row index for the current column
-            int lastRow = (itemSlot.Length - 1) / columns;
-            above = lastRow * columns + (selectedIndex % columns);
-            if (above >= itemSlot.Length)
-            {
-                above -= columns; // Adjust if it goes out of bounds
-            }
-        }
+        if (above < 0) above += itemSlot.Length;
         SelectSlot(above);
     }
 
     public void SelectSlotBelow()
     {
         int below = selectedIndex + columns;
-        if (below >= itemSlot.Length)
-        {
-            below = selectedIndex % columns; 
-        }
+        if (below >= itemSlot.Length) below -= itemSlot.Length;
         SelectSlot(below);
     }
-    
+
+    // ========== SAVE / LOAD ==========
+    // Save inventory into JSON (itemID + quantity per slot)
+    public void SaveInventory()
+    {
+        try
+        {
+            List<ItemSlotSave> saveList = new List<ItemSlotSave>();
+
+            foreach (var slot in itemSlot)
+            {
+                if (slot == null)
+                    saveList.Add(new ItemSlotSave { itemID = -1, quantity = 0 });
+                else
+                    saveList.Add(new ItemSlotSave
+                    {
+                        itemID = slot.item != null ? slot.item.itemID : -1,
+                        quantity = slot.quantity
+                    });
+            }
+
+            string json = JsonUtility.ToJson(new SaveWrapper(saveList), true);
+            File.WriteAllText(savePath, json);
+            Debug.Log($"Saved inventory ({saveList.Count} slots) to: {savePath}");
+        }
+        catch (System.Exception ex)
+        {
+            Debug.LogError("Failed to save inventory: " + ex);
+        }
+    }
+
+    // Load inventory from JSON; resilient to missing database entries
+    public void LoadInventory()
+    {
+        try
+        {
+            if (!File.Exists(savePath))
+            {
+                Debug.Log("No inventory save file found at: " + savePath);
+                return;
+            }
+
+            string json = File.ReadAllText(savePath);
+            var wrapper = JsonUtility.FromJson<SaveWrapper>(json);
+
+            if (wrapper == null || wrapper.items == null)
+            {
+                Debug.LogWarning("Save file malformed or empty.");
+                return;
+            }
+
+            for (int i = 0; i < itemSlot.Length; i++)
+            {
+                // clear slot first
+                itemSlot[i].ClearSlot();
+
+                if (i < wrapper.items.Count)
+                {
+                    var data = wrapper.items[i];
+                    if (data.itemID != -1)
+                    {
+                        // Use ItemDatabase to map id -> ItemObject
+                        if (ItemDatabase.Instance == null)
+                        {
+                            Debug.LogError("ItemDatabase instance not present in scene. Cannot load items by ID.");
+                            continue;
+                        }
+
+                        ItemObject loadedItem = ItemDatabase.GetItemByID(data.itemID);
+                        if (loadedItem == null)
+                        {
+                            Debug.LogWarning($"Loaded itemID {data.itemID} not found in ItemDatabase. Skipping slot {i}.");
+                            continue;
+                        }
+
+                        itemSlot[i].item = loadedItem;
+                        itemSlot[i].quantity = data.quantity;
+                        itemSlot[i].UpdateSlotUI();
+                    }
+                }
+            }
+
+            Debug.Log("Inventory loaded from " + savePath);
+        }
+        catch (System.Exception ex)
+        {
+            Debug.LogError("Failed to load inventory: " + ex);
+        }
+    }
+
+    // Save on application quit (builds)
+    private void OnApplicationQuit()
+    {
+        SaveInventory();
+    }
+
+    // Save on scene unload (scene switching)
+    private void OnSceneUnloaded(Scene current)
+    {
+        SaveInventory();
+    }
+
+#if UNITY_EDITOR
+    // Save on exiting play mode in editor
+    private void OnPlayModeStateChanged(PlayModeStateChange state)
+    {
+        if (state == PlayModeStateChange.ExitingPlayMode)
+        {
+            SaveInventory();
+            Debug.Log("Saved inventory because editor play mode is exiting.");
+        }
+    }
+#endif
+
+    // small helpers + data structures
+    [System.Serializable]
+    public class ItemSlotSave
+    {
+        public int itemID;
+        public int quantity;
+    }
+
+    [System.Serializable]
+    public class SaveWrapper
+    {
+        public List<ItemSlotSave> items;
+        public SaveWrapper(List<ItemSlotSave> items) { this.items = items; }
+    }
 }
