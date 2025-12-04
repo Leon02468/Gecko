@@ -91,8 +91,13 @@ public class ItemSlot : MonoBehaviour,
         if (draggedSlot == null || draggedSlot == this)
             return;
 
-        // CASE 1 Å® same item type Å® merge stacks
-        if (draggedSlot.item != null && item != null && draggedSlot.item == item)
+
+
+        // CASE 1 same item type + have space: merge stacks
+        if (draggedSlot.item != null &&
+           item != null &&
+           draggedSlot.item == item &&
+           quantity < item.maxStack)
         {
             int space = item.maxStack - quantity;
             int moveAmount = Mathf.Min(space, draggedSlot.quantity);
@@ -106,9 +111,19 @@ public class ItemSlot : MonoBehaviour,
             UpdateSlotUI();
             draggedSlot.UpdateSlotUI();
         }
+        else if (draggedSlot.item != null && item == null)
+        {
+            //CASE 2  Dropping onto an empty slot: just move the item
+            item = draggedSlot.item;
+            quantity = draggedSlot.quantity;
+            draggedSlot.ClearSlot();
+
+            UpdateSlotUI();
+            draggedSlot.UpdateSlotUI();
+        }
         else
         {
-            // CASE 2 Å® different item Å® swap
+            // CASE 3 different item swap
             ItemObject tempItem = item;
             int tempQuantity = quantity;
 
@@ -136,10 +151,6 @@ public class ItemSlot : MonoBehaviour,
         canvasGroup.alpha = 1f;
         draggedSlot = null;
     }
-
-    // ============================
-    // (YOUR EXISTING CODE BELOW)
-    // ============================
 
     public int AddItem(ItemObject newItem, int amount)
     {
