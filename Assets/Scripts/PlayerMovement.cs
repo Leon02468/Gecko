@@ -64,6 +64,8 @@ public class PlayerMovement : MonoBehaviour
     [Tooltip("Time window after jumping where releasing the button will cause a short hop")]
     public float shortHopWindow = 0.2f;
 
+    public bool canMove = true; //to check in case player in dialogue so they can not move
+
     void Awake()
     {
         // ensure we start with the configured number of jumps
@@ -132,6 +134,9 @@ public class PlayerMovement : MonoBehaviour
     // Called by PlayerInput when move input changes
     public void Move(InputAction.CallbackContext context)
     {
+
+        if (!canMove) return; // Ignore input if not allowed
+
         Debug.Log("Move called: " + context);
 
         if (context.performed)
@@ -182,6 +187,8 @@ public class PlayerMovement : MonoBehaviour
     // Jump input - buffer performed, apply short-hop on release
     public void Jump(InputAction.CallbackContext context)
     {
+        if (!canMove) return; // Ignore input if not allowed
+
         // on jump press, buffer the input and trigger jump animation
         if (context.performed)
         {
