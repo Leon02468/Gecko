@@ -132,6 +132,7 @@ public class InventoryManager : MonoBehaviour
         // Stack into existing slots
         foreach (var slot in itemSlot)
         {
+            if (slot == null) continue; // Prevent NullReferenceException
             if (slot.item == itemObject)
             {
                 leftOver = slot.AddItem(itemObject, leftOver);
@@ -146,6 +147,7 @@ public class InventoryManager : MonoBehaviour
         // Fill empty slots
         foreach (var slot in itemSlot)
         {
+            if (slot == null) continue; // Prevent NullReferenceException
             if (slot.item == null)
             {
                 leftOver = slot.AddItem(itemObject, leftOver);
@@ -263,6 +265,7 @@ public class InventoryManager : MonoBehaviour
 
             for (int i = 0; i < itemSlot.Length; i++)
             {
+                if (itemSlot[i] == null) continue;
                 // clear slot first
                 itemSlot[i].ClearSlot();
 
