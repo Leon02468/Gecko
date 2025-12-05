@@ -1286,7 +1286,7 @@ Transform:
   m_GameObject: {fileID: 154212981}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 320.6, y: -160.1, z: 0}
+  m_LocalPosition: {x: 319.16, y: -160.1, z: 0}
   m_LocalScale: {x: 1, y: 1.925, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1305,7 +1305,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneEdgeLoader
   targetScene: Scene3_New
-  spawnPointName: SpawnFromScene3
+  spawnPointName: SpawnFromScene2
 --- !u!1 &158938841
 GameObject:
   m_ObjectHideFlags: 0
@@ -100780,7 +100780,7 @@ Transform:
   m_GameObject: {fileID: 1208769274}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.6, y: -103.2, z: -10}
+  m_LocalPosition: {x: 18.87, y: -103.85, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -102927,7 +102927,7 @@ Transform:
   m_GameObject: {fileID: 1441218423}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.6, y: -103.2, z: 0}
+  m_LocalPosition: {x: 18.87, y: -103.85, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -103196,7 +103196,7 @@ Transform:
   m_GameObject: {fileID: 1470782380}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.6, y: -103.2, z: -10}
+  m_LocalPosition: {x: 18.87, y: -103.85, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -113422,7 +113422,7 @@ Transform:
   m_GameObject: {fileID: 2121494195}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 319.58, y: -159.86, z: 0}
+  m_LocalPosition: {x: 317.49, y: -159.86, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
