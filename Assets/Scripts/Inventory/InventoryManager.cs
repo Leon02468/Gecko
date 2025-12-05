@@ -28,7 +28,8 @@ public class InventoryManager : MonoBehaviour
 
     // ========== Unity lifecycle ==========
     private void Awake()
-    {
+    {       
+
         // singleton
         if (Instance != null && Instance != this)
         {
@@ -66,6 +67,7 @@ public class InventoryManager : MonoBehaviour
         if (inventoryPanel != null) inventoryPanel.SetActive(false);
 
         Debug.Log($"InventoryManager initialized. Save path: {savePath}");
+
     }
 
     private void OnEnable()
@@ -130,6 +132,7 @@ public class InventoryManager : MonoBehaviour
         // Stack into existing slots
         foreach (var slot in itemSlot)
         {
+            if (slot == null) continue; // Prevent NullReferenceException
             if (slot.item == itemObject)
             {
                 leftOver = slot.AddItem(itemObject, leftOver);
@@ -144,6 +147,7 @@ public class InventoryManager : MonoBehaviour
         // Fill empty slots
         foreach (var slot in itemSlot)
         {
+            if (slot == null) continue; // Prevent NullReferenceException
             if (slot.item == null)
             {
                 leftOver = slot.AddItem(itemObject, leftOver);
@@ -261,6 +265,7 @@ public class InventoryManager : MonoBehaviour
 
             for (int i = 0; i < itemSlot.Length; i++)
             {
+                if (itemSlot[i] == null) continue;
                 // clear slot first
                 itemSlot[i].ClearSlot();
 
@@ -282,7 +287,6 @@ public class InventoryManager : MonoBehaviour
                             Debug.LogWarning($"Loaded itemID {data.itemID} not found in ItemDatabase. Skipping slot {i}.");
                             continue;
                         }
-
                         itemSlot[i].item = loadedItem;
                         itemSlot[i].quantity = data.quantity;
                         itemSlot[i].UpdateSlotUI();

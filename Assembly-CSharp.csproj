@@ -63,7 +63,6 @@
     <Analyzer Include="P:\UnityProjects\Gecko\Library\PackageCache\com.unity.dt.app-ui@7b87c8225c06\Runtime\SourceGenerators\netstandard2.0\EnumToLowerCase.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Inventory\InventorySlot.cs" />
     <Compile Include="Assets\Scripts\Boss\BossAttack.cs" />
     <Compile Include="Assets\Scripts\Mantis\CameraSwitcher.cs" />
     <Compile Include="Assets\Scripts\Npc\NPCDialogue.cs" />

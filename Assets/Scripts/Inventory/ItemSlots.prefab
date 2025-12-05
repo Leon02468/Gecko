@@ -377,14 +377,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 013df1a9f2f336741909eb19ffb1554b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemSlot
-  itemName: 
+  item: {fileID: 0}
   quantity: 0
-  itemSprite: {fileID: 0}
-  isFull: 0
-  itemDescription: 
-  maxNumberOfItems: 9
+  icon: {fileID: 3447651187594448167}
   quantityText: {fileID: 7524073669838248419}
-  itemImage: {fileID: 3447651187594448167}
   itemDescriptionImage: {fileID: 0}
   itemDescriptionNameText: {fileID: 0}
   itemDescriptionDetailsText: {fileID: 0}
