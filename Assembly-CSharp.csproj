@@ -59,24 +59,28 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\6000.2.2f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.SourceGenerators.dll" />
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\6000.2.2f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\6000.2.2f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
-    <Analyzer Include="E:\Unity-project\Gecko\Library\PackageCache\com.unity.ai.inference@4ac711cab9a3\Runtime\Core\SourceGenerator\SourceGenerators.dll" />
-    <Analyzer Include="E:\Unity-project\Gecko\Library\PackageCache\com.unity.dt.app-ui@7b87c8225c06\Runtime\SourceGenerators\netstandard2.0\EnumToLowerCase.dll" />
+    <Analyzer Include="P:\UnityProjects\Gecko\Library\PackageCache\com.unity.ai.inference@4ac711cab9a3\Runtime\Core\SourceGenerator\SourceGenerators.dll" />
+    <Analyzer Include="P:\UnityProjects\Gecko\Library\PackageCache\com.unity.dt.app-ui@7b87c8225c06\Runtime\SourceGenerators\netstandard2.0\EnumToLowerCase.dll" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Inventory\InventorySlot.cs" />
     <Compile Include="Assets\Scripts\Boss\BossAttack.cs" />
+    <Compile Include="Assets\Scripts\Mantis\CameraSwitcher.cs" />
     <Compile Include="Assets\Scripts\Npc\NPCDialogue.cs" />
     <Compile Include="Assets\Scripts\IInteract.cs" />
     <Compile Include="Assets\Scripts\Inventory\ItemSlot.cs" />
     <Compile Include="Assets\Jump.cs" />
+    <Compile Include="Assets\Scripts\Mantis\CameraChoosing.cs" />
     <Compile Include="Assets\Scripts\Mantis\VineProjectile.cs" />
     <Compile Include="Assets\Scripts\Hurtbox.cs" />
+    <Compile Include="Assets\Scripts\NegativeEffect.cs" />
     <Compile Include="Assets\Scripts\PlayerHealth.cs" />
     <Compile Include="Assets\Scripts\Npc\NPC.cs" />
     <Compile Include="Assets\Scripts\Inventory\ItemPickUp.cs" />
     <Compile Include="Assets\Scripts\PlayerAnimation.cs" />
     <Compile Include="Assets\Scripts\Inventory\ItemDatabase.cs" />
     <Compile Include="Assets\Scripts\JumpPad\JumpPad.cs" />
+    <Compile Include="Assets\Scripts\Mantis\SlowGate.cs" />
     <Compile Include="Assets\Scripts\SpawnPointSetter.cs" />
     <Compile Include="Assets\Scripts\SceneChanger.cs" />
     <Compile Include="Assets\Scripts\BossAI.cs" />
@@ -90,7 +94,6 @@
     <Compile Include="Assets\Scripts\FlyingEnemy.cs" />
     <Compile Include="Assets\Scripts\Shop\ShopSlot.cs" />
     <Compile Include="Assets\Scripts\PlayerAttack.cs" />
-    <Compile Include="Assets\Scripts\Mantis\ConfinerSwitcher.cs" />
     <Compile Include="Assets\Scripts\DamageOnContact.cs" />
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\Mantis\MantisBossController.cs" />
