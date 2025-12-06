@@ -20,6 +20,8 @@ public class InventoryManager : MonoBehaviour
     [Header("Navigation")]
     private PlayerControls inputActions;
     private PlayerInput playerInput;
+    public PlayerMovement playerMovement;
+
     private int selectedIndex = 0;
     [SerializeField] private int columns = 5;
 
@@ -99,24 +101,28 @@ public class InventoryManager : MonoBehaviour
         if (!isActive)
         {
             
-
+            //time stop while player open inventory
             Time.timeScale = 0f;
+            //this one just to make sure player input is disable 
             if (playerInput != null) playerInput.enabled = false;
 
-            inputActions.Player.Disable();
-            inputActions.Inventory.Enable();
+            //inputActions.Player.Disable();
+            playerMovement.canMove = false; //disable player movement
+            inputActions.Inventory.Enable(); //enable input for inventory
             
             SelectSlot(selectedIndex);
         }
         else
         {
+            //time continue after player close inventory
             Time.timeScale = 1f;
             if (playerInput != null) playerInput.enabled = true;
 
-            inputActions.Player.Enable();
-            inputActions.Inventory.Disable();
+            //inputActions.Player.Enable();
+            playerMovement.canMove = true; //enable player movement again
+            inputActions.Inventory.Disable(); //disable input for inventory
 
-            // Optional: save when closing inventory (helps ensure persistence)
+            //save when closing inventory just to maker sure for persistence
             SaveInventory();
         }
     }
