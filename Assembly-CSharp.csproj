@@ -75,6 +75,7 @@
     <Compile Include="Assets\Scripts\NegativeEffect.cs" />
     <Compile Include="Assets\Scripts\PlayerHealth.cs" />
     <Compile Include="Assets\Scripts\Npc\NPC.cs" />
+    <Compile Include="Assets\Scripts\Mantis\InteractableObj.cs" />
     <Compile Include="Assets\Scripts\Inventory\ItemPickUp.cs" />
     <Compile Include="Assets\Scripts\PlayerAnimation.cs" />
     <Compile Include="Assets\Scripts\Inventory\ItemDatabase.cs" />
