@@ -80,7 +80,7 @@ public class NPC : MonoBehaviour, IInteractable
 
         if (playerMovement)
         {
-            playerMovement.enabled = false;
+            playerMovement.canMove = false; //use flag to disable movement
             if (playerMovement.rb != null)
                 playerMovement.rb.linearVelocity = Vector2.zero;
         }
@@ -138,6 +138,6 @@ public class NPC : MonoBehaviour, IInteractable
 
         dialogueFinished = true;  // Shop mode activates after this
 
-        if (playerMovement) playerMovement.enabled = true;
+        if (playerMovement) playerMovement.canMove = true; // re-enable movement after close shop
     }
 }

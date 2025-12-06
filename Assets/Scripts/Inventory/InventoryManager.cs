@@ -179,7 +179,8 @@ public class InventoryManager : MonoBehaviour
         foreach (var slot in itemSlot)
         {
             if (slot == null) continue;
-            slot.selectedRect.SetActive(false);
+            if (slot.selectedRect != null)
+                slot.selectedRect.SetActive(false);
             slot.thisItemSelected = false;
         }
     }

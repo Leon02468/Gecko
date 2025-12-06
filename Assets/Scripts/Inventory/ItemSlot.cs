@@ -31,6 +31,13 @@ public class ItemSlot : MonoBehaviour,
     public static ItemSlot draggedSlot;
     public static Image dragIcon;
 
+
+    private static int splitDragAmount = 0;// Amount being dragged (for split)
+    private static ItemObject splitDragItem = null;// Item being split-dragged
+    private static ItemSlot splitOriginSlot = null;
+
+
+
     private void Start()
     {
         inventoryManager = InventoryManager.Instance;
@@ -56,7 +63,28 @@ public class ItemSlot : MonoBehaviour,
     {
         if (item == null) return;
 
-        draggedSlot = this;
+        // --- SPLIT STACK LOGIC FOR RIGHT MOUSE BUTTON ---
+
+        if (eventData.button == PointerEventData.InputButton.Right && quantity > 1)
+        {
+            // Split half the stack for dragging
+            splitDragAmount = quantity / 2;
+            splitDragItem = item;
+            splitOriginSlot = this;
+
+            quantity -= splitDragAmount;
+            UpdateSlotUI();
+
+            // Set draggedSlot to null so OnDrop knows it's a split-drag
+            draggedSlot = null;
+        }
+        else
+        {
+            // Default drag behavior (left mouse button)
+            draggedSlot = this;
+            splitDragAmount = 0;
+            splitDragItem = null;
+        }
 
         // Create the drag icon
         if (dragIcon == null)
@@ -88,11 +116,57 @@ public class ItemSlot : MonoBehaviour,
     // ============================
     public void OnDrop(PointerEventData eventData)
     {
-        if (draggedSlot == null || draggedSlot == this)
+        // Split-drag case
+        if (splitDragAmount > 0 && splitDragItem != null)
+        {
+            // CASE 1: Dropping onto empty slot
+            if (item == null)
+            {
+                item = splitDragItem;
+                quantity = splitDragAmount;
+                UpdateSlotUI();
+                InventoryManager.Instance.SaveInventory();
+            }
+            // CASE 2: Dropping onto same item type with space
+            else if (item == splitDragItem && quantity < item.maxStack)
+            {
+                int space = item.maxStack - quantity;
+                int moveAmount = Mathf.Min(space, splitDragAmount);
+                quantity += moveAmount;
+                UpdateSlotUI();
+
+                // If not all splitDragAmount could be merged, return the rest to original slot
+                if (moveAmount < splitDragAmount)
+                {
+                    // Find the original slot and return the remainder
+                    foreach (var slot in InventoryManager.Instance.itemSlot)
+                    {
+                        if (slot != null && slot != this && slot.item == splitDragItem && slot.quantity + moveAmount == (slot.quantity + splitDragAmount))
+                        {
+                            slot.quantity += (splitDragAmount - moveAmount);
+                            slot.UpdateSlotUI();
+                            break;
+                        }
+                    }
+                }
+                InventoryManager.Instance.SaveInventory();
+            }
+            // CASE 3: Dropping onto different item type (do nothing or swap, as you wish)
+            // For now, do nothing
+
+            // Clear split drag state globally
+            splitDragAmount = 0;
+            splitDragItem = null;
+            splitOriginSlot = null;
+            return;
+        }
+
+
+            if (draggedSlot == null || draggedSlot == this)
             return;
 
 
-
+         //Only drag case not split
         // CASE 1 same item type + have space: merge stacks
         if (draggedSlot.item != null &&
            item != null &&
@@ -149,6 +223,16 @@ public class ItemSlot : MonoBehaviour,
             dragIcon.enabled = false;
 
         canvasGroup.alpha = 1f;
+
+        // If split drag was not dropped anywhere, return items to original slot
+        if (splitDragAmount > 0 && splitDragItem != null)
+        {
+            quantity += splitDragAmount;
+            UpdateSlotUI();
+            splitDragAmount = 0;
+            splitDragItem = null;
+        }
+
         draggedSlot = null;
     }
 
@@ -196,9 +280,12 @@ public class ItemSlot : MonoBehaviour,
         item = null;
         quantity = 0;
 
-        icon.enabled = false;
-        quantityText.enabled = false;
-        selectedRect.SetActive(false);
+        if (icon != null)
+            icon.enabled = false;
+        if (quantityText != null)
+            quantityText.enabled = false;
+        if (selectedRect != null)
+            selectedRect.SetActive(false);
     }
 
 
@@ -208,23 +295,60 @@ public class ItemSlot : MonoBehaviour,
             OnLeftClick();
     }
 
+
     public void OnLeftClick()
     {
-        inventoryManager.DeselectAllSlots();
-        selectedRect.SetActive(true);
+        if (inventoryManager != null)
+            inventoryManager.DeselectAllSlots();
+        if (selectedRect != null)
+            selectedRect.SetActive(true);
         thisItemSelected = true;
 
         if (item != null)
         {
-            itemDescriptionNameText.text = item.itemName;
-            itemDescriptionDetailsText.text = item.description;
-            itemDescriptionImage.sprite = item.icon;
+            if (itemDescriptionNameText != null)
+                itemDescriptionNameText.text = item.itemName;
+            if (itemDescriptionDetailsText != null)
+                itemDescriptionDetailsText.text = item.description;
+            if (itemDescriptionImage != null)
+                itemDescriptionImage.sprite = item.icon;
         }
         else
         {
-            itemDescriptionNameText.text = "";
-            itemDescriptionDetailsText.text = "";
-            itemDescriptionImage.sprite = null;
+            if (itemDescriptionNameText != null)
+                itemDescriptionNameText.text = "";
+            if (itemDescriptionDetailsText != null)
+                itemDescriptionDetailsText.text = "";
+            if (itemDescriptionImage != null)
+                itemDescriptionImage.sprite = null;
         }
     }
+
+    public void SplitStack(int splitAmount)
+    {
+        // Only split if there is more than 1 item and enough to split
+        if (item == null || quantity <= 1 || splitAmount <= 0 || splitAmount >= quantity)
+            return;
+
+        // Find an empty slot in the inventory
+        foreach (var slot in InventoryManager.Instance.itemSlot)
+        {
+            if (slot == null) continue;
+            if (slot.item == null)
+            {
+                // Move splitAmount to the empty slot
+                slot.item = item;
+                slot.quantity = splitAmount;
+                slot.UpdateSlotUI();
+
+                // Reduce quantity in current slot
+                quantity -= splitAmount;
+                UpdateSlotUI();
+
+                InventoryManager.Instance.SaveInventory();
+                return;
+            }
+        }
+    }
+
 }
