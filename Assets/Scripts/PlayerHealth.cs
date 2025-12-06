@@ -150,9 +150,46 @@ public class PlayerHealth : MonoBehaviour, IDamageable
             Destroy(gameObject);
         else
         {
+            // Disable movement while respawning
             var pm = GetComponent<PlayerMovement>();
             if (pm != null) pm.enabled = false;
+
+            // Start respawn coroutine
+            StartCoroutine(RespawnWithLoading(0.4f));
         }
+    }
+
+    public void ForceRespawn(float delayBeforeLoading = 0.4f)
+    {
+        StartCoroutine(RespawnWithLoading(delayBeforeLoading));
+    }
+
+    private IEnumerator RespawnWithLoading(float delayBeforeLoading)
+    {
+        // Wait for the hurt animation to play
+        yield return new WaitForSeconds(delayBeforeLoading);
+
+        // Show loading screen (if available)
+        if (LoadingScreen.Instance != null)
+            LoadingScreen.Instance.Show();
+
+        // Wait for loading screen duration
+        yield return new WaitForSeconds(1.5f);
+
+        // Respawn at checkpoint
+        var pm = GetComponent<PlayerMovement>();
+        if (pm != null)
+        {
+            pm.RespawnAtCheckpoint();
+            pm.enabled = true;
+        }
+
+        // Hide loading screen (if available)
+        if (LoadingScreen.Instance != null)
+            LoadingScreen.Instance.Hide();
+
+        // Restore HP to at least 1
+        CurrentHP = Mathf.Max(1f, maxHP);
     }
 
 
