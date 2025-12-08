@@ -17,7 +17,7 @@ TagManager:
   - EnemyHitbox
   - Enemy
   - Npc
-  - 
+  - InteractableObj
   - 
   - 
   - 

@@ -23,7 +23,10 @@ public class VineProjectile : MonoBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             var ph = other.GetComponent<PlayerHealth>();
-            ph?.TakeDamage(damage, (ph.transform.position - transform.position).normalized * knockback, null);
+            if (ph != null)
+                ph.TakeDamage(damage, (ph.transform.position - transform.position).normalized * knockback, null);
+            else
+                Debug.LogWarning("VineProjectile hit Player without PlayerHealth component.");
             Destroy(gameObject);
         }
         else if (other.gameObject.layer == LayerMask.NameToLayer("Ground"))

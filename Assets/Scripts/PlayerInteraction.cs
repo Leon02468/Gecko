@@ -3,9 +3,15 @@ using UnityEngine.InputSystem;
 
 public class PlayerInteraction : MonoBehaviour
 {
+    public GameObject interactBtn;
     public float interactRange = 1.5f;
     public LayerMask interactLayer;
     private IInteractable currentInteractable;
+
+    private void Start()
+    {
+        interactBtn.SetActive(false);
+    }
 
     void Update()
     {
@@ -21,13 +27,12 @@ public class PlayerInteraction : MonoBehaviour
             currentInteractable = null;
         }
 
-        // Optional: show UI prompt if currentInteractable != null
+        if (currentInteractable != null) interactBtn.SetActive(true);
+        else interactBtn.SetActive(false);
     }
 
     public void OnInteract(InputAction.CallbackContext context)
     {
-
-        Debug.Log("OnInteract called: " + context);
         if (context.performed && currentInteractable != null && currentInteractable.CanInteract())
         {
             currentInteractable.Interact();

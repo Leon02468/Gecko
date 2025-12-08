@@ -16,7 +16,7 @@ MonoBehaviour:
   attacks:
   - {fileID: 11400000, guid: 351b0ba43fa25bf49a43fbfe6577f3d7, type: 2}
   - {fileID: 11400000, guid: 709c538ba5a592249843b6f1670db0f6, type: 2}
-  minDecisionGap: 0.8
-  maxDecisionGap: 1.2
-  moveSpeed: 10
+  minDecisionGap: 0.5
+  maxDecisionGap: 0.8
+  moveSpeed: 18
   gravityScale: 3.5
