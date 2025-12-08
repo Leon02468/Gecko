@@ -13,6 +13,7 @@ public class PlayerAnimation : MonoBehaviour
     public string paramIsGrounded = "IsGrounded";
     public string paramJumpTrigger = "Jump"; // trigger name for immediate jump transitions
     public string paramHurtTrigger = "Hurt"; // trigger name for hurt animation
+    public string paramIsHeldDown = "IsHeldDown"; // bool parameter for down input state
 
     [Header("Safety / clamping")]
     [Tooltip("Clamp Speed parameter sent to Animator to avoid extremely large values.")]
@@ -76,7 +77,10 @@ public class PlayerAnimation : MonoBehaviour
         animator.SetFloat(paramVelY, velY);
 
         if (playerMovement != null)
+        {
             animator.SetBool(paramIsGrounded, playerMovement.IsGrounded);
+            animator.SetBool(paramIsHeldDown, playerMovement.IsHeldDown);
+        }
 
         // optional: flip sprite based on facing
         if (playerMovement != null && spriteRenderer != null)

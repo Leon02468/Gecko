@@ -438,10 +438,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d702c4d130cce9c44a3604fcf067081b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MobHealth
-  maxHP: 3
+  maxHP: 50
   destroyOnDeath: 1
   deathDelay: 0.1
-  useInvulnerability: 1
+  useInvulnerability: 0
   invulnerabilityDuration: 0.15
   OnDamaged:
     m_PersistentCalls:
@@ -4201,10 +4201,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d702c4d130cce9c44a3604fcf067081b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MobHealth
-  maxHP: 3
+  maxHP: 50
   destroyOnDeath: 1
   deathDelay: 0.1
-  useInvulnerability: 1
+  useInvulnerability: 0
   invulnerabilityDuration: 0.15
   OnDamaged:
     m_PersistentCalls:
@@ -4603,10 +4603,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d702c4d130cce9c44a3604fcf067081b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MobHealth
-  maxHP: 3
+  maxHP: 50
   destroyOnDeath: 1
   deathDelay: 0.1
-  useInvulnerability: 1
+  useInvulnerability: 0
   invulnerabilityDuration: 0.15
   OnDamaged:
     m_PersistentCalls:
@@ -9183,10 +9183,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d702c4d130cce9c44a3604fcf067081b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MobHealth
-  maxHP: 3
+  maxHP: 50
   destroyOnDeath: 1
   deathDelay: 0.1
-  useInvulnerability: 1
+  useInvulnerability: 0
   invulnerabilityDuration: 0.15
   OnDamaged:
     m_PersistentCalls:
@@ -14697,10 +14697,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d702c4d130cce9c44a3604fcf067081b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MobHealth
-  maxHP: 3
+  maxHP: 50
   destroyOnDeath: 1
   deathDelay: 0.1
-  useInvulnerability: 1
+  useInvulnerability: 0
   invulnerabilityDuration: 0.15
   OnDamaged:
     m_PersistentCalls:
@@ -20736,10 +20736,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d702c4d130cce9c44a3604fcf067081b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MobHealth
-  maxHP: 3
+  maxHP: 50
   destroyOnDeath: 1
   deathDelay: 0.1
-  useInvulnerability: 1
+  useInvulnerability: 0
   invulnerabilityDuration: 0.15
   OnDamaged:
     m_PersistentCalls:
@@ -22439,10 +22439,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d702c4d130cce9c44a3604fcf067081b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MobHealth
-  maxHP: 3
+  maxHP: 50
   destroyOnDeath: 1
   deathDelay: 0.1
-  useInvulnerability: 1
+  useInvulnerability: 0
   invulnerabilityDuration: 0.15
   OnDamaged:
     m_PersistentCalls:
@@ -26998,6 +26998,7 @@ MonoBehaviour:
   maxFallSpeed: -25
   fallSpeedMultiplier: 2
   shortHopWindow: 0.2
+  canMove: 1
 --- !u!114 &1798282184
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27011,15 +27012,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAttack
   sideAttackBoxSize: {x: 2, y: 1}
-  sideAttackRange: 1
-  sideAttackCooldown: 0.5
+  sideAttackRange: 1.5
+  sideAttackCooldown: 0.25
   sideAttackDamage: 1
   topAttackBoxSize: {x: 1, y: 2}
-  topAttackRange: 1.25
+  topAttackRange: 1.5
   topAttackCooldown: 0.5
   topAttackDamage: 1
   downAttackBoxSize: {x: 1.75, y: 0.75}
-  downAttackRange: 1.25
+  downAttackRange: 1.5
   downAttackCooldown: 0.4
   downAttackDamage: 1
   attackLayer:
@@ -27027,18 +27028,28 @@ MonoBehaviour:
     m_Bits: 128
   useTag: 0
   enemyTag: Enemy
-  knockbackForce: 6
+  knockbackForce: 7
   knockbackUpMultiplier: 0.4
   downAttackBoost: 10
   downAttackHorizontalMultiplier: 1.25
   downAttackLockDuration: 0.175
   downAttackHitboxDuration: 0.18
   downAttackHitboxInterval: 0.02
-  downAttackBounce: 10
+  downAttackBounce: 12
   downAttackBounceLock: 0.04
   downAttackRequireAir: 1
+  thrustForce: 12
+  thrustLockDuration: 0.12
+  thrustHitboxDuration: 0.5
+  thrustHitboxInterval: 0.02
+  thrustUseSideBox: 1
+  thrustBoxSize: {x: 1, y: 1}
+  thrustBoxRange: 1.5
+  airAttackTrigger: JumpAttack
+  downAttackTrigger: 
   flashDuration: 0.15
-  animator: {fileID: 0}
+  animator: {fileID: 1798282186}
+  sideComboWindow: 0.35
 --- !u!114 &1798282185
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27054,7 +27065,7 @@ MonoBehaviour:
   maxHP: 50
   destroyOnDeath: 1
   useInvulnerability: 1
-  invulnerabilityDuration: 0.25
+  invulnerabilityDuration: 1
   velocityLockDuration: 0.12
   allowButtonMashToEscape: 1
   mashCountToEscape: 8
@@ -27107,6 +27118,7 @@ MonoBehaviour:
   paramIsGrounded: IsGrounded
   paramJumpTrigger: Jump
   paramHurtTrigger: Hurt
+  paramIsHeldDown: IsHeldDown
   maxReportedSpeed: 25
   minReportedSpeed: 0.01
 --- !u!1 &1800259655
@@ -27994,10 +28006,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d702c4d130cce9c44a3604fcf067081b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MobHealth
-  maxHP: 3
+  maxHP: 50
   destroyOnDeath: 1
   deathDelay: 0.1
-  useInvulnerability: 1
+  useInvulnerability: 0
   invulnerabilityDuration: 0.15
   OnDamaged:
     m_PersistentCalls:
@@ -28940,10 +28952,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d702c4d130cce9c44a3604fcf067081b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MobHealth
-  maxHP: 3
+  maxHP: 50
   destroyOnDeath: 1
   deathDelay: 0.1
-  useInvulnerability: 1
+  useInvulnerability: 0
   invulnerabilityDuration: 0.15
   OnDamaged:
     m_PersistentCalls:
@@ -29286,10 +29298,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d702c4d130cce9c44a3604fcf067081b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MobHealth
-  maxHP: 3
+  maxHP: 50
   destroyOnDeath: 1
   deathDelay: 0.1
-  useInvulnerability: 1
+  useInvulnerability: 0
   invulnerabilityDuration: 0.15
   OnDamaged:
     m_PersistentCalls:
