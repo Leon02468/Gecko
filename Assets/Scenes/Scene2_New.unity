@@ -257,6 +257,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3960925}
   m_CullTransparentMesh: 1
+--- !u!1 &15909806
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 15909808}
+  - component: {fileID: 15909807}
+  m_Layer: 0
+  m_Name: SceneStart
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &15909807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 15909806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87e5f15eb014f794baae696c101e09d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SceneLoadFinisher
+--- !u!4 &15909808
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 15909806}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.83047, y: -104.48563, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &20222267
 GameObject:
   m_ObjectHideFlags: 0
@@ -663,7 +707,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1897144713327973650, guid: 2ef23e0f0c15144418ffa6837ed089e7, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -115
+      value: -640
       objectReference: {fileID: 0}
     - target: {fileID: 1897144713327973650, guid: 2ef23e0f0c15144418ffa6837ed089e7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -96413,7 +96457,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &749738203
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -98288,11 +98332,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1897144713327973650, guid: 2ef23e0f0c15144418ffa6837ed089e7, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 300
+      value: 125
       objectReference: {fileID: 0}
     - target: {fileID: 1897144713327973650, guid: 2ef23e0f0c15144418ffa6837ed089e7, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -115
+      value: -640
       objectReference: {fileID: 0}
     - target: {fileID: 1897144713327973650, guid: 2ef23e0f0c15144418ffa6837ed089e7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -98726,7 +98770,7 @@ GameObject:
   - component: {fileID: 989228561}
   - component: {fileID: 989228562}
   - component: {fileID: 989228563}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: WizardFrog
   m_TagString: Npc
   m_Icon: {fileID: 0}
@@ -101225,7 +101269,7 @@ Transform:
   m_GameObject: {fileID: 1208769274}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 39.8, y: -167.1, z: -10}
+  m_LocalPosition: {x: 6.8, y: -103.1, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -103373,7 +103417,7 @@ Transform:
   m_GameObject: {fileID: 1441218423}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 39.8, y: -167.1, z: 0}
+  m_LocalPosition: {x: 6.8, y: -103.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -103396,7 +103440,7 @@ MonoBehaviour:
   interactRange: 1.5
   interactLayer:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 768
 --- !u!114 &1441218435
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -103733,7 +103777,7 @@ Transform:
   m_GameObject: {fileID: 1470782380}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 39.8, y: -167.1, z: -10}
+  m_LocalPosition: {x: 6.8, y: -103.1, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -115444,7 +115488,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1897144713327973650, guid: 2ef23e0f0c15144418ffa6837ed089e7, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 300
+      value: 125
       objectReference: {fileID: 0}
     - target: {fileID: 1897144713327973650, guid: 2ef23e0f0c15144418ffa6837ed089e7, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -115704,3 +115748,4 @@ SceneRoots:
   - {fileID: 1684035306}
   - {fileID: 1903815362}
   - {fileID: 763285102}
+  - {fileID: 15909808}

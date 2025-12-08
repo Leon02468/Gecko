@@ -80,6 +80,7 @@
     <Compile Include="Assets\Scripts\PlayerAnimation.cs" />
     <Compile Include="Assets\Scripts\Inventory\ItemDatabase.cs" />
     <Compile Include="Assets\Scripts\JumpPad\JumpPad.cs" />
+    <Compile Include="Assets\Scripts\LoadingScreen\ScreenLoadFinisher.cs" />
     <Compile Include="Assets\Scripts\Mantis\SlowGate.cs" />
     <Compile Include="Assets\Scripts\SpawnPointSetter.cs" />
     <Compile Include="Assets\Scripts\SceneChanger.cs" />
