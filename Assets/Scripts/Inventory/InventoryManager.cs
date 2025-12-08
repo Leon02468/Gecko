@@ -100,7 +100,9 @@ public class InventoryManager : MonoBehaviour
 
         if (!isActive)
         {
-            
+            //Show amount of money when open inventory
+            MoneyManager.Instance.ShowMoneyUI();
+
             //time stop while player open inventory
             Time.timeScale = 0f;
             //this one just to make sure player input is disable 
@@ -114,6 +116,9 @@ public class InventoryManager : MonoBehaviour
         }
         else
         {
+            //Stop showing amount of money when close inventory
+            MoneyManager.Instance.HideMoneyUI();
+
             //time continue after player close inventory
             Time.timeScale = 1f;
             if (playerInput != null) playerInput.enabled = true;

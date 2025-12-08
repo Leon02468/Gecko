@@ -59,9 +59,9 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\6000.2.2f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.SourceGenerators.dll" />
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\6000.2.2f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\6000.2.2f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
-    <Analyzer Include="P:\UnityProjects\Gecko\Library\PackageCache\com.unity.dt.app-ui@5d6dc8bfd8d9\Runtime\SourceGenerators\netstandard2.0\EnumToLowerCase.dll" />
-    <Analyzer Include="P:\UnityProjects\Gecko\Library\PackageCache\com.unity.ai.inference@4ac711cab9a3\Runtime\Core\SourceGenerator\SourceGenerators.dll" />
-    <Analyzer Include="P:\UnityProjects\Gecko\Library\PackageCache\com.unity.dt.app-ui@5d6dc8bfd8d9\Runtime\MVVM\SourceGenerators\netstandard2.0\MVVMSourceGenerators.dll" />
+    <Analyzer Include="E:\DoAnKhoaLuan\Gecko\Library\PackageCache\com.unity.dt.app-ui@5d6dc8bfd8d9\Runtime\SourceGenerators\netstandard2.0\EnumToLowerCase.dll" />
+    <Analyzer Include="E:\DoAnKhoaLuan\Gecko\Library\PackageCache\com.unity.ai.inference@4ac711cab9a3\Runtime\Core\SourceGenerator\SourceGenerators.dll" />
+    <Analyzer Include="E:\DoAnKhoaLuan\Gecko\Library\PackageCache\com.unity.dt.app-ui@5d6dc8bfd8d9\Runtime\MVVM\SourceGenerators\netstandard2.0\MVVMSourceGenerators.dll" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Boss\BossAttack.cs" />
@@ -94,7 +94,9 @@
     <Compile Include="Assets\Scripts\Boss\BossPhase.cs" />
     <Compile Include="Assets\Scripts\Shop\ShopUI.cs" />
     <Compile Include="Assets\Scripts\MobHealth.cs" />
+    <Compile Include="Assets\Scripts\Money\MoneyDrop.cs" />
     <Compile Include="Assets\Scripts\FlyingEnemy.cs" />
+    <Compile Include="Assets\Scripts\Money\MoneyManager.cs" />
     <Compile Include="Assets\Scripts\Shop\ShopSlot.cs" />
     <Compile Include="Assets\Scripts\PlayerAttack.cs" />
     <Compile Include="Assets\Scripts\DamageOnContact.cs" />
@@ -1158,12 +1160,12 @@
       <HintPath>Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Unity.Behavior.SerializableGUID">
-      <HintPath>Library\ScriptAssemblies\Unity.Behavior.SerializableGUID.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="Unity.InternalAPIEngineBridge.001">
       <HintPath>Library\ScriptAssemblies\Unity.InternalAPIEngineBridge.001.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.Behavior.SerializableGUID">
+      <HintPath>Library\ScriptAssemblies\Unity.Behavior.SerializableGUID.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
@@ -1190,16 +1192,16 @@
       <HintPath>Library\ScriptAssemblies\Unity.2D.Enhancers.Editor.AIBridge.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Unity.Behavior.Serialization">
-      <HintPath>Library\ScriptAssemblies\Unity.Behavior.Serialization.dll</HintPath>
+    <Reference Include="Unity.InternalAPIEditorBridge.001">
+      <HintPath>Library\ScriptAssemblies\Unity.InternalAPIEditorBridge.001.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.Splines.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.Splines.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Unity.InternalAPIEditorBridge.001">
-      <HintPath>Library\ScriptAssemblies\Unity.InternalAPIEditorBridge.001.dll</HintPath>
+    <Reference Include="Unity.Behavior.Serialization">
+      <HintPath>Library\ScriptAssemblies\Unity.Behavior.Serialization.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.2D.Common.Editor">
@@ -1214,12 +1216,12 @@
       <HintPath>Library\ScriptAssemblies\Unity.2D.Animation.Runtime.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Unity.Behavior.GraphFramework">
-      <HintPath>Library\ScriptAssemblies\Unity.Behavior.GraphFramework.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="Unity.Muse.Behavior">
       <HintPath>Library\ScriptAssemblies\Unity.Muse.Behavior.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.Behavior.GraphFramework">
+      <HintPath>Library\ScriptAssemblies\Unity.Behavior.GraphFramework.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.VisualScripting.Shared.Editor">
