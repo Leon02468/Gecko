@@ -98726,7 +98726,7 @@ GameObject:
   - component: {fileID: 989228561}
   - component: {fileID: 989228562}
   - component: {fileID: 989228563}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: WizardFrog
   m_TagString: Npc
   m_Icon: {fileID: 0}
@@ -103396,7 +103396,7 @@ MonoBehaviour:
   interactRange: 1.5
   interactLayer:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 512
 --- !u!114 &1441218435
 MonoBehaviour:
   m_ObjectHideFlags: 0

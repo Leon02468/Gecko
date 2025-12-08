@@ -49,7 +49,6 @@ public class MantisBossController : MonoBehaviour, IDamageable
 
     void Update()
     {
-        //Debug.Log("Facing: " + GetFacingSign());
         if (dead || player == null) return;
 
         if (!lockedFacing)
@@ -156,40 +155,40 @@ public class MantisBossController : MonoBehaviour, IDamageable
 
         CacheAttackDataToHitbox(atk);
 
-        // Special logic for DeadlyHunt: use a dedicated coroutine that still follows the same lifecycle
-        if (atk.name == "DeadlyHunt" || atk.name == "Deadly Hunt") // handle common naming variants
-        {
-            // Play windup (use atk.windupTrigger if present)
-            if (!string.IsNullOrEmpty(atk.windupTrigger))
-                anim.SetTrigger(atk.windupTrigger);
-            else
-                anim.SetTrigger("Windup");
+        //// Special logic for DeadlyHunt: use a dedicated coroutine that still follows the same lifecycle
+        //if (atk.name == "DeadlyHunt" || atk.name == "Deadly Hunt") // handle common naming variants
+        //{
+        //    // Play windup (use atk.windupTrigger if present)
+        //    if (!string.IsNullOrEmpty(atk.windupTrigger))
+        //        anim.SetTrigger(atk.windupTrigger);
+        //    else
+        //        anim.SetTrigger("Windup");
 
-            PlaySfx(atk);
-            if (atk.lockFacingDuringAttack) lockedFacing = true;
+        //    PlaySfx(atk);
+        //    if (atk.lockFacingDuringAttack) lockedFacing = true;
 
-            // Run the jump + attack behavior which will enable/disable hitbox at proper times.
-            yield return StartCoroutine(JumpTowardPlayerAndGrab(atk));
+        //    // Run the jump + attack behavior which will enable/disable hitbox at proper times.
+        //    yield return StartCoroutine(JumpTowardPlayerAndGrab(atk));
 
-            // Wait for the animation event to mark attack finished (or fallback to a timeout)
-            float waitTimeout = atk.windup + atk.active + 1.0f;
-            float waited = 0f;
-            while (!animAttackFinished && waited < waitTimeout)
-            {
-                waited += Time.deltaTime;
-                yield return null;
-            }
+        //    // Wait for the animation event to mark attack finished (or fallback to a timeout)
+        //    float waitTimeout = atk.windup + atk.active + 1.0f;
+        //    float waited = 0f;
+        //    while (!animAttackFinished && waited < waitTimeout)
+        //    {
+        //        waited += Time.deltaTime;
+        //        yield return null;
+        //    }
 
-            // recovery
-            lockedFacing = false;
-            yield return new WaitForSeconds(atk.recovery);
+        //    // recovery
+        //    lockedFacing = false;
+        //    yield return new WaitForSeconds(atk.recovery);
 
-            // cleanup
-            lastAttack = null;
-            animAttackFinished = false;
-        }
-        else
-        {
+        //    // cleanup
+        //    lastAttack = null;
+        //    animAttackFinished = false;
+        //}
+        //else
+        //{
             // windup
             if (!string.IsNullOrEmpty(atk.windupTrigger))
                 anim.SetTrigger(atk.windupTrigger);
@@ -213,56 +212,56 @@ public class MantisBossController : MonoBehaviour, IDamageable
             // clean
             lastAttack = null;
             animAttackFinished = false;
-        }
+        //}
     }
 
-    IEnumerator JumpTowardPlayerAndGrab(BossAttack atk)
-        {
-        // Calculate jump direction and velocity
-        Vector2 start = transform.position;
-        Vector2 target = player.position;
-        float jumpHeight = 4f; // Adjust as needed
-        float gravity = Physics2D.gravity.y * rb.gravityScale;
-        float horizontalDistance = target.x - start.x;
+    //IEnumerator JumpTowardPlayerAndGrab(BossAttack atk)
+    //    {
+    //    // Calculate jump direction and velocity
+    //    Vector2 start = transform.position;
+    //    Vector2 target = player.position;
+    //    float jumpHeight = 4f; // Adjust as needed
+    //    float gravity = Physics2D.gravity.y * rb.gravityScale;
+    //    float horizontalDistance = target.x - start.x;
 
-        if (gravity >= 0f) gravity = -9.81f * rb.gravityScale;
+    //    if (gravity >= 0f) gravity = -9.81f * rb.gravityScale;
 
 
-        float timeToApex = Mathf.Sqrt(Mathf.Max(0.01f, -2f * jumpHeight / gravity));
-        float totalTime = Mathf.Max(0.05f, timeToApex * 2f);
-        float vx = horizontalDistance / totalTime;
-        float vy = Mathf.Sqrt(Mathf.Max(0f, -2f * gravity * jumpHeight));
+    //    float timeToApex = Mathf.Sqrt(Mathf.Max(0.01f, -2f * jumpHeight / gravity));
+    //    float totalTime = Mathf.Max(0.05f, timeToApex * 2f);
+    //    float vx = horizontalDistance / totalTime;
+    //    float vy = Mathf.Sqrt(Mathf.Max(0f, -2f * gravity * jumpHeight));
 
-        rb.linearVelocity = new Vector2(vx, vy);
+    //    rb.linearVelocity = new Vector2(vx, vy);
 
-        float windupDelay = Mathf.Clamp(atk.windup, 0.05f, 1.5f); 
-        yield return new WaitForSeconds(windupDelay * 0.6f);
+    //    float windupDelay = Mathf.Clamp(atk.windup, 0.05f, 1.5f); 
+    //    yield return new WaitForSeconds(windupDelay * 0.6f);
 
-        if (!string.IsNullOrEmpty(atk.attackTrigger))
-            anim.SetTrigger(atk.attackTrigger);
-        else
-            anim.SetTrigger("Attack");
+    //    if (!string.IsNullOrEmpty(atk.attackTrigger))
+    //        anim.SetTrigger(atk.attackTrigger);
+    //    else
+    //        anim.SetTrigger("Attack");
 
-        yield return new WaitForSeconds(Mathf.Max(0.05f, windupDelay * 0.4f));
-        EnableHitboxByName(atk.hitboxName);
+    //    yield return new WaitForSeconds(Mathf.Max(0.05f, windupDelay * 0.4f));
+    //    EnableHitboxByName(atk.hitboxName);
 
-        float landingTimeout = totalTime + 1.0f;
-        float t = 0f;
-        while (!(rb.linearVelocity.y <= 0f && IsGrounded()) && t < landingTimeout)
-        {
-            t += Time.deltaTime;
-            yield return null;
-        }
-        DisableHitboxByName(atk.hitboxName);
-        animAttackFinished = true;
+    //    float landingTimeout = totalTime + 1.0f;
+    //    float t = 0f;
+    //    while (!(rb.linearVelocity.y <= 0f && IsGrounded()) && t < landingTimeout)
+    //    {
+    //        t += Time.deltaTime;
+    //        yield return null;
+    //    }
+    //    DisableHitboxByName(atk.hitboxName);
+    //    animAttackFinished = true;
 
-    }
+    //}
 
-    bool IsGrounded()
-    {
-            // Simple ground check, adjust as needed for your setup
-            return Mathf.Abs(rb.linearVelocity.y) < 0.01f && Physics2D.Raycast(transform.position, Vector2.down, 1.1f, LayerMask.GetMask("Ground"));
-    }
+    //bool IsGrounded()
+    //{
+    //        // Simple ground check, adjust as needed for your setup
+    //        return Mathf.Abs(rb.linearVelocity.y) < 0.01f && Physics2D.Raycast(transform.position, Vector2.down, 1.1f, LayerMask.GetMask("Ground"));
+    //}
 
 
 
@@ -311,7 +310,7 @@ public class MantisBossController : MonoBehaviour, IDamageable
     {
         if (vineProjectilePrefab == null || projectileSpawnPoint == null) return;
         int count = (currentPhaseIndex >= 1) ? 3 : 1;
-        float[] anglesLocal = (count == 1) ? new float[] { 0f } : new float[] { 0f, 30f, 60f };
+        float[] anglesLocal = (count == 1) ? new float[] { Random.Range(0f, 5f), Random.Range(30f, 35f) } : new float[] { Random.Range(0f, 5f), Random.Range(20f, 25f), Random.Range(40f, 45f), Random.Range(60f, 65f) };
         int facing = GetFacingSign();
         float baseAngle = (facing == 1) ? 0f : 180f;  //left:0, right:180
 
@@ -328,16 +327,16 @@ public class MantisBossController : MonoBehaviour, IDamageable
         }
     }
 
-    IEnumerator StretchDotCoroutine(PlayerHealth ph, float hold)
-    {
-        float elapsed = 0f;
-        while (elapsed < hold && ph != null && ph.IsAlive)
-        {
-            yield return new WaitForSeconds(stretchDotInterval);
-            ph.TakeDamage(stretchDotDamage, transform.position, 0f);
-            elapsed += stretchDotInterval;
-        }
-    }
+    //IEnumerator StretchDotCoroutine(PlayerHealth ph, float hold)
+    //{
+    //    float elapsed = 0f;
+    //    while (elapsed < hold && ph != null && ph.IsAlive)
+    //    {
+    //        yield return new WaitForSeconds(stretchDotInterval);
+    //        ph.TakeDamage(stretchDotDamage, transform.position, 0f);
+    //        elapsed += stretchDotInterval;
+    //    }
+    //}
 
     public void AnimAttackFinished()
     {

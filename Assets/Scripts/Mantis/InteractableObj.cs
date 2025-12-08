@@ -1,16 +1,12 @@
 using UnityEngine;
 
-public class InteractableObj : MonoBehaviour
+public class InteractableObj : MonoBehaviour, IInteractable
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public bool CanInteract() => true;
 
-    // Update is called once per frame
-    void Update()
+    public void Interact()
     {
-        
+        // Do something
+        // In this situation, do the boss intro --> handled by a separate BossIntro script
     }
 }
