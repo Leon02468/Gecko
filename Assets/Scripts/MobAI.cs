@@ -18,6 +18,24 @@ public class MobAI : MonoBehaviour
     public float attackCooldown = 1.0f;
     public int attackDamage = 1;
 
+    [Header("Charge Attack")]
+    [Tooltip("Enable charge/thrust attack instead of basic melee")]
+    public bool useChargeAttack = true;
+    [Tooltip("Time to charge up before thrusting")]
+    public float chargeUpTime = 0.3f;
+    [Tooltip("Horizontal speed during thrust")]
+    public float thrustSpeed = 8f;
+    [Tooltip("Upward/jump force during thrust (0 = no jump, higher = more vertical)")]
+    public float thrustJumpForce = 5f;
+    [Tooltip("Duration of the thrust movement")]
+    public float thrustDuration = 0.4f;
+    [Tooltip("Minimum distance from target to trigger jump attack (between attackRange and detectionRadius)")]
+    public float jumpAttackMinDistance = 2.0f;
+    [Tooltip("Maximum distance from target to trigger jump attack (must be <= detectionRadius)")]
+    public float jumpAttackMaxDistance = 4.5f;
+    [Tooltip("Lock player's position during charge (thrust toward last known position)")]
+    public bool lockTargetDuringCharge = true;
+
     [Header("Knockback")]
     public float knockbackForce = 6f;
     public float knockbackUpMultiplier = 0.4f;
@@ -40,6 +58,11 @@ public class MobAI : MonoBehaviour
 
     // reference to movement component so we can pause movement while attacking
     private MobMovement mobMovement;
+    private Rigidbody2D rb;
+    
+    // Charge attack state
+    private bool isCharging = false;
+    private Vector3 chargeTargetPosition;
 
     void Awake()
     {
@@ -47,6 +70,52 @@ public class MobAI : MonoBehaviour
             mobAnimation = GetComponentInChildren<MobAnimation>();
 
         mobMovement = GetComponent<MobMovement>();
+        rb = GetComponent<Rigidbody2D>();
+        
+        // Validate jump attack distances
+        jumpAttackMinDistance = Mathf.Max(jumpAttackMinDistance, attackRange);
+        jumpAttackMaxDistance = Mathf.Min(jumpAttackMaxDistance, detectionRadius);
+        
+        // Ensure max >= min
+        if (jumpAttackMaxDistance < jumpAttackMinDistance)
+        {
+            Debug.LogWarning($"{gameObject.name}: jumpAttackMaxDistance ({jumpAttackMaxDistance}) < jumpAttackMinDistance ({jumpAttackMinDistance}). Swapping values.");
+            float temp = jumpAttackMaxDistance;
+            jumpAttackMaxDistance = jumpAttackMinDistance;
+            jumpAttackMinDistance = temp;
+        }
+        
+        // Debug component detection
+        Debug.Log($"<color=cyan>===== {gameObject.name} MobAI initialized =====</color>");
+        Debug.Log($"  - MobMovement: {(mobMovement != null ? "<color=green>Found</color>" : "<color=red>NOT FOUND</color>")}");
+        Debug.Log($"  - Rigidbody2D: {(rb != null ? "<color=green>Found</color>" : "<color=red>NOT FOUND</color>")}");
+        Debug.Log($"  - MobAnimation: {(mobAnimation != null ? "<color=green>Found</color>" : "<color=red>NOT FOUND</color>")}");
+        Debug.Log($"  - Charge Attack Enabled: <color=yellow>{useChargeAttack}</color>");
+        Debug.Log($"  - Jump Attack Range: <color=yellow>{jumpAttackMinDistance} to {jumpAttackMaxDistance}</color>");
+        
+        if (rb != null)
+        {
+            Debug.Log($"  - Rigidbody2D Body Type: <color=yellow>{rb.bodyType}</color>");
+            Debug.Log($"  - Rigidbody2D Constraints: <color=yellow>{rb.constraints}</color>");
+            
+            // Warn if rigidbody is kinematic or has frozen position
+            if (rb.bodyType == RigidbodyType2D.Kinematic)
+            {
+                Debug.LogWarning($"<color=orange>{gameObject.name}: Rigidbody2D is Kinematic - charge thrust may not work! Change to Dynamic.</color>");
+            }
+            
+            if ((rb.constraints & RigidbodyConstraints2D.FreezePositionX) != 0)
+            {
+                Debug.LogWarning($"<color=orange>{gameObject.name}: Rigidbody2D has X position frozen - thrust won't work! Unfreeze X position.</color>");
+            }
+        }
+        
+        // Check for conflicting AI scripts
+        var aiPath = GetComponent<Pathfinding.AIPath>();
+        if (aiPath != null)
+        {
+            Debug.LogWarning($"<color=orange>{gameObject.name}: AIPath component found! This may conflict with charge attack. Consider disabling it during attack.</color>");
+        }
     }
 
     void Update()
@@ -64,15 +133,49 @@ public class MobAI : MonoBehaviour
 
             // If close enough and cooldown passed, attack
             float dist = Vector2.Distance(transform.position, targetPlayer.position);
-            if (!isAttacking && Time.time >= lastAttackTime + attackCooldown && dist <= attackRange)
+            
+            // Determine if player is in jump attack range
+            bool inJumpRange = useChargeAttack && dist >= jumpAttackMinDistance && dist <= jumpAttackMaxDistance;
+            bool inMeleeRange = dist <= attackRange;
+            
+            if (!isAttacking && !isCharging && Time.time >= lastAttackTime + attackCooldown)
             {
-                StartCoroutine(PerformAttack(targetPlayer));
+                if (inJumpRange)
+                {
+                    // Player is in the jump attack zone - perform leap attack
+                    Debug.Log($"<color=cyan>{gameObject.name}: Player in JUMP RANGE ({dist:F2} units) - triggering leap attack!</color>");
+                    StartCoroutine(PerformChargeAttack(targetPlayer));
+                }
+                else if (inMeleeRange)
+                {
+                    // Player is very close - use melee attack
+                    Debug.Log($"<color=cyan>{gameObject.name}: Player in MELEE RANGE ({dist:F2} units) - using melee attack!</color>");
+                    StartCoroutine(PerformAttack(targetPlayer));
+                }
+                // If player is between detection and jump range, just track them (move closer via patrol)
             }
         }
         else
         {
             // No player detected: stop forcing facing so patrol movement or other systems can control it
             desiredFacing = 0;
+        }
+    }
+    
+    // Public method to manually trigger charge attack for testing
+    // Call this from Unity Inspector button or another script
+    [ContextMenu("Test Charge Attack")]
+    public void TestChargeAttack()
+    {
+        var player = GameObject.FindWithTag(playerTag);
+        if (player != null)
+        {
+            Debug.Log($"<color=red>===== MANUAL CHARGE ATTACK TRIGGER =====</color>");
+            StartCoroutine(PerformChargeAttack(player.transform));
+        }
+        else
+        {
+            Debug.LogError($"Cannot trigger manual attack - no player with tag '{playerTag}' found!");
         }
     }
 
@@ -219,13 +322,212 @@ public class MobAI : MonoBehaviour
         mobMovement?.SetMovementEnabled(true);
         isAttacking = false;
     }
+    
+    private IEnumerator PerformChargeAttack(Transform player)
+    {
+        if (player == null) yield break;
+
+        Debug.Log($"<color=lime>========== {gameObject.name}: CHARGE ATTACK STARTED ==========</color>");
+        
+        isCharging = true;
+        isAttacking = true;
+        lastAttackTime = Time.time;
+
+        // CRITICAL: Disable autonomous movement while attacking
+        if (mobMovement != null)
+        {
+            Debug.Log($"<color=yellow>{gameObject.name}: Disabling MobMovement</color>");
+            mobMovement.SetMovementEnabled(false);
+        }
+        else
+        {
+            Debug.LogWarning($"<color=orange>{gameObject.name}: No MobMovement to disable!</color>");
+        }
+
+        // compute facing towards player
+        int facing = (player.position.x >= transform.position.x) ? 1 : -1;
+        
+        // Lock target position if configured
+        if (lockTargetDuringCharge)
+        {
+            chargeTargetPosition = player.position;
+        }
+
+        Debug.Log($"<color=cyan>{gameObject.name}: Charge-up phase started. Target: {chargeTargetPosition}</color>");
+
+        // Play attack animation during charge-up
+        mobAnimation?.PlayAttack(facing);
+
+        // Charge-up phase: mob pauses briefly
+        if (rb != null)
+        {
+            // Stop all movement during charge
+            rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
+            Debug.Log($"<color=green>{gameObject.name}: Velocity set to (0, {rb.linearVelocity.y}) during charge</color>");
+        }
+        else
+        {
+            Debug.LogWarning($"<color=orange>{gameObject.name}: No Rigidbody2D - Transform movement</color>");
+        }
+        
+        yield return new WaitForSeconds(chargeUpTime);
+
+        // Update target position if not locked
+        if (!lockTargetDuringCharge && player != null)
+        {
+            chargeTargetPosition = player.position;
+        }
+
+        // Calculate thrust direction
+        Vector2 thrustDirection = (chargeTargetPosition - transform.position).normalized;
+        
+        Debug.Log($"<color=magenta>========== {gameObject.name}: THRUST STARTED! ==========</color>");
+        Debug.Log($"<color=magenta>  Direction: ({thrustDirection.x:F2}, {thrustDirection.y:F2})</color>");
+        Debug.Log($"<color=magenta>  Speed: {thrustSpeed}</color>");
+        Debug.Log($"<color=magenta>  Jump Force: {thrustJumpForce}</color>");
+        Debug.Log($"<color=magenta>  Duration: {thrustDuration}</color>");
+        
+        // Ensure facing matches thrust direction
+        facing = thrustDirection.x >= 0f ? 1 : -1;
+        FaceTarget(chargeTargetPosition);
+
+        // Thrust phase: mob leaps/dashes toward target
+        float thrustElapsed = 0f;
+        
+        // Calculate thrust velocity with jump component
+        Vector2 thrustVelocity = new Vector2(thrustDirection.x * thrustSpeed, thrustJumpForce);
+        
+        Debug.Log($"<color=magenta>  Thrust Velocity: ({thrustVelocity.x:F2}, {thrustVelocity.y:F2})</color>");
+        
+        bool hitPlayer = false;
+        int frameCount = 0;
+        
+        // Apply initial jump velocity
+        if (rb != null)
+        {
+            rb.linearVelocity = thrustVelocity;
+            Debug.Log($"<color=green>{gameObject.name}: Initial jump applied: ({thrustVelocity.x:F2}, {thrustVelocity.y:F2})</color>");
+        }
+        
+        while (thrustElapsed < thrustDuration)
+        {
+            frameCount++;
+            
+            if (rb != null)
+            {
+                // Maintain horizontal velocity, let gravity handle vertical
+                Vector2 oldVel = rb.linearVelocity;
+                rb.linearVelocity = new Vector2(thrustVelocity.x, rb.linearVelocity.y);
+                
+                // Debug every 10 frames to avoid spam
+                if (frameCount % 10 == 1)
+                {
+                    Debug.Log($"<color=yellow>Frame {frameCount}: Vel ({oldVel.x:F2}, {oldVel.y:F2}) ? ({rb.linearVelocity.x:F2}, {rb.linearVelocity.y:F2})</color>");
+                }
+            }
+            else
+            {
+                // Fallback: move via transform (parabolic arc simulation)
+                float horizontalMove = thrustDirection.x * thrustSpeed * Time.deltaTime;
+                float verticalMove = (thrustJumpForce - 9.81f * thrustElapsed) * Time.deltaTime; // Simple gravity
+                transform.position += new Vector3(horizontalMove, verticalMove, 0f);
+            }
+
+            // Check for hits during thrust
+            if (player != null)
+            {
+                float dist = Vector2.Distance(transform.position, player.position);
+                if (dist <= attackRange && !hitPlayer)
+                {
+                    Debug.Log($"<color=lime>========== {gameObject.name}: HIT PLAYER! ==========</color>");
+                    
+                    var dmg = player.GetComponentInParent<IDamageable>();
+                    Vector2 kbDir = thrustDirection;
+                    Vector2 kb = kbDir * knockbackForce + Vector2.up * (knockbackForce * knockbackUpMultiplier);
+
+                    if (dmg != null)
+                    {
+                        dmg.TakeDamage(attackDamage, kb);
+                    }
+                    else
+                    {
+                        player.SendMessage("TakeDamage", attackDamage, SendMessageOptions.DontRequireReceiver);
+                        player.SendMessage("ApplyKnockback", kb, SendMessageOptions.DontRequireReceiver);
+                    }
+                    
+                    hitPlayer = true;
+                }
+            }
+
+            thrustElapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        Debug.Log($"<color=cyan>{gameObject.name}: Thrust complete. Frames: {frameCount}, Hit: {hitPlayer}</color>");
+
+        // Stop thrust movement
+        if (rb != null)
+        {
+            rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
+            Debug.Log($"<color=green>{gameObject.name}: Thrust stopped, velocity: {rb.linearVelocity}</color>");
+        }
+
+        // Short recovery before re-enabling movement
+        yield return new WaitForSeconds(0.1f);
+
+        // re-enable movement when attack finished
+        if (mobMovement != null)
+        {
+            Debug.Log($"<color=yellow>{gameObject.name}: Re-enabling MobMovement</color>");
+            mobMovement.SetMovementEnabled(true);
+        }
+        
+        isCharging = false;
+        isAttacking = false;
+        
+        Debug.Log($"<color=lime>========== {gameObject.name}: CHARGE ATTACK COMPLETE ==========</color>");
+    }
 
     void OnDrawGizmosSelected()
     {
         if (!drawGizmos) return;
+        
+        // Detection radius (outermost - yellow/orange)
         Gizmos.color = detectColor;
         Gizmos.DrawSphere(transform.position, detectionRadius);
+        
+        // Attack range (innermost - red)
         Gizmos.color = attackColor;
         Gizmos.DrawSphere(transform.position, attackRange);
+        
+        // Jump attack range (middle zone - green/cyan)
+        if (useChargeAttack)
+        {
+            // Draw the jump range zone as a ring between min and max
+            Gizmos.color = new Color(0f, 1f, 0.5f, 0.15f); // Cyan/green for jump zone (filled)
+            Gizmos.DrawSphere(transform.position, jumpAttackMaxDistance);
+            
+            // Draw wireframe circles for min and max jump distance
+            Gizmos.color = new Color(0f, 1f, 0.5f, 0.8f); // Brighter cyan
+            DrawWireCircle(transform.position, jumpAttackMinDistance, 32);
+            
+            Gizmos.color = new Color(0f, 0.8f, 1f, 0.8f); // Bright cyan for max
+            DrawWireCircle(transform.position, jumpAttackMaxDistance, 32);
+        }
+    }
+    
+    // Helper method to draw wire circles (Unity doesn't have Gizmos.DrawWireCircle in 2D)
+    private void DrawWireCircle(Vector3 center, float radius, int segments)
+    {
+        float angleStep = 360f / segments;
+        Vector3 prevPoint = center + new Vector3(radius, 0, 0);
+        
+        for (int i = 1; i <= segments; i++)
+        {
+            float angle = i * angleStep * Mathf.Deg2Rad;
+            Vector3 newPoint = center + new Vector3(Mathf.Cos(angle) * radius, Mathf.Sin(angle) * radius, 0);
+            Gizmos.DrawLine(prevPoint, newPoint);
+            prevPoint = newPoint;
+        }
     }
 }

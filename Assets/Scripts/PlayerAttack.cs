@@ -34,6 +34,14 @@ public class PlayerAttack : MonoBehaviour
     public float knockbackForce = 6f;
     public float knockbackUpMultiplier = 0.4f; // upward portion for side knockback
 
+    [Header("Down Attack Knockback")]
+    [Tooltip("Multiplier for down attack knockback force (applied to knockbackForce)")]
+    public float downAttackKnockbackMultiplier = 1.5f;
+    [Tooltip("Horizontal component of down attack knockback (0-1, where 1 = full knockbackForce)")]
+    public float downAttackKnockbackHorizontal = 0.8f;
+    [Tooltip("Vertical component of down attack knockback (negative = downward, 0-1 range)")]
+    public float downAttackKnockbackVertical = -0.6f;
+
     [Header("Down Attack Boost")]
     public float downAttackBoost = 10f; // overall magnitude
     public float downAttackHorizontalMultiplier = 1.0f; // multiplies X (1 = equal X/Y)
@@ -46,6 +54,24 @@ public class PlayerAttack : MonoBehaviour
     [Header("Down Attack Bounce (player)")]
     public float downAttackBounce = 8f; // vertical bounce applied to player when down-attack hits
     public float downAttackBounceLock = 0.12f; // how long player movement is locked while bouncing
+
+    [Header("Down Attack Charging")]
+    [Tooltip("Duration of the charging pause before executing the diagonal down attack (0 = no pause)")]
+    public float downAttackChargeDuration = 0.15f; // brief pause/freeze before attacking
+    [Tooltip("Freeze completely in place (true), or allow some horizontal drift during charge (false)")]
+    public bool freezeVelocityDuringCharge = true;
+    [Tooltip("When freeze is disabled, multiply horizontal speed by this amount during charge (0 = no drift, 1 = normal drift). Vertical is always frozen.")]
+    public float chargeFallSpeedMultiplier = 0.0f; // controls horizontal drift during charge
+    [Tooltip("Allow player to control horizontal movement during charge (overrides freeze setting for horizontal axis)")]
+    public bool allowHorizontalControlDuringCharge = false;
+    [Tooltip("Speed multiplier for horizontal movement during charge (0 = no control, 1 = full speed, 0.5 = half speed)")]
+    public float chargeHorizontalControlMultiplier = 0.5f;
+
+    [Header("Down Attack Invincibility")]
+    [Tooltip("Grant player invincibility frames during down attack execution")]
+    public bool grantInvincibilityDuringDownAttack = true;
+    [Tooltip("Duration of invincibility during down attack (usually total of charge + attack + recovery)")]
+    public float downAttackInvincibilityDuration = 0.5f;
 
     [Header("Down Attack Options")]
     [Tooltip("When enabled the down attack will only work while the player is airborne (grounded = false).")]
@@ -89,6 +115,7 @@ public class PlayerAttack : MonoBehaviour
     private float lastDownAttackTime = -Mathf.Infinity;
 
     private PlayerMovement playerMovement;
+    private PlayerHealth playerHealth;
 
     // For gizmo direction/type
     private enum AttackType { Side, Top, Down }
@@ -113,6 +140,7 @@ public class PlayerAttack : MonoBehaviour
     void Awake()
     {
         playerMovement = GetComponent<PlayerMovement>();
+        playerHealth = GetComponent<PlayerHealth>();
         if (animator == null)
             animator = GetComponentInChildren<Animator>();
     }
@@ -275,12 +303,71 @@ public class PlayerAttack : MonoBehaviour
         // Use JumpAttack animation for diagonal down attack (no separate JumpKick parameter)
         animator?.SetTrigger(airAttackTrigger); // Uses "JumpAttack" trigger
 
-        // Determine facing
+        // Start charging coroutine that freezes briefly then executes the attack
+        StartCoroutine(DownAttackChargeAndExecute());
+    }
+
+    private IEnumerator DownAttackChargeAndExecute()
+    {
+        // Determine facing before charge
         int facing = 1;
         if (playerMovement != null)
             facing = playerMovement.facingDirection != 0 ? playerMovement.facingDirection : 1;
 
-        // Apply immediate diagonal boost (explicit X/Y so it's clearly diagonal)
+        // Charging pause: freeze player at current Y position in air briefly
+        if (downAttackChargeDuration > 0f && playerMovement != null && playerMovement.rb != null)
+        {
+            float elapsed = 0f;
+            float startY = transform.position.y;
+            
+            if (freezeVelocityDuringCharge && !allowHorizontalControlDuringCharge)
+            {
+                // Complete freeze: maintain exact position (no horizontal movement allowed)
+                Vector2 startPos = transform.position;
+                while (elapsed < downAttackChargeDuration)
+                {
+                    // Force position lock by setting velocity to zero every frame
+                    playerMovement.rb.linearVelocity = Vector2.zero;
+                    
+                    elapsed += Time.deltaTime;
+                    yield return null;
+                }
+            }
+            else if (allowHorizontalControlDuringCharge)
+            {
+                // Allow horizontal player control during charge, freeze Y position
+                while (elapsed < downAttackChargeDuration)
+                {
+                    // Read horizontal input from PlayerMovement
+                    float horizontalInput = playerMovement.HorizontalInput;
+                    
+                    // Apply horizontal movement based on input and control multiplier
+                    float horizontalVelocity = horizontalInput * playerMovement.speed * chargeHorizontalControlMultiplier;
+                    
+                    // Set velocity: horizontal control + zero vertical (freeze Y position)
+                    playerMovement.rb.linearVelocity = new Vector2(horizontalVelocity, 0f);
+                    
+                    elapsed += Time.deltaTime;
+                    yield return null;
+                }
+            }
+            else
+            {
+                // Freeze Y position only: preserve existing horizontal momentum, zero out vertical velocity
+                float startX = transform.position.x;
+                while (elapsed < downAttackChargeDuration)
+                {
+                    Vector2 currentVel = playerMovement.rb.linearVelocity;
+                    // Maintain Y position by zeroing Y velocity, allow horizontal drift
+                    playerMovement.rb.linearVelocity = new Vector2(currentVel.x * chargeFallSpeedMultiplier, 0f);
+                    
+                    elapsed += Time.deltaTime;
+                    yield return null;
+                }
+            }
+        }
+
+        // Execute the diagonal boost after charging
         float boostX = downAttackBoost * downAttackHorizontalMultiplier * (facing == 1 ? 1f : -1f);
         float boostY = -downAttackBoost;
         Vector2 boostVelocity = new Vector2(boostX, boostY);
@@ -296,6 +383,12 @@ public class PlayerAttack : MonoBehaviour
         if (downHitboxCoroutine != null)
             StopCoroutine(downHitboxCoroutine);
         downHitboxCoroutine = StartCoroutine(RunMovingHitbox(diag, true)); // bounce player on down attack
+
+        // Grant invincibility frames during down attack
+        if (grantInvincibilityDuringDownAttack && playerHealth != null)
+        {
+            playerHealth.StartInvincibility(downAttackInvincibilityDuration);
+        }
     }
 
     private IEnumerator ResetDownAttackAfterCooldown(float cooldown)
@@ -370,6 +463,9 @@ public class PlayerAttack : MonoBehaviour
         // use custom duration/interval if provided, otherwise use down attack defaults
         float duration = customDuration ?? downAttackHitboxDuration;
         float interval = customInterval ?? downAttackHitboxInterval;
+        
+        // Determine which damage to use based on attack type
+        int damageAmount = useSideBox ? sideAttackDamage : downAttackDamage;
 
         while (timer < duration)
         {
@@ -392,14 +488,20 @@ public class PlayerAttack : MonoBehaviour
                 {
                     // Horizontal knockback for thrust attack (side direction with small upward component)
                     kb = new Vector2(facing * knockbackForce, knockbackForce * knockbackUpMultiplier);
+                    Debug.Log($"Thrust Hit: {hit.name} with knockback {kb}");
                 }
                 else
                 {
                     // Diagonal downward knockback for down attack
-                    kb = new Vector2(facing * knockbackForce * 0.8f, -knockbackForce * 0.6f);
+                    float baseKnockback = knockbackForce * downAttackKnockbackMultiplier;
+                    kb = new Vector2(
+                        facing * baseKnockback * downAttackKnockbackHorizontal,
+                        baseKnockback * downAttackKnockbackVertical
+                    );
+                    Debug.Log($"Down Attack Hit: {hit.name} with diagonal knockback {kb}, damage: {damageAmount}");
                 }
                 
-                HandleHit(hit, kb, sideAttackDamage, false);
+                HandleHit(hit, kb, damageAmount, false);
                 hitSet.Add(hit);
 
                 // bounce player if requested (only once)

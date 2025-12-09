@@ -366,17 +366,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fe637dc2a998394788996bc0932ece7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MobAI
-  detectionRadius: 4
+  detectionRadius: 8
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
   playerTag: Player
-  attackRange: 2.5
+  attackRange: 2
   attackDelay: 0.25
   attackCooldown: 0.5
   attackDamage: 1
-  knockbackForce: 20
-  knockbackUpMultiplier: 0
+  useChargeAttack: 1
+  chargeUpTime: 0.3
+  thrustSpeed: 8
+  thrustJumpForce: 5
+  thrustDuration: 1
+  jumpAttackMinDistance: 2
+  jumpAttackMaxDistance: 5
+  lockTargetDuringCharge: 1
+  knockbackForce: 5
+  knockbackUpMultiplier: 1
   mobAnimation: {fileID: 44863723}
   drawGizmos: 1
   detectColor: {r: 1, g: 0.6, b: 0, a: 0.15}
@@ -443,6 +451,12 @@ MonoBehaviour:
   deathDelay: 0.1
   useInvulnerability: 0
   invulnerabilityDuration: 0.15
+  onlyKnockbackWhenGrounded: 1
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  groundCheckDistance: 0.3
+  groundCheckWidth: 1
   OnDamaged:
     m_PersistentCalls:
       m_Calls: []
@@ -4222,17 +4236,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fe637dc2a998394788996bc0932ece7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MobAI
-  detectionRadius: 4
+  detectionRadius: 8
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
   playerTag: Player
-  attackRange: 2.5
+  attackRange: 2
   attackDelay: 0.25
   attackCooldown: 0.5
   attackDamage: 1
-  knockbackForce: 20
-  knockbackUpMultiplier: 0
+  useChargeAttack: 1
+  chargeUpTime: 0.3
+  thrustSpeed: 8
+  thrustJumpForce: 5
+  thrustDuration: 1
+  jumpAttackMinDistance: 2
+  jumpAttackMaxDistance: 5
+  lockTargetDuringCharge: 1
+  knockbackForce: 5
+  knockbackUpMultiplier: 1
   mobAnimation: {fileID: 111443567}
   drawGizmos: 1
   detectColor: {r: 1, g: 0.6, b: 0, a: 0.15}
@@ -4299,6 +4321,12 @@ MonoBehaviour:
   deathDelay: 0.1
   useInvulnerability: 0
   invulnerabilityDuration: 0.15
+  onlyKnockbackWhenGrounded: 1
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  groundCheckDistance: 0.3
+  groundCheckWidth: 1
   OnDamaged:
     m_PersistentCalls:
       m_Calls: []
@@ -4626,17 +4654,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fe637dc2a998394788996bc0932ece7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MobAI
-  detectionRadius: 4
+  detectionRadius: 8
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
   playerTag: Player
-  attackRange: 2.5
+  attackRange: 2
   attackDelay: 0.25
   attackCooldown: 0.5
   attackDamage: 1
-  knockbackForce: 20
-  knockbackUpMultiplier: 0
+  useChargeAttack: 1
+  chargeUpTime: 0.3
+  thrustSpeed: 8
+  thrustJumpForce: 5
+  thrustDuration: 1
+  jumpAttackMinDistance: 2
+  jumpAttackMaxDistance: 5
+  lockTargetDuringCharge: 1
+  knockbackForce: 5
+  knockbackUpMultiplier: 1
   mobAnimation: {fileID: 129633361}
   drawGizmos: 1
   detectColor: {r: 1, g: 0.6, b: 0, a: 0.15}
@@ -4703,6 +4739,12 @@ MonoBehaviour:
   deathDelay: 0.1
   useInvulnerability: 0
   invulnerabilityDuration: 0.15
+  onlyKnockbackWhenGrounded: 1
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  groundCheckDistance: 0.3
+  groundCheckWidth: 1
   OnDamaged:
     m_PersistentCalls:
       m_Calls: []
@@ -9437,17 +9479,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fe637dc2a998394788996bc0932ece7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MobAI
-  detectionRadius: 4
+  detectionRadius: 8
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
   playerTag: Player
-  attackRange: 2.5
+  attackRange: 2
   attackDelay: 0.25
   attackCooldown: 0.5
   attackDamage: 1
-  knockbackForce: 20
-  knockbackUpMultiplier: 0
+  useChargeAttack: 1
+  chargeUpTime: 0.3
+  thrustSpeed: 8
+  thrustJumpForce: 5
+  thrustDuration: 1
+  jumpAttackMinDistance: 2
+  jumpAttackMaxDistance: 5
+  lockTargetDuringCharge: 1
+  knockbackForce: 5
+  knockbackUpMultiplier: 1
   mobAnimation: {fileID: 399895845}
   drawGizmos: 1
   detectColor: {r: 1, g: 0.6, b: 0, a: 0.15}
@@ -9514,6 +9564,12 @@ MonoBehaviour:
   deathDelay: 0.1
   useInvulnerability: 0
   invulnerabilityDuration: 0.15
+  onlyKnockbackWhenGrounded: 1
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  groundCheckDistance: 0.3
+  groundCheckWidth: 1
   OnDamaged:
     m_PersistentCalls:
       m_Calls: []
@@ -15028,17 +15084,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fe637dc2a998394788996bc0932ece7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MobAI
-  detectionRadius: 4
+  detectionRadius: 8
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
   playerTag: Player
-  attackRange: 2.5
+  attackRange: 2
   attackDelay: 0.25
   attackCooldown: 0.5
   attackDamage: 1
-  knockbackForce: 20
-  knockbackUpMultiplier: 0
+  useChargeAttack: 1
+  chargeUpTime: 0.3
+  thrustSpeed: 8
+  thrustJumpForce: 5
+  thrustDuration: 1
+  jumpAttackMinDistance: 2
+  jumpAttackMaxDistance: 5
+  lockTargetDuringCharge: 1
+  knockbackForce: 5
+  knockbackUpMultiplier: 1
   mobAnimation: {fileID: 799670969}
   drawGizmos: 1
   detectColor: {r: 1, g: 0.6, b: 0, a: 0.15}
@@ -15105,6 +15169,12 @@ MonoBehaviour:
   deathDelay: 0.1
   useInvulnerability: 0
   invulnerabilityDuration: 0.15
+  onlyKnockbackWhenGrounded: 1
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  groundCheckDistance: 0.3
+  groundCheckWidth: 1
   OnDamaged:
     m_PersistentCalls:
       m_Calls: []
@@ -21251,17 +21321,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fe637dc2a998394788996bc0932ece7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MobAI
-  detectionRadius: 4
+  detectionRadius: 8
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
   playerTag: Player
-  attackRange: 2.5
+  attackRange: 2
   attackDelay: 0.25
   attackCooldown: 0.5
   attackDamage: 1
-  knockbackForce: 20
-  knockbackUpMultiplier: 0
+  useChargeAttack: 1
+  chargeUpTime: 0.3
+  thrustSpeed: 8
+  thrustJumpForce: 5
+  thrustDuration: 1
+  jumpAttackMinDistance: 2
+  jumpAttackMaxDistance: 5
+  lockTargetDuringCharge: 1
+  knockbackForce: 5
+  knockbackUpMultiplier: 1
   mobAnimation: {fileID: 1249343053}
   drawGizmos: 1
   detectColor: {r: 1, g: 0.6, b: 0, a: 0.15}
@@ -21328,6 +21406,12 @@ MonoBehaviour:
   deathDelay: 0.1
   useInvulnerability: 0
   invulnerabilityDuration: 0.15
+  onlyKnockbackWhenGrounded: 1
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  groundCheckDistance: 0.3
+  groundCheckWidth: 1
   OnDamaged:
     m_PersistentCalls:
       m_Calls: []
@@ -22956,17 +23040,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fe637dc2a998394788996bc0932ece7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MobAI
-  detectionRadius: 4
+  detectionRadius: 8
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
   playerTag: Player
-  attackRange: 2.5
+  attackRange: 2
   attackDelay: 0.25
   attackCooldown: 0.5
   attackDamage: 1
-  knockbackForce: 20
-  knockbackUpMultiplier: 0
+  useChargeAttack: 1
+  chargeUpTime: 0.3
+  thrustSpeed: 8
+  thrustJumpForce: 5
+  thrustDuration: 1
+  jumpAttackMinDistance: 2
+  jumpAttackMaxDistance: 5
+  lockTargetDuringCharge: 1
+  knockbackForce: 5
+  knockbackUpMultiplier: 1
   mobAnimation: {fileID: 1360242420}
   drawGizmos: 1
   detectColor: {r: 1, g: 0.6, b: 0, a: 0.15}
@@ -23033,6 +23125,12 @@ MonoBehaviour:
   deathDelay: 0.1
   useInvulnerability: 0
   invulnerabilityDuration: 0.15
+  onlyKnockbackWhenGrounded: 1
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  groundCheckDistance: 0.3
+  groundCheckWidth: 1
   OnDamaged:
     m_PersistentCalls:
       m_Calls: []
@@ -27696,13 +27794,23 @@ MonoBehaviour:
   enemyTag: Enemy
   knockbackForce: 7
   knockbackUpMultiplier: 0.4
+  downAttackKnockbackMultiplier: 1.5
+  downAttackKnockbackHorizontal: 0.7
+  downAttackKnockbackVertical: 0.3
   downAttackBoost: 10
   downAttackHorizontalMultiplier: 1.25
-  downAttackLockDuration: 0.175
+  downAttackLockDuration: 0.25
   downAttackHitboxDuration: 0.18
   downAttackHitboxInterval: 0.02
   downAttackBounce: 12
   downAttackBounceLock: 0.04
+  downAttackChargeDuration: 0.225
+  freezeVelocityDuringCharge: 1
+  chargeFallSpeedMultiplier: 0.1
+  allowHorizontalControlDuringCharge: 1
+  chargeHorizontalControlMultiplier: 0.85
+  grantInvincibilityDuringDownAttack: 1
+  downAttackInvincibilityDuration: 0.5
   downAttackRequireAir: 1
   thrustForce: 12
   thrustLockDuration: 0.12
@@ -27728,7 +27836,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a88c1771d3b2fe4db720fa7d39bcdb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
-  maxHP: 6
+  maxHP: 50
   destroyOnDeath: 1
   useInvulnerability: 1
   invulnerabilityDuration: 1
@@ -28600,17 +28708,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fe637dc2a998394788996bc0932ece7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MobAI
-  detectionRadius: 4
+  detectionRadius: 8
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
   playerTag: Player
-  attackRange: 2.5
+  attackRange: 2
   attackDelay: 0.25
   attackCooldown: 0.5
   attackDamage: 1
-  knockbackForce: 20
-  knockbackUpMultiplier: 0
+  useChargeAttack: 1
+  chargeUpTime: 0.3
+  thrustSpeed: 8
+  thrustJumpForce: 5
+  thrustDuration: 1
+  jumpAttackMinDistance: 2
+  jumpAttackMaxDistance: 5
+  lockTargetDuringCharge: 1
+  knockbackForce: 5
+  knockbackUpMultiplier: 1
   mobAnimation: {fileID: 1840550344}
   drawGizmos: 1
   detectColor: {r: 1, g: 0.6, b: 0, a: 0.15}
@@ -28677,6 +28793,12 @@ MonoBehaviour:
   deathDelay: 0.1
   useInvulnerability: 0
   invulnerabilityDuration: 0.15
+  onlyKnockbackWhenGrounded: 1
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  groundCheckDistance: 0.3
+  groundCheckWidth: 1
   OnDamaged:
     m_PersistentCalls:
       m_Calls: []
@@ -29548,17 +29670,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fe637dc2a998394788996bc0932ece7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MobAI
-  detectionRadius: 4
+  detectionRadius: 8
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
   playerTag: Player
-  attackRange: 2.5
+  attackRange: 2
   attackDelay: 0.25
   attackCooldown: 0.5
   attackDamage: 1
-  knockbackForce: 20
-  knockbackUpMultiplier: 0
+  useChargeAttack: 1
+  chargeUpTime: 0.3
+  thrustSpeed: 8
+  thrustJumpForce: 5
+  thrustDuration: 1
+  jumpAttackMinDistance: 2
+  jumpAttackMaxDistance: 5
+  lockTargetDuringCharge: 1
+  knockbackForce: 5
+  knockbackUpMultiplier: 1
   mobAnimation: {fileID: 1930684995}
   drawGizmos: 1
   detectColor: {r: 1, g: 0.6, b: 0, a: 0.15}
@@ -29625,6 +29755,12 @@ MonoBehaviour:
   deathDelay: 0.1
   useInvulnerability: 0
   invulnerabilityDuration: 0.15
+  onlyKnockbackWhenGrounded: 1
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  groundCheckDistance: 0.3
+  groundCheckWidth: 1
   OnDamaged:
     m_PersistentCalls:
       m_Calls: []
@@ -29896,17 +30032,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fe637dc2a998394788996bc0932ece7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MobAI
-  detectionRadius: 4
+  detectionRadius: 8
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
   playerTag: Player
-  attackRange: 2.5
+  attackRange: 2
   attackDelay: 0.25
   attackCooldown: 0.5
   attackDamage: 1
-  knockbackForce: 20
-  knockbackUpMultiplier: 0
+  useChargeAttack: 1
+  chargeUpTime: 0.3
+  thrustSpeed: 8
+  thrustJumpForce: 5
+  thrustDuration: 1
+  jumpAttackMinDistance: 2
+  jumpAttackMaxDistance: 5
+  lockTargetDuringCharge: 1
+  knockbackForce: 5
+  knockbackUpMultiplier: 1
   mobAnimation: {fileID: 1956593657}
   drawGizmos: 1
   detectColor: {r: 1, g: 0.6, b: 0, a: 0.15}
@@ -29973,6 +30117,12 @@ MonoBehaviour:
   deathDelay: 0.1
   useInvulnerability: 0
   invulnerabilityDuration: 0.15
+  onlyKnockbackWhenGrounded: 1
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  groundCheckDistance: 0.3
+  groundCheckWidth: 1
   OnDamaged:
     m_PersistentCalls:
       m_Calls: []

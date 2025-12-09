@@ -15,6 +15,16 @@ public class MobHealth : MonoBehaviour, IDamageable
     [SerializeField] private bool useInvulnerability = true;
     [SerializeField] private float invulnerabilityDuration = 0.25f;
 
+    [Header("Knockback Settings")]
+    [Tooltip("Only allow knockback when mob is grounded (prevents juggling in air)")]
+    [SerializeField] private bool onlyKnockbackWhenGrounded = true;
+    [Tooltip("Layer mask for ground detection")]
+    [SerializeField] private LayerMask groundLayer = ~0; // default to everything
+    [Tooltip("Distance to check for ground below the mob")]
+    [SerializeField] private float groundCheckDistance = 0.1f;
+    [Tooltip("Width of the ground check box (based on collider)")]
+    [SerializeField] private float groundCheckWidth = 0.9f;
+
     [Header("Events")]
     public UnityEvent OnDamaged;
     public UnityEvent OnDead;
@@ -22,6 +32,7 @@ public class MobHealth : MonoBehaviour, IDamageable
     public int CurrentHP { get; private set; }
 
     private bool isInvulnerable;
+    private bool isGrounded;
     private Rigidbody2D rb;
     private Collider2D coll;
     private MonoBehaviour[] disableOnDeath;
@@ -35,6 +46,26 @@ public class MobHealth : MonoBehaviour, IDamageable
         rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<Collider2D>();
         disableOnDeath = GetComponents<MonoBehaviour>();
+    }
+
+    void Update()
+    {
+        // Check if mob is grounded
+        if (onlyKnockbackWhenGrounded && rb != null && coll != null)
+        {
+            CheckGrounded();
+        }
+    }
+
+    private void CheckGrounded()
+    {
+        // Get the bounds of the collider
+        Bounds bounds = coll.bounds;
+        Vector2 checkPosition = new Vector2(bounds.center.x, bounds.min.y);
+        Vector2 boxSize = new Vector2(bounds.size.x * groundCheckWidth, groundCheckDistance);
+
+        // Check for ground using a box cast slightly below the mob
+        isGrounded = Physics2D.OverlapBox(checkPosition - Vector2.up * (groundCheckDistance * 0.5f), boxSize, 0f, groundLayer);
     }
 
     public void TakeDamage(int amount, Vector2? knockback = null)
@@ -66,6 +97,13 @@ public class MobHealth : MonoBehaviour, IDamageable
     }
     private void ApplyKnockback(Vector2 kb)
     {
+        // Check if knockback should be prevented when airborne
+        if (onlyKnockbackWhenGrounded && !isGrounded)
+        {
+            Debug.Log($"{gameObject.name}: Knockback blocked - mob is airborne");
+            return;
+        }
+
         if (rb != null)
         {
             //Temporarily Disable AIPath so the any enemies have A* can have knockback
@@ -74,11 +112,13 @@ public class MobHealth : MonoBehaviour, IDamageable
             {
                 aiPath.enabled = false;
                 rb.AddForce(kb, ForceMode2D.Impulse);
+                Debug.Log($"{gameObject.name}: Knockback applied (grounded) - {kb}");
                 StartCoroutine(ReenableAIPathAfterDelay(aiPath, 0.25f)); // Adjust delay as needed
             }
             else
             {
                 rb.AddForce(kb, ForceMode2D.Impulse);
+                Debug.Log($"{gameObject.name}: Knockback applied (grounded) - {kb}");
             }
             return;
         }
@@ -132,5 +172,23 @@ public class MobHealth : MonoBehaviour, IDamageable
     {
         if (amount <= 0) return;
         CurrentHP = Mathf.Min(maxHP, CurrentHP + amount);
+    }
+
+    // Visualize ground check in editor
+    void OnDrawGizmosSelected()
+    {
+        if (!onlyKnockbackWhenGrounded) return;
+
+        Collider2D col = coll != null ? coll : GetComponent<Collider2D>();
+        if (col == null) return;
+
+        Bounds bounds = col.bounds;
+        Vector2 checkPosition = new Vector2(bounds.center.x, bounds.min.y);
+        Vector2 boxSize = new Vector2(bounds.size.x * groundCheckWidth, groundCheckDistance);
+
+        // Draw ground check box
+        Gizmos.color = isGrounded ? Color.green : Color.red;
+        Vector3 center = checkPosition - Vector2.up * (groundCheckDistance * 0.5f);
+        Gizmos.DrawWireCube(center, boxSize);
     }
 }
