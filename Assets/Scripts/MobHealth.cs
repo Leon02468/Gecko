@@ -26,6 +26,9 @@ public class MobHealth : MonoBehaviour, IDamageable
     private Collider2D coll;
     private MonoBehaviour[] disableOnDeath;
 
+    public GameObject moneyDropPrefab;
+    public int moneyAmount = 1;
+
     void Awake()
     {
         CurrentHP = Mathf.Max(0, maxHP);
@@ -106,6 +109,17 @@ public class MobHealth : MonoBehaviour, IDamageable
         {
             if (mb == this) continue;
             mb.enabled = false;
+        }
+
+        // Instantiate money drop
+        if (moneyDropPrefab != null && moneyAmount > 0)
+        {
+            GameObject drop = Instantiate(moneyDropPrefab, transform.position, Quaternion.identity);
+            var moneyDrop = drop.GetComponent<MoneyDrop>();
+            if (moneyDrop != null)
+            {
+                moneyDrop.amount = moneyAmount;
+            }
         }
 
         if (destroyOnDeath)
