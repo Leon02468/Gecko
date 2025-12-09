@@ -351,4 +351,24 @@ public class ItemSlot : MonoBehaviour,
         }
     }
 
+    // In ItemSlot.cs
+public void UseItem()
+{
+    if (item == null || quantity <= 0) return;
+    if (item.type == ItemType.Consumable && item.healAmount > 0f)
+    {
+        var playerHealth = GameObject.FindObjectOfType<PlayerHealth>();
+        if (playerHealth != null)
+        {
+            playerHealth.Heal(item.healAmount);
+            quantity--;
+            if (quantity <= 0) ClearSlot();
+            UpdateSlotUI();
+            InventoryManager.Instance.SaveInventory();
+        }
+    }
+    // You can add more logic for buffs or other consumable effects here
+}
+
+
 }

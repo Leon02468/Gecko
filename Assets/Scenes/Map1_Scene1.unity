@@ -449,6 +449,8 @@ MonoBehaviour:
   OnDead:
     m_PersistentCalls:
       m_Calls: []
+  moneyDropPrefab: {fileID: 0}
+  moneyAmount: 1
 --- !u!114 &44863726
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4303,6 +4305,8 @@ MonoBehaviour:
   OnDead:
     m_PersistentCalls:
       m_Calls: []
+  moneyDropPrefab: {fileID: 0}
+  moneyAmount: 1
 --- !u!114 &111443570
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4705,6 +4709,8 @@ MonoBehaviour:
   OnDead:
     m_PersistentCalls:
       m_Calls: []
+  moneyDropPrefab: {fileID: 0}
+  moneyAmount: 1
 --- !u!114 &129633364
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9514,6 +9520,8 @@ MonoBehaviour:
   OnDead:
     m_PersistentCalls:
       m_Calls: []
+  moneyDropPrefab: {fileID: 0}
+  moneyAmount: 1
 --- !u!114 &399895848
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15103,6 +15111,8 @@ MonoBehaviour:
   OnDead:
     m_PersistentCalls:
       m_Calls: []
+  moneyDropPrefab: {fileID: 0}
+  moneyAmount: 1
 --- !u!114 &799670972
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19426,7 +19436,7 @@ GameObject:
   - component: {fileID: 1087748084}
   - component: {fileID: 1087748083}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: HealthCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21324,6 +21334,8 @@ MonoBehaviour:
   OnDead:
     m_PersistentCalls:
       m_Calls: []
+  moneyDropPrefab: {fileID: 0}
+  moneyAmount: 1
 --- !u!114 &1249343056
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23027,6 +23039,8 @@ MonoBehaviour:
   OnDead:
     m_PersistentCalls:
       m_Calls: []
+  moneyDropPrefab: {fileID: 0}
+  moneyAmount: 1
 --- !u!114 &1360242423
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28669,6 +28683,8 @@ MonoBehaviour:
   OnDead:
     m_PersistentCalls:
       m_Calls: []
+  moneyDropPrefab: {fileID: 0}
+  moneyAmount: 1
 --- !u!114 &1840550347
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29615,6 +29631,8 @@ MonoBehaviour:
   OnDead:
     m_PersistentCalls:
       m_Calls: []
+  moneyDropPrefab: {fileID: 0}
+  moneyAmount: 1
 --- !u!114 &1930684998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29961,6 +29979,8 @@ MonoBehaviour:
   OnDead:
     m_PersistentCalls:
       m_Calls: []
+  moneyDropPrefab: {fileID: 0}
+  moneyAmount: 1
 --- !u!114 &1956593660
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -17,4 +17,5 @@ MonoBehaviour:
   type: 0
   description: Help heal 2 HP
   maxStack: 5
+  healAmount: 2
   itemID: 1
