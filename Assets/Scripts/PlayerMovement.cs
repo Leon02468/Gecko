@@ -51,7 +51,10 @@ public class PlayerMovement : MonoBehaviour
     public int facingDirection { get; private set; } = 1;
 
     // Expose grounded state so other systems can check (e.g. attacks)
-    public bool IsGrounded { get; private set; } = false;
+    public bool IsGrounded { get; private set; }
+
+    // Expose down input state for attack system and animator
+    public bool IsHeldDown { get; private set; }
 
     // Prevent movement code from immediately overwriting external velocity changes (e.g. attack boost)
     private float velocityLockTimer = 0f;
@@ -159,11 +162,17 @@ public class PlayerMovement : MonoBehaviour
                     // no horizontal keyboard keys: fall back to axis x (gamepad/joystick)
                     horizontalMovement = vec.x;
                 }
+                
+                // Track down input state for animator
+                IsHeldDown = kb.downArrowKey.isPressed || kb.sKey.isPressed;
             }
             else
             {
                 // non-keyboard devices: use x axis directly
                 horizontalMovement = vec.x;
+                
+                // For gamepad/joystick, check if Y axis is negative (down)
+                IsHeldDown = vec.y < -inputDeadzone;
             }
 
             // Apply deadzone: treat small axis values as zero so "no input" is stable
@@ -181,6 +190,7 @@ public class PlayerMovement : MonoBehaviour
         {
             horizontalMovement = 0f;
             HorizontalInput = 0f;
+            IsHeldDown = false;
         }
     }
 

@@ -70,8 +70,10 @@ public class PlayerAttack : MonoBehaviour
     public float thrustBoxRange = 1f;
 
     [Header("Animation Triggers")]
-    [Tooltip("Trigger used for the airborne side attack. Default: AirAttack (create this in Animator)")]
-    public string airAttackTrigger = "AirAttack";
+    [Tooltip("Trigger used for the airborne side attack. Default: JumpAttack (create this in Animator)")]
+    public string airAttackTrigger = "JumpAttack";
+    [Tooltip("Trigger used for the diagonal down attack. Default: JumpKick (create this in Animator)")]
+    public string downAttackTrigger = "JumpKick";
 
     [Header("Gizmo Flash")]
     public float flashDuration = 0.3f; // How long the flash lasts (seconds)
@@ -105,6 +107,9 @@ public class PlayerAttack : MonoBehaviour
     // prevent multiple air attacks in short succession
     private bool airAttackInProgress = false;
 
+    // prevent down attack from triggering repeatedly (for composite bindings)
+    private bool downAttackInProgress = false;
+
     void Awake()
     {
         playerMovement = GetComponent<PlayerMovement>();
@@ -112,27 +117,21 @@ public class PlayerAttack : MonoBehaviour
             animator = GetComponentInChildren<Animator>();
     }
 
-    // Main attack (X). If player is holding down (keyboard/gamepad) this will attempt a down attack on ground.
+    // Main attack (X) - checks for down input to trigger jump kick
     public void OnAttack(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
 
-        // If the player is holding "down" while pressing attack, prefer down-attack input
-        if (IsDownHeld())
+        bool isAir = playerMovement != null && !playerMovement.IsGrounded;
+
+        // Check if player is holding down while pressing attack AND is airborne
+        if (isAir && playerMovement != null && playerMovement.IsHeldDown)
         {
-            // If the player is grounded, ignore down input (do nothing) — down has no ground function
-            if (playerMovement != null && playerMovement.IsGrounded)
-                return;
-
-            // If airborne, do NOT perform the downward boost attack for now — treat as air-side attack instead
-            if (playerMovement != null && !playerMovement.IsGrounded)
+            // Perform jump kick instead of normal attack (only if not already in progress)
+            if (!downAttackInProgress)
             {
-                PerformNormalSideAttackWithCooldown();
-                return;
+                HandleDownAttackInput();
             }
-
-            // delegate to shared down-attack logic (this respects the down cooldown and any config)
-            HandleDownAttackInput();
             return;
         }
 
@@ -254,26 +253,7 @@ public class PlayerAttack : MonoBehaviour
         PerformTopAttack();
     }
 
-    // If you have a dedicated Down+Attack action, it will call this.
-    public void OnDownAttack(InputAction.CallbackContext context)
-    {
-        if (!context.performed) return;
-
-        // If grounded, ignore down-attack input entirely
-        if (playerMovement != null && playerMovement.IsGrounded)
-            return;
-
-        // Mirror OnAttack behavior: if airborne, treat as air-side (AirAttack) instead of down-boost attack
-        if (playerMovement != null && !playerMovement.IsGrounded)
-        {
-            PerformNormalSideAttackWithCooldown();
-            return;
-        }
-
-        HandleDownAttackInput();
-    }
-
-    // Shared down attack logic (called from OnAttack when down held, or OnDownAttack)
+    // Shared down attack logic - now uses JumpAttack animation with diagonal boost
     private void HandleDownAttackInput()
     {
         // If down-attack is restricted to air and player is grounded -> do nothing
@@ -284,12 +264,16 @@ public class PlayerAttack : MonoBehaviour
         if (Time.time < lastDownAttackTime + downAttackCooldown)
             return;
 
+        // Set the in-progress flag and start the cooldown coroutine
+        downAttackInProgress = true;
+        StartCoroutine(ResetDownAttackAfterCooldown(downAttackCooldown));
+
         lastDownAttackTime = Time.time;
         lastAttackType = AttackType.Down;
         flashTimer = flashDuration;
 
-        // Animator: jump/down attack (JumpAttack)
-        animator?.SetTrigger("JumpAttack");
+        // Use JumpAttack animation for diagonal down attack (no separate JumpKick parameter)
+        animator?.SetTrigger(airAttackTrigger); // Uses "JumpAttack" trigger
 
         // Determine facing
         int facing = 1;
@@ -314,37 +298,16 @@ public class PlayerAttack : MonoBehaviour
         downHitboxCoroutine = StartCoroutine(RunMovingHitbox(diag, true)); // bounce player on down attack
     }
 
+    private IEnumerator ResetDownAttackAfterCooldown(float cooldown)
+    {
+        yield return new WaitForSeconds(cooldown);
+        downAttackInProgress = false;
+    }
+
     void Update()
     {
         if (flashTimer > 0f)
             flashTimer -= Time.deltaTime;
-    }
-
-    private bool IsDownHeld()
-    {
-        // If player exists and is grounded, treat Down as not held (ignore on ground)
-        if (playerMovement != null && playerMovement.IsGrounded)
-            return false;
-
-        // Check keyboard
-        if (Keyboard.current != null)
-        {
-            if (Keyboard.current.downArrowKey.isPressed || Keyboard.current.sKey.isPressed)
-                return true;
-        }
-
-        // Check gamepad dpad / left stick
-        if (Gamepad.current != null)
-        {
-            if (Gamepad.current.dpad.down.isPressed)
-                return true;
-
-            // stick threshold
-            if (Gamepad.current.leftStick.ReadValue().y < -0.5f)
-                return true;
-        }
-
-        return false;
     }
 
     private bool IsValidTarget(Collider2D col)
