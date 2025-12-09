@@ -44,6 +44,11 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         CurrentHP = Mathf.Max(0f, maxHP);
     }
 
+    public void SetHealth(float hp)
+    {
+        CurrentHP = Mathf.Clamp(hp, 0f, maxHP);
+    }
+
     //Back up if need to use old code
     //This line to make sure other classes use this method works normally
     public void TakeDamage(int amount, Vector2? knockback = null)
