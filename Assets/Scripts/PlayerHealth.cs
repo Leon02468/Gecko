@@ -143,6 +143,18 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         isInvulnerable = false;
     }
 
+    /// <summary>
+    /// Manually start invincibility frames without taking damage.
+    /// Useful for attacks or abilities that should grant temporary protection.
+    /// </summary>
+    public void StartInvincibility(float duration)
+    {
+        if (!useInvulnerability) return;
+        
+        if (invulCor != null) StopCoroutine(invulCor);
+        invulCor = StartCoroutine(InvulnerabilityCoroutine(duration));
+    }
+
     private void Die()
     {
         OnDead?.Invoke();
