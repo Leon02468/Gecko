@@ -15,7 +15,6 @@ public class MoneyManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            LoadMoney();
             moneyUI.SetActive(false);
             DontDestroyOnLoad(gameObject); // Persist across scenes
         }
@@ -28,7 +27,6 @@ public class MoneyManager : MonoBehaviour
     public void AddMoney(int amount)
     {
         Money += amount;
-        SaveMoney();
         UpdateMoneyUI();
         ShowMoneyUI();
         CancelInvoke(nameof(HideMoneyUI));
@@ -51,14 +49,10 @@ public class MoneyManager : MonoBehaviour
         moneyText.text = $"{Money}";
     }
 
-    public void SaveMoney()
+    public void SetMoney(int amount)
     {
-        PlayerPrefs.SetInt(MoneyKey, Money);
-        PlayerPrefs.Save();
+        Money = amount;
+        UpdateMoneyUI();
     }
 
-    public void LoadMoney()
-    {
-        Money = PlayerPrefs.GetInt(MoneyKey, 0);
-    }
 }

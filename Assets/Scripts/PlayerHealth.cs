@@ -171,6 +171,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
     private IEnumerator RespawnWithLoading(float delayBeforeLoading)
     {
+       
         // Wait for the hurt animation to play
         yield return new WaitForSeconds(delayBeforeLoading);
 
@@ -184,8 +185,22 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         // Respawn at checkpoint
         var pm = GetComponent<PlayerMovement>();
         if (pm != null)
-        {
-            pm.RespawnAtCheckpoint();
+        {   
+            // Decide where to respawn
+            Vector3 respawnPos;
+            if (CurrentHP <= 0 && PlayerCheckpointManager.Instance.HasSavepoint())
+            {
+                // Dead: respawn at savepoint with full HP
+                respawnPos = PlayerCheckpointManager.Instance.GetSavepoint();
+                CurrentHP = maxHP;
+            }
+            else
+            {
+                // Trap: respawn at checkpoint, keep current HP
+                respawnPos = PlayerCheckpointManager.Instance.GetCheckpoint();
+                // CurrentHP unchanged
+            }
+            pm.transform.position = respawnPos;
             pm.enabled = true;
         }
 
@@ -194,7 +209,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
             LoadingScreen.Instance.Hide();
 
         // Restore HP to at least 1
-        CurrentHP = Mathf.Max(1f, maxHP);
+        //CurrentHP = Mathf.Max(1f, maxHP);
     }
 
 

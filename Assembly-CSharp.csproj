@@ -86,8 +86,13 @@
     <Compile Include="Assets\Scripts\Inventory\ItemDatabase.cs" />
     <Compile Include="Assets\Scripts\JumpPad\JumpPad.cs" />
     <Compile Include="Assets\Scripts\LoadingScreen\ScreenLoadFinisher.cs" />
+<<<<<<< HEAD
+    <Compile Include="Assets\Scripts\HeartHealthUI.cs" />
+    <Compile Include="Assets\Scripts\Mantis\SlowGate.cs" />
+=======
     <Compile Include="Assets\Scripts\BossDetail_Mantis\CameraChoosing.cs" />
     <Compile Include="Assets\Scripts\HeartHealthUI.cs" />
+>>>>>>> 3f684c3a1bc62c1e3364f03c876db8401b35cc43
     <Compile Include="Assets\Scripts\SpawnPointSetter.cs" />
     <Compile Include="Assets\Scripts\SceneChanger.cs" />
     <Compile Include="Assets\Scripts\BossAI.cs" />
