@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 546bc0560f4981f4798ec73763003ba9
+guid: 33d393ebe0132c2469c7c8d683789214
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 948594683005094896
-    second: Summer8_0
+      213: 7204050452693774044
+    second: pin_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Summer8_0
+      name: pin_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 320
-        height: 180
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0fbc75c96d51a2d00800000000000000
-      internalID: 948594683005094896
+      spriteID: cdeedc0d7bde9f360800000000000000
+      internalID: 7204050452693774044
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Summer8_0: 948594683005094896
+      pin_0: 7204050452693774044
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
