@@ -72,7 +72,6 @@
     <Compile Include="Assets\Scripts\IInteract.cs" />
     <Compile Include="Assets\Scripts\Inventory\ItemSlot.cs" />
     <Compile Include="Assets\Scripts\GameManager\SaveSystem.cs" />
-    <Compile Include="Assets\Scripts\BossDetail_Mantis\CameraSwitcher.cs" />
     <Compile Include="Assets\Jump.cs" />
     <Compile Include="Assets\Scripts\MainMenu\MainMenuController.cs" />
     <Compile Include="Assets\Scripts\BossDetail_Mantis\SlowGate.cs" />
@@ -86,22 +85,19 @@
     <Compile Include="Assets\Scripts\Inventory\ItemDatabase.cs" />
     <Compile Include="Assets\Scripts\JumpPad\JumpPad.cs" />
     <Compile Include="Assets\Scripts\LoadingScreen\ScreenLoadFinisher.cs" />
-<<<<<<< HEAD
     <Compile Include="Assets\Scripts\HeartHealthUI.cs" />
-    <Compile Include="Assets\Scripts\Mantis\SlowGate.cs" />
-=======
-    <Compile Include="Assets\Scripts\BossDetail_Mantis\CameraChoosing.cs" />
-    <Compile Include="Assets\Scripts\HeartHealthUI.cs" />
->>>>>>> 3f684c3a1bc62c1e3364f03c876db8401b35cc43
     <Compile Include="Assets\Scripts\SpawnPointSetter.cs" />
     <Compile Include="Assets\Scripts\SceneChanger.cs" />
     <Compile Include="Assets\Scripts\BossAI.cs" />
     <Compile Include="Assets\ScriptableObject\Items\ItemObject.cs" />
     <Compile Include="Assets\Scripts\MobAI.cs" />
+    <Compile Include="Assets\Scripts\Inventory\HotbarUI.cs" />
+    <Compile Include="Assets\Scripts\Camera\CameraChoosing.cs" />
     <Compile Include="Assets\Scripts\BossDetail_Mantis\VineProjectile.cs" />
     <Compile Include="Assets\Scripts\GameManager\GameManager.cs" />
     <Compile Include="Assets\Scripts\MobMovement.cs" />
     <Compile Include="Assets\Scripts\MobAnimation.cs" />
+    <Compile Include="Assets\Scripts\Camera\CameraSwitcher.cs" />
     <Compile Include="Assets\Scripts\GameManager\IntroController.cs" />
     <Compile Include="Assets\Scripts\Boss\BossPhase.cs" />
     <Compile Include="Assets\Scripts\BossDetail_Mantis\InteractableObj.cs" />

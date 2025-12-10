@@ -1,9 +1,28 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class MantisBossController : MonoBehaviour, IDamageable
 {
+    [Header("Intro")]
+    public Transform spawnPoint;                // optional spawn point above scene
+    public Transform finalPoint;
+    public Vector2 spawnOffset = new Vector2(0f, 8f);
+    public float jumpDownVelocity = -12f;
+    public float waitAfterLand = 0.18f;
+    public AudioClip screamClip;
+    public float hpLoadDuration = 1.25f;
+    public bool requireIntroBeforeFight = true; // blocks AI until intro complete
+
+    [Header("Optional UI")]
+    public Image hpBarImage;                    // assign your HP bar Image (fillAmount)
+    public GameObject hpContainer;              // parent object for HP UI to enable/disable
+
+    [Header("Optional control lock")]
+    public MonoBehaviour playerControllerToDisable;
+
+
     [Header("Phases")]
     public BossPhase[] phases; // Phase1 then Phase2
 
@@ -35,6 +54,10 @@ public class MantisBossController : MonoBehaviour, IDamageable
     private BossAttack lastAttack = null;
     private bool animAttackFinished = false;
 
+    // Intro state flags
+    bool introRunning = false;
+    bool introCompleted = false;
+
     int GetFacingSign()
     {
         return transform.localScale.x >= 0 ? -1 : 1;
@@ -43,13 +66,43 @@ public class MantisBossController : MonoBehaviour, IDamageable
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        currentHP = maxHP;
+
+        if (requireIntroBeforeFight)
+        {
+            currentHP = 0;
+            introCompleted = false;
+        }
+        else
+        {
+            currentHP = maxHP;
+            introCompleted = true;
+        }
+
+        // Ensure HP UI shows initial state
+        if (hpContainer != null)
+        {
+            // hide HP UI if intro is required; show otherwise
+            hpContainer.SetActive(!requireIntroBeforeFight);
+        }
+        UpdateHpUI();
+
         ApplyPhaseStats();
+    }
+
+    void UpdateHpUI()
+    {
+        if (hpBarImage != null)
+        {
+            hpBarImage.fillAmount = (float)currentHP / (float)maxHP;
+        }
     }
 
     void Update()
     {
         if (dead || player == null) return;
+
+        // BLOCK normal AI until intro completes if requested
+        if (requireIntroBeforeFight && (introRunning || !introCompleted)) return;
 
         if (!lockedFacing)
             UpdateFacing();
@@ -353,16 +406,27 @@ public class MantisBossController : MonoBehaviour, IDamageable
     {
         if (dead) return;
         currentHP -= Mathf.RoundToInt(dmg); // boss HP is integer by spec
+        currentHP = Mathf.Clamp(currentHP, 0, maxHP);
+
+        // update UI immediately
+        UpdateHpUI();
+
         if (currentHP <= 0) Die();
     }
 
     void Die()
     {
+        if (dead) return;
         dead = true;
         rb.linearVelocity = Vector2.zero;
         anim.SetTrigger("Die");
+
+        // show empty bar immediately
+        currentHP = 0;
+        UpdateHpUI();
+
         // disable hitboxes
-        foreach (var c in GetComponentsInChildren<Collider2D>()) if (c.isTrigger) c.enabled = false;
+        foreach (var c in GetComponentsInChildren<BoxCollider2D>()) if (c.isTrigger) c.enabled = false;
         // open door / spawn loot etc.
     }
 
@@ -371,5 +435,128 @@ public class MantisBossController : MonoBehaviour, IDamageable
         TakeDamageFromPlayer(amount);
     }
 
+
+    /// <summary>
+    /// Call this to start the intro (from interactable)
+    /// </summary>
+    public void StartIntro()
+    {
+        if (introRunning || introCompleted) return;
+        StartCoroutine(IntroSequence());
+    }
+
+    IEnumerator IntroSequence()
+    {
+        introRunning = true;
+        busy = true; // block decision loop
+
+        // Show HP UI when intro starts (if assigned)
+        if (hpContainer != null) hpContainer.SetActive(true);
+
+        // optionally disable player controls
+        if (playerControllerToDisable != null) playerControllerToDisable.enabled = false;
+
+        // compute spawn & final positions
+        Vector3 finalPos = finalPoint.position;
+        Vector3 spawnPos = spawnPoint != null ? spawnPoint.position : (finalPos + (Vector3)spawnOffset);
+
+        // move boss to spawn
+        transform.position = spawnPos;
+
+        // prepare physics
+        if (rb == null) rb = GetComponent<Rigidbody2D>();
+        rb.linearVelocity = Vector2.zero;
+        rb.simulated = true;
+        rb.gravityScale = Mathf.Abs(rb.gravityScale) < 0.001f ? 1f : rb.gravityScale;
+
+        yield return new WaitForSeconds(0.05f);
+
+        // play JumpDown anim if available
+        if (anim != null) anim.SetTrigger("JumpDown");
+
+        // force downward velocity for deterministic fall
+        rb.linearVelocity = new Vector2(0f, jumpDownVelocity);
+
+        // wait for landing
+        yield return StartCoroutine(WaitForLanding(finalPos));
+
+        // snap, stop physics
+        transform.position = finalPos;
+        rb.linearVelocity = Vector2.zero;
+        rb.simulated = false;
+
+        // small pause
+        yield return new WaitForSeconds(waitAfterLand);
+
+        // scream
+        if (anim != null) anim.SetTrigger("Scream");
+        float screamLen = 0f;
+        if (audioSource != null && screamClip != null)
+        {
+            audioSource.PlayOneShot(screamClip);
+            screamLen = screamClip.length;
+        }
+        if (screamLen > 0f) yield return new WaitForSeconds(screamLen);
+        else yield return new WaitForSeconds(0.35f);
+
+        // load HP 0 -> max and update UI
+        yield return StartCoroutine(LoadHpRoutine(hpLoadDuration));
+
+        // fight start animation
+        if (anim != null) anim.SetTrigger("FightStart");
+
+        // re-enable physics and player controls
+        rb.simulated = true;
+        if (playerControllerToDisable != null) playerControllerToDisable.enabled = true;
+
+        busy = false;
+        introRunning = false;
+        introCompleted = true;
+    }
+
+    IEnumerator WaitForLanding(Vector3 finalPos)
+    {
+        float timeout = 5f;
+        float t = 0f;
+        while (t < timeout)
+        {
+            t += Time.deltaTime;
+            float vertVel = Mathf.Abs(rb.linearVelocity.y);
+            float dist = Vector2.Distance(transform.position, finalPos);
+
+            if (vertVel < 0.8f || dist < 0.15f)
+            {
+                // small extra stabilization
+                yield return new WaitForSeconds(0.05f);
+                yield break;
+            }
+
+            yield return null;
+        }
+        yield break;
+    }
+
+    IEnumerator LoadHpRoutine(float duration)
+    {
+        if (duration <= 0f)
+        {
+            currentHP = maxHP;
+            UpdateHpUI();
+            yield break;
+        }
+
+        float t = 0f;
+        while (t < duration)
+        {
+            t += Time.deltaTime;
+            float p = Mathf.Clamp01(t / duration);
+            currentHP = Mathf.RoundToInt(Mathf.Lerp(0, maxHP, p));
+            UpdateHpUI();
+            yield return null;
+        }
+        currentHP = maxHP;
+        UpdateHpUI();
+        yield break;
+    }
 
 }

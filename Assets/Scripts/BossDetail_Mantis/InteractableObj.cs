@@ -2,11 +2,23 @@ using UnityEngine;
 
 public class InteractableObj : MonoBehaviour, IInteractable
 {
+    public MantisBossController boss;
+    public BoxCollider2D boxCollider;
+
+    void Awake()
+    {
+        if(boxCollider == null)
+        {
+            boxCollider = GetComponent<BoxCollider2D>();
+        }
+    }
+
     public bool CanInteract() => true;
 
     public void Interact()
     {
-        // Do something
-        // In this situation, do the boss intro --> handled by a separate BossIntro script
+        Debug.Log("Interacted with Mantis Boss Intro Trigger");
+        boss.StartIntro();
+        boxCollider.enabled = false;
     }
 }
