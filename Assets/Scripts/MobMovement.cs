@@ -72,12 +72,10 @@ public class MobMovement : MonoBehaviour
         if (!hasRb)
             return;
 
-        // If movement is disabled, ensure horizontal velocity is zero and skip logic
+        // If movement is disabled, COMPLETELY SKIP FixedUpdate - don't touch velocity at all!
         if (!movementEnabled)
         {
-            // preserve vertical velocity (gravity, knockback) but stop horizontal movement
-            rb2d.linearVelocity = new Vector2(0f, rb2d.linearVelocity.y);
-            return;
+            return; // Let other scripts (like MobAI charge attack) control the velocity
         }
 
         UpdateLogicOnly();
@@ -96,11 +94,8 @@ public class MobMovement : MonoBehaviour
     public void SetMovementEnabled(bool enabled)
     {
         movementEnabled = enabled;
-        if (!movementEnabled && hasRb)
-        {
-            // zero horizontal velocity immediately
-            rb2d.linearVelocity = new Vector2(0f, rb2d.linearVelocity.y);
-        }
+        // DON'T zero velocity here - let the calling script control velocity
+        // The old code was interfering with charge attacks
     }
 
     // Shared logic: state transitions & target decisions (run inside FixedUpdate for physics)

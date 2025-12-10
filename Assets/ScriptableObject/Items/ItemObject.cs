@@ -10,6 +10,9 @@ public class ItemObject : ScriptableObject
     public ItemType type;
     public string description;
     public int maxStack = 1;
+    // In ItemObject.cs
+    public float healAmount = 0f; // Only used for consumables
+
 
     [Tooltip("A unique ID used for save/load")]
     public int itemID;
