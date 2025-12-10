@@ -436,7 +436,18 @@ public class PlayerAttack : MonoBehaviour
         // (we encode that by zeroing horizontal component when forceSetVelocity == true)
         Vector2 kb = forceSetVelocity ? new Vector2(0f, knockback.y) : knockback;
 
-        // Prefer typed interface call to notify entity of damage
+        // **COUNTER-ATTACK**: Check if target is a mob performing charge attack
+        var mobAI = col.GetComponentInParent<MobAI>();
+        if (mobAI != null && mobAI.IsChargingAndVulnerable)
+        {
+            // Player counter-attacked a charging mob! Interrupt the charge
+            Debug.Log($"<color=orange>COUNTER-ATTACK! Player hit {col.name} during charge attack!</color>");
+            mobAI.InterruptChargeAttack(kb, damage);
+            // Don't apply normal damage since InterruptChargeAttack handles it
+            return;
+        }
+
+        // Normal damage handling
         var dmg = col.GetComponentInParent<IDamageable>();
         if (dmg != null)
         {
