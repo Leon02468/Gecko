@@ -16,7 +16,7 @@ public class NegativeEffect : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("CurrentSpeed: " + playerMovement.speed);
+        //Debug.Log("CurrentSpeed: " + playerMovement.speed);
         if (isSlowed)
         {
             slowDuration -= Time.deltaTime;

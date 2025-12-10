@@ -51,6 +51,14 @@ public class InventoryManager : MonoBehaviour
         inputActions.Inventory.NavigateUp.performed += ctx => SelectSlotAbove();
         inputActions.Inventory.NavigateDown.performed += ctx => SelectSlotBelow();
 
+
+        // Hotbar key bindings
+        inputActions.Player.Hotbar1.performed += ctx => UseHotbarSlot(0);
+        inputActions.Player.Hotbar2.performed += ctx => UseHotbarSlot(1);
+        inputActions.Player.Hotbar3.performed += ctx => UseHotbarSlot(2);
+        inputActions.Player.Hotbar4.performed += ctx => UseHotbarSlot(3);
+        inputActions.Player.Hotbar5.performed += ctx => UseHotbarSlot(4);
+
         playerInput = FindAnyObjectByType<PlayerInput>();
 
         // Hook scene unload to save (e.g. when switching scenes)
@@ -71,6 +79,7 @@ public class InventoryManager : MonoBehaviour
         Debug.Log($"InventoryManager initialized. Save path: {savePath}");
 
     }
+
 
     private void OnEnable()
     {
@@ -100,7 +109,9 @@ public class InventoryManager : MonoBehaviour
 
         if (!isActive)
         {
-            
+            //Show amount of money when open inventory
+            MoneyManager.Instance.ShowMoneyUI();
+
             //time stop while player open inventory
             Time.timeScale = 0f;
             //this one just to make sure player input is disable 
@@ -114,6 +125,9 @@ public class InventoryManager : MonoBehaviour
         }
         else
         {
+            //Stop showing amount of money when close inventorySo
+            MoneyManager.Instance.HideMoneyUI();
+
             //time continue after player close inventory
             Time.timeScale = 1f;
             if (playerInput != null) playerInput.enabled = true;
@@ -124,6 +138,14 @@ public class InventoryManager : MonoBehaviour
 
             //save when closing inventory just to maker sure for persistence
             SaveInventory();
+        }
+    }
+    // Use hot bar
+    private void UseHotbarSlot(int index)
+    {
+        if (itemSlot != null && index >= 0 && index < itemSlot.Length && itemSlot[index] != null)
+        {
+            itemSlot[index].UseItem();
         }
     }
 
@@ -240,7 +262,8 @@ public class InventoryManager : MonoBehaviour
                     });
             }
 
-            string json = JsonUtility.ToJson(new SaveWrapper(saveList), true);
+            // Save inventory and money together
+            string json = JsonUtility.ToJson(new SaveWrapper(saveList, MoneyManager.Instance.Money), true);
             File.WriteAllText(savePath, json);
             Debug.Log($"Saved inventory ({saveList.Count} slots) to: {savePath}");
         }
@@ -301,6 +324,9 @@ public class InventoryManager : MonoBehaviour
                 }
             }
 
+            // Load money from save file
+            MoneyManager.Instance.SetMoney(wrapper.money);
+
             Debug.Log("Inventory loaded from " + savePath);
         }
         catch (System.Exception ex)
@@ -345,6 +371,12 @@ public class InventoryManager : MonoBehaviour
     public class SaveWrapper
     {
         public List<ItemSlotSave> items;
-        public SaveWrapper(List<ItemSlotSave> items) { this.items = items; }
+        public int money;
+
+        public SaveWrapper(List<ItemSlotSave> items, int money) 
+        { 
+            this.items = items;
+            this.money = money;
+        }
     }
 }

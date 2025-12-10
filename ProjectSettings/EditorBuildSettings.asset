@@ -26,6 +26,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Scene3_New.unity
     guid: 4ec1a1a206230564e9fee6663925bd04
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: ab0b8ecbbb3a2b943adab2fa70fc31ac
+  - enabled: 1
+    path: Assets/Scenes/GameIntro.unity
+    guid: 2fc0f6a0bd909194c9b2c767528d1af2
   m_configObjects:
     com.unity.dt.app-ui: {fileID: 11400000, guid: 1b1c20d82303e4b5781c3ef50ac1449f, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 3590b91b4603b465dbb4216d601bff33, type: 3}

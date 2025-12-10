@@ -35,6 +35,7 @@ public class PlayerInteraction : MonoBehaviour
     {
         if (context.performed && currentInteractable != null && currentInteractable.CanInteract())
         {
+            Debug.Log("Interacting with: " + ((MonoBehaviour)currentInteractable).name);
             currentInteractable.Interact();
         }
     }

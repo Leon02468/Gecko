@@ -10,7 +10,7 @@ public class LoadingScreen : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            // Optionally: DontDestroyOnLoad(gameObject);
+            DontDestroyOnLoad(gameObject);
         }
         else
         {

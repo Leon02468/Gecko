@@ -52,7 +52,21 @@ public class ShopSlot : MonoBehaviour
     {
         if (item == null) return;
 
-        InventoryManager.Instance.AddItem(item, 1);
-        Debug.Log("Bought: " + item.itemName);
+        // Check if player has enough money
+        if (MoneyManager.Instance.Money >= price)
+        {
+            // Deduct money
+            MoneyManager.Instance.AddMoney(-price);
+
+            // Add item to inventory
+            InventoryManager.Instance.AddItem(item, 1);
+
+            Debug.Log($"Bought: {item.itemName} for {price} coins.");
+        }
+        else
+        {
+            Debug.Log("Not enough money to buy " + item.itemName);
+            // Optionally, show a UI message here
+        }
     }
 }
