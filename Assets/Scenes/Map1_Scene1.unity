@@ -373,18 +373,21 @@ MonoBehaviour:
   playerTag: Player
   attackRange: 2
   attackDelay: 0.25
-  attackCooldown: 0.5
+  attackCooldown: 2
   attackDamage: 1
   useChargeAttack: 1
   chargeUpTime: 0.3
-  thrustSpeed: 8
-  thrustJumpForce: 5
-  thrustDuration: 1
+  thrustSpeed: 5
+  thrustJumpForce: 6
+  thrustDuration: 1.75
   jumpAttackMinDistance: 2
   jumpAttackMaxDistance: 5
   lockTargetDuringCharge: 1
-  knockbackForce: 5
-  knockbackUpMultiplier: 1
+  allowCounterAttack: 1
+  counterAttackKnockbackMultiplier: 1.5
+  counterAttackStunDuration: 2
+  knockbackForce: 3.5
+  knockbackUpMultiplier: 0.4
   mobAnimation: {fileID: 44863723}
   drawGizmos: 1
   detectColor: {r: 1, g: 0.6, b: 0, a: 0.15}
@@ -4241,18 +4244,21 @@ MonoBehaviour:
   playerTag: Player
   attackRange: 2
   attackDelay: 0.25
-  attackCooldown: 0.5
+  attackCooldown: 2
   attackDamage: 1
   useChargeAttack: 1
   chargeUpTime: 0.3
-  thrustSpeed: 8
-  thrustJumpForce: 5
-  thrustDuration: 1
+  thrustSpeed: 5
+  thrustJumpForce: 6
+  thrustDuration: 1.75
   jumpAttackMinDistance: 2
   jumpAttackMaxDistance: 5
   lockTargetDuringCharge: 1
-  knockbackForce: 5
-  knockbackUpMultiplier: 1
+  allowCounterAttack: 1
+  counterAttackKnockbackMultiplier: 1.5
+  counterAttackStunDuration: 2
+  knockbackForce: 3.5
+  knockbackUpMultiplier: 0.4
   mobAnimation: {fileID: 111443567}
   drawGizmos: 1
   detectColor: {r: 1, g: 0.6, b: 0, a: 0.15}
@@ -4657,18 +4663,21 @@ MonoBehaviour:
   playerTag: Player
   attackRange: 2
   attackDelay: 0.25
-  attackCooldown: 0.5
+  attackCooldown: 2
   attackDamage: 1
   useChargeAttack: 1
   chargeUpTime: 0.3
-  thrustSpeed: 8
-  thrustJumpForce: 5
-  thrustDuration: 1
+  thrustSpeed: 5
+  thrustJumpForce: 6
+  thrustDuration: 1.75
   jumpAttackMinDistance: 2
   jumpAttackMaxDistance: 5
   lockTargetDuringCharge: 1
-  knockbackForce: 5
-  knockbackUpMultiplier: 1
+  allowCounterAttack: 1
+  counterAttackKnockbackMultiplier: 1.5
+  counterAttackStunDuration: 2
+  knockbackForce: 3.5
+  knockbackUpMultiplier: 0.4
   mobAnimation: {fileID: 129633361}
   drawGizmos: 1
   detectColor: {r: 1, g: 0.6, b: 0, a: 0.15}
@@ -9480,18 +9489,21 @@ MonoBehaviour:
   playerTag: Player
   attackRange: 2
   attackDelay: 0.25
-  attackCooldown: 0.5
+  attackCooldown: 2
   attackDamage: 1
   useChargeAttack: 1
   chargeUpTime: 0.3
-  thrustSpeed: 8
-  thrustJumpForce: 5
-  thrustDuration: 1
+  thrustSpeed: 5
+  thrustJumpForce: 6
+  thrustDuration: 1.75
   jumpAttackMinDistance: 2
   jumpAttackMaxDistance: 5
   lockTargetDuringCharge: 1
-  knockbackForce: 5
-  knockbackUpMultiplier: 1
+  allowCounterAttack: 1
+  counterAttackKnockbackMultiplier: 1.5
+  counterAttackStunDuration: 2
+  knockbackForce: 3.5
+  knockbackUpMultiplier: 0.4
   mobAnimation: {fileID: 399895845}
   drawGizmos: 1
   detectColor: {r: 1, g: 0.6, b: 0, a: 0.15}
@@ -15083,18 +15095,21 @@ MonoBehaviour:
   playerTag: Player
   attackRange: 2
   attackDelay: 0.25
-  attackCooldown: 0.5
+  attackCooldown: 2
   attackDamage: 1
   useChargeAttack: 1
   chargeUpTime: 0.3
-  thrustSpeed: 8
-  thrustJumpForce: 5
-  thrustDuration: 1
+  thrustSpeed: 5
+  thrustJumpForce: 6
+  thrustDuration: 1.75
   jumpAttackMinDistance: 2
   jumpAttackMaxDistance: 5
   lockTargetDuringCharge: 1
-  knockbackForce: 5
-  knockbackUpMultiplier: 1
+  allowCounterAttack: 1
+  counterAttackKnockbackMultiplier: 1.5
+  counterAttackStunDuration: 2
+  knockbackForce: 3.5
+  knockbackUpMultiplier: 0.4
   mobAnimation: {fileID: 799670969}
   drawGizmos: 1
   detectColor: {r: 1, g: 0.6, b: 0, a: 0.15}
@@ -21318,18 +21333,21 @@ MonoBehaviour:
   playerTag: Player
   attackRange: 2
   attackDelay: 0.25
-  attackCooldown: 0.5
+  attackCooldown: 2
   attackDamage: 1
   useChargeAttack: 1
   chargeUpTime: 0.3
-  thrustSpeed: 8
-  thrustJumpForce: 5
-  thrustDuration: 1
+  thrustSpeed: 5
+  thrustJumpForce: 6
+  thrustDuration: 1.75
   jumpAttackMinDistance: 2
   jumpAttackMaxDistance: 5
   lockTargetDuringCharge: 1
-  knockbackForce: 5
-  knockbackUpMultiplier: 1
+  allowCounterAttack: 1
+  counterAttackKnockbackMultiplier: 1.5
+  counterAttackStunDuration: 2
+  knockbackForce: 3.5
+  knockbackUpMultiplier: 0.4
   mobAnimation: {fileID: 1249343053}
   drawGizmos: 1
   detectColor: {r: 1, g: 0.6, b: 0, a: 0.15}
@@ -23035,18 +23053,21 @@ MonoBehaviour:
   playerTag: Player
   attackRange: 2
   attackDelay: 0.25
-  attackCooldown: 0.5
+  attackCooldown: 2
   attackDamage: 1
   useChargeAttack: 1
   chargeUpTime: 0.3
-  thrustSpeed: 8
-  thrustJumpForce: 5
-  thrustDuration: 1
+  thrustSpeed: 5
+  thrustJumpForce: 6
+  thrustDuration: 1.75
   jumpAttackMinDistance: 2
   jumpAttackMaxDistance: 5
   lockTargetDuringCharge: 1
-  knockbackForce: 5
-  knockbackUpMultiplier: 1
+  allowCounterAttack: 1
+  counterAttackKnockbackMultiplier: 1.5
+  counterAttackStunDuration: 2
+  knockbackForce: 3.5
+  knockbackUpMultiplier: 0.4
   mobAnimation: {fileID: 1360242420}
   drawGizmos: 1
   detectColor: {r: 1, g: 0.6, b: 0, a: 0.15}
@@ -27761,9 +27782,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53b964f8f3f45064781d69e1b1e7eb32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAttack
-  sideAttackBoxSize: {x: 2, y: 1}
+  sideAttackBoxSize: {x: 2.25, y: 1.5}
   sideAttackRange: 1.5
-  sideAttackCooldown: 0.25
+  sideAttackCooldown: 0.15
   sideAttackDamage: 1
   topAttackBoxSize: {x: 1, y: 2}
   topAttackRange: 1.5
@@ -27778,11 +27799,11 @@ MonoBehaviour:
     m_Bits: 128
   useTag: 0
   enemyTag: Enemy
-  knockbackForce: 7
-  knockbackUpMultiplier: 0.4
-  downAttackKnockbackMultiplier: 1.5
-  downAttackKnockbackHorizontal: 0.7
-  downAttackKnockbackVertical: 0.3
+  knockbackForce: 3
+  knockbackUpMultiplier: 0.8
+  downAttackKnockbackMultiplier: 3.5
+  downAttackKnockbackHorizontal: 0.3
+  downAttackKnockbackVertical: 0.2
   downAttackBoost: 10
   downAttackHorizontalMultiplier: 1.25
   downAttackLockDuration: 0.25
@@ -27826,7 +27847,7 @@ MonoBehaviour:
   destroyOnDeath: 1
   useInvulnerability: 1
   invulnerabilityDuration: 1
-  velocityLockDuration: 0.12
+  velocityLockDuration: 0.25
   allowButtonMashToEscape: 1
   mashCountToEscape: 8
   mashActionRef: {fileID: 0}
@@ -28701,18 +28722,21 @@ MonoBehaviour:
   playerTag: Player
   attackRange: 2
   attackDelay: 0.25
-  attackCooldown: 0.5
+  attackCooldown: 2
   attackDamage: 1
   useChargeAttack: 1
   chargeUpTime: 0.3
-  thrustSpeed: 8
-  thrustJumpForce: 5
-  thrustDuration: 1
+  thrustSpeed: 5
+  thrustJumpForce: 6
+  thrustDuration: 1.75
   jumpAttackMinDistance: 2
   jumpAttackMaxDistance: 5
   lockTargetDuringCharge: 1
-  knockbackForce: 5
-  knockbackUpMultiplier: 1
+  allowCounterAttack: 1
+  counterAttackKnockbackMultiplier: 1.5
+  counterAttackStunDuration: 2
+  knockbackForce: 3.5
+  knockbackUpMultiplier: 0.4
   mobAnimation: {fileID: 1840550344}
   drawGizmos: 1
   detectColor: {r: 1, g: 0.6, b: 0, a: 0.15}
@@ -29661,18 +29685,21 @@ MonoBehaviour:
   playerTag: Player
   attackRange: 2
   attackDelay: 0.25
-  attackCooldown: 0.5
+  attackCooldown: 2
   attackDamage: 1
   useChargeAttack: 1
   chargeUpTime: 0.3
-  thrustSpeed: 8
-  thrustJumpForce: 5
-  thrustDuration: 1
+  thrustSpeed: 5
+  thrustJumpForce: 6
+  thrustDuration: 1.75
   jumpAttackMinDistance: 2
   jumpAttackMaxDistance: 5
   lockTargetDuringCharge: 1
-  knockbackForce: 5
-  knockbackUpMultiplier: 1
+  allowCounterAttack: 1
+  counterAttackKnockbackMultiplier: 1.5
+  counterAttackStunDuration: 2
+  knockbackForce: 3.5
+  knockbackUpMultiplier: 0.4
   mobAnimation: {fileID: 1930684995}
   drawGizmos: 1
   detectColor: {r: 1, g: 0.6, b: 0, a: 0.15}
@@ -30021,18 +30048,21 @@ MonoBehaviour:
   playerTag: Player
   attackRange: 2
   attackDelay: 0.25
-  attackCooldown: 0.5
+  attackCooldown: 2
   attackDamage: 1
   useChargeAttack: 1
   chargeUpTime: 0.3
-  thrustSpeed: 8
-  thrustJumpForce: 5
-  thrustDuration: 1
+  thrustSpeed: 5
+  thrustJumpForce: 6
+  thrustDuration: 1.75
   jumpAttackMinDistance: 2
   jumpAttackMaxDistance: 5
   lockTargetDuringCharge: 1
-  knockbackForce: 5
-  knockbackUpMultiplier: 1
+  allowCounterAttack: 1
+  counterAttackKnockbackMultiplier: 1.5
+  counterAttackStunDuration: 2
+  knockbackForce: 3.5
+  knockbackUpMultiplier: 0.4
   mobAnimation: {fileID: 1956593657}
   drawGizmos: 1
   detectColor: {r: 1, g: 0.6, b: 0, a: 0.15}

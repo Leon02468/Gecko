@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
 /// <summary>
@@ -36,6 +36,14 @@ public class MobAI : MonoBehaviour
     [Tooltip("Lock player's position during charge (thrust toward last known position)")]
     public bool lockTargetDuringCharge = true;
 
+    [Header("Counter-Attack (Interrupt)")]
+    [Tooltip("Can player interrupt the charge attack by attacking during thrust?")]
+    public bool allowCounterAttack = true;
+    [Tooltip("Knockback multiplier when counter-attacked (applied to mob)")]
+    public float counterAttackKnockbackMultiplier = 1.5f;
+    [Tooltip("Stun duration after being counter-attacked")]
+    public float counterAttackStunDuration = 0.5f;
+
     [Header("Knockback")]
     public float knockbackForce = 6f;
     public float knockbackUpMultiplier = 0.4f;
@@ -63,6 +71,11 @@ public class MobAI : MonoBehaviour
     // Charge attack state
     private bool isCharging = false;
     private Vector3 chargeTargetPosition;
+    
+    // Counter-attack state
+    private bool chargeInterrupted = false;
+    private bool isStunned = false;
+    public bool IsChargingAndVulnerable => isCharging && allowCounterAttack && !chargeInterrupted;
 
     void Awake()
     {
@@ -123,6 +136,9 @@ public class MobAI : MonoBehaviour
         // If mobAnimation was added later or is null for some instances, try to refresh reference each frame
         if (mobAnimation == null)
             mobAnimation = GetComponentInChildren<MobAnimation>();
+
+        // Don't update AI if stunned
+        if (isStunned) return;
 
         targetPlayer = FindPlayerInRange();
 
@@ -331,6 +347,7 @@ public class MobAI : MonoBehaviour
         
         isCharging = true;
         isAttacking = true;
+        chargeInterrupted = false;
         lastAttackTime = Time.time;
 
         // CRITICAL: Disable autonomous movement while attacking
@@ -372,6 +389,14 @@ public class MobAI : MonoBehaviour
         
         yield return new WaitForSeconds(chargeUpTime);
 
+        // Check if interrupted during charge-up
+        if (chargeInterrupted)
+        {
+            Debug.Log($"<color=red>{gameObject.name}: Charge interrupted during charge-up!</color>");
+            yield return HandleChargeInterrupt();
+            yield break;
+        }
+
         // Update target position if not locked
         if (!lockTargetDuringCharge && player != null)
         {
@@ -411,6 +436,14 @@ public class MobAI : MonoBehaviour
         
         while (thrustElapsed < thrustDuration)
         {
+            // Check if interrupted during thrust
+            if (chargeInterrupted)
+            {
+                Debug.Log($"<color=red>{gameObject.name}: COUNTER-ATTACKED! Thrust interrupted!</color>");
+                yield return HandleChargeInterrupt();
+                yield break;
+            }
+
             frameCount++;
             
             if (rb != null)
@@ -422,7 +455,7 @@ public class MobAI : MonoBehaviour
                 // Debug every 10 frames to avoid spam
                 if (frameCount % 10 == 1)
                 {
-                    Debug.Log($"<color=yellow>Frame {frameCount}: Vel ({oldVel.x:F2}, {oldVel.y:F2}) ? ({rb.linearVelocity.x:F2}, {rb.linearVelocity.y:F2})</color>");
+                    Debug.Log($"<color=yellow>Frame {frameCount}: Vel ({oldVel.x:F2}, {oldVel.y:F2}) → ({rb.linearVelocity.x:F2}, {rb.linearVelocity.y:F2})</color>");
                 }
             }
             else
@@ -484,10 +517,92 @@ public class MobAI : MonoBehaviour
         
         isCharging = false;
         isAttacking = false;
+        chargeInterrupted = false;
         
         Debug.Log($"<color=lime>========== {gameObject.name}: CHARGE ATTACK COMPLETE ==========</color>");
     }
 
+    /// <summary>
+    /// Called when player attacks the mob during its charge attack.
+    /// This interrupts the charge and applies knockback to the mob.
+    /// </summary>
+    public void InterruptChargeAttack(Vector2 knockbackFromPlayer, int damageFromPlayer = 0)
+    {
+        if (!IsChargingAndVulnerable)
+        {
+            Debug.Log($"<color=yellow>{gameObject.name}: Cannot interrupt - not charging or already interrupted</color>");
+            return;
+        }
+
+        chargeInterrupted = true;
+        Debug.Log($"<color=orange>========== {gameObject.name}: CHARGE INTERRUPTED BY PLAYER! ==========</color>");
+        
+        // Apply enhanced knockback
+        Vector2 enhancedKnockback = knockbackFromPlayer * counterAttackKnockbackMultiplier;
+        
+        // Apply damage through IDamageable interface (without knockback, we'll handle that separately)
+        if (damageFromPlayer > 0)
+        {
+            var health = GetComponent<IDamageable>();
+            if (health != null)
+            {
+                // Apply damage only, no knockback (pass null/zero)
+                health.TakeDamage(damageFromPlayer, null);
+            }
+        }
+        
+        // Apply knockback directly by setting velocity (normal knockback, not accumulating)
+        if (rb != null)
+        {
+            // Temporarily disable AIPath if present to allow knockback
+            var aiPath = GetComponent<Pathfinding.AIPath>();
+            if (aiPath != null && aiPath.enabled)
+            {
+                aiPath.enabled = false;
+                StartCoroutine(ReenableAIPathAfterDelay(aiPath, 0.3f));
+            }
+            
+            // Set velocity directly for normal knockback
+            rb.linearVelocity = enhancedKnockback;
+            Debug.Log($"<color=orange>{gameObject.name}: Counter-attack knockback applied: {enhancedKnockback}</color>");
+        }
+    }
+    
+    private IEnumerator ReenableAIPathAfterDelay(Pathfinding.AIPath aiPath, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        if (aiPath != null)
+            aiPath.enabled = true;
+    }
+    
+    private IEnumerator HandleChargeInterrupt()
+    {
+        Debug.Log($"<color=orange>{gameObject.name}: Handling charge interrupt...</color>");
+        
+        // DON'T stop movement immediately - let the knockback physics play out
+        // The knockback from InterruptChargeAttack will handle the velocity
+        
+        // Play hurt animation if available
+        mobAnimation?.PlayHurt();
+        
+        // Stun the mob briefly (but don't freeze velocity - allow knockback to continue)
+        isStunned = true;
+        yield return new WaitForSeconds(counterAttackStunDuration);
+        isStunned = false;
+        
+        // Re-enable movement after stun
+        if (mobMovement != null)
+        {
+            mobMovement.SetMovementEnabled(true);
+        }
+        
+        isCharging = false;
+        isAttacking = false;
+        chargeInterrupted = false;
+        
+        Debug.Log($"<color=orange>{gameObject.name}: Interrupt handled, mob recovering...</color>");
+    }
+    
     void OnDrawGizmosSelected()
     {
         if (!drawGizmos) return;
