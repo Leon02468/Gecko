@@ -30,8 +30,8 @@ public class SlotUI : MonoBehaviour
             if (save != null)
             {
                 // show name + local time
-                DateTime local = save.savedAt.ToLocalTime();
-                slotDetails.text = $"{save.saveName}\nSaved: {local}";
+                DateTime local = save.SavedAtUtc.ToLocalTime();
+                slotDetails.text = $"Saved: {local}";
             }
             else
             {

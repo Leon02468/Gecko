@@ -4,7 +4,9 @@ using UnityEngine;
 public class SaveData
 {
     public string saveName;
-    public DateTime savedAt;
+
+    // Serialize a primitive (ticks) — JsonUtility handles this fine
+    public long savedAtTicks;
 
     // Example gameplay fields
     public int sceneBuildIndex; // optional
@@ -13,11 +15,17 @@ public class SaveData
     public float playerHealth;
     public int level;
 
+    public DateTime SavedAtUtc
+    {
+        get => DateTime.SpecifyKind(new DateTime(savedAtTicks), DateTimeKind.Utc);
+        set => savedAtTicks = value.ToUniversalTime().Ticks;
+    }
+
     public static SaveData CreateDefault()
     {
         var s = new SaveData();
         s.saveName = "New Game";
-        s.savedAt = DateTime.UtcNow;
+        s.SavedAtUtc = DateTime.UtcNow;
         s.sceneBuildIndex = 0;
         s.playerX = 0f;
         s.playerY = 0f;
