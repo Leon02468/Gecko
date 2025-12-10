@@ -270,7 +270,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2074911639274509553, guid: 2ad0f4df258ef7944a5b417e9c05d285, type: 3}
       propertyPath: orthographic
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2074911639274509553, guid: 2ad0f4df258ef7944a5b417e9c05d285, type: 3}
       propertyPath: field of view
@@ -282,11 +282,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3062151180049598150, guid: 2ad0f4df258ef7944a5b417e9c05d285, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 303.15225
+      value: 303.2
       objectReference: {fileID: 0}
     - target: {fileID: 3062151180049598150, guid: 2ad0f4df258ef7944a5b417e9c05d285, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -95.473274
+      value: -95.84
       objectReference: {fileID: 0}
     - target: {fileID: 3062151180049598150, guid: 2ad0f4df258ef7944a5b417e9c05d285, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1043,18 +1043,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 461278356936060298, guid: 4d806e44e53bec14d998558861c6153c, type: 3}
-      propertyPath: BlendHint
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 461278356936060298, guid: 4d806e44e53bec14d998558861c6153c, type: 3}
-      propertyPath: Priority.Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 461278356936060298, guid: 4d806e44e53bec14d998558861c6153c, type: 3}
-      propertyPath: Priority.m_Value
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 461278356936060298, guid: 4d806e44e53bec14d998558861c6153c, type: 3}
       propertyPath: Target.TrackingTarget
       value: 
       objectReference: {fileID: 871054279}
@@ -1062,6 +1050,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CinemachineCamera
       objectReference: {fileID: 0}
+    - target: {fileID: 1107671100422417560, guid: 4d806e44e53bec14d998558861c6153c, type: 3}
+      propertyPath: BoundingShape2D
+      value: 
+      objectReference: {fileID: 1444368425}
     - target: {fileID: 1855816962226649163, guid: 4d806e44e53bec14d998558861c6153c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 303.2
@@ -1102,94 +1094,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3428331594013093746, guid: 4d806e44e53bec14d998558861c6153c, type: 3}
-      propertyPath: FollowOffset.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3428331594013093746, guid: 4d806e44e53bec14d998558861c6153c, type: 3}
-      propertyPath: TrackerSettings.BindingMode
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3428331594013093746, guid: 4d806e44e53bec14d998558861c6153c, type: 3}
-      propertyPath: TrackerSettings.RotationDamping.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3428331594013093746, guid: 4d806e44e53bec14d998558861c6153c, type: 3}
-      propertyPath: TrackerSettings.RotationDamping.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3428331594013093746, guid: 4d806e44e53bec14d998558861c6153c, type: 3}
-      propertyPath: TrackerSettings.RotationDamping.z
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 3428331594013093746, guid: 4d806e44e53bec14d998558861c6153c, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 800374605047500601, guid: 4d806e44e53bec14d998558861c6153c, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 907164142}
-    - targetCorrespondingSourceObject: {fileID: 800374605047500601, guid: 4d806e44e53bec14d998558861c6153c, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 907164138}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d806e44e53bec14d998558861c6153c, type: 3}
---- !u!1 &907164137 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 800374605047500601, guid: 4d806e44e53bec14d998558861c6153c, type: 3}
-  m_PrefabInstance: {fileID: 907164136}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &907164138
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 907164137}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f453f694addf4275988fac205bc91968, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineConfiner2D
-  BoundingShape2D: {fileID: 1444368425}
-  Damping: 0.5
-  SlowingDistance: 5
-  OversizeWindow:
-    Enabled: 0
-    MaxWindowSize: 180
-    Padding: 0
-  m_LegacyMaxWindowSize: -2
---- !u!114 &907164142
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 907164137}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 886251e9a18ece04ea8e61686c173e1b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachinePositionComposer
-  CameraDistance: 10
-  DeadZoneDepth: 0
-  Composition:
-    ScreenPosition: {x: 0, y: 0}
-    DeadZone:
-      Enabled: 0
-      Size: {x: 0.1, y: 0.2}
-    HardLimits:
-      Enabled: 0
-      Size: {x: 0.8, y: 0.8}
-      Offset: {x: 0, y: 0}
-  CenterOnActivate: 1
-  TargetOffset: {x: 0, y: 1, z: 0}
-  Damping: {x: 0.6, y: 1, z: 1}
-  Lookahead:
-    Enabled: 1
-    Time: 0.06
-    Smoothing: 0
-    IgnoreY: 0
 --- !u!1 &920916718
 GameObject:
   m_ObjectHideFlags: 0
@@ -1859,7 +1768,6 @@ PolygonCollider2D:
     - - {x: -90.05741, y: 13.29657}
       - {x: -90.05741, y: -28.73225}
       - {x: 36.81856, y: -28.742092}
-      - {x: 65.07573, y: -22.436728}
       - {x: 92, y: -21.32578}
       - {x: 92, y: 13.29657}
   m_UseDelaunayMesh: 0
