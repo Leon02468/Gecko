@@ -1293,7 +1293,7 @@ Transform:
   m_GameObject: {fileID: 1226913999}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 141.67, y: -95.87, z: 0}
+  m_LocalPosition: {x: 141.13, y: -95.87, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1875,7 +1875,7 @@ GameObject:
   m_Layer: 0
   m_Name: LoadToScene2
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -1934,7 +1934,7 @@ Transform:
   m_GameObject: {fileID: 1633031927}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 139.56, y: -91.11, z: 0}
+  m_LocalPosition: {x: 138.14, y: -91.11, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
