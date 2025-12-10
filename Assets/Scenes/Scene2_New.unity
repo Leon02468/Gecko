@@ -118222,19 +118222,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7317930431795108153, guid: 441847a7b8b45a448b1239049d3761d4, type: 3}
       propertyPath: m_Size.x
-      value: 1.0980835
+      value: 1.0982819
       objectReference: {fileID: 0}
     - target: {fileID: 7317930431795108153, guid: 441847a7b8b45a448b1239049d3761d4, type: 3}
       propertyPath: m_Size.y
-      value: 0.67378235
+      value: 0.5964203
       objectReference: {fileID: 0}
     - target: {fileID: 7317930431795108153, guid: 441847a7b8b45a448b1239049d3761d4, type: 3}
       propertyPath: m_Offset.x
-      value: 0.044898987
+      value: 0.044799805
       objectReference: {fileID: 0}
     - target: {fileID: 7317930431795108153, guid: 441847a7b8b45a448b1239049d3761d4, type: 3}
       propertyPath: m_Offset.y
-      value: -0.20075226
+      value: -0.15840912
       objectReference: {fileID: 0}
     - target: {fileID: 8550483165332507349, guid: 441847a7b8b45a448b1239049d3761d4, type: 3}
       propertyPath: player
@@ -118248,6 +118248,22 @@ PrefabInstance:
       propertyPath: homePosition
       value: 
       objectReference: {fileID: 637839017}
+    - target: {fileID: 8918274586543676493, guid: 441847a7b8b45a448b1239049d3761d4, type: 3}
+      propertyPath: m_Size.x
+      value: 0.98386383
+      objectReference: {fileID: 0}
+    - target: {fileID: 8918274586543676493, guid: 441847a7b8b45a448b1239049d3761d4, type: 3}
+      propertyPath: m_Size.y
+      value: 0.23358154
+      objectReference: {fileID: 0}
+    - target: {fileID: 8918274586543676493, guid: 441847a7b8b45a448b1239049d3761d4, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.013339996
+      objectReference: {fileID: 0}
+    - target: {fileID: 8918274586543676493, guid: 441847a7b8b45a448b1239049d3761d4, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.1665039
+      objectReference: {fileID: 0}
     - target: {fileID: 8918274586543676493, guid: 441847a7b8b45a448b1239049d3761d4, type: 3}
       propertyPath: m_IsTrigger
       value: 1
