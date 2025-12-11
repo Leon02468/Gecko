@@ -123,4 +123,21 @@ public class GameManager : MonoBehaviour
         if (currentSlot < 0 || currentSave == null) return;
         SaveSystem.SaveSlot(currentSlot, currentSave);
     }
+
+    public void LoadSceneFromEdge(string sceneName, string spawnPoint = null)
+    {
+        StartCoroutine(LoadSceneRoutine(sceneName, spawnPoint));
+    }
+
+    IEnumerator LoadSceneRoutine(string targetScene, string spawnPointName)
+    {
+        var fader = SceneFader.Instance;
+        if (fader != null) yield return fader.FadeOutRoutine();
+
+        // Start async loading
+        AsyncOperation op = SceneManager.LoadSceneAsync(targetScene);
+        yield return op;
+
+        if (fader != null) yield return fader.FadeInRoutine();
+    }
 }

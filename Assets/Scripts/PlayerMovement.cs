@@ -140,7 +140,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (!canMove) return; // Ignore input if not allowed
 
-        Debug.Log("Move called: " + context);
+        //Debug.Log("Move called: " + context);
 
         if (context.performed)
         {
