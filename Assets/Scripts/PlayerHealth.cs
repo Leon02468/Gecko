@@ -188,8 +188,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         yield return new WaitForSeconds(delayBeforeLoading);
 
         // Show loading screen (if available)
-        if (LoadingScreen.Instance != null)
-            LoadingScreen.Instance.Show();
+        if (SceneFader.Instance != null) yield return SceneFader.Instance.FadeOutRoutine();
 
         // Wait for loading screen duration
         yield return new WaitForSeconds(1.5f);
@@ -217,8 +216,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         }
 
         // Hide loading screen (if available)
-        if (LoadingScreen.Instance != null)
-            LoadingScreen.Instance.Hide();
+        if (SceneFader.Instance != null) yield return SceneFader.Instance.FadeInRoutine();
 
         // Restore HP to at least 1
         //CurrentHP = Mathf.Max(1f, maxHP);

@@ -55,8 +55,8 @@ public class MobAnimation : MonoBehaviour
         }
 
         // Drive animator parameters
-        animator.SetFloat(paramSpeed, Mathf.Abs(velX));
-        animator.SetFloat(paramVelY, velY);
+        //animator.SetFloat(paramSpeed, Mathf.Abs(velX));
+        //animator.SetFloat(paramVelY, velY);
 
         // flip sprite to face movement direction using localScale or flipX
         float facing = Mathf.Sign(transform.localScale.x);
