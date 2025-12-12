@@ -445,7 +445,7 @@ MonoBehaviour:
   attackLayer:
     serializedVersion: 2
     m_Bits: 128
-  useTag: 0
+  useTag: 1
   enemyTag: Enemy
   knockbackForce: 3.75
   knockbackUpMultiplier: 0.4

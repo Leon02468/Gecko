@@ -14,14 +14,14 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioClip openInventory;
     [SerializeField] private AudioClip closeInventory;
     [Header("Player")]
-    [SerializeField] private AudioClip playerWalking;
+    [SerializeField] private AudioClip playerRunning;
     [SerializeField] private AudioClip playerAttacking;
     [SerializeField] private AudioClip playerUseItemToHeal;
     [SerializeField] private AudioClip playerGetHit;
     [Header("Enemy")]
-    [SerializeField] private AudioClip flyingBee;
-    [SerializeField] private AudioClip crawlingCaterpillar;
-    [SerializeField] private AudioClip crawlingAnt;
+    //[SerializeField] private AudioClip flyingBee;
+    //[SerializeField] private AudioClip crawlingCaterpillar;
+    //[SerializeField] private AudioClip crawlingAnt;
     [SerializeField] private AudioClip enemyGetHit;
 
     public static AudioManager Instance { get; private set; }
@@ -65,10 +65,10 @@ public class AudioManager : MonoBehaviour
     public void PlayJumpPad() => PlaySFX(jumpPad);
     public void PlayOpenInventory() => PlaySFX(openInventory);
     public void PlayCloseInventory() => PlaySFX(closeInventory);
-    public void PlayFlyingBee() => PlaySFX(flyingBee);
-    public void PlayCrawlingCaterpillar() => PlaySFX(crawlingCaterpillar);
-    public void PlayCrawlingAnt() => PlaySFX(crawlingAnt);
-    public void PlayPlayerWalking() => PlaySFX(playerWalking);
+    //public void PlayFlyingBee() => PlaySFX(flyingBee);
+    //public void PlayCrawlingCaterpillar() => PlaySFX(crawlingCaterpillar);
+    //public void PlayCrawlingAnt() => PlaySFX(crawlingAnt);
+    public void PlayPlayerRunning() => PlaySFX(playerRunning);
     public void PlayPlayerAttacking() => PlaySFX(playerAttacking);
     public void PlayPlayerUseItemToHeal() => PlaySFX(playerUseItemToHeal);
     public void PlayPlayerGetHit() => PlaySFX(playerGetHit);
