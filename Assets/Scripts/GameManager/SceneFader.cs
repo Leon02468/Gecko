@@ -35,7 +35,7 @@ public class SceneFader : MonoBehaviour
         {
             t += Time.unscaledDeltaTime;
             canvasGroup.alpha = Mathf.Clamp01(t / fadeDuration);
-            Debug.Log($"Fading out: {canvasGroup.alpha}");
+            //Debug.Log($"Fading out: {canvasGroup.alpha}");
             yield return null;
         }
     }
@@ -48,7 +48,7 @@ public class SceneFader : MonoBehaviour
         {
             t += Time.deltaTime;
             canvasGroup.alpha = Mathf.Lerp(1, 0, t / fadeDuration);
-            Debug.Log($"Fading in: {canvasGroup.alpha}");
+            //Debug.Log($"Fading in: {canvasGroup.alpha}");
             yield return null;
         }
     }

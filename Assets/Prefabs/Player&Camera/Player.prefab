@@ -14,13 +14,13 @@ GameObject:
   - component: {fileID: 3734103489198033973}
   - component: {fileID: 7486660351285044737}
   - component: {fileID: 5382471017814658584}
-  - component: {fileID: 5633793904037498590}
   - component: {fileID: 4181520666843953906}
   - component: {fileID: 7216723329263934853}
   - component: {fileID: 6087293975906758217}
   - component: {fileID: 4596539409169572324}
   - component: {fileID: 6304335347263716015}
   - component: {fileID: 6391240747424630955}
+  - component: {fileID: 9147676243700888007}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -276,7 +276,7 @@ MonoBehaviour:
     m_ActionName: 'Player/Jump[/Keyboard/space]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5633793904037498590}
+      - m_Target: {fileID: 9147676243700888007}
         m_TargetAssemblyTypeName: PlayerAttack, Assembly-CSharp
         m_MethodName: OnAttack
         m_Mode: 0
@@ -292,7 +292,7 @@ MonoBehaviour:
     m_ActionName: 'Player/GroundAttack[/Keyboard/x]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5633793904037498590}
+      - m_Target: {fileID: 9147676243700888007}
         m_TargetAssemblyTypeName: PlayerAttack, Assembly-CSharp
         m_MethodName: OnTopAttack
         m_Mode: 0
@@ -308,9 +308,9 @@ MonoBehaviour:
     m_ActionName: 'Player/TopAttack[/Keyboard/upArrow,/Keyboard/x]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5633793904037498590}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerAttack, Assembly-CSharp
-        m_MethodName: OnDownAttack
+        m_MethodName: 
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -382,6 +382,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 8de8c94a-eb0b-4bfd-b2c8-f965f4c19454
     m_ActionName: 'Player/Hotbar5[/Keyboard/5]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ab768675-303f-4ebe-b988-8eed914e0321
+    m_ActionName: 'Player/Pause[/Keyboard/escape]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -418,67 +422,6 @@ MonoBehaviour:
   fallSpeedMultiplier: 2
   shortHopWindow: 0.2
   canMove: 1
---- !u!114 &5633793904037498590
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2817489971918301779}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53b964f8f3f45064781d69e1b1e7eb32, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerAttack
-  sideAttackBoxSize: {x: 2, y: 1}
-  sideAttackRange: 1
-  sideAttackCooldown: 0.5
-  sideAttackDamage: 1
-  topAttackBoxSize: {x: 1, y: 2}
-  topAttackRange: 1.25
-  topAttackCooldown: 0.5
-  topAttackDamage: 1
-  downAttackBoxSize: {x: 1.75, y: 0.75}
-  downAttackRange: 1.25
-  downAttackCooldown: 0.4
-  downAttackDamage: 1
-  attackLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  useTag: 0
-  enemyTag: Enemy
-  knockbackForce: 3.75
-  knockbackUpMultiplier: 0.4
-  downAttackKnockbackMultiplier: 1.5
-  downAttackKnockbackHorizontal: 0.8
-  downAttackKnockbackVertical: -0.6
-  downAttackBoost: 10
-  downAttackHorizontalMultiplier: 1.25
-  downAttackLockDuration: 0.175
-  downAttackHitboxDuration: 0.18
-  downAttackHitboxInterval: 0.02
-  downAttackBounce: 10
-  downAttackBounceLock: 0.04
-  downAttackChargeDuration: 0.15
-  freezeVelocityDuringCharge: 1
-  chargeFallSpeedMultiplier: 0
-  allowHorizontalControlDuringCharge: 0
-  chargeHorizontalControlMultiplier: 0.5
-  grantInvincibilityDuringDownAttack: 1
-  downAttackInvincibilityDuration: 0.5
-  downAttackRequireAir: 1
-  thrustForce: 12
-  thrustLockDuration: 0.12
-  thrustHitboxDuration: 0.3
-  thrustHitboxInterval: 0.02
-  thrustUseSideBox: 1
-  thrustBoxSize: {x: 1, y: 1}
-  thrustBoxRange: 1
-  airAttackTrigger: JumpAttack
-  downAttackTrigger: JumpKick
-  flashDuration: 0.15
-  animator: {fileID: 0}
-  sideComboWindow: 0.35
 --- !u!114 &4181520666843953906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -494,7 +437,7 @@ MonoBehaviour:
   maxHP: 6
   destroyOnDeath: 1
   useInvulnerability: 1
-  invulnerabilityDuration: 0.25
+  invulnerabilityDuration: 1
   velocityLockDuration: 0.12
   allowButtonMashToEscape: 1
   mashCountToEscape: 8
@@ -592,6 +535,67 @@ MonoBehaviour:
   interactLayer:
     serializedVersion: 2
     m_Bits: 1536
+--- !u!114 &9147676243700888007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2817489971918301779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53b964f8f3f45064781d69e1b1e7eb32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerAttack
+  sideAttackBoxSize: {x: 2.25, y: 1.5}
+  sideAttackRange: 1.5
+  sideAttackCooldown: 0.15
+  sideAttackDamage: 1
+  topAttackBoxSize: {x: 1, y: 2}
+  topAttackRange: 1.5
+  topAttackCooldown: 0.5
+  topAttackDamage: 1
+  downAttackBoxSize: {x: 1.75, y: 0.75}
+  downAttackRange: 1.5
+  downAttackCooldown: 0.4
+  downAttackDamage: 1
+  attackLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  useTag: 0
+  enemyTag: Enemy
+  knockbackForce: 3
+  knockbackUpMultiplier: 0.8
+  downAttackKnockbackMultiplier: 3.5
+  downAttackKnockbackHorizontal: 0.3
+  downAttackKnockbackVertical: 0.2
+  downAttackBoost: 10
+  downAttackHorizontalMultiplier: 1.25
+  downAttackLockDuration: 0.25
+  downAttackHitboxDuration: 0.18
+  downAttackHitboxInterval: 0.02
+  downAttackBounce: 12
+  downAttackBounceLock: 0.04
+  downAttackChargeDuration: 0.225
+  freezeVelocityDuringCharge: 1
+  chargeFallSpeedMultiplier: 0.1
+  allowHorizontalControlDuringCharge: 1
+  chargeHorizontalControlMultiplier: 0.85
+  grantInvincibilityDuringDownAttack: 1
+  downAttackInvincibilityDuration: 0.5
+  downAttackRequireAir: 1
+  thrustForce: 12
+  thrustLockDuration: 0.12
+  thrustHitboxDuration: 0.5
+  thrustHitboxInterval: 0.02
+  thrustUseSideBox: 1
+  thrustBoxSize: {x: 1, y: 1}
+  thrustBoxRange: 1.5
+  airAttackTrigger: JumpAttack
+  downAttackTrigger: 
+  flashDuration: 0.15
+  animator: {fileID: 7216723329263934853}
+  sideComboWindow: 0.35
 --- !u!1 &2853810441704381040
 GameObject:
   m_ObjectHideFlags: 0

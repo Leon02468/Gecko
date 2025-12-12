@@ -20,6 +20,9 @@ public class GameManager : MonoBehaviour
     public SceneFader faderPrefab;
     private SceneFader faderInstance;
 
+    public GameObject pauseMenuPrefab;
+    PauseMenuController pauseMenuInstance;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -72,7 +75,6 @@ public class GameManager : MonoBehaviour
     {
         if (!SaveSystem.SlotExists(slot))
         {
-            Debug.LogWarning($"Slot {slot} doesn't exist. Starting new instead.");
             StartNewGame(slot);
             return;
         }
@@ -139,5 +141,52 @@ public class GameManager : MonoBehaviour
         yield return op;
 
         if (fader != null) yield return fader.FadeInRoutine();
+    }
+
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        string name = scene.name;
+        // Compare with the gameplay scene name you already have in GameManager
+        if (name.StartsWith("Scene")) // or use gameplayScene field name
+        {
+            SpawnPauseMenu();
+        }
+        else
+        {
+            DestroyPauseMenu(); // safe fallback
+        }
+    }
+
+    void SpawnPauseMenu()
+    {
+        if (pauseMenuPrefab == null) return;
+        if (pauseMenuInstance != null) return; // already exists
+
+        // Instantiate under no parent so it's top-level UI. If you want it inside a Canvas, parent appropriately.
+        GameObject go = Instantiate(pauseMenuPrefab);
+        pauseMenuInstance = go.GetComponent<PauseMenuController>();
+
+        // Optionally set name and DontDestroyOnLoad so it persists through subscene loads:
+        go.name = "PauseMenu_Instance";
+        DontDestroyOnLoad(go);
+
+        // Ensure the pause menu is initially hidden (prefab already handles this).
+    }
+
+    void DestroyPauseMenu()
+    {
+        if (pauseMenuInstance == null) return;
+        Destroy(pauseMenuInstance.gameObject);
+        pauseMenuInstance = null;
     }
 }
