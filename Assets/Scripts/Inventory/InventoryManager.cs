@@ -44,8 +44,8 @@ public class InventoryManager : MonoBehaviour
 
         // Input actions (keep your existing bindings)
         inputActions = new PlayerControls();
-        inputActions.Player.Inventory.performed += ToggleInventory;
-        inputActions.Inventory.CloseInventory.performed += ToggleInventory;
+        inputActions.Player.Inventory.performed += ctx => ToggleInventory();
+        inputActions.Inventory.CloseInventory.performed += ctx => ToggleInventory();
         inputActions.Inventory.NavigateLeft.performed += ctx => SelectPreviousSlot();
         inputActions.Inventory.NavigateRight.performed += ctx => SelectNextSlot();
         inputActions.Inventory.NavigateUp.performed += ctx => SelectSlotAbove();
@@ -100,7 +100,7 @@ public class InventoryManager : MonoBehaviour
     }
 
     // ========== Inventory UI toggle ==========
-    private void ToggleInventory(InputAction.CallbackContext context)
+    private void ToggleInventory()
     {
         if (inventoryPanel == null) return;
 
@@ -109,6 +109,10 @@ public class InventoryManager : MonoBehaviour
 
         if (!isActive)
         {
+            // Play open inventory sound
+            if (AudioManager.Instance != null)
+                AudioManager.Instance.PlayOpenInventory();
+
             //Show amount of money when open inventory
             MoneyManager.Instance.ShowMoneyUI();
 
@@ -117,25 +121,29 @@ public class InventoryManager : MonoBehaviour
             //this one just to make sure player input is disable 
             if (playerInput != null) playerInput.enabled = false;
 
-            //inputActions.Player.Disable();
-            playerMovement.canMove = false; //disable player movement
+            inputActions.Player.Disable(); //disable input for player
             inputActions.Inventory.Enable(); //enable input for inventory
-            
+
+            playerMovement.canMove = false; //disable player movement
             SelectSlot(selectedIndex);
         }
         else
         {
-            //Stop showing amount of money when close inventorySo
+            // Play close inventory sound
+            if (AudioManager.Instance != null)
+                AudioManager.Instance.PlayCloseInventory();
+
+            //Stop showing amount of money when close inventory
             MoneyManager.Instance.HideMoneyUI();
 
             //time continue after player close inventory
             Time.timeScale = 1f;
             if (playerInput != null) playerInput.enabled = true;
 
-            //inputActions.Player.Enable();
-            playerMovement.canMove = true; //enable player movement again
+            inputActions.Player.Enable(); //enable input for player
             inputActions.Inventory.Disable(); //disable input for inventory
-
+            
+            playerMovement.canMove = true; //enable player movement again
             //save when closing inventory just to maker sure for persistence
             SaveInventory();
         }

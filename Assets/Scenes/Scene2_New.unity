@@ -305,6 +305,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3617697420270833698, guid: ec365e5594d46304ba1d74241921edbc, type: 3}
+      propertyPath: maxHP
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6378160897546669699, guid: ec365e5594d46304ba1d74241921edbc, type: 3}
       propertyPath: m_Name
       value: Mob_Ant (2)
@@ -1315,6 +1319,53 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 53830888}
   m_CullTransparentMesh: 1
+--- !u!1 &57529975
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 57529977}
+  - component: {fileID: 57529976}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &57529976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 57529975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b5e535484de3f740816163a791f2ec5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AudioManager
+  musicSource: {fileID: 0}
+  sfxSource: {fileID: 0}
+  background: {fileID: 0}
+--- !u!4 &57529977
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 57529975}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 50.05811, y: -139.78252, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &80193999
 GameObject:
   m_ObjectHideFlags: 0
@@ -6488,6 +6539,17 @@ MonoBehaviour:
   flashDuration: 0.15
   animator: {fileID: 532680035}
   sideComboWindow: 0.35
+--- !u!114 &532680038 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5382471017814658584, guid: a7a06756987218f41976d5a3fadcae6f, type: 3}
+  m_PrefabInstance: {fileID: 532680033}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 532680034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a0fc523be03a8c498a4ae7dcd6a7b02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
 --- !u!1 &540174676
 GameObject:
   m_ObjectHideFlags: 0
@@ -123578,6 +123640,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3617697420270833698, guid: ec365e5594d46304ba1d74241921edbc, type: 3}
+      propertyPath: maxHP
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4800692495220675065, guid: ec365e5594d46304ba1d74241921edbc, type: 3}
       propertyPath: patrolDistance
       value: 15
@@ -136204,6 +136270,7 @@ GameObject:
   - component: {fileID: 2131864642}
   - component: {fileID: 2131864641}
   - component: {fileID: 2131864643}
+  - component: {fileID: 2131864644}
   m_Layer: 0
   m_Name: Mushroom
   m_TagString: Untagged
@@ -136431,6 +136498,103 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57289b2be090b30439906b7c3abe90ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::JumpPad
+--- !u!82 &2131864644
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2131864635}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &2137235406 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 831866289289430448, guid: 3c8946373101fca478315ee7bc04caa2, type: 3}
@@ -136619,6 +136783,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1159975504691297600, guid: 3c8946373101fca478315ee7bc04caa2, type: 3}
+      propertyPath: playerMovement
+      value: 
+      objectReference: {fileID: 532680038}
     - target: {fileID: 1159975504691297600, guid: 3c8946373101fca478315ee7bc04caa2, type: 3}
       propertyPath: 'itemSlot.Array.data[0]'
       value: 
@@ -137883,3 +138051,4 @@ SceneRoots:
   - {fileID: 576728722}
   - {fileID: 637839017}
   - {fileID: 797087055}
+  - {fileID: 57529977}
