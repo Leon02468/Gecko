@@ -361,6 +361,10 @@ public void UseItem()
         if (playerHealth != null)
         {
             playerHealth.Heal(item.healAmount);
+
+            // Play heal sound effect
+            AudioManager.Instance.PlayPlayerUseItemToHeal();
+
             quantity--;
             if (quantity <= 0) ClearSlot();
             UpdateSlotUI();

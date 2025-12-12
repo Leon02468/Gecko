@@ -53,6 +53,31 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    // Start running sfx
+    public void StartPlayerRunning()
+    {
+        if (sfxSource != null && playerRunning != null)
+        {
+            if (!sfxSource.isPlaying || sfxSource.clip != playerRunning)
+            {
+                sfxSource.clip = playerRunning;
+                sfxSource.loop = true;
+                sfxSource.Play();
+            }
+        }
+    }
+    //when stop runnning -> stop sfx
+    public void StopPlayerRunning()
+    {
+        if (sfxSource != null && sfxSource.clip == playerRunning)
+        {
+            sfxSource.Stop();
+            sfxSource.clip = null;
+            sfxSource.loop = false;
+        }
+    }
+
+
     public void PlaySFX(AudioClip clip)
     {
         if (sfxSource != null && clip != null)

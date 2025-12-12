@@ -68,6 +68,8 @@ public class PlayerMovement : MonoBehaviour
     public float shortHopWindow = 0.2f;
 
     public bool canMove = true; //to check in case player in dialogue so they can not move
+    private bool isRunningAudioPlaying = false; //to check if player is moving
+
 
     void Awake()
     {
@@ -117,6 +119,24 @@ public class PlayerMovement : MonoBehaviour
 
         // optional debug
         // Debug.Log(rb.linearVelocity);
+
+        // Play running audio if moving and grounded
+        if (IsGrounded && Mathf.Abs(horizontalMovement) > 0.1f)
+        {
+            if (!isRunningAudioPlaying)
+            {
+                AudioManager.Instance.StartPlayerRunning();
+                isRunningAudioPlaying = true;
+            }
+        }
+        else
+        {
+            if (isRunningAudioPlaying)
+            {
+                AudioManager.Instance.StopPlayerRunning();
+                isRunningAudioPlaying = false;
+            }
+        }
     }
 
     private void Gravity()
