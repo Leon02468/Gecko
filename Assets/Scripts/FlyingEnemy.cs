@@ -6,12 +6,25 @@ public class FlyingEnemy : MonoBehaviour
 {
     public Transform player;
     public Transform homePosition;
-    public Collider2D chaseZone;  // drag your ChaseZone collider here
+    public Collider2D chaseZone;  // ChaseZone collider here
     public float updateRate = 0.5f;
 
     private AIDestinationSetter destinationSetter;
     private AIPath aiPath;
     private bool playerInZone = false;
+
+
+    [SerializeField] private AudioClip flyingSound;
+    private AudioSource audioSource;
+    [SerializeField] private float soundRange = 10f;
+
+    private void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+        audioSource.clip = flyingSound;
+        audioSource.loop = true;
+    }
 
     private void Start()
     {
@@ -29,6 +42,17 @@ public class FlyingEnemy : MonoBehaviour
             playerInZone = chaseZone.bounds.Contains(player.position);
         }
 
+        // Play or stop flying sound based on playerInZone
+        if (playerInZone)
+        {
+            if (!audioSource.isPlaying)
+                audioSource.Play();
+        }
+        else
+        {
+            if (audioSource.isPlaying)
+                audioSource.Stop();
+        }
 
         if (aiPath.desiredVelocity.x >= 0.01f)
         {

@@ -20,7 +20,8 @@ GameObject:
   - component: {fileID: 4596539409169572324}
   - component: {fileID: 6304335347263716015}
   - component: {fileID: 6391240747424630955}
-  - component: {fileID: 9147676243700888007}
+  - component: {fileID: 2753834483696298020}
+  - component: {fileID: 3698287893548482071}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -276,7 +277,7 @@ MonoBehaviour:
     m_ActionName: 'Player/Jump[/Keyboard/space]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 9147676243700888007}
+      - m_Target: {fileID: 2753834483696298020}
         m_TargetAssemblyTypeName: PlayerAttack, Assembly-CSharp
         m_MethodName: OnAttack
         m_Mode: 0
@@ -292,7 +293,7 @@ MonoBehaviour:
     m_ActionName: 'Player/GroundAttack[/Keyboard/x]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 9147676243700888007}
+      - m_Target: {fileID: 2753834483696298020}
         m_TargetAssemblyTypeName: PlayerAttack, Assembly-CSharp
         m_MethodName: OnTopAttack
         m_Mode: 0
@@ -382,10 +383,6 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 8de8c94a-eb0b-4bfd-b2c8-f965f4c19454
     m_ActionName: 'Player/Hotbar5[/Keyboard/5]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: ab768675-303f-4ebe-b988-8eed914e0321
-    m_ActionName: 'Player/Pause[/Keyboard/escape]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -535,7 +532,7 @@ MonoBehaviour:
   interactLayer:
     serializedVersion: 2
     m_Bits: 1536
---- !u!114 &9147676243700888007
+--- !u!114 &2753834483696298020
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -596,6 +593,18 @@ MonoBehaviour:
   flashDuration: 0.15
   animator: {fileID: 7216723329263934853}
   sideComboWindow: 0.35
+--- !u!114 &3698287893548482071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2817489971918301779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0b104122fc76d742a9fb75aa0ff0eef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpawnPointSetter
 --- !u!1 &2853810441704381040
 GameObject:
   m_ObjectHideFlags: 0

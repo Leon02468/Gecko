@@ -78,7 +78,7 @@ public class PlayerAttack : MonoBehaviour
     public bool downAttackRequireAir = true;
 
     [Header("Jump/Thrust Options")]
-    [Tooltip("Horizontal thrust applied for the ground second attack (Attack2) ó applied as velocity lock")]
+    [Tooltip("Horizontal thrust applied for the ground second attack (Attack2) ÅEapplied as velocity lock")]
     public float thrustForce = 12f;
     [Tooltip("Duration to lock player velocity when thrusting")]
     public float thrustLockDuration = 0.12f;
@@ -172,8 +172,11 @@ public class PlayerAttack : MonoBehaviour
         // If not waiting for combo, respect cooldown
         if (!comboWaiting && Time.time < lastSideAttackTime + sideAttackCooldown)
             return;
-
         bool isAir = playerMovement != null && !playerMovement.IsGrounded;
+
+        // Play attack sound
+        if (AudioManager.Instance != null)
+            AudioManager.Instance.PlayPlayerAttacking();
 
         // If airborne, do single air attack and block further air attacks until cooldown
         if (isAir)
@@ -446,6 +449,14 @@ public class PlayerAttack : MonoBehaviour
             // Don't apply normal damage since InterruptChargeAttack handles it
             return;
         }
+
+        // Play enemy get hit sound if the target is an enemy 
+        if (AudioManager.Instance != null && col.CompareTag("Enemy"))
+        {
+            Debug.Log("Enemy hit sound should play now!");
+            AudioManager.Instance.PlayEnemyGetHit();
+        }
+           
 
         // Normal damage handling
         var dmg = col.GetComponentInParent<IDamageable>();
