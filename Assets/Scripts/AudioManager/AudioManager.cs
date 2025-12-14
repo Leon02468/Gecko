@@ -50,6 +50,11 @@ public class AudioManager : MonoBehaviour
         {
             musicSource.clip = background;
             musicSource.Play();
+            Debug.Log($"AudioManager: Playing background music - {background.name}");
+        }
+        else
+        {
+            Debug.LogWarning($"AudioManager: Cannot play music. musicSource={musicSource}, background={background}");
         }
     }
 
@@ -83,6 +88,11 @@ public class AudioManager : MonoBehaviour
         if (sfxSource != null && clip != null)
         {
             sfxSource.PlayOneShot(clip);
+            Debug.Log($"AudioManager: Playing SFX - {clip.name}");
+        }
+        else
+        {
+            Debug.LogWarning($"AudioManager: Cannot play SFX. sfxSource={sfxSource}, clip={clip}");
         }
     }
 
