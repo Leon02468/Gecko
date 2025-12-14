@@ -12,10 +12,17 @@ public class CameraFollow : MonoBehaviour
     [Tooltip("Smooth time. Set to 0 for no smoothing.")]
     public float smoothTime = 0.04f;
 
+    public Transform BG;
+
     private Vector3 velocity;
 
     void LateUpdate()
     {
+        if (BG != null)
+        {
+            BG.position = new Vector3(transform.position.x, transform.position.y, BG.position.z);
+        }
+
         if (target == null) return;
 
         Vector3 targetPos = target.position + offset;

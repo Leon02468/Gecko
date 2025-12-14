@@ -449,7 +449,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d702c4d130cce9c44a3604fcf067081b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MobHealth
-  maxHP: 50
+  maxHP: 3
   destroyOnDeath: 1
   deathDelay: 0.1
   useInvulnerability: 0
@@ -4322,7 +4322,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d702c4d130cce9c44a3604fcf067081b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MobHealth
-  maxHP: 50
+  maxHP: 3
   destroyOnDeath: 1
   deathDelay: 0.1
   useInvulnerability: 0
@@ -4743,7 +4743,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d702c4d130cce9c44a3604fcf067081b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MobHealth
-  maxHP: 50
+  maxHP: 3
   destroyOnDeath: 1
   deathDelay: 0.1
   useInvulnerability: 0
@@ -9571,7 +9571,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d702c4d130cce9c44a3604fcf067081b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MobHealth
-  maxHP: 50
+  maxHP: 3
   destroyOnDeath: 1
   deathDelay: 0.1
   useInvulnerability: 0
@@ -15179,7 +15179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d702c4d130cce9c44a3604fcf067081b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MobHealth
-  maxHP: 50
+  maxHP: 3
   destroyOnDeath: 1
   deathDelay: 0.1
   useInvulnerability: 0
@@ -21419,7 +21419,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d702c4d130cce9c44a3604fcf067081b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MobHealth
-  maxHP: 50
+  maxHP: 3
   destroyOnDeath: 1
   deathDelay: 0.1
   useInvulnerability: 0
@@ -23141,7 +23141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d702c4d130cce9c44a3604fcf067081b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MobHealth
-  maxHP: 50
+  maxHP: 3
   destroyOnDeath: 1
   deathDelay: 0.1
   useInvulnerability: 0
@@ -27748,6 +27748,26 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 4bb55de7-bb80-4aa3-9323-ee5b1203c72e
     m_ActionName: 'Player/Interact[/Keyboard/e]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2b7118b5-8d99-4a07-b2a3-c382226a4f66
+    m_ActionName: 'Player/Hotbar1[/Keyboard/1]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c9e94550-1faf-4d1e-aae5-7a564df9fc48
+    m_ActionName: 'Player/Hotbar2[/Keyboard/2]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: dc84c6b5-1dc9-44b8-a003-adaa9a600a71
+    m_ActionName: 'Player/Hotbar3[/Keyboard/3]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: bec125a7-01fc-4bc0-8509-1ae5f56b70a1
+    m_ActionName: 'Player/Hotbar4[/Keyboard/4]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8de8c94a-eb0b-4bfd-b2c8-f965f4c19454
+    m_ActionName: 'Player/Hotbar5[/Keyboard/5]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -27857,7 +27877,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a88c1771d3b2fe4db720fa7d39bcdb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
-  maxHP: 50
+  maxHP: 6
   destroyOnDeath: 1
   useInvulnerability: 1
   invulnerabilityDuration: 1
@@ -28812,7 +28832,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d702c4d130cce9c44a3604fcf067081b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MobHealth
-  maxHP: 50
+  maxHP: 3
   destroyOnDeath: 1
   deathDelay: 0.1
   useInvulnerability: 0
@@ -29777,7 +29797,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d702c4d130cce9c44a3604fcf067081b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MobHealth
-  maxHP: 50
+  maxHP: 3
   destroyOnDeath: 1
   deathDelay: 0.1
   useInvulnerability: 0
@@ -30142,7 +30162,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d702c4d130cce9c44a3604fcf067081b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MobHealth
-  maxHP: 50
+  maxHP: 3
   destroyOnDeath: 1
   deathDelay: 0.1
   useInvulnerability: 0
