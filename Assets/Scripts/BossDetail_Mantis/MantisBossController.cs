@@ -405,6 +405,10 @@ public class MantisBossController : MonoBehaviour, IDamageable
     public void TakeDamageFromPlayer(float dmg)
     {
         if (dead) return;
+        
+        // Play enemy hit sound
+        AudioManager.Instance?.PlayEnemyGetHit();
+        
         currentHP -= Mathf.RoundToInt(dmg); // boss HP is integer by spec
         currentHP = Mathf.Clamp(currentHP, 0, maxHP);
 

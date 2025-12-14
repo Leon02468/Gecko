@@ -75,6 +75,9 @@ public class MobHealth : MonoBehaviour, IDamageable
 
         CurrentHP -= amount;
         OnDamaged?.Invoke();
+        
+        // Play enemy hit sound
+        AudioManager.Instance?.PlayEnemyGetHit();
 
         if (knockback.HasValue)
             ApplyKnockback(knockback.Value);
