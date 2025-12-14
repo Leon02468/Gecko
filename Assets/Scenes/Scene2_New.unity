@@ -313,6 +313,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mob_Ant (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 7867597140911010589, guid: ec365e5594d46304ba1d74241921edbc, type: 3}
+      propertyPath: m_Size.x
+      value: 1.684063
+      objectReference: {fileID: 0}
+    - target: {fileID: 7867597140911010589, guid: ec365e5594d46304ba1d74241921edbc, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.1262722
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6053,11 +6061,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2142017325046519243, guid: a7a06756987218f41976d5a3fadcae6f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.6
+      value: 175.91
       objectReference: {fileID: 0}
     - target: {fileID: 2142017325046519243, guid: a7a06756987218f41976d5a3fadcae6f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -103.2
+      value: -167.94
       objectReference: {fileID: 0}
     - target: {fileID: 2142017325046519243, guid: a7a06756987218f41976d5a3fadcae6f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6093,7 +6101,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2753834483696298020, guid: a7a06756987218f41976d5a3fadcae6f, type: 3}
       propertyPath: useTag
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2753834483696298020, guid: a7a06756987218f41976d5a3fadcae6f, type: 3}
+      propertyPath: attackLayer.m_Bits
+      value: 384
       objectReference: {fileID: 0}
     - target: {fileID: 2817489971918301779, guid: a7a06756987218f41976d5a3fadcae6f, type: 3}
       propertyPath: m_Name
@@ -98325,9 +98337,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: BeeFlying (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6544793489801370921, guid: 441847a7b8b45a448b1239049d3761d4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7317930431795108153, guid: 441847a7b8b45a448b1239049d3761d4, type: 3}
+      propertyPath: m_Size.x
+      value: 1.0736694
+      objectReference: {fileID: 0}
     - target: {fileID: 7317930431795108153, guid: 441847a7b8b45a448b1239049d3761d4, type: 3}
       propertyPath: m_Size.y
       value: 0.9573059
+      objectReference: {fileID: 0}
+    - target: {fileID: 7317930431795108153, guid: 441847a7b8b45a448b1239049d3761d4, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.036209106
       objectReference: {fileID: 0}
     - target: {fileID: 7317930431795108153, guid: 441847a7b8b45a448b1239049d3761d4, type: 3}
       propertyPath: m_Offset.y
@@ -122546,11 +122570,11 @@ PrefabInstance:
       objectReference: {fileID: 789929750}
     - target: {fileID: 1855816962226649163, guid: 4d806e44e53bec14d998558861c6153c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.6
+      value: 175.91
       objectReference: {fileID: 0}
     - target: {fileID: 1855816962226649163, guid: 4d806e44e53bec14d998558861c6153c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -102.2
+      value: -166.94
       objectReference: {fileID: 0}
     - target: {fileID: 1855816962226649163, guid: 4d806e44e53bec14d998558861c6153c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -124557,7 +124581,7 @@ Transform:
   m_GameObject: {fileID: 1470782380}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.968477, y: -102.2, z: -10}
+  m_LocalPosition: {x: 175.91, y: -166.94, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -126164,6 +126188,10 @@ PrefabInstance:
     - target: {fileID: 6544793489801370921, guid: 441847a7b8b45a448b1239049d3761d4, type: 3}
       propertyPath: m_Name
       value: BeeFlying (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6544793489801370921, guid: 441847a7b8b45a448b1239049d3761d4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7317930431795108153, guid: 441847a7b8b45a448b1239049d3761d4, type: 3}
       propertyPath: m_Size.y

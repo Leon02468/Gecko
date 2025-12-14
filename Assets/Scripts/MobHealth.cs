@@ -73,6 +73,10 @@ public class MobHealth : MonoBehaviour, IDamageable
         if (amount <= 0) return;
         if (useInvulnerability && isInvulnerable) return;
 
+        // Play enemy get hit SFX
+        if (AudioManager.Instance != null)
+            AudioManager.Instance.PlayEnemyGetHit();
+
         CurrentHP -= amount;
         OnDamaged?.Invoke();
 
@@ -88,6 +92,7 @@ public class MobHealth : MonoBehaviour, IDamageable
         if (useInvulnerability)
             StartCoroutine(InvulnerabilityCoroutine(invulnerabilityDuration));
     }
+
 
     private IEnumerator ReenableAIPathAfterDelay(AIPath aiPath, float delay)
     {
