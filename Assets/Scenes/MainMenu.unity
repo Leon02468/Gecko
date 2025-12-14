@@ -1493,7 +1493,7 @@ MonoBehaviour:
   slotCount: 3
   mainMenuScene: MainMenu
   introScene: GameIntro
-  gameScene: Scene1_New
+  gameScene: Scene2_New
   currentSlot: -1
   faderPrefab: {fileID: 5652969165510723570, guid: c8c82c115c2e80243a759e65b411d9bf, type: 3}
   pauseMenuPrefab: {fileID: 5562617628413018228, guid: 241b54bea588bdb40b8d0d54fd9ea24c, type: 3}
