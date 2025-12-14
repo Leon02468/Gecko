@@ -450,14 +450,6 @@ public class PlayerAttack : MonoBehaviour
             return;
         }
 
-        // Play enemy get hit sound if the target is an enemy 
-        if (AudioManager.Instance != null && col.CompareTag("Enemy"))
-        {
-            Debug.Log("Enemy hit sound should play now!");
-            AudioManager.Instance.PlayEnemyGetHit();
-        }
-           
-
         // Normal damage handling
         var dmg = col.GetComponentInParent<IDamageable>();
         if (dmg != null)
