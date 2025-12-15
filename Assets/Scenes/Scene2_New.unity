@@ -6203,37 +6203,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7134767756026115109, guid: a8268ad42ca059747a075a9a4d40b1f5, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 529173552}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a8268ad42ca059747a075a9a4d40b1f5, type: 3}
---- !u!1 &529173551 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7134767756026115109, guid: a8268ad42ca059747a075a9a4d40b1f5, type: 3}
-  m_PrefabInstance: {fileID: 529173550}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &529173552
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 529173551}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b5411e8b033ada458bf39378b2d6a3e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DamageOnContact
-  targetLayers:
-    serializedVersion: 2
-    m_Bits: 64
-  damage: 1
-  knockbackForce: 6
-  knockbackUpMultiplier: 0.4
-  oneHitPerStay: 1
-  debugLogs: 0
-  allowSendMessageFallback: 1
 --- !u!1 &529403190
 GameObject:
   m_ObjectHideFlags: 0
@@ -98894,7 +98865,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 7.895752, y: 4.416176}
+  m_Offset: {x: 8.587952, y: 4.416176}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -98904,7 +98875,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 45.419952, y: 15.524521}
+  m_Size: {x: 49.818268, y: 15.524521}
   m_EdgeRadius: 0
 --- !u!4 &824516079
 Transform:
@@ -127014,7 +126985,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 2.0928726, y: 3.2108612}
+  m_Offset: {x: -2.1456146, y: 3.2108612}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -127024,7 +126995,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 33.814194, y: 13.664246}
+  m_Size: {x: 42.29117, y: 13.664246}
   m_EdgeRadius: 0
 --- !u!224 &1657960446 stripped
 RectTransform:
@@ -128350,7 +128321,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 2.0928726, y: 3.2108612}
+  m_Offset: {x: -2.4454498, y: 3.2108612}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -128360,7 +128331,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 33.814194, y: 13.664246}
+  m_Size: {x: 42.89084, y: 13.664246}
   m_EdgeRadius: 0
 --- !u!1 &1856785743
 GameObject:
@@ -137806,37 +137777,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7134767756026115109, guid: a8268ad42ca059747a075a9a4d40b1f5, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 3846752775723814537}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a8268ad42ca059747a075a9a4d40b1f5, type: 3}
---- !u!1 &3846752775723814536 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7134767756026115109, guid: a8268ad42ca059747a075a9a4d40b1f5, type: 3}
-  m_PrefabInstance: {fileID: 3846752775723814535}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &3846752775723814537
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3846752775723814536}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b5411e8b033ada458bf39378b2d6a3e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DamageOnContact
-  targetLayers:
-    serializedVersion: 2
-    m_Bits: 64
-  damage: 1
-  knockbackForce: 6
-  knockbackUpMultiplier: 0.4
-  oneHitPerStay: 1
-  debugLogs: 0
-  allowSendMessageFallback: 1
 --- !u!1001 &4086765967994137158
 PrefabInstance:
   m_ObjectHideFlags: 0

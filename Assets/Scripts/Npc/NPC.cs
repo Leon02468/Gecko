@@ -81,8 +81,6 @@ public class NPC : MonoBehaviour, IInteractable
         if (playerMovement)
         {
             playerMovement.canMove = false; //use flag to disable movement
-            if (playerMovement.rb != null)
-                playerMovement.rb.linearVelocity = Vector2.zero;
         }
 
         StartCoroutine(TypeLine());

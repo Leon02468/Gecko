@@ -358,7 +358,7 @@ MonoBehaviour:
   OnDead:
     m_PersistentCalls:
       m_Calls: []
-  moneyDropPrefab: {fileID: 0}
+  moneyDropPrefab: {fileID: 5749009977198121409, guid: aa52e5a187ffab04db6c736d1c791742, type: 3}
   moneyAmount: 1
 --- !u!95 &5895798123395271229
 Animator:
@@ -555,3 +555,4 @@ MonoBehaviour:
   player: {fileID: 2142017325046519243, guid: a7a06756987218f41976d5a3fadcae6f, type: 3}
   soundZone: {fileID: 0}
   crawlingSound: {fileID: 8300000, guid: eaae916773667ec48aa291adb4efae3a, type: 3}
+  jumpSfx: {fileID: 8300000, guid: c87e514845a20764f837b0e70f63fa8b, type: 3}

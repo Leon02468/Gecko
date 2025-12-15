@@ -6,6 +6,7 @@ public class AntCrawlingEnemy : MonoBehaviour
     public Collider2D soundZone; // Assign a trigger/collider for the sound range
 
     [SerializeField] private AudioClip crawlingSound;
+    [SerializeField] private AudioClip jumpSfx;
     private AudioSource audioSource;
     private bool playerInZone = false;
 
@@ -36,4 +37,11 @@ public class AntCrawlingEnemy : MonoBehaviour
                 audioSource.Stop();
         }
     }
+ 
+    public void PlayJumpSfx()
+    {
+        if (jumpSfx != null && audioSource != null)
+            audioSource.PlayOneShot(jumpSfx);
+    }
+
 }
