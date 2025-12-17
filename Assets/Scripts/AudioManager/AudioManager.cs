@@ -19,10 +19,10 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioClip playerUseItemToHeal;
     [SerializeField] private AudioClip playerGetHit;
     [Header("Enemy")]
-    //[SerializeField] private AudioClip flyingBee;
-    //[SerializeField] private AudioClip crawlingCaterpillar;
-    //[SerializeField] private AudioClip crawlingAnt;
     [SerializeField] private AudioClip enemyGetHit;
+    [Header("ShopAreaMusic")]
+    [SerializeField] private AudioClip shopMusic;
+    private AudioClip previousMusic;
 
     public static AudioManager Instance { get; private set; }
 
@@ -44,6 +44,7 @@ public class AudioManager : MonoBehaviour
         PlayMusic();
     }
 
+    //THIS ONE IS FOR BACKGROUND MUSIC
     public void PlayMusic()
     {
         if (musicSource != null && background != null)
@@ -95,6 +96,27 @@ public class AudioManager : MonoBehaviour
             Debug.LogWarning($"AudioManager: Cannot play SFX. sfxSource={sfxSource}, clip={clip}");
         }
     }
+
+    // THIS PART IS FOR SHOP AREA
+    public void PlayShopMusic()
+    {
+        if (musicSource != null && shopMusic != null)
+        {
+            previousMusic = musicSource.clip;
+            musicSource.clip = shopMusic;
+            musicSource.Play();
+        }
+    }
+
+    public void RestorePreviousMusic()
+    {
+        if (musicSource != null && previousMusic != null)
+        {
+            musicSource.clip = previousMusic;
+            musicSource.Play();
+        }
+    }
+
 
     // Convenience methods for specific SFX
     public void PlayJumpPad() => PlaySFX(jumpPad);
