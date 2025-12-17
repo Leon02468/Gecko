@@ -17,8 +17,12 @@ MonoBehaviour:
   dialogueLines:
   - Huh? Did you just fell on my roof?
   - Who are you anyway?
-  autoProgressLines: 0000
+  - Hmmmm...Want to buy something?
+  autoProgressLines: 000000
   autoProgressDelay: 1.5
   typingSpeed: 0.05
-  voiceSound: {fileID: 0}
+  voiceSounds:
+  - {fileID: 8300000, guid: c7c5463cdebc5f44182cc199f69153eb, type: 3}
+  - {fileID: 8300000, guid: 19a2738a2d492f440b9ce59099afbf22, type: 3}
+  - {fileID: 8300000, guid: 87c12ea83f451ac4aaea6f79bf44ddc2, type: 3}
   voicePitch: 1

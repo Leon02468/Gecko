@@ -9,6 +9,6 @@ public class NPCDialogue : ScriptableObject
     public bool[] autoProgressLines;
     public float autoProgressDelay = 1.5f;
     public float typingSpeed = 0.05f;
-    public AudioClip voiceSound;
+    public AudioClip[] voiceSounds; //different clips per line
     public float voicePitch = 1f;
 }
