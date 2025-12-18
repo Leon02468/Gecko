@@ -42,8 +42,12 @@ public class ShopUI : MonoBehaviour
         shopPanel.SetActive(true);
         Time.timeScale = 0;
 
+        MoneyManager.Instance.ShowMoneyUI();
+
         var player = GameObject.FindGameObjectWithTag("Player")?.GetComponent<PlayerMovement>();
         if (player) player.enabled = false;
+        //stop running sfx
+        AudioManager.Instance.StopPlayerRunning();
 
         RefreshShopUI();
     }
@@ -53,7 +57,11 @@ public class ShopUI : MonoBehaviour
         shopPanel.SetActive(false);
         Time.timeScale = 1;
 
+        MoneyManager.Instance.HideMoneyUI();
+
         var player = GameObject.FindGameObjectWithTag("Player")?.GetComponent<PlayerMovement>();
         if (player) player.enabled = true;
+        //start sfx again
+        AudioManager.Instance.StartPlayerRunning();
     }
 }

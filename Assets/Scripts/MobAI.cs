@@ -432,8 +432,17 @@ public class MobAI : MonoBehaviour
         {
             rb.linearVelocity = thrustVelocity;
             Debug.Log($"<color=green>{gameObject.name}: Initial jump applied: ({thrustVelocity.x:F2}, {thrustVelocity.y:F2})</color>");
+            
+            // Play jump SFX for ant
+            var ant = GetComponent<AntCrawlingEnemy>();
+            var mobHealth = GetComponent<MobHealth>();
+            if (ant != null && mobHealth != null && mobHealth.IsGrounded)
+            {
+                ant.PlayJumpSfx();
+            }
+
         }
-        
+
         while (thrustElapsed < thrustDuration)
         {
             // Check if interrupted during thrust

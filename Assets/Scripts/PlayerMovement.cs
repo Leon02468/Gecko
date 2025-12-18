@@ -84,6 +84,18 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        //Ensure movement stop when canMove is set to false
+        if (!canMove)
+        {
+            rb.linearVelocity = Vector2.zero;
+            horizontalMovement = 0f;
+            HorizontalInput = 0f;
+
+            AudioManager.Instance.StopPlayerRunning();
+            isRunningAudioPlaying = false;
+            return;
+        }
+
         // Update timers
         if (velocityLockTimer > 0f)
             velocityLockTimer -= Time.deltaTime;

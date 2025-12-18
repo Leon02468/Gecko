@@ -36,6 +36,10 @@ public class MobHealth : MonoBehaviour, IDamageable
     private Rigidbody2D rb;
     private Collider2D coll;
     private MonoBehaviour[] disableOnDeath;
+    
+    //public for IsGrounded to use it in another script
+    public bool IsGrounded => isGrounded;
+
 
     public GameObject moneyDropPrefab;
     public int moneyAmount = 1;
