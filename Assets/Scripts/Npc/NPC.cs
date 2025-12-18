@@ -18,10 +18,17 @@ public class NPC : MonoBehaviour, IInteractable
     bool shopOpen = false;
     bool dialogueFinished = false;
 
+    private AudioSource audioSource;
+
+
     void Awake()
     {
         var playerObj = GameObject.FindGameObjectWithTag("Player");
         if (playerObj) playerMovement = playerObj.GetComponent<PlayerMovement>();
+
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+            audioSource = gameObject.AddComponent<AudioSource>();
     }
 
     public bool CanInteract() => true;
@@ -61,11 +68,13 @@ public class NPC : MonoBehaviour, IInteractable
         {
             shopUI.OpenShop();
             shopOpen = true;
+            AudioManager.Instance?.PlayShopMusic(); //Play shop music
         }
         else
         {
             shopUI.CloseShop();
             shopOpen = false;
+            AudioManager.Instance?.RestorePreviousMusic(); // Restore previous music
         }
     }
 
@@ -81,8 +90,6 @@ public class NPC : MonoBehaviour, IInteractable
         if (playerMovement)
         {
             playerMovement.canMove = false; //use flag to disable movement
-            if (playerMovement.rb != null)
-                playerMovement.rb.linearVelocity = Vector2.zero;
         }
 
         StartCoroutine(TypeLine());
@@ -110,8 +117,26 @@ public class NPC : MonoBehaviour, IInteractable
 
     IEnumerator TypeLine()
     {
+        // stop previous voice when advancing
+        if (audioSource.isPlaying)
+            audioSource.Stop();
+
         isTyping = true;
         dialogueText.SetText("");
+
+        // Play the full voice clip for this sentence
+        AudioClip voiceClip = null;
+        float pitch = 1f;
+
+        if (dialogueData.voiceSounds != null && dialogueIndex < dialogueData.voiceSounds.Length)
+            voiceClip = dialogueData.voiceSounds[dialogueIndex];
+
+        if (voiceClip != null)
+        {
+            audioSource.pitch = pitch;
+            audioSource.clip = voiceClip;
+            audioSource.Play();
+        }
 
         foreach (char letter in dialogueData.dialogueLines[dialogueIndex])
         {

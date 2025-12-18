@@ -64,6 +64,9 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         CurrentHP -= amount;
         OnDamaged?.Invoke();
 
+        // Play hurt SFX
+        AudioManager.Instance?.PlayPlayerGetHit();
+
         // Play hurt animation (if available)
         playerAnimation?.PlayHurt();
 
