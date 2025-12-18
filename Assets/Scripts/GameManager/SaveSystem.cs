@@ -13,7 +13,7 @@ public static class SaveSystem
     }
 
     public static void SaveSlot(int slot, SaveData data)
-    {
+    {   
         try
         {
             string json = JsonUtility.ToJson(data, true);

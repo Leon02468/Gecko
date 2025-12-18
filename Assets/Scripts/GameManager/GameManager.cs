@@ -106,7 +106,8 @@ public class GameManager : MonoBehaviour
         EnsureFaderExists();
         if (faderInstance != null) yield return faderInstance.FadeOutRoutine();
 
-        AsyncOperation op = SceneManager.LoadSceneAsync(gameScene);
+        int sceneIndex = currentSave.sceneBuildIndex;
+        AsyncOperation op = SceneManager.LoadSceneAsync(sceneIndex);
         yield return op;
 
         EnsureFaderExists();
@@ -123,6 +124,10 @@ public class GameManager : MonoBehaviour
     public void SaveCurrent()
     {
         if (currentSlot < 0 || currentSave == null) return;
+
+        // Update save data
+        currentSave.sceneBuildIndex = SceneManager.GetActiveScene().buildIndex;
+        currentSave.savedAtTicks = System.DateTime.UtcNow.Ticks;
         SaveSystem.SaveSlot(currentSlot, currentSave);
     }
 
