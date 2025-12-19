@@ -65,8 +65,9 @@ public class ShopSlot : MonoBehaviour
         }
         else
         {
+            //if not has enough money
             Debug.Log("Not enough money to buy " + item.itemName);
-            // Optionally, show a UI message here
+            
         }
     }
 }
