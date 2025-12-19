@@ -48,7 +48,8 @@ public class ShopUI : MonoBehaviour
         if (player) player.enabled = false;
         //stop running sfx
         AudioManager.Instance.StopPlayerRunning();
-
+        //Open shop sfx
+        AudioManager.Instance.PlayShopToggle();
         RefreshShopUI();
     }
 
@@ -63,5 +64,7 @@ public class ShopUI : MonoBehaviour
         if (player) player.enabled = true;
         //start sfx again
         AudioManager.Instance.StartPlayerRunning();
+        //Close shop sfx
+        AudioManager.Instance.PlayShopToggle();
     }
 }
