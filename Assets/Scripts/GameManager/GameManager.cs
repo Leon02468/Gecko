@@ -127,6 +127,7 @@ public class GameManager : MonoBehaviour
 
         // Update save data
         currentSave.sceneBuildIndex = SceneManager.GetActiveScene().buildIndex;
+        currentSave.playerHealth = FindFirstObjectByType<PlayerHealth>().CurrentHP;
         currentSave.savedAtTicks = System.DateTime.UtcNow.Ticks;
         SaveSystem.SaveSlot(currentSlot, currentSave);
     }

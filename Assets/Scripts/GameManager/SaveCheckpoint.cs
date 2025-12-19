@@ -16,8 +16,6 @@ public class SaveCheckpoint : MonoBehaviour, IInteractable
 
         gm.currentSave.playerX = pos.x;
         gm.currentSave.playerY = pos.y;
-        gm.currentSave.sceneBuildIndex = SceneManager.GetActiveScene().buildIndex;
-        gm.currentSave.savedAtTicks = System.DateTime.UtcNow.Ticks;
 
         gm.SaveCurrent();
         Debug.Log("Game saved at checkpoint");

@@ -41633,7 +41633,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   boss: {fileID: 1311556997}
-  boxCollider: {fileID: 0}
+  boxCollider: {fileID: 2103150209}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
