@@ -68,13 +68,11 @@ public class NPC : MonoBehaviour, IInteractable
         {
             shopUI.OpenShop();
             shopOpen = true;
-            AudioManager.Instance?.PlayShopMusic(); //Play shop music
         }
         else
         {
             shopUI.CloseShop();
             shopOpen = false;
-            AudioManager.Instance?.RestorePreviousMusic(); // Restore previous music
         }
     }
 

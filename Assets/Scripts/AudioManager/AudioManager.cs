@@ -22,6 +22,8 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioClip enemyGetHit;
     [Header("ShopAreaMusic")]
     [SerializeField] private AudioClip shopMusic;
+    [Header("ShopOpen/Close")]
+    [SerializeField] private AudioClip ToggleShop;
     private AudioClip previousMusic;
 
     public static AudioManager Instance { get; private set; }
@@ -130,5 +132,6 @@ public class AudioManager : MonoBehaviour
     public void PlayPlayerUseItemToHeal() => PlaySFX(playerUseItemToHeal);
     public void PlayPlayerGetHit() => PlaySFX(playerGetHit);
     public void PlayEnemyGetHit() => PlaySFX(enemyGetHit);
+    public void PlayShopToggle() => PlaySFX(ToggleShop);
 
 }
