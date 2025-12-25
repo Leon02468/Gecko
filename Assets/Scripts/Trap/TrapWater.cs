@@ -10,7 +10,7 @@ public class TrapWater : MonoBehaviour
             if (player != null)
             {
                 player.TakeDamage(1);
-                player.ForceRespawn(0.2f); //delay for hurt animation
+                player.ForceRespawn(0.01f); //delay for hurt animation
             }
         }
     }
