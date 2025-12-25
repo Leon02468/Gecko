@@ -99,30 +99,30 @@ public class MobAI : MonoBehaviour
         }
         
         //// Debug component detection
-        //Debug.Log($"<color=cyan>===== {gameObject.name} MobAI initialized =====</color>");
-        //Debug.Log($"  - MobMovement: {(mobMovement != null ? "<color=green>Found</color>" : "<color=red>NOT FOUND</color>")}");
-        //Debug.Log($"  - Rigidbody2D: {(rb != null ? "<color=green>Found</color>" : "<color=red>NOT FOUND</color>")}");
-        //Debug.Log($"  - MobAnimation: {(mobAnimation != null ? "<color=green>Found</color>" : "<color=red>NOT FOUND</color>")}");
-        //Debug.Log($"  - Charge Attack Enabled: <color=yellow>{useChargeAttack}</color>");
-        //Debug.Log($"  - Jump Attack Range: <color=yellow>{jumpAttackMinDistance} to {jumpAttackMaxDistance}</color>");
+        Debug.Log($"<color=cyan>===== {gameObject.name} MobAI initialized =====</color>");
+        Debug.Log($"  - MobMovement: {(mobMovement != null ? "<color=green>Found</color>" : "<color=red>NOT FOUND</color>")}");
+        Debug.Log($"  - Rigidbody2D: {(rb != null ? "<color=green>Found</color>" : "<color=red>NOT FOUND</color>")}");
+        Debug.Log($"  - MobAnimation: {(mobAnimation != null ? "<color=green>Found</color>" : "<color=red>NOT FOUND</color>")}");
+        Debug.Log($"  - Charge Attack Enabled: <color=yellow>{useChargeAttack}</color>");
+        Debug.Log($"  - Jump Attack Range: <color=yellow>{jumpAttackMinDistance} to {jumpAttackMaxDistance}</color>");
         
-        //if (rb != null)
-        //{
-        //    //Debug.Log($"  - Rigidbody2D Body Type: <color=yellow>{rb.bodyType}</color>");
-        //    //Debug.Log($"  - Rigidbody2D Constraints: <color=yellow>{rb.constraints}</color>");
-            
-        //    // Warn if rigidbody is kinematic or has frozen position
-        //    if (rb.bodyType == RigidbodyType2D.Kinematic)
-        //    {
-        //        Debug.LogWarning($"<color=orange>{gameObject.name}: Rigidbody2D is Kinematic - charge thrust may not work! Change to Dynamic.</color>");
-        //    }
-            
-        //    if ((rb.constraints & RigidbodyConstraints2D.FreezePositionX) != 0)
-        //    {
-        //        Debug.LogWarning($"<color=orange>{gameObject.name}: Rigidbody2D has X position frozen - thrust won't work! Unfreeze X position.</color>");
-        //    }
-        //}
-        
+        if (rb != null)
+        {
+            Debug.Log($"  - Rigidbody2D Body Type: <color=yellow>{rb.bodyType}</color>");
+            Debug.Log($"  - Rigidbody2D Constraints: <color=yellow>{rb.constraints}</color>");
+
+            // Warn if rigidbody is kinematic or has frozen position
+            if (rb.bodyType == RigidbodyType2D.Kinematic)
+            {
+                Debug.LogWarning($"<color=orange>{gameObject.name}: Rigidbody2D is Kinematic - charge thrust may not work! Change to Dynamic.</color>");
+            }
+
+            if ((rb.constraints & RigidbodyConstraints2D.FreezePositionX) != 0)
+            {
+                Debug.LogWarning($"<color=orange>{gameObject.name}: Rigidbody2D has X position frozen - thrust won't work! Unfreeze X position.</color>");
+            }
+        }
+
         // Check for conflicting AI scripts
         var aiPath = GetComponent<Pathfinding.AIPath>();
         if (aiPath != null)
@@ -159,13 +159,13 @@ public class MobAI : MonoBehaviour
                 if (inJumpRange)
                 {
                     // Player is in the jump attack zone - perform leap attack
-                    //Debug.Log($"<color=cyan>{gameObject.name}: Player in JUMP RANGE ({dist:F2} units) - triggering leap attack!</color>");
+                    Debug.Log($"<color=cyan>{gameObject.name}: Player in JUMP RANGE ({dist:F2} units) - triggering leap attack!</color>");
                     StartCoroutine(PerformChargeAttack(targetPlayer));
                 }
                 else if (inMeleeRange)
                 {
                     // Player is very close - use melee attack
-                    //Debug.Log($"<color=cyan>{gameObject.name}: Player in MELEE RANGE ({dist:F2} units) - using melee attack!</color>");
+                    Debug.Log($"<color=cyan>{gameObject.name}: Player in MELEE RANGE ({dist:F2} units) - using melee attack!</color>");
                     StartCoroutine(PerformAttack(targetPlayer));
                 }
                 // If player is between detection and jump range, just track them (move closer via patrol)
@@ -370,7 +370,7 @@ public class MobAI : MonoBehaviour
             chargeTargetPosition = player.position;
         }
 
-        //Debug.Log($"<color=cyan>{gameObject.name}: Charge-up phase started. Target: {chargeTargetPosition}</color>");
+        Debug.Log($"<color=cyan>{gameObject.name}: Charge-up phase started. Target: {chargeTargetPosition}</color>");
 
         // Play attack animation during charge-up
         mobAnimation?.PlayAttack(facing);
@@ -380,11 +380,11 @@ public class MobAI : MonoBehaviour
         {
             // Stop all movement during charge
             rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
-            //Debug.Log($"<color=green>{gameObject.name}: Velocity set to (0, {rb.linearVelocity.y}) during charge</color>");
+            Debug.Log($"<color=green>{gameObject.name}: Velocity set to (0, {rb.linearVelocity.y}) during charge</color>");
         }
         else
         {
-            //Debug.LogWarning($"<color=orange>{gameObject.name}: No Rigidbody2D - Transform movement</color>");
+            Debug.LogWarning($"<color=orange>{gameObject.name}: No Rigidbody2D - Transform movement</color>");
         }
         
         yield return new WaitForSeconds(chargeUpTime);
@@ -392,7 +392,7 @@ public class MobAI : MonoBehaviour
         // Check if interrupted during charge-up
         if (chargeInterrupted)
         {
-            //Debug.Log($"<color=red>{gameObject.name}: Charge interrupted during charge-up!</color>");
+            Debug.Log($"<color=red>{gameObject.name}: Charge interrupted during charge-up!</color>");
             yield return HandleChargeInterrupt();
             yield break;
         }
@@ -406,12 +406,12 @@ public class MobAI : MonoBehaviour
         // Calculate thrust direction
         Vector2 thrustDirection = (chargeTargetPosition - transform.position).normalized;
         
-        //Debug.Log($"<color=magenta>========== {gameObject.name}: THRUST STARTED! ==========</color>");
-        //Debug.Log($"<color=magenta>  Direction: ({thrustDirection.x:F2}, {thrustDirection.y:F2})</color>");
-        //Debug.Log($"<color=magenta>  Speed: {thrustSpeed}</color>");
-        //Debug.Log($"<color=magenta>  Jump Force: {thrustJumpForce}</color>");
-        //Debug.Log($"<color=magenta>  Duration: {thrustDuration}</color>");
-        
+        Debug.Log($"<color=magenta>========== {gameObject.name}: THRUST STARTED! ==========</color>");
+        Debug.Log($"<color=magenta>  Direction: ({thrustDirection.x:F2}, {thrustDirection.y:F2})</color>");
+        Debug.Log($"<color=magenta>  Speed: {thrustSpeed}</color>");
+        Debug.Log($"<color=magenta>  Jump Force: {thrustJumpForce}</color>");
+        Debug.Log($"<color=magenta>  Duration: {thrustDuration}</color>");
+
         // Ensure facing matches thrust direction
         facing = thrustDirection.x >= 0f ? 1 : -1;
         FaceTarget(chargeTargetPosition);
@@ -422,7 +422,7 @@ public class MobAI : MonoBehaviour
         // Calculate thrust velocity with jump component
         Vector2 thrustVelocity = new Vector2(thrustDirection.x * thrustSpeed, thrustJumpForce);
         
-        //Debug.Log($"<color=magenta>  Thrust Velocity: ({thrustVelocity.x:F2}, {thrustVelocity.y:F2})</color>");
+        Debug.Log($"<color=magenta>  Thrust Velocity: ({thrustVelocity.x:F2}, {thrustVelocity.y:F2})</color>");
         
         bool hitPlayer = false;
         int frameCount = 0;
@@ -431,8 +431,8 @@ public class MobAI : MonoBehaviour
         if (rb != null)
         {
             rb.linearVelocity = thrustVelocity;
-            //Debug.Log($"<color=green>{gameObject.name}: Initial jump applied: ({thrustVelocity.x:F2}, {thrustVelocity.y:F2})</color>");
-
+            Debug.Log($"<color=green>{gameObject.name}: Initial jump applied: ({thrustVelocity.x:F2}, {thrustVelocity.y:F2})</color>");
+            
             // Play jump SFX for ant
             var ant = GetComponent<AntCrawlingEnemy>();
             var mobHealth = GetComponent<MobHealth>();
@@ -448,7 +448,7 @@ public class MobAI : MonoBehaviour
             // Check if interrupted during thrust
             if (chargeInterrupted)
             {
-                //Debug.Log($"<color=red>{gameObject.name}: COUNTER-ATTACKED! Thrust interrupted!</color>");
+                Debug.Log($"<color=red>{gameObject.name}: COUNTER-ATTACKED! Thrust interrupted!</color>");
                 yield return HandleChargeInterrupt();
                 yield break;
             }
@@ -464,7 +464,7 @@ public class MobAI : MonoBehaviour
                 // Debug every 10 frames to avoid spam
                 if (frameCount % 10 == 1)
                 {
-                    //Debug.Log($"<color=yellow>Frame {frameCount}: Vel ({oldVel.x:F2}, {oldVel.y:F2}) → ({rb.linearVelocity.x:F2}, {rb.linearVelocity.y:F2})</color>");
+                    Debug.Log($"<color=yellow>Frame {frameCount}: Vel ({oldVel.x:F2}, {oldVel.y:F2}) → ({rb.linearVelocity.x:F2}, {rb.linearVelocity.y:F2})</color>");
                 }
             }
             else
@@ -481,7 +481,7 @@ public class MobAI : MonoBehaviour
                 float dist = Vector2.Distance(transform.position, player.position);
                 if (dist <= attackRange && !hitPlayer)
                 {
-                    //Debug.Log($"<color=lime>========== {gameObject.name}: HIT PLAYER! ==========</color>");
+                    Debug.Log($"<color=lime>========== {gameObject.name}: HIT PLAYER! ==========</color>");
                     
                     var dmg = player.GetComponentInParent<IDamageable>();
                     Vector2 kbDir = thrustDirection;
@@ -505,13 +505,13 @@ public class MobAI : MonoBehaviour
             yield return null;
         }
 
-        //Debug.Log($"<color=cyan>{gameObject.name}: Thrust complete. Frames: {frameCount}, Hit: {hitPlayer}</color>");
+        Debug.Log($"<color=cyan>{gameObject.name}: Thrust complete. Frames: {frameCount}, Hit: {hitPlayer}</color>");
 
         // Stop thrust movement
         if (rb != null)
         {
             rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
-            //Debug.Log($"<color=green>{gameObject.name}: Thrust stopped, velocity: {rb.linearVelocity}</color>");
+            Debug.Log($"<color=green>{gameObject.name}: Thrust stopped, velocity: {rb.linearVelocity}</color>");
         }
 
         // Short recovery before re-enabling movement
@@ -520,7 +520,7 @@ public class MobAI : MonoBehaviour
         // re-enable movement when attack finished
         if (mobMovement != null)
         {
-            //Debug.Log($"<color=yellow>{gameObject.name}: Re-enabling MobMovement</color>");
+            Debug.Log($"<color=yellow>{gameObject.name}: Re-enabling MobMovement</color>");
             mobMovement.SetMovementEnabled(true);
         }
         
@@ -528,7 +528,7 @@ public class MobAI : MonoBehaviour
         isAttacking = false;
         chargeInterrupted = false;
         
-        //Debug.Log($"<color=lime>========== {gameObject.name}: CHARGE ATTACK COMPLETE ==========</color>");
+        Debug.Log($"<color=lime>========== {gameObject.name}: CHARGE ATTACK COMPLETE ==========</color>");
     }
 
     /// <summary>
@@ -539,12 +539,12 @@ public class MobAI : MonoBehaviour
     {
         if (!IsChargingAndVulnerable)
         {
-            //Debug.Log($"<color=yellow>{gameObject.name}: Cannot interrupt - not charging or already interrupted</color>");
+            Debug.Log($"<color=yellow>{gameObject.name}: Cannot interrupt - not charging or already interrupted</color>");
             return;
         }
 
         chargeInterrupted = true;
-        //Debug.Log($"<color=orange>========== {gameObject.name}: CHARGE INTERRUPTED BY PLAYER! ==========</color>");
+        Debug.Log($"<color=orange>========== {gameObject.name}: CHARGE INTERRUPTED BY PLAYER! ==========</color>");
         
         // Apply enhanced knockback
         Vector2 enhancedKnockback = knockbackFromPlayer * counterAttackKnockbackMultiplier;
@@ -573,7 +573,7 @@ public class MobAI : MonoBehaviour
             
             // Set velocity directly for normal knockback
             rb.linearVelocity = enhancedKnockback;
-            //Debug.Log($"<color=orange>{gameObject.name}: Counter-attack knockback applied: {enhancedKnockback}</color>");
+            Debug.Log($"<color=orange>{gameObject.name}: Counter-attack knockback applied: {enhancedKnockback}</color>");
         }
     }
     
@@ -586,11 +586,11 @@ public class MobAI : MonoBehaviour
     
     private IEnumerator HandleChargeInterrupt()
     {
-        //Debug.Log($"<color=orange>{gameObject.name}: Handling charge interrupt...</color>");
-        
+        Debug.Log($"<color=orange>{gameObject.name}: Handling charge interrupt...</color>");
+
         // DON'T stop movement immediately - let the knockback physics play out
         // The knockback from InterruptChargeAttack will handle the velocity
-        
+
         // Play hurt animation if available
         mobAnimation?.PlayHurt();
         
@@ -609,7 +609,7 @@ public class MobAI : MonoBehaviour
         isAttacking = false;
         chargeInterrupted = false;
         
-        //Debug.Log($"<color=orange>{gameObject.name}: Interrupt handled, mob recovering...</color>");
+        Debug.Log($"<color=orange>{gameObject.name}: Interrupt handled, mob recovering...</color>");
     }
     
     void OnDrawGizmosSelected()
