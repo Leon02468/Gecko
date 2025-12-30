@@ -112,8 +112,10 @@
     <Compile Include="Assets\Scripts\Money\MoneyManager.cs" />
     <Compile Include="Assets\Scripts\Shop\ShopSlot.cs" />
     <Compile Include="Assets\Scripts\PlayerAttack.cs" />
+    <Compile Include="Assets\Scripts\AudioManager\VolumeSliderController.cs" />
     <Compile Include="Assets\Scripts\Npc\ShopArea.cs" />
     <Compile Include="Assets\Scripts\DamageOnContact.cs" />
+    <Compile Include="Assets\Scripts\AudioManager\MusicVolumeSliderController.cs" />
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\GameManager\PlayerLoader.cs" />
     <Compile Include="Assets\Scripts\IDamageable.cs" />

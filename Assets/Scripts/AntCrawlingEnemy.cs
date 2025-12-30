@@ -26,6 +26,9 @@ public class AntCrawlingEnemy : MonoBehaviour
             playerInZone = soundZone.bounds.Contains(player.position);
         }
 
+        // Set volume from AudioManager before playing/stopping
+        audioSource.volume = AudioManager.GlobalSFXVolume;
+
         if (playerInZone)
         {
             if (!audioSource.isPlaying)
@@ -37,11 +40,13 @@ public class AntCrawlingEnemy : MonoBehaviour
                 audioSource.Stop();
         }
     }
- 
+
     public void PlayJumpSfx()
     {
         if (jumpSfx != null && audioSource != null)
+        {
+            audioSource.volume = AudioManager.GlobalSFXVolume;
             audioSource.PlayOneShot(jumpSfx);
+        }
     }
-
 }

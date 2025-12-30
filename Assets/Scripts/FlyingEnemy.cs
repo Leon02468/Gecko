@@ -42,6 +42,9 @@ public class FlyingEnemy : MonoBehaviour
             playerInZone = chaseZone.bounds.Contains(player.position);
         }
 
+        // Set volume from AudioManager before playing/stopping
+        audioSource.volume = AudioManager.GlobalSFXVolume;
+
         // Play or stop flying sound based on playerInZone
         if (playerInZone)
         {

@@ -25,6 +25,9 @@ public class CaterpillarEnemy : MonoBehaviour
             playerInZone = soundZone.bounds.Contains(player.position);
         }
 
+        // Set volume from AudioManager before playing/stopping
+        audioSource.volume = AudioManager.GlobalSFXVolume;
+
         if (playerInZone)
         {
             if (!audioSource.isPlaying)
