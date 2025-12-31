@@ -34,6 +34,7 @@ public class AudioManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+
         }
         else
         {
@@ -100,7 +101,7 @@ public class AudioManager : MonoBehaviour
         if (musicSource != null)
             musicSource.volume = GlobalMusicVolume;
     }
-    
+
 
     // playsfx
     public void PlaySFX(AudioClip clip)
