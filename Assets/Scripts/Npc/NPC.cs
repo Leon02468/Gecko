@@ -131,6 +131,8 @@ public class NPC : MonoBehaviour, IInteractable
 
         if (voiceClip != null)
         {
+            // Set volume from AudioManager before playing/stopping
+            audioSource.volume = AudioManager.GlobalSFXVolume;
             audioSource.pitch = pitch;
             audioSource.clip = voiceClip;
             audioSource.Play();

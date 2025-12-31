@@ -194,7 +194,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         if (SceneFader.Instance != null) yield return SceneFader.Instance.FadeOutRoutine();
 
         // Wait for loading screen duration
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(0.5f);
 
         // Respawn at checkpoint
         var pm = GetComponent<PlayerMovement>();

@@ -34,6 +34,7 @@ public class AudioManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+
         }
         else
         {
@@ -85,7 +86,24 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+   //volume settings
+    public static float GlobalSFXVolume { get; private set; } = 1f;
+    public static float GlobalMusicVolume { get; private set; } = 1f;
+    public void SetGlobalSFXVolume(float volume)
+    {
+        GlobalSFXVolume = Mathf.Clamp01(volume);
+        if (sfxSource != null)
+            sfxSource.volume = GlobalSFXVolume;
+    }
+    public void SetGlobalMusicVolume(float volume)
+    {
+        GlobalMusicVolume = Mathf.Clamp01(volume);
+        if (musicSource != null)
+            musicSource.volume = GlobalMusicVolume;
+    }
 
+
+    // playsfx
     public void PlaySFX(AudioClip clip)
     {
         if (sfxSource != null && clip != null)
