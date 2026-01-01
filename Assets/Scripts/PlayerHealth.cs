@@ -30,6 +30,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     public UnityEvent OnDead;
 
     public float CurrentHP { get; private set; }
+    public float MaxHP => maxHP; // Expose maxHP as read-only property
 
     private bool isInvulnerable;
     private PlayerMovement playerMovement;
@@ -47,6 +48,17 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     public void SetHealth(float hp)
     {
         CurrentHP = Mathf.Clamp(hp, 0f, maxHP);
+    }
+
+    /// <summary>
+    /// Set the maximum health capacity
+    /// </summary>
+    public void SetMaxHealth(float newMaxHP)
+    {
+        maxHP = Mathf.Max(1f, newMaxHP); // Ensure max HP is at least 1
+        // Clamp current HP to new max
+        CurrentHP = Mathf.Min(CurrentHP, maxHP);
+        Debug.Log($"[PlayerHealth] Max HP set to {maxHP}, Current HP: {CurrentHP}");
     }
 
     //Back up if need to use old code
@@ -200,6 +212,10 @@ public class PlayerHealth : MonoBehaviour, IDamageable
             Debug.Log($"Respawning player at {respawnPos.x}:{respawnPos.y}");
             pm.transform.position = respawnPos;
             pm.enabled = true;
+            
+            // Note: Health is NOT restored here - player stays dead until they load a save
+            // The game should show a death screen or game over UI at this point
+            Debug.Log($"[PlayerHealth] Player died - health remains at 0. Game Over!");
         }
     }
 

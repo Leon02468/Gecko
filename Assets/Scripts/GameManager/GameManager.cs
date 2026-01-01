@@ -94,9 +94,10 @@ public class GameManager : MonoBehaviour
 
         currentSlot = slot;
         currentSave = SaveSystem.LoadSlot(slot);
+        
+        // Don't apply inventory/money here - inventory doesn't exist yet!
+        // It will be applied in LoadGameplayRoutine after spawning
         StartCoroutine(LoadGameplayRoutine());
-        inventory.ApplyInventorySnapshot(currentSave.inventory);
-        MoneyManager.Instance.ApplyMoneySnapshot(currentSave.money);
     }
 
     public void FinishIntroAndStartGameplay()
@@ -128,10 +129,37 @@ public class GameManager : MonoBehaviour
         SpawnHotBar();
         SpawnItemDatabase();
 
-        PlayerLoader loader = FindFirstObjectByType<PlayerLoader>();
-        if (loader != null && currentSave != null)
+        // Apply save data AFTER spawning inventory and other systems
+        if (currentSave != null)
         {
-            loader.ApplySave(currentSave);
+            // Apply inventory snapshot
+            if (inventory != null && currentSave.inventory != null)
+            {
+                inventory.ApplyInventorySnapshot(currentSave.inventory);
+                Debug.Log("[GameManager] Applied inventory snapshot");
+            }
+            
+            // Apply money snapshot
+            if (MoneyManager.Instance != null)
+            {
+                MoneyManager.Instance.ApplyMoneySnapshot(currentSave.money);
+                Debug.Log("[GameManager] Applied money snapshot");
+            }
+            
+            // Apply mission progress snapshot
+            if (MissionManager.Instance != null && currentSave.missions != null)
+            {
+                MissionManager.Instance.ApplyMissionSnapshot(currentSave.missions);
+                Debug.Log("[GameManager] Applied mission snapshot");
+            }
+            
+            // Apply player data
+            PlayerLoader loader = FindFirstObjectByType<PlayerLoader>();
+            if (loader != null)
+            {
+                loader.ApplySave(currentSave);
+                Debug.Log("[GameManager] Applied player save data");
+            }
         }
 
         yield return FadeIn();
@@ -264,6 +292,18 @@ public class GameManager : MonoBehaviour
         player = Instantiate(playerPrefab, spawnPos, Quaternion.identity);
         DontDestroyOnLoad(player);
 
+        // Ensure PlayerCheckpointManager exists on the player
+        PlayerCheckpointManager checkpointManager = player.GetComponent<PlayerCheckpointManager>();
+        if (checkpointManager == null)
+        {
+            checkpointManager = player.AddComponent<PlayerCheckpointManager>();
+            Debug.Log("[GameManager] Added PlayerCheckpointManager to player");
+        }
+        
+        // Set initial checkpoint to spawn position
+        checkpointManager.SetCheckpoint(spawnPos);
+        Debug.Log($"[GameManager] Initial checkpoint set to {spawnPos}");
+
         player.GetComponent<PlayerLoader>()?.ApplySave(currentSave);
 
         BindCameraToPlayer(player);
@@ -333,15 +373,42 @@ public class GameManager : MonoBehaviour
 
         // Update save data
         currentSave.sceneBuildIndex = SceneManager.GetActiveScene().buildIndex;
+        
+        // Save player position and health
         if (player != null)
         {
+            currentSave.playerX = player.transform.position.x;
+            currentSave.playerY = player.transform.position.y;
+            
             var health = player.GetComponent<PlayerHealth>();
             if (health != null)
+            {
                 currentSave.playerHealth = health.CurrentHP;
+                currentSave.playerMaxHealth = health.MaxHP;
+                Debug.Log($"[GameManager] Saving health: {currentSave.playerHealth}/{currentSave.playerMaxHealth}");
+            }
         }
+        
         currentSave.savedAtTicks = System.DateTime.UtcNow.Ticks;
-        currentSave.inventory = inventory.GetInventorySnapshot();
-        currentSave.money = MoneyManager.Instance.GetMoneySnapshot();
+        
+        // Save inventory
+        if (inventory != null)
+        {
+            currentSave.inventory = inventory.GetInventorySnapshot();
+        }
+        
+        // Save money
+        if (MoneyManager.Instance != null)
+        {
+            currentSave.money = MoneyManager.Instance.GetMoneySnapshot();
+        }
+        
+        // Save mission progress
+        if (MissionManager.Instance != null)
+        {
+            currentSave.missions = MissionManager.Instance.GetMissionSnapshot();
+            Debug.Log($"[GameManager] Saved {currentSave.missions.Count} missions");
+        }
 
         SaveSystem.SaveSlot(currentSlot, currentSave);
         Debug.Log($"[SAVE] {reason}");

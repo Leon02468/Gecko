@@ -33,31 +33,79 @@ public class MissionOverlayUI : MonoBehaviour
 
     void Awake()
     {
+        Debug.Log("[MissionOverlay] ========== AWAKE START ==========");
+        Debug.Log($"[MissionOverlay] GameObject name: {gameObject.name}");
+        Debug.Log($"[MissionOverlay] GameObject active: {gameObject.activeInHierarchy}");
+        
+        // Singleton pattern with DontDestroyOnLoad
         if (Instance == null)
         {
             Instance = this;
+            Debug.Log("[MissionOverlay] Set as Instance");
+            
+            // IMPORTANT: Find the root Canvas to apply DontDestroyOnLoad to
+            // If this GameObject is a child of a Canvas, we need to move the Canvas, not just this GameObject
+            Transform rootTransform = transform;
+            Canvas parentCanvas = GetComponentInParent<Canvas>();
+            
+            if (parentCanvas != null)
+            {
+                Debug.Log($"[MissionOverlay] Found parent Canvas: {parentCanvas.gameObject.name}");
+                rootTransform = parentCanvas.transform;
+            }
+            
+            // Move to root if parented (but not if parented to Canvas, which is our root)
+            if (rootTransform.parent != null)
+            {
+                Debug.LogWarning($"[MissionOverlay] Moving '{rootTransform.name}' from parent '{rootTransform.parent.name}' to root");
+                rootTransform.SetParent(null);
+            }
+            else
+            {
+                Debug.Log($"[MissionOverlay] {rootTransform.name} is already at root level");
+            }
+            
+            // Apply DontDestroyOnLoad to the root (Canvas if it exists, otherwise this GameObject)
+            if (rootTransform.gameObject.scene.name != "DontDestroyOnLoad")
+            {
+                DontDestroyOnLoad(rootTransform.gameObject);
+                Debug.Log($"[MissionOverlay] Applied DontDestroyOnLoad to {rootTransform.gameObject.name}");
+            }
+            else
+            {
+                Debug.Log($"[MissionOverlay] {rootTransform.gameObject.name} is already in DontDestroyOnLoad scene");
+            }
         }
         else
         {
+            Debug.LogWarning($"[MissionOverlay] Duplicate detected! Instance={Instance.gameObject.name}, This={gameObject.name}");
             Destroy(gameObject);
             return;
         }
 
-        // Try to get TextMeshPro component if assigned GameObject or Component
+        // Check UI references
+        Debug.Log($"[MissionOverlay] overlayPanel assigned: {overlayPanel != null}");
+        if (overlayPanel != null)
+        {
+            Debug.Log($"[MissionOverlay] overlayPanel name: {overlayPanel.name}");
+            Debug.Log($"[MissionOverlay] overlayPanel active: {overlayPanel.activeSelf}");
+        }
+        
+        Debug.Log($"[MissionOverlay] enemyIcon assigned: {enemyIcon != null}");
+        Debug.Log($"[MissionOverlay] progressText assigned: {progressText != null}");
+
+        // Try to get TextMeshPro component if assigned
         if (progressText != null)
         {
-            Debug.Log($"[MissionOverlay] progressText assigned type: {progressText.GetType().Name}");
+            Debug.Log($"[MissionOverlay] progressText type: {progressText.GetType().Name}");
             
-            // Check if we need to extract the TextMeshPro component
             var tmpType = System.Type.GetType("TMPro.TMP_Text, Unity.TextMeshPro");
             var tmpUIType = System.Type.GetType("TMPro.TextMeshProUGUI, Unity.TextMeshPro");
             
-            // If it's already the correct type, we're good
             if (tmpType != null && tmpType.IsInstanceOfType(progressText))
             {
-                Debug.Log($"[MissionOverlay] Using TextMeshPro component: {progressText.GetType().Name}");
+                Debug.Log($"[MissionOverlay] ? progressText is already TextMeshPro");
             }
-            // If it's some other component, try to get TextMeshProUGUI from its GameObject
             else if (progressText is Component)
             {
                 var comp = progressText as Component;
@@ -67,41 +115,36 @@ public class MissionOverlayUI : MonoBehaviour
                     if (tmpComponent != null)
                     {
                         progressText = tmpComponent;
-                        Debug.Log("[MissionOverlay] Found Component, extracted TextMeshProUGUI from its GameObject");
+                        Debug.Log("[MissionOverlay] ? Extracted TextMeshProUGUI from GameObject");
                     }
                     else
                     {
-                        Debug.LogError($"[MissionOverlay] Component's GameObject does not have TextMeshProUGUI! Type was: {progressText.GetType().Name}");
+                        Debug.LogError($"[MissionOverlay] ? GameObject has no TextMeshProUGUI component!");
                     }
                 }
             }
             else
             {
-                Debug.LogWarning($"[MissionOverlay] progressText is not a Component! Type: {progressText.GetType().Name}");
-            }
-            
-            // Final verification
-            if (tmpType != null && tmpType.IsInstanceOfType(progressText))
-            {
-                // Verify properties exist
-                var textProp = progressText.GetType().GetProperty("text");
-                var colorProp = progressText.GetType().GetProperty("color");
-                Debug.Log($"[MissionOverlay] Has 'text' property: {textProp != null}");
-                Debug.Log($"[MissionOverlay] Has 'color' property: {colorProp != null}");
-            }
-            else
-            {
-                Debug.LogError($"[MissionOverlay] Final check: progressText is still not a TextMeshPro component! Type: {progressText.GetType().Name}");
+                Debug.LogWarning($"[MissionOverlay] progressText is not a Component!");
             }
         }
         else
         {
-            Debug.LogError("[MissionOverlay] progressText is not assigned!");
+            Debug.LogError("[MissionOverlay] ? progressText is NOT assigned in inspector!");
         }
 
         // Start hidden
         if (overlayPanel != null)
+        {
             overlayPanel.SetActive(false);
+            Debug.Log("[MissionOverlay] Set overlayPanel to inactive (starting hidden)");
+        }
+        else
+        {
+            Debug.LogError("[MissionOverlay] ? Cannot hide overlay - overlayPanel is null!");
+        }
+        
+        Debug.Log("[MissionOverlay] ========== AWAKE END ==========");
     }
 
     void Update()
@@ -122,57 +165,86 @@ public class MissionOverlayUI : MonoBehaviour
     /// </summary>
     public void RefreshDisplay()
     {
+        Debug.Log("[MissionOverlay] ========== REFRESH DISPLAY ==========");
+        
         // Use reflection to access MissionManager
         var missionManagerType = System.Type.GetType("MissionManager");
         if (missionManagerType == null)
         {
+            Debug.LogError("[MissionOverlay] ? MissionManager type not found!");
             HideOverlay();
             return;
         }
+        Debug.Log("[MissionOverlay] ? MissionManager type found");
 
         var instanceProp = missionManagerType.GetProperty("Instance", BindingFlags.Public | BindingFlags.Static);
         if (instanceProp == null)
         {
+            Debug.LogError("[MissionOverlay] ? MissionManager.Instance property not found!");
             HideOverlay();
             return;
         }
+        Debug.Log("[MissionOverlay] ? MissionManager.Instance property found");
 
         var missionManagerInstance = instanceProp.GetValue(null);
         if (missionManagerInstance == null)
         {
+            Debug.LogWarning("[MissionOverlay] MissionManager.Instance is null (not spawned yet?)");
             HideOverlay();
             return;
         }
+        Debug.Log("[MissionOverlay] ? MissionManager.Instance exists");
 
         // Get the active mission
         var getActiveMissionMethod = missionManagerType.GetMethod("GetActiveMission");
         if (getActiveMissionMethod == null)
         {
+            Debug.LogError("[MissionOverlay] ? GetActiveMission method not found!");
             HideOverlay();
             return;
         }
+        Debug.Log("[MissionOverlay] ? GetActiveMission method found");
 
         var activeMission = getActiveMissionMethod.Invoke(missionManagerInstance, null);
 
         if (activeMission == null)
         {
-            // No active mission - hide overlay
+            Debug.Log("[MissionOverlay] No active mission - hiding overlay");
             HideOverlay();
             return;
         }
+
+        Debug.Log($"[MissionOverlay] ? Active mission found: {activeMission.GetType().Name}");
 
         // Show overlay with mission info
         currentMission = activeMission;
         ShowOverlay();
         UpdateMissionInfo();
+        
+        Debug.Log("[MissionOverlay] ========== REFRESH COMPLETE ==========");
     }
 
     private void ShowOverlay()
     {
-        if (overlayPanel != null && !overlayPanel.activeSelf)
+        Debug.Log($"[MissionOverlay] ShowOverlay called - overlayPanel={overlayPanel != null}");
+        
+        if (overlayPanel != null)
         {
+            bool wasActive = overlayPanel.activeSelf;
             overlayPanel.SetActive(true);
-            Debug.Log("[MissionOverlay] Showing mission overlay");
+            Debug.Log($"[MissionOverlay] overlayPanel.SetActive(true) - was:{wasActive}, now:{overlayPanel.activeSelf}");
+            
+            // Check Canvas and GraphicRaycaster
+            var canvas = overlayPanel.GetComponentInParent<Canvas>();
+            Debug.Log($"[MissionOverlay] Parent Canvas found: {canvas != null}");
+            if (canvas != null)
+            {
+                Debug.Log($"[MissionOverlay] Canvas enabled: {canvas.enabled}, renderMode: {canvas.renderMode}");
+            }
+        }
+        else
+        {
+            Debug.LogError("[MissionOverlay] ? Cannot show overlay - overlayPanel is null!");
         }
     }
 
@@ -191,10 +263,16 @@ public class MissionOverlayUI : MonoBehaviour
 
     private void UpdateMissionInfo()
     {
+        Debug.Log("[MissionOverlay] ========== UPDATE MISSION INFO ==========");
+        
         if (currentMission == null)
+        {
+            Debug.LogError("[MissionOverlay] ? currentMission is null!");
             return;
+        }
 
         var missionType = currentMission.GetType();
+        Debug.Log($"[MissionOverlay] Mission type: {missionType.Name}");
 
         // Get mission fields using reflection
         var currentCountField = missionType.GetField("currentCount");
@@ -205,6 +283,9 @@ public class MissionOverlayUI : MonoBehaviour
         int currentCount = (int)(currentCountField?.GetValue(currentMission) ?? 0);
         int targetCount = (int)(targetCountField?.GetValue(currentMission) ?? 1);
         var enemyType = enemyTypeField?.GetValue(currentMission);
+
+        Debug.Log($"[MissionOverlay] Progress: {currentCount}/{targetCount}");
+        Debug.Log($"[MissionOverlay] Enemy type: {(enemyType != null ? enemyType.GetType().Name : "null")}");
 
         // Update enemy icon at top
         if (enemyIcon != null)
@@ -218,19 +299,25 @@ public class MissionOverlayUI : MonoBehaviour
                 {
                     enemyIcon.sprite = sprite;
                     enemyIcon.gameObject.SetActive(true);
+                    Debug.Log($"[MissionOverlay] ? Set enemy icon sprite: {sprite.name}");
                 }
                 else
                 {
                     enemyIcon.gameObject.SetActive(false);
+                    Debug.LogWarning("[MissionOverlay] Enemy type has no sprite");
                 }
             }
             else
             {
                 enemyIcon.gameObject.SetActive(false);
+                Debug.LogWarning("[MissionOverlay] No enemy type assigned to mission");
             }
         }
+        else
+        {
+            Debug.LogWarning("[MissionOverlay] enemyIcon is not assigned!");
+        }
 
-        // Update progress text at bottom
         // Check if mission is completed
         bool isCompleted = false;
         if (statusField != null)
@@ -238,10 +325,12 @@ public class MissionOverlayUI : MonoBehaviour
             var statusValue = statusField.GetValue(currentMission);
             string statusName = statusValue?.ToString() ?? "";
             isCompleted = (statusName == "Completed" || currentCount >= targetCount);
+            Debug.Log($"[MissionOverlay] Mission status: {statusName}, isCompleted: {isCompleted}");
         }
         else
         {
             isCompleted = (currentCount >= targetCount);
+            Debug.Log($"[MissionOverlay] No status field, checking count: isCompleted={isCompleted}");
         }
 
         string textToDisplay;
@@ -258,8 +347,12 @@ public class MissionOverlayUI : MonoBehaviour
             colorToUse = inProgressColor;
         }
 
+        Debug.Log($"[MissionOverlay] Displaying: '{textToDisplay}' in color {colorToUse}");
+
         // Set text using TextMeshPro
         SetProgressText(textToDisplay, colorToUse);
+        
+        Debug.Log("[MissionOverlay] ========== UPDATE COMPLETE ==========");
     }
 
     private void SetProgressText(string text, Color color)
@@ -333,5 +426,40 @@ public class MissionOverlayUI : MonoBehaviour
         {
             HideOverlay();
         }
+    }
+
+    /// <summary>
+    /// Ensures the Canvas is either on this GameObject or is a child of it.
+    /// This is critical for DontDestroyOnLoad to work properly.
+    /// </summary>
+    private void EnsureCanvasIsChild()
+    {
+        // Check if there's a Canvas on this GameObject
+        var canvas = GetComponent<Canvas>();
+        
+        if (canvas != null)
+        {
+            Debug.Log("[MissionOverlay] ? Canvas is on the same GameObject");
+            return;
+        }
+
+        // Check if there's a Canvas in children
+        canvas = GetComponentInChildren<Canvas>();
+        
+        if (canvas != null)
+        {
+            Debug.Log($"[MissionOverlay] ? Canvas found in children: {canvas.gameObject.name}");
+            
+            // Make sure the Canvas GameObject is a direct child of this GameObject
+            if (canvas.transform.parent != transform)
+            {
+                Debug.LogWarning($"[MissionOverlay] Canvas is not a direct child, reparenting...");
+                canvas.transform.SetParent(transform, true);
+                Debug.Log($"[MissionOverlay] ? Reparented Canvas to {gameObject.name}");
+            }
+            return;
+        }
+
+        Debug.LogWarning("[MissionOverlay] ? No Canvas found! The overlay may not display correctly. Consider adding an EnsureMissionOverlayCanvas component.");
     }
 }

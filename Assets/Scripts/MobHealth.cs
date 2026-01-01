@@ -11,6 +11,10 @@ public class MobHealth : MonoBehaviour, IDamageable
     [SerializeField] private bool destroyOnDeath = true;
     [SerializeField] private float deathDelay = 0.1f;
 
+    [Header("Enemy Classification")]
+    [Tooltip("The type of enemy - used for mission tracking")]
+    public EnemyType enemyType;
+
     [Header("Invulnerability")]
     [SerializeField] private bool useInvulnerability = true;
     [SerializeField] private float invulnerabilityDuration = 0.25f;
@@ -156,6 +160,9 @@ public class MobHealth : MonoBehaviour, IDamageable
     {
         OnDead?.Invoke();
 
+        // Notify mission system about enemy death
+        NotifyMissionSystem();
+
         if (coll != null) coll.enabled = false;
         foreach (var mb in disableOnDeath)
         {
@@ -178,6 +185,48 @@ public class MobHealth : MonoBehaviour, IDamageable
             Destroy(gameObject, deathDelay);
         else
             yield return new WaitForSeconds(deathDelay);
+    }
+
+    /// <summary>
+    /// Notify MissionManager about enemy death for mission progress tracking
+    /// </summary>
+    private void NotifyMissionSystem()
+    {
+        // Only notify if this enemy has a type assigned
+        if (enemyType == null)
+        {
+            Debug.LogWarning($"[MobHealth] {gameObject.name} died but has no EnemyType assigned - skipping mission notification");
+            return;
+        }
+
+        // Find MissionManager and update progress
+        if (MissionManager.Instance != null)
+        {
+            // Get the active mission
+            var activeMission = MissionManager.Instance.GetActiveMission();
+            
+            if (activeMission != null && activeMission.enemyType != null)
+            {
+                // Check if this enemy type matches the mission's target enemy type
+                if (activeMission.enemyType.id == enemyType.id)
+                {
+                    Debug.Log($"[MobHealth] {enemyType.displayName} killed! Updating mission progress for '{activeMission.id}'");
+                    MissionManager.Instance.UpdateMissionProgress(activeMission.id, 1);
+                }
+                else
+                {
+                    Debug.Log($"[MobHealth] {enemyType.displayName} killed, but active mission requires {activeMission.enemyType.displayName}");
+                }
+            }
+            else
+            {
+                Debug.Log($"[MobHealth] {enemyType.displayName} killed, but no active mission or mission has no target enemy type");
+            }
+        }
+        else
+        {
+            Debug.LogWarning("[MobHealth] MissionManager.Instance is null - cannot update mission progress");
+        }
     }
 
     public void Heal(int amount)

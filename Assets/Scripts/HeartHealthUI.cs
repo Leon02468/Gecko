@@ -78,7 +78,8 @@ public class HeartHealthUI : MonoBehaviour
     
     void InitializeHearts()
     {
-        int maxHearts = Mathf.CeilToInt(playerHealth.CurrentHP);
+        // FIX: Use MaxHP to determine number of hearts, not CurrentHP
+        int maxHearts = Mathf.CeilToInt(playerHealth.MaxHP);
         
         // Clear existing hearts if any
         foreach (Transform child in heartsContainer)

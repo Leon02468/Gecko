@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class ShopUI : MonoBehaviour
 {
@@ -14,7 +15,7 @@ public class ShopUI : MonoBehaviour
 
     [Header("UI")]
     public GameObject shopPanel;
-    public ShopSlot[] shopSlots; // Å© drag ShopItemSlots here
+    public ShopSlot[] shopSlots; // drag ShopItemSlots here
 
     private void Start()
     {
@@ -45,7 +46,7 @@ public class ShopUI : MonoBehaviour
         MoneyManager.Instance.ShowMoneyUI();
 
         var player = GameObject.FindGameObjectWithTag("Player")?.GetComponent<PlayerMovement>();
-        if (player) player.enabled = false;
+        if (player) player.canMove = false; // Use canMove instead of enabled
         //stop running sfx
         GameManager.Instance.AudioInstance.StopPlayerRunning();
         //Open shop sfx
@@ -55,13 +56,17 @@ public class ShopUI : MonoBehaviour
 
     public void CloseShop()
     {
+        Debug.Log("[ShopUI] CloseShop() called");
+        
         shopPanel.SetActive(false);
         Time.timeScale = 1;
 
         MoneyManager.Instance.HideMoneyUI();
 
-        var player = GameObject.FindGameObjectWithTag("Player")?.GetComponent<PlayerMovement>();
-        if (player) player.enabled = true;
+        // DON'T re-enable player movement here
+        // The NPC will handle it when returning to choice panel or closing completely
+        Debug.Log("[ShopUI] Shop closed - NOT re-enabling player movement (NPC will handle it)");
+        
         //start sfx again
         GameManager.Instance.AudioInstance.StartPlayerRunning();
         //Close shop sfx

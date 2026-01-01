@@ -345,6 +345,12 @@ public class MissionManager : MonoBehaviour
         {
             MissionOverlayUI.Instance.ForceUpdate();
         }
+        
+        // IMPORTANT: Auto-save mission progress
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.SaveGameEvent($"Mission progress updated: {missionId}");
+        }
     }
 
     /// <summary>
@@ -421,6 +427,12 @@ public class MissionManager : MonoBehaviour
         {
             MissionOverlayUI.Instance.RefreshDisplay();
         }
+        
+        // Auto-save when mission is accepted
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.SaveGameEvent($"Mission accepted: {missionId}");
+        }
 
         return true;
     }
@@ -463,6 +475,12 @@ public class MissionManager : MonoBehaviour
 
         // Refresh UI
         RefreshAllMissionItems();
+        
+        // Auto-save when mission is denied/cancelled
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.SaveGameEvent($"Mission cancelled: {missionId}");
+        }
     }
 
     /// <summary>
@@ -701,7 +719,7 @@ public class MissionManager : MonoBehaviour
 
         if (rewardGranted)
         {
-            Debug.Log($"[MissionManager] ??? REWARD SUCCESSFULLY GRANTED ???");
+            Debug.Log($"[MissionManager] ? REWARD SUCCESSFULLY GRANTED ?");
         }
         else
         {
@@ -715,7 +733,98 @@ public class MissionManager : MonoBehaviour
         // Update UI item
         RefreshMissionItem(mission);
         
+        // Auto-save after claiming reward
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.SaveGameEvent($"Mission reward claimed: {mission.id}");
+        }
+        
         Debug.Log($"[MissionManager] ==================== REWARD COMPLETE ====================");
+    }
+
+    /// <summary>
+    /// Get a snapshot of all mission progress for saving
+    /// </summary>
+    public List<SaveData.MissionData> GetMissionSnapshot()
+    {
+        var list = new List<SaveData.MissionData>();
+
+        foreach (var mission in allMissions)
+        {
+            if (mission == null) continue;
+
+            list.Add(new SaveData.MissionData
+            {
+                id = mission.id,
+                currentCount = mission.currentCount,
+                savedProgress = mission.savedProgress,
+                status = (int)mission.status
+            });
+        }
+
+        Debug.Log($"[MissionManager] Created mission snapshot with {list.Count} missions");
+        return list;
+    }
+
+    /// <summary>
+    /// Apply saved mission progress from a save file
+    /// </summary>
+    public void ApplyMissionSnapshot(List<SaveData.MissionData> data)
+    {
+        if (data == null || data.Count == 0)
+        {
+            Debug.Log("[MissionManager] No mission data to apply");
+            return;
+        }
+
+        Debug.Log($"[MissionManager] Applying mission snapshot with {data.Count} missions");
+
+        // Create a dictionary for quick lookup
+        var savedMissions = new Dictionary<string, SaveData.MissionData>();
+        foreach (var saved in data)
+        {
+            if (saved != null && !string.IsNullOrEmpty(saved.id))
+            {
+                savedMissions[saved.id] = saved;
+            }
+        }
+
+        // Apply saved data to existing missions
+        foreach (var mission in allMissions)
+        {
+            if (mission == null || string.IsNullOrEmpty(mission.id)) continue;
+
+            if (savedMissions.TryGetValue(mission.id, out var savedMission))
+            {
+                mission.currentCount = savedMission.currentCount;
+                mission.savedProgress = savedMission.savedProgress;
+                mission.status = (Mission.MissionStatus)savedMission.status;
+
+                Debug.Log($"[MissionManager] Restored mission '{mission.id}': status={mission.status}, currentCount={mission.currentCount}, savedProgress={mission.savedProgress}");
+            }
+            else
+            {
+                // Mission exists in game but not in save file - reset to defaults
+                mission.currentCount = 0;
+                mission.savedProgress = 0;
+                mission.status = Mission.MissionStatus.Available;
+                Debug.Log($"[MissionManager] Mission '{mission.id}' not in save file, reset to defaults");
+            }
+        }
+
+        // Update UI if it's visible
+        if (missionCanvas != null && missionCanvas.activeSelf)
+        {
+            RefreshAllMissionItems();
+        }
+
+        // Update overlay if there's an active mission
+        if (MissionOverlayUI.Instance != null)
+        {
+            MissionOverlayUI.Instance.RefreshDisplay();
+        }
+
+        Debug.Log("[MissionManager] Mission snapshot applied successfully");
     }
 }
 

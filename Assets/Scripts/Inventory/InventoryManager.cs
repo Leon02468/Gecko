@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 public class InventoryManager : MonoBehaviour
 {
+    public static InventoryManager Instance { get; private set; }
+
     [Header("UI / Slots")]
     public GameObject inventoryPanel;
     public ItemSlot[] itemSlot;
@@ -18,6 +20,18 @@ public class InventoryManager : MonoBehaviour
     // ========== Unity lifecycle ==========
     private void Awake()
     {
+        // Singleton setup
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         // Input actions (keep your existing bindings)
         inputActions = new PlayerControls();
         inputActions.Player.Inventory.performed += ctx => ToggleInventory();
@@ -227,6 +241,22 @@ public class InventoryManager : MonoBehaviour
                     itemSlot[i].UpdateSlotUI();
                 }
             }
+        }
+    }
+
+    /// <summary>
+    /// Force save the current inventory state
+    /// </summary>
+    public void SaveInventory()
+    {
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.SaveGameEvent("Inventory changed");
+            Debug.Log("[InventoryManager] Inventory saved via GameManager");
+        }
+        else
+        {
+            Debug.LogWarning("[InventoryManager] Cannot save inventory - GameManager.Instance is null");
         }
     }
 

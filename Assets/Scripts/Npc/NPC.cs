@@ -67,20 +67,32 @@ public class NPC : MonoBehaviour, IInteractable
 
     void Update()
     {
-        // Handle ESC key press
+        // Handle ESC key press BEFORE Input System processes it
+        // This prevents the pause menu from opening when we close NPC UI
         if (Keyboard.current != null && Keyboard.current.escapeKey.wasPressedThisFrame)
         {
-            HandleEscapeKey();
+            // If we have any NPC UI open, handle it and consume the ESC press
+            if (shopOrMissionOpen || activeChoicePanel != null)
+            {
+                HandleEscapeKey();
+                // The ESC key has been consumed by NPC UI
+                // PauseMenuController won't see it this frame
+                return;
+            }
         }
     }
 
     void HandleEscapeKey()
     {
-        Debug.Log("NPC: ESC key pressed");
+        Debug.Log("NPC: ESC key pressed - handling NPC UI");
+
+        // Ensure we have player movement reference
+        EnsurePlayerMovementReference();
 
         // Priority 1: If shop or missions are open, close them and show choice panel
         if (shopOrMissionOpen)
         {
+            Debug.Log("NPC: Closing shop/missions, reopening choice panel");
             CloseShopAndMissions();
             return;
         }
@@ -88,15 +100,28 @@ public class NPC : MonoBehaviour, IInteractable
         // Priority 2: If choice panel is open, close it and re-enable movement
         if (activeChoicePanel != null)
         {
-            Debug.Log("NPC: Closing choice panel via ESC");
+            Debug.Log("NPC: Closing choice panel - player can now walk away");
             CloseChoicePanel();
             
             // Re-enable movement so player can walk away
             if (playerMovement)
+            {
                 playerMovement.canMove = true;
+                Debug.Log("NPC: Player movement re-enabled");
+            }
+            else
+            {
+                Debug.LogError("NPC: HandleEscapeKey - playerMovement is NULL!");
+            }
+            
+            // Reset dialogue state so player can interact again later
+            ResetDialogue();
             
             return;
         }
+        
+        // This shouldn't happen since we check before calling this method
+        Debug.LogWarning("NPC: HandleEscapeKey called but no NPC UI is open!");
     }
 
     // IMPORTANT: Block interaction when UI is open
@@ -215,6 +240,9 @@ public class NPC : MonoBehaviour, IInteractable
 
         Debug.Log("NPC: Showing choice popup AFTER dialogue");
 
+        // Ensure we have player movement reference
+        EnsurePlayerMovementReference();
+
         if (choicePanelPrefab != null)
         {
             // Instantiate the choice panel
@@ -251,7 +279,15 @@ public class NPC : MonoBehaviour, IInteractable
 
             // Disable movement while choice is shown
             if (playerMovement)
+            {
+                bool wasMoveEnabled = playerMovement.canMove;
                 playerMovement.canMove = false;
+                Debug.Log($"NPC: ShowChoicePanel - Disabled player movement (was: {wasMoveEnabled}, now: {playerMovement.canMove})");
+            }
+            else
+            {
+                Debug.LogError("NPC: ShowChoicePanel - playerMovement is STILL NULL after EnsurePlayerMovementReference!");
+            }
         }
         else
         {
@@ -351,6 +387,9 @@ public class NPC : MonoBehaviour, IInteractable
     {
         Debug.Log("NPC: Closing shop and missions (ESC pressed)");
 
+        // Ensure we have player movement reference
+        EnsurePlayerMovementReference();
+
         bool somethingClosed = false;
 
         // Close shop if open
@@ -374,10 +413,29 @@ public class NPC : MonoBehaviour, IInteractable
         {
             shopOrMissionOpen = false;
             
+            // IMPORTANT: Ensure player movement is disabled before showing choice panel
+            if (playerMovement)
+            {
+                playerMovement.canMove = false;
+                Debug.Log("NPC: Player movement disabled before reopening choice panel");
+            }
+            else
+            {
+                Debug.LogError("NPC: CloseShopAndMissions - playerMovement is NULL!");
+            }
+            
             // Show choice panel again after closing shop/missions
+            Debug.Log("NPC: Reopening choice panel after closing shop/missions");
             if (dialogueFinished)
             {
                 ShowChoicePanel();
+            }
+            else
+            {
+                // If dialogue wasn't finished (shouldn't happen), just enable movement
+                Debug.LogWarning("NPC: dialogueFinished was false, enabling movement");
+                if (playerMovement)
+                    playerMovement.canMove = true;
             }
         }
     }
@@ -395,6 +453,9 @@ public class NPC : MonoBehaviour, IInteractable
     void StartDialogue()
     {
         Debug.Log("NPC: Starting dialogue");
+
+        // Ensure we have player movement reference
+        EnsurePlayerMovementReference();
 
         // Safety check: make sure we have dialogue data
         if (dialogueData == null || dialogueData.dialogueLines == null || dialogueData.dialogueLines.Length == 0)
@@ -416,6 +477,11 @@ public class NPC : MonoBehaviour, IInteractable
         if (playerMovement)
         {
             playerMovement.canMove = false;
+            Debug.Log("NPC: StartDialogue - Player movement disabled");
+        }
+        else
+        {
+            Debug.LogError("NPC: StartDialogue - playerMovement is NULL!");
         }
 
         typeLineCoroutine = StartCoroutine(TypeLine());
@@ -630,5 +696,46 @@ public class NPC : MonoBehaviour, IInteractable
         // Re-enable movement if it was disabled by this NPC
         if (playerMovement && (isDialogueActive || activeChoicePanel != null))
             playerMovement.canMove = true;
+    }
+
+    /// <summary>
+    /// Public property to check if any NPC UI is currently open
+    /// Used by other systems (like PauseMenuController) to prevent conflicts
+    /// </summary>
+    public bool HasUIOpen
+    {
+        get
+        {
+            return activeChoicePanel != null || shopOrMissionOpen || isDialogueActive;
+        }
+    }
+
+    /// <summary>
+    /// Ensures we have a valid player movement reference
+    /// Call this before any operation that needs player movement
+    /// </summary>
+    private void EnsurePlayerMovementReference()
+    {
+        if (playerMovement == null)
+        {
+            Debug.LogWarning("NPC: playerMovement was null, attempting to re-acquire reference");
+            var playerObj = GameObject.FindGameObjectWithTag("Player");
+            if (playerObj != null)
+            {
+                playerMovement = playerObj.GetComponent<PlayerMovement>();
+                if (playerMovement != null)
+                {
+                    Debug.Log("NPC: Successfully re-acquired player movement reference");
+                }
+                else
+                {
+                    Debug.LogError("NPC: Player found but has no PlayerMovement component!");
+                }
+            }
+            else
+            {
+                Debug.LogError("NPC: Could not find Player GameObject!");
+            }
+        }
     }
 }

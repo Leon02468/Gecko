@@ -14,7 +14,11 @@ public class PlayerLoader : MonoBehaviour
 
         if (playerHealthComponent != null)
         {
+            // First set max health, then set current health
+            playerHealthComponent.SetMaxHealth(save.playerMaxHealth);
             playerHealthComponent.SetHealth(save.playerHealth);
+            
+            Debug.Log($"[PlayerLoader] Loaded health: {save.playerHealth}/{save.playerMaxHealth}");
         }
 
         // any other apply steps...

@@ -172,6 +172,7 @@
     <Compile Include="Assets\AstarPathfindingProject\Generators\NodeClasses\GridNode.cs" />
     <Compile Include="Assets\AstarPathfindingProject\Utilities\Funnel.cs" />
     <Compile Include="Assets\AstarPathfindingProject\Legacy\Editor\LegacyAIPathEditor.cs" />
+    <Compile Include="Assets\Scripts\EnsureMissionOverlayCanvas.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\AstarPathfindingProject\ExampleScenes\_Example Scenes.txt" />
@@ -1235,9 +1236,7 @@
       <Private>False</Private>
     </Reference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Assets\Editor\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

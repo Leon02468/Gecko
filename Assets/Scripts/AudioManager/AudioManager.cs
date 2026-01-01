@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
+    public static AudioManager Instance { get; private set; }
+
     [Header("-------Audio Source--------")]
     [SerializeField] AudioSource musicSource;
     [SerializeField] AudioSource sfxSource;
@@ -25,6 +27,20 @@ public class AudioManager : MonoBehaviour
     [Header("ShopOpen/Close")]
     [SerializeField] private AudioClip ToggleShop;
     private AudioClip previousMusic;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+    }
 
     private void Start()
     {
@@ -141,5 +157,4 @@ public class AudioManager : MonoBehaviour
     public void PlayPlayerGetHit() => PlaySFX(playerGetHit);
     public void PlayEnemyGetHit() => PlaySFX(enemyGetHit);
     public void PlayShopToggle() => PlaySFX(ToggleShop);
-
 }
