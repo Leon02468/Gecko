@@ -138077,6 +138077,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: f97b0c5b0bb4afe4fb30c608028efe53, type: 3}
     - target: {fileID: 8383467007118089467, guid: 791cec284652cc54e8165b6096ae773b, type: 3}
+      propertyPath: background
+      value: 
+      objectReference: {fileID: 8300000, guid: c38584c2f7da9da44a2c277f1cb756d6, type: 3}
+    - target: {fileID: 8383467007118089467, guid: 791cec284652cc54e8165b6096ae773b, type: 3}
       propertyPath: playerGetHit
       value: 
       objectReference: {fileID: 8300000, guid: c9188026e7688df45a55c6c0513a4f3c, type: 3}

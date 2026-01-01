@@ -28,24 +28,14 @@ public class PlayerCheckpointManager : MonoBehaviour
     }
 
     // Called by savepoint triggers
-    public void SetSavepoint(Vector3 position)
-    {
-        savepointPosition = position;
-        hasSavepoint = true;
-    }
+   
 
     public Vector3 GetCheckpoint()
     {
         return checkpointPosition;
     }
 
-    public Vector3 GetSavepoint()
-    {
-        return savepointPosition;
-    }
+   
 
-    public bool HasSavepoint()
-    {
-        return hasSavepoint;
-    }
+    
 }

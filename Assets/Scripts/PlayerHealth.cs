@@ -201,19 +201,11 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         if (pm != null)
         {   
             // Decide where to respawn
-            Vector3 respawnPos;
-            if (CurrentHP <= 0 && PlayerCheckpointManager.Instance.HasSavepoint())
-            {
-                // Dead: respawn at savepoint with full HP
-                respawnPos = PlayerCheckpointManager.Instance.GetSavepoint();
-                CurrentHP = maxHP;
-            }
-            else
-            {
-                // Trap: respawn at checkpoint, keep current HP
-                respawnPos = PlayerCheckpointManager.Instance.GetCheckpoint();
-                // CurrentHP unchanged
-            }
+          
+            Vector3 respawnPos = PlayerCheckpointManager.Instance.GetCheckpoint();
+            pm.transform.position = respawnPos;
+            pm.enabled = true;
+
             pm.transform.position = respawnPos;
             pm.enabled = true;
         }
