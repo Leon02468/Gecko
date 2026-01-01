@@ -17,7 +17,7 @@ public class SaveCheckpoint : MonoBehaviour, IInteractable
         gm.currentSave.playerX = pos.x;
         gm.currentSave.playerY = pos.y;
 
-        gm.SaveCurrent();
+        gm.SaveGameEvent("Save camp interacted");
         Debug.Log("Game saved at checkpoint");
     }
 }

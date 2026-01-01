@@ -175,8 +175,8 @@ public class PlayerAttack : MonoBehaviour
         bool isAir = playerMovement != null && !playerMovement.IsGrounded;
 
         // Play attack sound
-        if (AudioManager.Instance != null)
-            AudioManager.Instance.PlayPlayerAttacking();
+        if (GameManager.Instance.AudioInstance != null)
+            GameManager.Instance.AudioInstance.PlayPlayerAttacking();
 
         // If airborne, do single air attack and block further air attacks until cooldown
         if (isAir)

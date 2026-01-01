@@ -65,7 +65,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         OnDamaged?.Invoke();
 
         // Play hurt SFX
-        AudioManager.Instance?.PlayPlayerGetHit();
+        GameManager.Instance.AudioInstance?.PlayPlayerGetHit();
 
         // Play hurt animation (if available)
         playerAnimation?.PlayHurt();
@@ -186,35 +186,21 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
     private IEnumerator RespawnWithLoading(float delayBeforeLoading)
     {
-       
         // Wait for the hurt animation to play
         yield return new WaitForSeconds(delayBeforeLoading);
-
-        // Show loading screen (if available)
-        if (SceneFader.Instance != null) yield return SceneFader.Instance.FadeOutRoutine();
-
-        // Wait for loading screen duration
         yield return new WaitForSeconds(0.5f);
 
         // Respawn at checkpoint
         var pm = GetComponent<PlayerMovement>();
         if (pm != null)
         {   
-            // Decide where to respawn
-          
-            Vector3 respawnPos = PlayerCheckpointManager.Instance.GetCheckpoint();
-            pm.transform.position = respawnPos;
-            pm.enabled = true;
-
+            PlayerCheckpointManager checkpointManager = FindFirstObjectByType<PlayerCheckpointManager>();
+            Vector3 respawnPos;
+            respawnPos = checkpointManager.GetCheckpoint();
+            Debug.Log($"Respawning player at {respawnPos.x}:{respawnPos.y}");
             pm.transform.position = respawnPos;
             pm.enabled = true;
         }
-
-        // Hide loading screen (if available)
-        if (SceneFader.Instance != null) yield return SceneFader.Instance.FadeInRoutine();
-
-        // Restore HP to at least 1
-        //CurrentHP = Mathf.Max(1f, maxHP);
     }
 
 

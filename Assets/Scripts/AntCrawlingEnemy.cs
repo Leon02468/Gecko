@@ -13,10 +13,15 @@ public class AntCrawlingEnemy : MonoBehaviour
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
-        player = GameObject.FindGameObjectWithTag("Player").transform;
         audioSource.clip = crawlingSound;
         audioSource.loop = true;
         audioSource.playOnAwake = false;
+    }
+
+    private void Start()
+    {
+        if (GameManager.Instance.PlayerInstance != null)
+            player = GameManager.Instance.PlayerInstance.transform;
     }
 
     private void Update()

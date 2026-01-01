@@ -1,18 +1,9 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
-using System.IO;
 using System.Collections.Generic;
-
-#if UNITY_EDITOR
-using UnityEditor;
-#endif
 
 public class InventoryManager : MonoBehaviour
 {
-    public static InventoryManager Instance;
-
-
     [Header("UI / Slots")]
     public GameObject inventoryPanel;
     public ItemSlot[] itemSlot;
@@ -20,28 +11,13 @@ public class InventoryManager : MonoBehaviour
     [Header("Navigation")]
     private PlayerControls inputActions;
     private PlayerInput playerInput;
-    public PlayerMovement playerMovement;
 
     private int selectedIndex = 0;
     [SerializeField] private int columns = 5;
 
-    // Save path (visible in logs)
-    private string savePath => Path.Combine(Application.persistentDataPath, "inventory.json");
-
     // ========== Unity lifecycle ==========
     private void Awake()
-    {       
-
-        // singleton
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
-
+    {
         // Input actions (keep your existing bindings)
         inputActions = new PlayerControls();
         inputActions.Player.Inventory.performed += ctx => ToggleInventory();
@@ -60,24 +36,11 @@ public class InventoryManager : MonoBehaviour
         inputActions.Player.Hotbar5.performed += ctx => UseHotbarSlot(4);
 
         playerInput = FindAnyObjectByType<PlayerInput>();
-
-        // Hook scene unload to save (e.g. when switching scenes)
-        SceneManager.sceneUnloaded += OnSceneUnloaded;
-
-#if UNITY_EDITOR
-        // In Editor, Play Mode stop does not call OnApplicationQuit reliably.
-        EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
-#endif
     }
 
     private void Start()
     {
-        // Load in Start so ItemDatabase Awake() has run already
-        LoadInventory();
         if (inventoryPanel != null) inventoryPanel.SetActive(false);
-
-        Debug.Log($"InventoryManager initialized. Save path: {savePath}");
-
     }
 
 
@@ -91,14 +54,6 @@ public class InventoryManager : MonoBehaviour
         if (inputActions != null) inputActions.Player.Disable();
     }
 
-    private void OnDestroy()
-    {
-        SceneManager.sceneUnloaded -= OnSceneUnloaded;
-#if UNITY_EDITOR
-        EditorApplication.playModeStateChanged -= OnPlayModeStateChanged;
-#endif
-    }
-
     // ========== Inventory UI toggle ==========
     private void ToggleInventory()
     {
@@ -110,8 +65,8 @@ public class InventoryManager : MonoBehaviour
         if (!isActive)
         {
             // Play open inventory sound
-            if (AudioManager.Instance != null)
-                AudioManager.Instance.PlayOpenInventory();
+            if (GameManager.Instance.AudioInstance != null)
+                GameManager.Instance.AudioInstance.PlayOpenInventory();
 
             //Show amount of money when open inventory
             MoneyManager.Instance.ShowMoneyUI();
@@ -124,14 +79,15 @@ public class InventoryManager : MonoBehaviour
             inputActions.Player.Disable(); //disable input for player
             inputActions.Inventory.Enable(); //enable input for inventory
 
+            PlayerMovement playerMovement = GameManager.Instance.PlayerInstance.GetComponent<PlayerMovement>();
             playerMovement.canMove = false; //disable player movement
             SelectSlot(selectedIndex);
         }
         else
         {
             // Play close inventory sound
-            if (AudioManager.Instance != null)
-                AudioManager.Instance.PlayCloseInventory();
+            if (GameManager.Instance.AudioInstance != null)
+                GameManager.Instance.AudioInstance.PlayCloseInventory();
 
             //Stop showing amount of money when close inventory
             MoneyManager.Instance.HideMoneyUI();
@@ -142,10 +98,9 @@ public class InventoryManager : MonoBehaviour
 
             inputActions.Player.Enable(); //enable input for player
             inputActions.Inventory.Disable(); //disable input for inventory
-            
-            playerMovement.canMove = true; //enable player movement again
-            //save when closing inventory just to maker sure for persistence
-            SaveInventory();
+
+            PlayerMovement playerMovement = GameManager.Instance.PlayerInstance.GetComponent<PlayerMovement>();
+            playerMovement.canMove = true; //enable player movement
         }
     }
     // Use hot bar
@@ -174,7 +129,6 @@ public class InventoryManager : MonoBehaviour
                 leftOver = slot.AddItem(itemObject, leftOver);
                 if (leftOver <= 0)
                 {
-                    SaveInventoryIfChanged(original, leftOver);
                     return 0;
                 }
             }
@@ -189,24 +143,12 @@ public class InventoryManager : MonoBehaviour
                 leftOver = slot.AddItem(itemObject, leftOver);
                 if (leftOver <= 0)
                 {
-                    SaveInventoryIfChanged(original, leftOver);
                     return 0;
                 }
             }
         }
 
-        // If we reach here, inventory couldn't accept everything
-        SaveInventoryIfChanged(original, leftOver);
         return leftOver;
-    }
-
-    // Helper: save only if something actually changed
-    private void SaveInventoryIfChanged(int originalQuantity, int leftOver)
-    {
-        if (leftOver != originalQuantity)
-        {
-            SaveInventory();
-        }
     }
 
     // ========== Slot selection (unchanged logic) ==========
@@ -251,121 +193,42 @@ public class InventoryManager : MonoBehaviour
     }
 
     // ========== SAVE / LOAD ==========
-    // Save inventory into JSON (itemID + quantity per slot)
-    public void SaveInventory()
+    public List<SaveData.InventorySlotData> GetInventorySnapshot()
     {
-        try
-        {
-            List<ItemSlotSave> saveList = new List<ItemSlotSave>();
+        var list = new List<SaveData.InventorySlotData>();
 
-            foreach (var slot in itemSlot)
+        foreach (var slot in itemSlot)
+        {
+            list.Add(new SaveData.InventorySlotData
             {
-                if (slot == null)
-                    saveList.Add(new ItemSlotSave { itemID = -1, quantity = 0 });
-                else
-                    saveList.Add(new ItemSlotSave
-                    {
-                        itemID = slot.item != null ? slot.item.itemID : -1,
-                        quantity = slot.quantity
-                    });
-            }
-
-            // Save inventory and money together
-            string json = JsonUtility.ToJson(new SaveWrapper(saveList, MoneyManager.Instance.Money), true);
-            File.WriteAllText(savePath, json);
-            Debug.Log($"Saved inventory ({saveList.Count} slots) to: {savePath}");
+                itemID = slot.item != null ? slot.item.itemID : -1,
+                quantity = slot.quantity
+            });
         }
-        catch (System.Exception ex)
-        {
-            Debug.LogError("Failed to save inventory: " + ex);
-        }
+        return list;
     }
 
-    // Load inventory from JSON; resilient to missing database entries
-    public void LoadInventory()
+    public void ApplyInventorySnapshot(List<SaveData.InventorySlotData> data)
     {
-        try
+        if (data == null) return;
+
+        for (int i = 0; i < itemSlot.Length; i++)
         {
-            if (!File.Exists(savePath))
+            itemSlot[i].ClearSlot();
+            if (i >= data.Count) continue;
+
+            if (data[i].itemID != -1)
             {
-                Debug.Log("No inventory save file found at: " + savePath);
-                return;
-            }
-
-            string json = File.ReadAllText(savePath);
-            var wrapper = JsonUtility.FromJson<SaveWrapper>(json);
-
-            if (wrapper == null || wrapper.items == null)
-            {
-                Debug.LogWarning("Save file malformed or empty.");
-                return;
-            }
-
-            for (int i = 0; i < itemSlot.Length; i++)
-            {
-                if (itemSlot[i] == null) continue;
-                // clear slot first
-                itemSlot[i].ClearSlot();
-
-                if (i < wrapper.items.Count)
+                ItemObject item = ItemDatabase.GetItemByID(data[i].itemID);
+                if (item != null)
                 {
-                    var data = wrapper.items[i];
-                    if (data.itemID != -1)
-                    {
-                        // Use ItemDatabase to map id -> ItemObject
-                        if (ItemDatabase.Instance == null)
-                        {
-                            Debug.LogError("ItemDatabase instance not present in scene. Cannot load items by ID.");
-                            continue;
-                        }
-
-                        ItemObject loadedItem = ItemDatabase.GetItemByID(data.itemID);
-                        if (loadedItem == null)
-                        {
-                            Debug.LogWarning($"Loaded itemID {data.itemID} not found in ItemDatabase. Skipping slot {i}.");
-                            continue;
-                        }
-                        itemSlot[i].item = loadedItem;
-                        itemSlot[i].quantity = data.quantity;
-                        itemSlot[i].UpdateSlotUI();
-                    }
+                    itemSlot[i].item = item;
+                    itemSlot[i].quantity = data[i].quantity;
+                    itemSlot[i].UpdateSlotUI();
                 }
             }
-
-            // Load money from save file
-            MoneyManager.Instance.SetMoney(wrapper.money);
-
-            Debug.Log("Inventory loaded from " + savePath);
-        }
-        catch (System.Exception ex)
-        {
-            Debug.LogError("Failed to load inventory: " + ex);
         }
     }
-
-    // Save on application quit (builds)
-    private void OnApplicationQuit()
-    {
-        SaveInventory();
-    }
-
-    // Save on scene unload (scene switching)
-    private void OnSceneUnloaded(Scene current)
-    {
-        SaveInventory();
-    }
-
-#if UNITY_EDITOR
-    // Save on exiting play mode in editor
-    private void OnPlayModeStateChanged(PlayModeStateChange state)
-    {
-        if (state == PlayModeStateChange.ExitingPlayMode)
-        {
-            SaveInventory();
-            Debug.Log("Saved inventory because editor play mode is exiting.");
-        }
-    }
-#endif
 
     // small helpers + data structures
     [System.Serializable]

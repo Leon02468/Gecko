@@ -14,6 +14,7 @@ public class SceneEdgeLoader : MonoBehaviour
         // request spawn point
         SpawnManager.lastSpawnPoint = spawnPointName;
 
-        if (GameManager.Instance != null) GameManager.Instance.LoadSceneFromEdge(targetScene, spawnPointName);
+        GameManager.Instance.PrepareEdgeMove(spawnPointName);
+        GameManager.Instance.LoadSceneFromEdge(targetScene);
     }
 }

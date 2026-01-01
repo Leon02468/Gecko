@@ -47,9 +47,9 @@ public class ShopUI : MonoBehaviour
         var player = GameObject.FindGameObjectWithTag("Player")?.GetComponent<PlayerMovement>();
         if (player) player.enabled = false;
         //stop running sfx
-        AudioManager.Instance.StopPlayerRunning();
+        GameManager.Instance.AudioInstance.StopPlayerRunning();
         //Open shop sfx
-        AudioManager.Instance.PlayShopToggle();
+        GameManager.Instance.AudioInstance.PlayShopToggle();
         RefreshShopUI();
     }
 
@@ -63,8 +63,8 @@ public class ShopUI : MonoBehaviour
         var player = GameObject.FindGameObjectWithTag("Player")?.GetComponent<PlayerMovement>();
         if (player) player.enabled = true;
         //start sfx again
-        AudioManager.Instance.StartPlayerRunning();
+        GameManager.Instance.AudioInstance.StartPlayerRunning();
         //Close shop sfx
-        AudioManager.Instance.PlayShopToggle();
+        GameManager.Instance.AudioInstance.PlayShopToggle();
     }
 }
