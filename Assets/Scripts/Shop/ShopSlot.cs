@@ -53,10 +53,10 @@ public class ShopSlot : MonoBehaviour
         if (item == null) return;
 
         // Check if player has enough money
-        if (MoneyManager.Instance.Money >= price)
+        if (GameManager.Instance.MoneyManagerInstance.Money >= price)
         {
             // Deduct money
-            MoneyManager.Instance.AddMoney(-price);
+            GameManager.Instance.MoneyManagerInstance.AddMoney(-price);
 
             // Add item to inventory
             GameManager.Instance.InventoryInstance.AddItem(item, 1);
