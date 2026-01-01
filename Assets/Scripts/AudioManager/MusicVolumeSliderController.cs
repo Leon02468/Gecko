@@ -19,7 +19,7 @@ public class MusicVolumeSliderController : MonoBehaviour
 
     private void OnSliderValueChanged(float value)
     {
-        if (AudioManager.Instance != null)
-            AudioManager.Instance.SetGlobalMusicVolume(value);
+        if (GameManager.Instance.AudioInstance != null)
+            GameManager.Instance.AudioInstance.SetGlobalMusicVolume(value);
     }
 }

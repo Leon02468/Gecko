@@ -78,14 +78,14 @@ public class MobHealth : MonoBehaviour, IDamageable
         if (useInvulnerability && isInvulnerable) return;
 
         // Play enemy get hit SFX
-        if (AudioManager.Instance != null)
-            AudioManager.Instance.PlayEnemyGetHit();
+        if (GameManager.Instance.AudioInstance != null)
+            GameManager.Instance.AudioInstance.PlayEnemyGetHit();
 
         CurrentHP -= amount;
         OnDamaged?.Invoke();
         
         // Play enemy hit sound
-        AudioManager.Instance?.PlayEnemyGetHit();
+        GameManager.Instance.AudioInstance?.PlayEnemyGetHit();
 
         if (knockback.HasValue)
             ApplyKnockback(knockback.Value);

@@ -1416,11 +1416,16 @@ MonoBehaviour:
   slotCount: 3
   currentSlot: -1
   faderPrefab: {fileID: 5652969165510723570, guid: c8c82c115c2e80243a759e65b411d9bf, type: 3}
+  eventSystemPrefab: {fileID: 1683478584518952384, guid: 613f4045ac73a88469a078117860c041, type: 3}
+  audioManagerPrefab: {fileID: 3453838959889072681, guid: 791cec284652cc54e8165b6096ae773b, type: 3}
   playerPrefab: {fileID: 2817489971918301779, guid: a7a06756987218f41976d5a3fadcae6f, type: 3}
   pauseMenuPrefab: {fileID: 5562617628413018228, guid: 241b54bea588bdb40b8d0d54fd9ea24c, type: 3}
   inventoryPrefab: {fileID: 3268646137699518073, guid: 3c8946373101fca478315ee7bc04caa2, type: 3}
-  audioManagerPrefab: {fileID: 3453838959889072681, guid: 791cec284652cc54e8165b6096ae773b, type: 3}
-  eventSystemPrefab: {fileID: 1683478584518952384, guid: 613f4045ac73a88469a078117860c041, type: 3}
+  hotBarPrefab: {fileID: 6816503219407188691, guid: 53d6596440ee9034db915e2a2affedb2, type: 3}
+  itemDatabasePrefab: {fileID: 9215023935252508914, guid: 292599dbf9f1a8d4b9d7700878cf1d78, type: 3}
+  player: {fileID: 0}
+  inventory: {fileID: 0}
+  itemDatabase: {fileID: 0}
 --- !u!4 &1255556863
 Transform:
   m_ObjectHideFlags: 0

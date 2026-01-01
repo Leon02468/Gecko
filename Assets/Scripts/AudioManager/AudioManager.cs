@@ -26,22 +26,6 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioClip ToggleShop;
     private AudioClip previousMusic;
 
-    public static AudioManager Instance { get; private set; }
-
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
-
     private void Start()
     {
         // Ensure AudioSource volumes match the static values at startup

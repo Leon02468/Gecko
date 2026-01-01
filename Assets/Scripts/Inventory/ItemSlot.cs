@@ -40,7 +40,7 @@ public class ItemSlot : MonoBehaviour,
 
     private void Start()
     {
-        inventoryManager = InventoryManager.Instance;
+        inventoryManager = GameManager.Instance.InventoryInstance;
         rectTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
 
@@ -62,29 +62,6 @@ public class ItemSlot : MonoBehaviour,
     public void OnBeginDrag(PointerEventData eventData)
     {
         if (item == null) return;
-
-        // --- SPLIT STACK LOGIC FOR RIGHT MOUSE BUTTON ---
-
-        if (eventData.button == PointerEventData.InputButton.Right && quantity > 1)
-        {
-            // Split half the stack for dragging
-            splitDragAmount = quantity / 2;
-            splitDragItem = item;
-            splitOriginSlot = this;
-
-            quantity -= splitDragAmount;
-            UpdateSlotUI();
-
-            // Set draggedSlot to null so OnDrop knows it's a split-drag
-            draggedSlot = null;
-        }
-        else
-        {
-            // Default drag behavior (left mouse button)
-            draggedSlot = this;
-            splitDragAmount = 0;
-            splitDragItem = null;
-        }
 
         // Create the drag icon
         if (dragIcon == null)
@@ -116,50 +93,6 @@ public class ItemSlot : MonoBehaviour,
     // ============================
     public void OnDrop(PointerEventData eventData)
     {
-        // Split-drag case
-        if (splitDragAmount > 0 && splitDragItem != null)
-        {
-            // CASE 1: Dropping onto empty slot
-            if (item == null)
-            {
-                item = splitDragItem;
-                quantity = splitDragAmount;
-                UpdateSlotUI();
-                InventoryManager.Instance.SaveInventory();
-            }
-            // CASE 2: Dropping onto same item type with space
-            else if (item == splitDragItem && quantity < item.maxStack)
-            {
-                int space = item.maxStack - quantity;
-                int moveAmount = Mathf.Min(space, splitDragAmount);
-                quantity += moveAmount;
-                UpdateSlotUI();
-
-                // If not all splitDragAmount could be merged, return the rest to original slot
-                if (moveAmount < splitDragAmount)
-                {
-                    // Find the original slot and return the remainder
-                    foreach (var slot in InventoryManager.Instance.itemSlot)
-                    {
-                        if (slot != null && slot != this && slot.item == splitDragItem && slot.quantity + moveAmount == (slot.quantity + splitDragAmount))
-                        {
-                            slot.quantity += (splitDragAmount - moveAmount);
-                            slot.UpdateSlotUI();
-                            break;
-                        }
-                    }
-                }
-                InventoryManager.Instance.SaveInventory();
-            }
-            // CASE 3: Dropping onto different item type (do nothing or swap, as you wish)
-            // For now, do nothing
-
-            // Clear split drag state globally
-            splitDragAmount = 0;
-            splitDragItem = null;
-            splitOriginSlot = null;
-            return;
-        }
 
 
             if (draggedSlot == null || draggedSlot == this)
@@ -210,8 +143,6 @@ public class ItemSlot : MonoBehaviour,
             UpdateSlotUI();
             draggedSlot.UpdateSlotUI();
         }
-
-        InventoryManager.Instance.SaveInventory(); // keep your save system
     }
 
     // ============================
@@ -223,15 +154,6 @@ public class ItemSlot : MonoBehaviour,
             dragIcon.enabled = false;
 
         canvasGroup.alpha = 1f;
-
-        // If split drag was not dropped anywhere, return items to original slot
-        if (splitDragAmount > 0 && splitDragItem != null)
-        {
-            quantity += splitDragAmount;
-            UpdateSlotUI();
-            splitDragAmount = 0;
-            splitDragItem = null;
-        }
 
         draggedSlot = null;
     }
@@ -324,55 +246,25 @@ public class ItemSlot : MonoBehaviour,
         }
     }
 
-    public void SplitStack(int splitAmount)
+    // In ItemSlot.cs
+    public void UseItem()
     {
-        // Only split if there is more than 1 item and enough to split
-        if (item == null || quantity <= 1 || splitAmount <= 0 || splitAmount >= quantity)
-            return;
-
-        // Find an empty slot in the inventory
-        foreach (var slot in InventoryManager.Instance.itemSlot)
+        if (item == null || quantity <= 0) return;
+        if (item.type == ItemType.Consumable && item.healAmount > 0f)
         {
-            if (slot == null) continue;
-            if (slot.item == null)
+            var playerHealth = GameObject.FindFirstObjectByType<PlayerHealth>();
+            if (playerHealth != null)
             {
-                // Move splitAmount to the empty slot
-                slot.item = item;
-                slot.quantity = splitAmount;
-                slot.UpdateSlotUI();
+                playerHealth.Heal(item.healAmount);
 
-                // Reduce quantity in current slot
-                quantity -= splitAmount;
+                // Play heal sound effect
+                GameManager.Instance.AudioInstance.PlayPlayerUseItemToHeal();
+
+                quantity--;
+                if (quantity <= 0) ClearSlot();
                 UpdateSlotUI();
-
-                InventoryManager.Instance.SaveInventory();
-                return;
             }
         }
+        // You can add more logic for buffs or other consumable effects here
     }
-
-    // In ItemSlot.cs
-public void UseItem()
-{
-    if (item == null || quantity <= 0) return;
-    if (item.type == ItemType.Consumable && item.healAmount > 0f)
-    {
-        var playerHealth = GameObject.FindObjectOfType<PlayerHealth>();
-        if (playerHealth != null)
-        {
-            playerHealth.Heal(item.healAmount);
-
-            // Play heal sound effect
-            AudioManager.Instance.PlayPlayerUseItemToHeal();
-
-            quantity--;
-            if (quantity <= 0) ClearSlot();
-            UpdateSlotUI();
-            InventoryManager.Instance.SaveInventory();
-        }
-    }
-    // You can add more logic for buffs or other consumable effects here
-}
-
-
 }

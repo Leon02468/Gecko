@@ -98,18 +98,8 @@ public class MobAI : MonoBehaviour
             jumpAttackMinDistance = temp;
         }
         
-        //// Debug component detection
-        Debug.Log($"<color=cyan>===== {gameObject.name} MobAI initialized =====</color>");
-        Debug.Log($"  - MobMovement: {(mobMovement != null ? "<color=green>Found</color>" : "<color=red>NOT FOUND</color>")}");
-        Debug.Log($"  - Rigidbody2D: {(rb != null ? "<color=green>Found</color>" : "<color=red>NOT FOUND</color>")}");
-        Debug.Log($"  - MobAnimation: {(mobAnimation != null ? "<color=green>Found</color>" : "<color=red>NOT FOUND</color>")}");
-        Debug.Log($"  - Charge Attack Enabled: <color=yellow>{useChargeAttack}</color>");
-        Debug.Log($"  - Jump Attack Range: <color=yellow>{jumpAttackMinDistance} to {jumpAttackMaxDistance}</color>");
-        
         if (rb != null)
         {
-            Debug.Log($"  - Rigidbody2D Body Type: <color=yellow>{rb.bodyType}</color>");
-            Debug.Log($"  - Rigidbody2D Constraints: <color=yellow>{rb.constraints}</color>");
 
             // Warn if rigidbody is kinematic or has frozen position
             if (rb.bodyType == RigidbodyType2D.Kinematic)
@@ -406,12 +396,6 @@ public class MobAI : MonoBehaviour
         // Calculate thrust direction
         Vector2 thrustDirection = (chargeTargetPosition - transform.position).normalized;
         
-        Debug.Log($"<color=magenta>========== {gameObject.name}: THRUST STARTED! ==========</color>");
-        Debug.Log($"<color=magenta>  Direction: ({thrustDirection.x:F2}, {thrustDirection.y:F2})</color>");
-        Debug.Log($"<color=magenta>  Speed: {thrustSpeed}</color>");
-        Debug.Log($"<color=magenta>  Jump Force: {thrustJumpForce}</color>");
-        Debug.Log($"<color=magenta>  Duration: {thrustDuration}</color>");
-
         // Ensure facing matches thrust direction
         facing = thrustDirection.x >= 0f ? 1 : -1;
         FaceTarget(chargeTargetPosition);

@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 6391240747424630955}
   - component: {fileID: 2753834483696298020}
   - component: {fileID: 3698287893548482071}
+  - component: {fileID: 1542390376539102836}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -610,6 +611,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0b104122fc76d742a9fb75aa0ff0eef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpawnPointSetter
+--- !u!114 &1542390376539102836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2817489971918301779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f50531e0b443953499f909467174d5ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerLoader
+  playerTransform: {fileID: 2142017325046519243}
+  playerHealthComponent: {fileID: 4181520666843953906}
 --- !u!1 &2853810441704381040
 GameObject:
   m_ObjectHideFlags: 0

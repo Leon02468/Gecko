@@ -20,7 +20,7 @@ public class VolumeSliderController : MonoBehaviour
 
     private void OnSliderValueChanged(float value)
     {
-        if (AudioManager.Instance != null)
-            AudioManager.Instance.SetGlobalSFXVolume(value);
+        if (GameManager.Instance.AudioInstance != null)
+            GameManager.Instance.AudioInstance.SetGlobalSFXVolume(value);
     }
 }

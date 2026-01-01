@@ -22,7 +22,9 @@ public class GameManager : MonoBehaviour
     public GameObject audioManagerPrefab;
     public GameObject playerPrefab;
     public GameObject pauseMenuPrefab;
-    public GameObject inventoryPrefab; 
+    public GameObject inventoryPrefab;
+    public GameObject hotBarPrefab;
+    public GameObject itemDatabasePrefab;
     
     /*Runtime Instances*/
     SceneFader fader;
@@ -31,9 +33,15 @@ public class GameManager : MonoBehaviour
     GameObject player;
     PauseMenuController pauseMenu;
     InventoryManager inventory;
+    GameObject hotBar;
+    ItemDatabase itemDatabase;
 
-    bool pendingEdgeMove = false;
-    string pendingSpawnPoint = null;
+    /*External Use*/
+    public AudioManager AudioInstance => audioManager;
+    public GameObject PlayerInstance => player;
+    public InventoryManager InventoryInstance => inventory;
+    public ItemDatabase ItemDatabaseInstance => itemDatabase;
+
 
     private void Awake()
     {
@@ -63,7 +71,9 @@ public class GameManager : MonoBehaviour
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
+
     /*GAME MANAGER LOGIC*/
+    // Main Menu Logic
     public void StartNewGame(int slot)
     {
         currentSlot = slot;
@@ -85,6 +95,8 @@ public class GameManager : MonoBehaviour
         currentSlot = slot;
         currentSave = SaveSystem.LoadSlot(slot);
         StartCoroutine(LoadGameplayRoutine());
+        inventory.ApplyInventorySnapshot(currentSave.inventory);
+        MoneyManager.Instance.ApplyMoneySnapshot(currentSave.money);
     }
 
     public void FinishIntroAndStartGameplay()
@@ -113,6 +125,8 @@ public class GameManager : MonoBehaviour
         SpawnPlayer();
         SpawnInventory();
         SpawnPauseMenu();
+        SpawnHotBar();
+        SpawnItemDatabase();
 
         PlayerLoader loader = FindFirstObjectByType<PlayerLoader>();
         if (loader != null && currentSave != null)
@@ -122,6 +136,11 @@ public class GameManager : MonoBehaviour
 
         yield return FadeIn();
     }
+
+    // Edge Move Logic
+    bool pendingEdgeMove = false;
+    string pendingSpawnPoint = null;
+
     public void PrepareEdgeMove(string spawnPointName)
     {
         pendingEdgeMove = true;
@@ -136,8 +155,7 @@ public class GameManager : MonoBehaviour
     IEnumerator LoadSceneRoutine(string targetScene, string spawnPointName)
     {
         yield return FadeOut();
-
-        // Start async loading
+        
         AsyncOperation op = SceneManager.LoadSceneAsync(targetScene);
         yield return op;
         ApplyEdgeMoveIfNeeded();
@@ -146,6 +164,7 @@ public class GameManager : MonoBehaviour
 
         yield return FadeIn();
     }
+
     void ApplyEdgeMoveIfNeeded()
     {
         if (!pendingEdgeMove || player == null) return;
@@ -153,7 +172,6 @@ public class GameManager : MonoBehaviour
         GameObject sp = GameObject.Find(pendingSpawnPoint);
         if (sp != null)
         {
-            // ?? Disable physics temporarily to avoid weird impulses
             var rb = player.GetComponent<Rigidbody2D>();
             if (rb != null)
             {
@@ -200,6 +218,7 @@ public class GameManager : MonoBehaviour
 
 
     /*SPAWN & DESTROY INSTANCES*/
+    // Spawn & Ensure Methods
     void EnsureFader()
     {
         if (fader != null) return;
@@ -271,17 +290,41 @@ public class GameManager : MonoBehaviour
         go.name = "Inventory_Instance";
         DontDestroyOnLoad(go);
     }
+    void SpawnHotBar()
+    {
+        if (hotBarPrefab == null || hotBar != null) return;
+        hotBar = Instantiate(hotBarPrefab);
 
+        hotBar.name = "HotBar_Instance";
+        DontDestroyOnLoad(hotBar);
+    }
+
+    void SpawnItemDatabase()
+    {
+        if (itemDatabasePrefab == null || itemDatabase != null) return;
+        GameObject go = Instantiate(itemDatabasePrefab);
+        itemDatabase = go.GetComponent<ItemDatabase>();
+
+        go.name = "ItemDatabase_Instance";
+        DontDestroyOnLoad(go);
+    }
+
+    // Destroy Method
     void DestroyGameplayInstances()
     {
         if (player != null) Destroy(player);
         if (pauseMenu != null) Destroy(pauseMenu.gameObject);
         if (inventory != null) Destroy(inventory.gameObject);
+        if (hotBar != null) Destroy(hotBar.gameObject);
+        if (itemDatabase != null) Destroy(itemDatabase.gameObject);
 
         player = null;
         pauseMenu = null;
         inventory = null;
+        hotBar = null;
+        itemDatabase = null;
     }
+
 
     /*SAVE SYSTEM*/
     public void SaveGameEvent(string reason = "")
@@ -297,10 +340,13 @@ public class GameManager : MonoBehaviour
                 currentSave.playerHealth = health.CurrentHP;
         }
         currentSave.savedAtTicks = System.DateTime.UtcNow.Ticks;
-        SaveSystem.SaveSlot(currentSlot, currentSave);
+        currentSave.inventory = inventory.GetInventorySnapshot();
+        currentSave.money = MoneyManager.Instance.GetMoneySnapshot();
 
+        SaveSystem.SaveSlot(currentSlot, currentSave);
         Debug.Log($"[SAVE] {reason}");
     }
+
 
     /*HELPER*/
     IEnumerator FadeOut()

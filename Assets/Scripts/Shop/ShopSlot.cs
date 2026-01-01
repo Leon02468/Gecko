@@ -59,7 +59,7 @@ public class ShopSlot : MonoBehaviour
             MoneyManager.Instance.AddMoney(-price);
 
             // Add item to inventory
-            InventoryManager.Instance.AddItem(item, 1);
+            GameManager.Instance.InventoryInstance.AddItem(item, 1);
 
             Debug.Log($"Bought: {item.itemName} for {price} coins.");
         }

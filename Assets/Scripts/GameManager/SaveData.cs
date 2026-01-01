@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class SaveData
@@ -14,6 +15,16 @@ public class SaveData
     public float playerY;
     public float playerHealth;
     public int level;
+
+    [System.Serializable]
+    public class InventorySlotData
+    {
+        public int itemID;
+        public int quantity;
+    }
+
+    public List<InventorySlotData> inventory;
+    public int money;
 
     public DateTime SavedAtUtc
     {
