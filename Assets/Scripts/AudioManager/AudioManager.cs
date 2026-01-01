@@ -44,6 +44,12 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
+        // Ensure AudioSource volumes match the static values at startup
+        if (musicSource != null)
+            musicSource.volume = GlobalMusicVolume;
+        if (sfxSource != null)
+            sfxSource.volume = GlobalSFXVolume;
+
         PlayMusic();
     }
 

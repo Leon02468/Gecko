@@ -89,6 +89,7 @@
     <Compile Include="Assets\Scripts\HeartHealthUI.cs" />
     <Compile Include="Assets\Scripts\SpawnPointSetter.cs" />
     <Compile Include="Assets\Scripts\SceneChanger.cs" />
+    <Compile Include="Assets\Scripts\EnemyShooter\EnemyProjectile.cs" />
     <Compile Include="Assets\Scripts\BossAI.cs" />
     <Compile Include="Assets\ScriptableObject\Items\ItemObject.cs" />
     <Compile Include="Assets\Scripts\MobAI.cs" />
@@ -132,6 +133,7 @@
     <Compile Include="Assets\Scripts\ChaseTrigger.cs" />
     <Compile Include="Assets\Scripts\MainMenu\PanelSlideController.cs" />
     <Compile Include="Assets\Scripts\Checkpoint\Checkpoint.cs" />
+    <Compile Include="Assets\Scripts\EnemyShooter\EnemyShooter.cs" />
     <Compile Include="Assets\Scripts\ParallaxLayer.cs" />
   </ItemGroup>
   <ItemGroup>
