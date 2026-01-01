@@ -187,9 +187,11 @@ MonoBehaviour:
   playerGetHit: {fileID: 8300000, guid: c9188026e7688df45a55c6c0513a4f3c, type: 3}
   playerUseItemSpeed: {fileID: 8300000, guid: ae4a802dae36abb40830469e0535cd86, type: 3}
   enemyGetHit: {fileID: 8300000, guid: 572a0473a0a458640971dcd51bbb1d3b, type: 3}
+  enemyShootSFX: {fileID: 8300000, guid: a91cd5d98a4fb9048bf1fa8f38740c00, type: 3}
   shopMusic: {fileID: 8300000, guid: 836ee3ec9d59371449dd4106dc57fcaf, type: 3}
   ToggleShop: {fileID: 8300000, guid: f97b0c5b0bb4afe4fb30c608028efe53, type: 3}
   bossMusic: {fileID: 8300000, guid: 75809951836972743baf521ade23dca0, type: 3}
+  enemyFlyingSFX: {fileID: 8300000, guid: aaf010adeae592f4e9339142d56e608e, type: 3}
 --- !u!1 &6322847381545910780
 GameObject:
   m_ObjectHideFlags: 0
