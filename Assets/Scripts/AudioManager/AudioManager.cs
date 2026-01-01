@@ -18,12 +18,15 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioClip playerAttacking;
     [SerializeField] private AudioClip playerUseItemToHeal;
     [SerializeField] private AudioClip playerGetHit;
+    [SerializeField] private AudioClip playerUseItemSpeed;
     [Header("Enemy")]
     [SerializeField] private AudioClip enemyGetHit;
     [Header("ShopAreaMusic")]
     [SerializeField] private AudioClip shopMusic;
     [Header("ShopOpen/Close")]
     [SerializeField] private AudioClip ToggleShop;
+    [Header("BossAreaMusic")]
+    [SerializeField] private AudioClip bossMusic;
     private AudioClip previousMusic;
 
     private void Start()
@@ -127,6 +130,18 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    // THIS PART FOR BOSS AREA
+    public void PlayBossMusic()
+    {
+        if (musicSource != null && bossMusic != null)
+        {
+            previousMusic = musicSource.clip;
+            musicSource.clip = bossMusic;
+            musicSource.Play();
+        }
+    }
+
+
 
     // Convenience methods for specific SFX
     public void PlayJumpPad() => PlaySFX(jumpPad);
@@ -138,6 +153,8 @@ public class AudioManager : MonoBehaviour
     public void PlayPlayerRunning() => PlaySFX(playerRunning);
     public void PlayPlayerAttacking() => PlaySFX(playerAttacking);
     public void PlayPlayerUseItemToHeal() => PlaySFX(playerUseItemToHeal);
+    public void PlayPlayerUseItemToSpeedUp() => PlaySFX(playerUseItemSpeed);
+
     public void PlayPlayerGetHit() => PlaySFX(playerGetHit);
     public void PlayEnemyGetHit() => PlaySFX(enemyGetHit);
     public void PlayShopToggle() => PlaySFX(ToggleShop);

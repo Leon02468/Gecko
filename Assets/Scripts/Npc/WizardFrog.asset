@@ -26,3 +26,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 19a2738a2d492f440b9ce59099afbf22, type: 3}
   - {fileID: 8300000, guid: 87c12ea83f451ac4aaea6f79bf44ddc2, type: 3}
   voicePitch: 1
+  missionLines:
+  - By the way, can you help me defeat the boss at the end of the road?
+  - He's been a trouble for me for many days.
+  missionVoiceSounds:
+  - {fileID: 8300000, guid: c7c5463cdebc5f44182cc199f69153eb, type: 3}
+  - {fileID: 8300000, guid: 87c12ea83f451ac4aaea6f79bf44ddc2, type: 3}

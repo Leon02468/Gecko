@@ -33,31 +33,61 @@ public class NPC : MonoBehaviour, IInteractable
 
     public bool CanInteract() => true;
 
+    bool shopWasOpened = false;
+    bool shopWasClosed = false;
+
     public void Interact()
     {
-        // -----------------------------------------
-        // 1. If dialogue is happening Å® continue it
-        // -----------------------------------------
         if (isDialogueActive)
         {
             NextLine();
             return;
         }
 
-        // ------------------------------------------------
-        // 2. If dialogue is done Å® toggle shop open/close
-        // ------------------------------------------------
-        if (dialogueFinished)
+        if (missionDialogueActive)
+        {
+            NextMissionLine();
+            return;
+        }
+
+        // If the shop is open, always close it first before anything else
+        if (shopOpen)
+        {
+            ToggleShop();
+            // Mark that the shop was closed for the first time if this is the first close after opening
+            if (dialogueFinished && shopWasOpened && !shopWasClosed)
+            {
+                shopWasClosed = true;
+            }
+            return;
+        }
+
+        // After first dialogue, open shop ONCE
+        if (dialogueFinished && !shopWasOpened)
+        {
+            ToggleShop();
+            shopWasOpened = true;
+            return;
+        }
+
+        // After shop is closed for the first time, start mission dialogue ONCE
+        if (dialogueFinished && shopWasOpened && shopWasClosed && !missionDialoguePlayed)
+        {
+            StartMissionDialogue();
+            return;
+        }
+
+        // After mission dialogue, allow normal shop toggling (mission dialogue will not play again)
+        if (dialogueFinished && shopWasOpened && shopWasClosed && missionDialoguePlayed)
         {
             ToggleShop();
             return;
         }
 
-        // -----------------------------------------
-        // 3. Otherwise Å® start dialogue normally
-        // -----------------------------------------
         StartDialogue();
     }
+
+
 
     void ToggleShop()
     {
@@ -75,6 +105,7 @@ public class NPC : MonoBehaviour, IInteractable
             shopOpen = false;
         }
     }
+
 
     void StartDialogue()
     {
@@ -165,4 +196,89 @@ public class NPC : MonoBehaviour, IInteractable
 
         if (playerMovement) playerMovement.canMove = true; // re-enable movement after close shop
     }
+
+    //Mission part
+    bool missionDialogueActive = false;
+    int missionDialogueIndex = 0;
+    bool missionDialoguePlayed = false; // <-- Add this flag
+
+    public void StartMissionDialogue()
+    {
+        // Only allow mission dialogue to play once
+        if (missionDialoguePlayed)
+            return;
+
+        if (dialogueData.missionLines == null || dialogueData.missionLines.Length == 0)
+            return;
+
+        missionDialogueActive = true;
+        missionDialogueIndex = 0;
+        nameText.SetText(dialogueData.npcName);
+        portraitImage.sprite = dialogueData.npcSprite;
+        dialoguePanel.SetActive(true);
+
+        if (playerMovement)
+            playerMovement.canMove = false;
+
+        missionDialoguePlayed = true; // <-- Set flag so it can't play again
+        StartCoroutine(TypeMissionLine());
+    }
+    IEnumerator TypeMissionLine()
+    {
+        isTyping = true;
+        dialogueText.SetText("");
+
+        AudioClip voiceClip = null;
+        float pitch = 1f;
+
+        if (dialogueData.missionVoiceSounds != null && missionDialogueIndex < dialogueData.missionVoiceSounds.Length)
+            voiceClip = dialogueData.missionVoiceSounds[missionDialogueIndex];
+
+        if (voiceClip != null)
+        {
+            audioSource.volume = AudioManager.GlobalSFXVolume;
+            audioSource.pitch = pitch;
+            audioSource.clip = voiceClip;
+            audioSource.Play();
+        }
+
+        foreach (char letter in dialogueData.missionLines[missionDialogueIndex])
+        {
+            dialogueText.text += letter;
+            yield return new WaitForSeconds(dialogueData.typingSpeed);
+        }
+
+        isTyping = false;
+    }
+
+    void NextMissionLine()
+    {
+        if (isTyping)
+        {
+            StopAllCoroutines();
+            dialogueText.SetText(dialogueData.missionLines[missionDialogueIndex]);
+            isTyping = false;
+            return;
+        }
+
+        if (++missionDialogueIndex < dialogueData.missionLines.Length)
+        {
+            StartCoroutine(TypeMissionLine());
+        }
+        else
+        {
+            EndMissionDialogue();
+        }
+    }
+
+    void EndMissionDialogue()
+    {
+        StopAllCoroutines();
+        missionDialogueActive = false;
+        dialogueText.SetText("");
+        dialoguePanel.SetActive(false);
+
+        if (playerMovement) playerMovement.canMove = true;
+    }
+
 }
