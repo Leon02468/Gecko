@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public enum ItemType { Consumable, Material, Weapon, Misc }
+public enum ItemType { Consumable, Material, Weapon, Misc, Money }
 
 [CreateAssetMenu(fileName = "New Item", menuName = "Inventory/Item")]
 public class ItemObject : ScriptableObject
@@ -10,9 +10,9 @@ public class ItemObject : ScriptableObject
     public ItemType type;
     public string description;
     public int maxStack = 1;
-    // In ItemObject.cs
-    public float healAmount = 0f; // Only used for consumables
-
+    
+    // Only used for consumables
+    public float healAmount = 0f;
 
     [Tooltip("A unique ID used for save/load")]
     public int itemID;

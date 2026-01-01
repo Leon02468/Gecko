@@ -16,6 +16,24 @@ public class CameraFollow : MonoBehaviour
 
     private Vector3 velocity;
 
+    void Start()
+    {
+        // Try to auto-assign the player by tag if target not set in inspector
+        if (target == null)
+        {
+            var tgo = GameObject.FindWithTag("Player");
+            if (tgo != null)
+            {
+                target = tgo.transform;
+                Debug.Log($"CameraFollow: Auto-assigned target to '{target.name}'");
+            }
+            else
+            {
+                Debug.LogWarning("CameraFollow: target is null and no GameObject with tag 'Player' was found.");
+            }
+        }
+    }
+
     void LateUpdate()
     {
         if (BG != null)

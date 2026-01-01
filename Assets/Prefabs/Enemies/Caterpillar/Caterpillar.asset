@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cad51b94d350b1348b9b611bc5180c33, type: 3}
+  m_Name: Caterpillar
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyType
+  id: 3
+  displayName: Caterpillar
+  sprite: {fileID: 4315313080292840596, guid: 37f5e7915f2c0a14baf8c8642092a883, type: 3}

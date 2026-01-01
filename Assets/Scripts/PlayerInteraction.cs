@@ -7,6 +7,7 @@ public class PlayerInteraction : MonoBehaviour
     public float interactRange = 1.5f;
     public LayerMask interactLayer;
     private IInteractable currentInteractable;
+    private GameObject lastDetectedObject; // Track the last detected interactable
 
     private void Start()
     {
@@ -20,11 +21,22 @@ public class PlayerInteraction : MonoBehaviour
         if (hit != null)
         {
             currentInteractable = hit.GetComponent<IInteractable>();
-            Debug.Log("Interactable found: " + hit.name);
+            
+            // Only log when a NEW interactable is detected (optional debug)
+            if (hit.gameObject != lastDetectedObject)
+            {
+                lastDetectedObject = hit.gameObject;
+            }
         }
         else
         {
             currentInteractable = null;
+            
+            // Clear the last detected object when no interactable is in range
+            if (lastDetectedObject != null)
+            {
+                lastDetectedObject = null;
+            }
         }
 
         if (currentInteractable != null) interactBtn.SetActive(true);
@@ -35,6 +47,7 @@ public class PlayerInteraction : MonoBehaviour
     {
         if (context.performed && currentInteractable != null && currentInteractable.CanInteract())
         {
+            // Keep the interaction log as it's useful for debugging interactions
             Debug.Log("Interacting with: " + ((MonoBehaviour)currentInteractable).name);
             currentInteractable.Interact();
         }

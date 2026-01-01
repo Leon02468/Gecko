@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 368ffa7d6984dbe4ebd6f5918ea8ab54, type: 3}
-  m_Name: CherriesItem
+  m_Name: Money
   m_EditorClassIdentifier: Assembly-CSharp::ItemObject
-  itemName: Cherries
-  icon: {fileID: -4570538037665054336, guid: 7b4c3d6724ddb2147b61e267c0407c06, type: 3}
-  type: 0
-  description: Help heal 2 HP
-  maxStack: 1
-  healAmount: 2
-  itemID: 1
+  itemName: Leaf
+  icon: {fileID: 7647240639167449756, guid: f880cc836be8bbe418e3270c1a4be713, type: 3}
+  type: 4
+  description: 
+  maxStack: 999
+  healAmount: 0
+  itemID: 0

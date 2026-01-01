@@ -271,7 +271,18 @@ public class InventoryManager : MonoBehaviour
             }
 
             // Save inventory and money together
-            string json = JsonUtility.ToJson(new SaveWrapper(saveList, MoneyManager.Instance.Money), true);
+            // Check if MoneyManager still exists (it might be destroyed during shutdown)
+            int moneyToSave = 0;
+            if (MoneyManager.Instance != null)
+            {
+                moneyToSave = MoneyManager.Instance.Money;
+            }
+            else
+            {
+                Debug.LogWarning("MoneyManager.Instance is null during save. Money will be saved as 0.");
+            }
+
+            string json = JsonUtility.ToJson(new SaveWrapper(saveList, moneyToSave), true);
             File.WriteAllText(savePath, json);
             Debug.Log($"Saved inventory ({saveList.Count} slots) to: {savePath}");
         }
@@ -333,7 +344,15 @@ public class InventoryManager : MonoBehaviour
             }
 
             // Load money from save file
-            MoneyManager.Instance.SetMoney(wrapper.money);
+            // Check if MoneyManager exists before trying to set money
+            if (MoneyManager.Instance != null)
+            {
+                MoneyManager.Instance.SetMoney(wrapper.money);
+            }
+            else
+            {
+                Debug.LogWarning("MoneyManager.Instance is null during load. Money will not be restored.");
+            }
 
             Debug.Log("Inventory loaded from " + savePath);
         }

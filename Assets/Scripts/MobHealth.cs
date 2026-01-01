@@ -11,6 +11,10 @@ public class MobHealth : MonoBehaviour, IDamageable
     [SerializeField] private bool destroyOnDeath = true;
     [SerializeField] private float deathDelay = 0.1f;
 
+    [Header("Enemy Identification")]
+    [Tooltip("The EnemyType ScriptableObject for this mob (used for mission tracking)")]
+    public EnemyType enemyType; // NEW: Assign in Inspector
+
     [Header("Invulnerability")]
     [SerializeField] private bool useInvulnerability = true;
     [SerializeField] private float invulnerabilityDuration = 0.25f;
@@ -19,7 +23,7 @@ public class MobHealth : MonoBehaviour, IDamageable
     [Tooltip("Only allow knockback when mob is grounded (prevents juggling in air)")]
     [SerializeField] private bool onlyKnockbackWhenGrounded = true;
     [Tooltip("Layer mask for ground detection")]
-    [SerializeField] private LayerMask groundLayer = ~0; // default to everything
+    [SerializeField] private LayerMask groundLayer = ~0;
     [Tooltip("Distance to check for ground below the mob")]
     [SerializeField] private float groundCheckDistance = 0.1f;
     [Tooltip("Width of the ground check box (based on collider)")]
@@ -37,10 +41,9 @@ public class MobHealth : MonoBehaviour, IDamageable
     private Collider2D coll;
     private MonoBehaviour[] disableOnDeath;
     
-    //public for IsGrounded to use it in another script
     public bool IsGrounded => isGrounded;
 
-
+    // Existing money drop (kept for compatibility)
     public GameObject moneyDropPrefab;
     public int moneyAmount = 1;
 
@@ -54,7 +57,6 @@ public class MobHealth : MonoBehaviour, IDamageable
 
     void Update()
     {
-        // Check if mob is grounded
         if (onlyKnockbackWhenGrounded && rb != null && coll != null)
         {
             CheckGrounded();
@@ -63,12 +65,9 @@ public class MobHealth : MonoBehaviour, IDamageable
 
     private void CheckGrounded()
     {
-        // Get the bounds of the collider
         Bounds bounds = coll.bounds;
         Vector2 checkPosition = new Vector2(bounds.center.x, bounds.min.y);
         Vector2 boxSize = new Vector2(bounds.size.x * groundCheckWidth, groundCheckDistance);
-
-        // Check for ground using a box cast slightly below the mob
         isGrounded = Physics2D.OverlapBox(checkPosition - Vector2.up * (groundCheckDistance * 0.5f), boxSize, 0f, groundLayer);
     }
 
@@ -77,15 +76,11 @@ public class MobHealth : MonoBehaviour, IDamageable
         if (amount <= 0) return;
         if (useInvulnerability && isInvulnerable) return;
 
-        // Play enemy get hit SFX
         if (AudioManager.Instance != null)
             AudioManager.Instance.PlayEnemyGetHit();
 
         CurrentHP -= amount;
         OnDamaged?.Invoke();
-        
-        // Play enemy hit sound
-        AudioManager.Instance?.PlayEnemyGetHit();
 
         if (knockback.HasValue)
             ApplyKnockback(knockback.Value);
@@ -100,16 +95,15 @@ public class MobHealth : MonoBehaviour, IDamageable
             StartCoroutine(InvulnerabilityCoroutine(invulnerabilityDuration));
     }
 
-
     private IEnumerator ReenableAIPathAfterDelay(AIPath aiPath, float delay)
     {
         yield return new WaitForSeconds(delay);
         if (aiPath != null)
             aiPath.enabled = true;
     }
+
     private void ApplyKnockback(Vector2 kb)
     {
-        // Check if knockback should be prevented when airborne
         if (onlyKnockbackWhenGrounded && !isGrounded)
         {
             Debug.Log($"{gameObject.name}: Knockback blocked - mob is airborne");
@@ -118,14 +112,13 @@ public class MobHealth : MonoBehaviour, IDamageable
 
         if (rb != null)
         {
-            //Temporarily Disable AIPath so the any enemies have A* can have knockback
             var aiPath = GetComponent<Pathfinding.AIPath>();
             if (aiPath != null)
             {
                 aiPath.enabled = false;
                 rb.AddForce(kb, ForceMode2D.Impulse);
                 Debug.Log($"{gameObject.name}: Knockback applied (grounded) - {kb}");
-                StartCoroutine(ReenableAIPathAfterDelay(aiPath, 0.25f)); // Adjust delay as needed
+                StartCoroutine(ReenableAIPathAfterDelay(aiPath, 0.25f));
             }
             else
             {
@@ -156,6 +149,16 @@ public class MobHealth : MonoBehaviour, IDamageable
     {
         OnDead?.Invoke();
 
+        // NEW: Update mission progress for all missions tracking this enemy type
+        if (enemyType != null)
+        {
+            UpdateMissionProgress();
+        }
+        else
+        {
+            Debug.LogWarning($"{gameObject.name} died but has no EnemyType assigned for mission tracking!");
+        }
+
         if (coll != null) coll.enabled = false;
         foreach (var mb in disableOnDeath)
         {
@@ -180,13 +183,35 @@ public class MobHealth : MonoBehaviour, IDamageable
             yield return new WaitForSeconds(deathDelay);
     }
 
+    // NEW: Update all missions that track this enemy type
+    private void UpdateMissionProgress()
+    {
+        if (MissionManager.Instance == null)
+        {
+            Debug.LogWarning("MissionManager.Instance is null! Cannot update mission progress.");
+            return;
+        }
+
+        // Find all missions that track this enemy type
+        var allMissions = MissionManager.Instance.allMissions;
+        foreach (var mission in allMissions)
+        {
+            // Check if this mission tracks this enemy type
+            if (mission.enemyType != null && mission.enemyType.id == enemyType.id)
+            {
+                // Update progress
+                MissionManager.Instance.UpdateMissionProgress(mission.id, 1);
+                Debug.Log($"Mission '{mission.id}' updated: killed {enemyType.displayName} ({mission.currentCount}/{mission.targetCount})");
+            }
+        }
+    }
+
     public void Heal(int amount)
     {
         if (amount <= 0) return;
         CurrentHP = Mathf.Min(maxHP, CurrentHP + amount);
     }
 
-    // Visualize ground check in editor
     void OnDrawGizmosSelected()
     {
         if (!onlyKnockbackWhenGrounded) return;
@@ -198,7 +223,6 @@ public class MobHealth : MonoBehaviour, IDamageable
         Vector2 checkPosition = new Vector2(bounds.center.x, bounds.min.y);
         Vector2 boxSize = new Vector2(bounds.size.x * groundCheckWidth, groundCheckDistance);
 
-        // Draw ground check box
         Gizmos.color = isGrounded ? Color.green : Color.red;
         Vector3 center = checkPosition - Vector2.up * (groundCheckDistance * 0.5f);
         Gizmos.DrawWireCube(center, boxSize);

@@ -314,6 +314,7 @@ MonoBehaviour:
   maxHP: 3
   destroyOnDeath: 1
   deathDelay: 0.1
+  enemyType: {fileID: 11400000, guid: 91d37382d9335274ba135365f7ab8dc0, type: 2}
   useInvulnerability: 1
   invulnerabilityDuration: 0.25
   onlyKnockbackWhenGrounded: 1
