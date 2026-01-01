@@ -50,7 +50,7 @@ public class HeartHealthUI : MonoBehaviour
     void Start()
     {
         // Find the player health component
-        playerHealth = FindObjectOfType<PlayerHealth>();
+        playerHealth = FindFirstObjectByType<PlayerHealth>();
         if (playerHealth == null)
         {
             Debug.LogError("HeartHealthUI: PlayerHealth component not found in scene!");

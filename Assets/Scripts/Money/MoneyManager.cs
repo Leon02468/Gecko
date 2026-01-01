@@ -24,6 +24,9 @@ public class MoneyManager : MonoBehaviour
         }
     }
 
+    public int GetMoneySnapshot() => Money;
+    public void ApplyMoneySnapshot(int amount) => SetMoney(amount);
+
     public void AddMoney(int amount)
     {
         Money += amount;

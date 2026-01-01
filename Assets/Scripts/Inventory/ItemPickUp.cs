@@ -9,7 +9,7 @@ public class ItemPickup : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            int leftover = InventoryManager.Instance.AddItem(itemObject, quantity);
+            int leftover = GameManager.Instance.InventoryInstance.AddItem(itemObject, quantity);
             if (leftover <= 0) Destroy(gameObject);
             else quantity = leftover;
         }

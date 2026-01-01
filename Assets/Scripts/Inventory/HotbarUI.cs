@@ -15,7 +15,7 @@ public class HotbarUI : MonoBehaviour
 
     void Start()
     {
-        inventoryManager = InventoryManager.Instance;
+        inventoryManager = GameManager.Instance.InventoryInstance;
         if (inventoryManager == null || inventoryManager.itemSlot == null)
         {
             Debug.LogError("HotbarUI: InventoryManager or itemSlot not found!");

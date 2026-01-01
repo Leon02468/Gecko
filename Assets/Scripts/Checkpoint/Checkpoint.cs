@@ -7,8 +7,9 @@ public class Checkpoint : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            PlayerCheckpointManager.Instance.SetCheckpoint(transform.position);
+            PlayerCheckpointManager checkpointManager = FindFirstObjectByType<PlayerCheckpointManager>();
+            checkpointManager.SetCheckpoint(transform.position);
+            Debug.Log($"Checkpoint set to {transform.position.x}:{transform.position.y}");
         }
     }
-
 }
