@@ -16,7 +16,5 @@ public class PlayerLoader : MonoBehaviour
         {
             playerHealthComponent.SetHealth(save.playerHealth);
         }
-
-        // any other apply steps...
     }
 }

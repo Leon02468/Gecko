@@ -42,7 +42,7 @@ public class ShopUI : MonoBehaviour
         shopPanel.SetActive(true);
         Time.timeScale = 0;
 
-        MoneyManager.Instance.ShowMoneyUI();
+        GameManager.Instance.MoneyManagerInstance.ShowMoneyUI();
 
         var player = GameObject.FindGameObjectWithTag("Player")?.GetComponent<PlayerMovement>();
         if (player) player.enabled = false;
@@ -58,7 +58,7 @@ public class ShopUI : MonoBehaviour
         shopPanel.SetActive(false);
         Time.timeScale = 1;
 
-        MoneyManager.Instance.HideMoneyUI();
+        GameManager.Instance.MoneyManagerInstance.HideMoneyUI();
 
         var player = GameObject.FindGameObjectWithTag("Player")?.GetComponent<PlayerMovement>();
         if (player) player.enabled = true;

@@ -25,7 +25,8 @@ public class GameManager : MonoBehaviour
     public GameObject inventoryPrefab;
     public GameObject hotBarPrefab;
     public GameObject itemDatabasePrefab;
-    
+    public GameObject moneyManagerPrefab;
+
     /*Runtime Instances*/
     SceneFader fader;
     GameObject eventSystem;
@@ -35,12 +36,14 @@ public class GameManager : MonoBehaviour
     InventoryManager inventory;
     GameObject hotBar;
     ItemDatabase itemDatabase;
+    MoneyManager moneyManager;
 
     /*External Use*/
     public AudioManager AudioInstance => audioManager;
     public GameObject PlayerInstance => player;
     public InventoryManager InventoryInstance => inventory;
     public ItemDatabase ItemDatabaseInstance => itemDatabase;
+    public MoneyManager MoneyManagerInstance => moneyManager;
 
 
     private void Awake()
@@ -95,8 +98,6 @@ public class GameManager : MonoBehaviour
         currentSlot = slot;
         currentSave = SaveSystem.LoadSlot(slot);
         StartCoroutine(LoadGameplayRoutine());
-        inventory.ApplyInventorySnapshot(currentSave.inventory);
-        MoneyManager.Instance.ApplyMoneySnapshot(currentSave.money);
     }
 
     public void FinishIntroAndStartGameplay()
@@ -127,6 +128,13 @@ public class GameManager : MonoBehaviour
         SpawnPauseMenu();
         SpawnHotBar();
         SpawnItemDatabase();
+        SpawnMoneyManager();
+
+        if (inventory != null && currentSave != null)
+            inventory.ApplyInventorySnapshot(currentSave.inventory);
+
+        if (moneyManager != null && currentSave != null)
+            moneyManager.ApplyMoneySnapshot(currentSave.money);
 
         PlayerLoader loader = FindFirstObjectByType<PlayerLoader>();
         if (loader != null && currentSave != null)
@@ -185,6 +193,16 @@ public class GameManager : MonoBehaviour
                 rb.simulated = true;
         }
 
+        pendingEdgeMove = false;
+        pendingSpawnPoint = null;
+    }
+
+    public void ResetGameplayState()
+    {
+        // Spawn / edge logic
+        SpawnManager.lastSpawnPoint = null;
+
+        // Optional safety
         pendingEdgeMove = false;
         pendingSpawnPoint = null;
     }
@@ -309,6 +327,16 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(go);
     }
 
+    void SpawnMoneyManager()
+    {
+        if (moneyManagerPrefab == null || moneyManager != null) return;
+        GameObject go = Instantiate(moneyManagerPrefab);
+        moneyManager = go.GetComponent<MoneyManager>();
+        go.name = "MoneyManager_Instance";
+        DontDestroyOnLoad(go);
+    }
+
+
     // Destroy Method
     void DestroyGameplayInstances()
     {
@@ -317,12 +345,14 @@ public class GameManager : MonoBehaviour
         if (inventory != null) Destroy(inventory.gameObject);
         if (hotBar != null) Destroy(hotBar.gameObject);
         if (itemDatabase != null) Destroy(itemDatabase.gameObject);
+        if (moneyManager != null) Destroy(moneyManager.gameObject);
 
         player = null;
         pauseMenu = null;
         inventory = null;
         hotBar = null;
         itemDatabase = null;
+        moneyManager = null;
     }
 
 
@@ -341,7 +371,7 @@ public class GameManager : MonoBehaviour
         }
         currentSave.savedAtTicks = System.DateTime.UtcNow.Ticks;
         currentSave.inventory = inventory.GetInventorySnapshot();
-        currentSave.money = MoneyManager.Instance.GetMoneySnapshot();
+        currentSave.money = moneyManager.GetMoneySnapshot();
 
         SaveSystem.SaveSlot(currentSlot, currentSave);
         Debug.Log($"[SAVE] {reason}");
