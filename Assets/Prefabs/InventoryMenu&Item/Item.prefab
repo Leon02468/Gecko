@@ -101,7 +101,6 @@ GameObject:
   - component: {fileID: 2449072454682276872}
   - component: {fileID: 5799812381362117455}
   - component: {fileID: 1470685614852173303}
-  - component: {fileID: 7627573283962057002}
   m_Layer: 0
   m_Name: Item
   m_TagString: Untagged
@@ -198,19 +197,3 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &7627573283962057002
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8870447840188718428}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f133e7bba103b84e810025ece18abc8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Item
-  itemName: Cherries
-  quantity: 10
-  sprite: {fileID: -4570538037665054336, guid: 7b4c3d6724ddb2147b61e267c0407c06, type: 3}
-  itemDescription: Help you heal your HP
