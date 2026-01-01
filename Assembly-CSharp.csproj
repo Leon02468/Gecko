@@ -118,6 +118,7 @@
     <Compile Include="Assets\Scripts\DamageOnContact.cs" />
     <Compile Include="Assets\Scripts\AudioManager\MusicVolumeSliderController.cs" />
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
+    <Compile Include="Assets\Scripts\EnemyShooter\waspZone.cs" />
     <Compile Include="Assets\Scripts\GameManager\PlayerLoader.cs" />
     <Compile Include="Assets\Scripts\IDamageable.cs" />
     <Compile Include="Assets\Scripts\Checkpoint\PlayerCheckpointManager.cs" />
