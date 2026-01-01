@@ -45,6 +45,7 @@ Transform:
   - {fileID: 7660361720721135360}
   - {fileID: 489865314670224266}
   - {fileID: 4603292793648811159}
+  - {fileID: 5443806770702508118}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7544542679384608303
@@ -383,6 +384,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 8de8c94a-eb0b-4bfd-b2c8-f965f4c19454
     m_ActionName: 'Player/Hotbar5[/Keyboard/5]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ab768675-303f-4ebe-b988-8eed914e0321
+    m_ActionName: 'Player/Pause[/Keyboard/escape]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -786,6 +791,37 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0.055509567, y: 0}
   m_Radius: 1.1994495
+--- !u!1 &5908030776617133429
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5443806770702508118}
+  m_Layer: 0
+  m_Name: CameraTarget
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5443806770702508118
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5908030776617133429}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.25, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2142017325046519243}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6243254322616774878
 GameObject:
   m_ObjectHideFlags: 0

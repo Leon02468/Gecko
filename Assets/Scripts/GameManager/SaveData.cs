@@ -27,8 +27,8 @@ public class SaveData
         s.saveName = "New Game";
         s.SavedAtUtc = DateTime.UtcNow;
         s.sceneBuildIndex = 2;
-        s.playerX = 0f;
-        s.playerY = 0f;
+        s.playerX = 123.18f;
+        s.playerY = -122.75f;
         s.playerHealth = 5;
         s.level = 1;
         return s;
