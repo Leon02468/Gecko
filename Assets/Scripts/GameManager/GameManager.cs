@@ -378,6 +378,93 @@ public class GameManager : MonoBehaviour
     }
 
 
+    
+
+    void RespawnFromSave()
+    {
+        StartCoroutine(RespawnFromSaveRoutine());
+    }
+
+    IEnumerator RespawnFromSaveRoutine()
+    {
+        if (currentSave == null || PlayerInstance == null)
+        {
+            Debug.LogError("Respawn failed: missing save or player");
+            yield break;
+        }
+
+        // 1. Disable player control
+        var pm = PlayerInstance.GetComponent<PlayerMovement>();
+        if (pm != null) pm.canMove = false;
+
+        // 2. Fade out
+        yield return FadeOut();
+
+        int savedScene = currentSave.sceneBuildIndex;
+        int activeScene = SceneManager.GetActiveScene().buildIndex;
+
+        // 3. Change scene ONLY if needed
+        if (savedScene != activeScene)
+        {
+            yield return SceneManager.LoadSceneAsync(savedScene);
+        }
+
+        // 4. Respawn at saved position
+        Vector3 pos = new Vector3(
+            currentSave.playerX,
+            currentSave.playerY,
+            0f
+        );
+
+        var rb = PlayerInstance.GetComponent<Rigidbody2D>();
+        if (rb != null)
+        {
+            rb.linearVelocity = Vector2.zero;
+            rb.simulated = false;
+        }
+
+        PlayerInstance.transform.position = pos;
+
+        if (rb != null)
+            rb.simulated = true;
+
+        // 5. Reset boss room
+        ResetBossRoom();
+
+        // 6. Apply death penalty & save immediately
+        ApplyDeathPenalty();
+        SaveGameEvent("Death Respawn");
+
+        // 7. Fade in
+        yield return FadeIn();
+
+        // 8. Re-enable control
+        if (pm != null) pm.canMove = true;
+    }
+
+
+    void ResetBossRoom()
+    {
+        var boss = FindFirstObjectByType<MantisBossController>();
+        if (boss != null)
+            boss.ResetBoss();
+    }
+
+    void ApplyDeathPenalty()
+    {
+        // Money loss
+        if (moneyManager != null)
+        {
+            int lost = Mathf.RoundToInt(moneyManager.Money * 0.25f);
+            moneyManager.SetMoney(moneyManager.Money - lost);
+        }
+
+        // Restore HP
+        var health = PlayerInstance.GetComponent<PlayerHealth>();
+        health.SetHealth(health.maxHP); // or partial HP
+    }
+
+
     /*HELPER*/
     IEnumerator FadeOut()
     {
