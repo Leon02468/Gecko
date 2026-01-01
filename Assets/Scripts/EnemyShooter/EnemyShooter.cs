@@ -16,6 +16,9 @@ public class EnemyShooter : MonoBehaviour
     private bool isBusy = false;
     private bool animDone = false;
 
+    private AudioManager audioManager;
+
+
     private void Awake()
     {
         animator = GetComponent<Animator>();
@@ -25,6 +28,9 @@ public class EnemyShooter : MonoBehaviour
     {
         if (GameManager.Instance.PlayerInstance != null)
             player = GameManager.Instance.PlayerInstance.transform;
+
+        audioManager = GameManager.Instance.AudioInstance;
+
     }
 
     private void Update()
@@ -39,6 +45,14 @@ public class EnemyShooter : MonoBehaviour
     public void CheckPlayerInZone(bool inZone)
     {
         isPlayer = inZone;
+
+        if (audioManager != null)
+        {
+            if (isPlayer)
+                audioManager.PlayEnemyFlying();
+            else
+                audioManager.StopEnemyFlying();
+        }
     }
 
     void FacePlayer()
@@ -68,6 +82,11 @@ public class EnemyShooter : MonoBehaviour
     public void Shoot()
     {
         if (player == null) return;
+
+
+        // Play shoot SFX
+        if (audioManager != null)
+            audioManager.PlayEnemyShoot();
 
         Vector2 direction = (player.position - firePoint.position).normalized;
 

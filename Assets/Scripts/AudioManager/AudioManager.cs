@@ -21,6 +21,8 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioClip playerUseItemSpeed;
     [Header("Enemy")]
     [SerializeField] private AudioClip enemyGetHit;
+    [Header("Enemy Shooter")]
+    [SerializeField] private AudioClip enemyShootSFX;
     [Header("ShopAreaMusic")]
     [SerializeField] private AudioClip shopMusic;
     [Header("ShopOpen/Close")]
@@ -28,6 +30,7 @@ public class AudioManager : MonoBehaviour
     [Header("BossAreaMusic")]
     [SerializeField] private AudioClip bossMusic;
     private AudioClip previousMusic;
+    [SerializeField] private AudioClip enemyFlyingSFX;
 
     private void Start()
     {
@@ -141,6 +144,29 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    //FOR WASP
+
+    // Convenience method
+    public void PlayEnemyFlying()
+    {
+        if (sfxSource != null && enemyFlyingSFX != null)
+        {
+            sfxSource.clip = enemyFlyingSFX;
+            sfxSource.loop = true;
+            sfxSource.Play();
+        }
+    }
+
+    // To stop the flying SFX
+    public void StopEnemyFlying()
+    {
+        if (sfxSource != null && sfxSource.clip == enemyFlyingSFX)
+        {
+            sfxSource.Stop();
+            sfxSource.loop = false;
+            sfxSource.clip = null;
+        }
+    }
 
 
     // Convenience methods for specific SFX
@@ -158,5 +184,7 @@ public class AudioManager : MonoBehaviour
     public void PlayPlayerGetHit() => PlaySFX(playerGetHit);
     public void PlayEnemyGetHit() => PlaySFX(enemyGetHit);
     public void PlayShopToggle() => PlaySFX(ToggleShop);
+    public void PlayEnemyShoot() => PlaySFX(enemyShootSFX);
+
 
 }
