@@ -177,7 +177,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AudioManager
   musicSource: {fileID: 3919202113483899567}
   sfxSource: {fileID: 9101258748624783048}
-  background: {fileID: 8300000, guid: 40ac39dff6e2f354f81de00e760e72fd, type: 3}
+  background: {fileID: 8300000, guid: c38584c2f7da9da44a2c277f1cb756d6, type: 3}
   jumpPad: {fileID: 8300000, guid: 6956b045cb1443246875200edb3ff9c0, type: 3}
   openInventory: {fileID: 8300000, guid: 87a130b8f95476e42b2d956bc12325b6, type: 3}
   closeInventory: {fileID: 8300000, guid: 87a130b8f95476e42b2d956bc12325b6, type: 3}

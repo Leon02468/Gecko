@@ -19,7 +19,6 @@ GameObject:
   - component: {fileID: 8550483165332507349}
   - component: {fileID: 6460537952613842403}
   - component: {fileID: 7365546847433445220}
-  - component: {fileID: 4899596901783004629}
   - component: {fileID: -9213420798440624980}
   m_Layer: 8
   m_Name: BeeFlying
@@ -293,7 +292,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d52f8bf2435ff394689269326ae8f9d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FlyingEnemy
-  player: {fileID: 0}
+  player: {fileID: 2142017325046519243, guid: a7a06756987218f41976d5a3fadcae6f, type: 3}
   homePosition: {fileID: 0}
   chaseZone: {fileID: 0}
   updateRate: 0.5
@@ -354,27 +353,6 @@ MonoBehaviour:
   triggerDeath: Death
   minMoveSpeed: 0.05
   useSpriteFlip: 0
---- !u!114 &4899596901783004629
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6544793489801370921}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b5411e8b033ada458bf39378b2d6a3e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DamageOnContact
-  targetLayers:
-    serializedVersion: 2
-    m_Bits: 64
-  damage: 1
-  knockbackForce: 6
-  knockbackUpMultiplier: 0.4
-  oneHitPerStay: 1
-  debugLogs: 0
-  allowSendMessageFallback: 1
 --- !u!82 &-9213420798440624980
 AudioSource:
   m_ObjectHideFlags: 0

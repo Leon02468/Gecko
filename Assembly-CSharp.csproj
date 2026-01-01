@@ -59,9 +59,9 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\6000.2.2f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.SourceGenerators.dll" />
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\6000.2.2f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\6000.2.2f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
-    <Analyzer Include="P:\UnityProjects\Gecko\Library\PackageCache\com.unity.dt.app-ui@5d6dc8bfd8d9\Runtime\SourceGenerators\netstandard2.0\EnumToLowerCase.dll" />
-    <Analyzer Include="P:\UnityProjects\Gecko\Library\PackageCache\com.unity.ai.inference@4ac711cab9a3\Runtime\Core\SourceGenerator\SourceGenerators.dll" />
-    <Analyzer Include="P:\UnityProjects\Gecko\Library\PackageCache\com.unity.dt.app-ui@5d6dc8bfd8d9\Runtime\MVVM\SourceGenerators\netstandard2.0\MVVMSourceGenerators.dll" />
+    <Analyzer Include="E:\DoAnKhoaLuan\Gecko\Library\PackageCache\com.unity.dt.app-ui@5d6dc8bfd8d9\Runtime\SourceGenerators\netstandard2.0\EnumToLowerCase.dll" />
+    <Analyzer Include="E:\DoAnKhoaLuan\Gecko\Library\PackageCache\com.unity.ai.inference@4ac711cab9a3\Runtime\Core\SourceGenerator\SourceGenerators.dll" />
+    <Analyzer Include="E:\DoAnKhoaLuan\Gecko\Library\PackageCache\com.unity.dt.app-ui@5d6dc8bfd8d9\Runtime\MVVM\SourceGenerators\netstandard2.0\MVVMSourceGenerators.dll" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\GameManager\SceneFader.cs" />
@@ -89,6 +89,7 @@
     <Compile Include="Assets\Scripts\HeartHealthUI.cs" />
     <Compile Include="Assets\Scripts\SpawnPointSetter.cs" />
     <Compile Include="Assets\Scripts\SceneChanger.cs" />
+    <Compile Include="Assets\Scripts\EnemyShooter\EnemyProjectile.cs" />
     <Compile Include="Assets\Scripts\BossAI.cs" />
     <Compile Include="Assets\ScriptableObject\Items\ItemObject.cs" />
     <Compile Include="Assets\Scripts\MobAI.cs" />
@@ -112,9 +113,12 @@
     <Compile Include="Assets\Scripts\Money\MoneyManager.cs" />
     <Compile Include="Assets\Scripts\Shop\ShopSlot.cs" />
     <Compile Include="Assets\Scripts\PlayerAttack.cs" />
+    <Compile Include="Assets\Scripts\AudioManager\VolumeSliderController.cs" />
     <Compile Include="Assets\Scripts\Npc\ShopArea.cs" />
     <Compile Include="Assets\Scripts\DamageOnContact.cs" />
+    <Compile Include="Assets\Scripts\AudioManager\MusicVolumeSliderController.cs" />
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
+    <Compile Include="Assets\Scripts\EnemyShooter\waspZone.cs" />
     <Compile Include="Assets\Scripts\GameManager\PlayerLoader.cs" />
     <Compile Include="Assets\Scripts\IDamageable.cs" />
     <Compile Include="Assets\Scripts\Checkpoint\PlayerCheckpointManager.cs" />
@@ -130,6 +134,7 @@
     <Compile Include="Assets\Scripts\ChaseTrigger.cs" />
     <Compile Include="Assets\Scripts\MainMenu\PanelSlideController.cs" />
     <Compile Include="Assets\Scripts\Checkpoint\Checkpoint.cs" />
+    <Compile Include="Assets\Scripts\EnemyShooter\EnemyShooter.cs" />
     <Compile Include="Assets\Scripts\ParallaxLayer.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class SaveData
@@ -15,6 +16,16 @@ public class SaveData
     public float playerHealth;
     public int level;
 
+    [System.Serializable]
+    public class InventorySlotData
+    {
+        public int itemID;
+        public int quantity;
+    }
+
+    public List<InventorySlotData> inventory;
+    public int money;
+
     public DateTime SavedAtUtc
     {
         get => DateTime.SpecifyKind(new DateTime(savedAtTicks), DateTimeKind.Utc);
@@ -27,8 +38,8 @@ public class SaveData
         s.saveName = "New Game";
         s.SavedAtUtc = DateTime.UtcNow;
         s.sceneBuildIndex = 2;
-        s.playerX = 0f;
-        s.playerY = 0f;
+        s.playerX = 123.18f;
+        s.playerY = -122.75f;
         s.playerHealth = 5;
         s.level = 1;
         return s;

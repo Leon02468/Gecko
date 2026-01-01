@@ -6,7 +6,7 @@ public class ShopArea : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            AudioManager.Instance?.PlayShopMusic();
+            GameManager.Instance.AudioInstance?.PlayShopMusic();
         }
     }
 
@@ -14,7 +14,7 @@ public class ShopArea : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            AudioManager.Instance?.RestorePreviousMusic();
+            GameManager.Instance.AudioInstance?.RestorePreviousMusic();
         }
     }
 }

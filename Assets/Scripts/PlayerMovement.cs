@@ -91,7 +91,7 @@ public class PlayerMovement : MonoBehaviour
             horizontalMovement = 0f;
             HorizontalInput = 0f;
 
-            AudioManager.Instance.StopPlayerRunning();
+            GameManager.Instance.AudioInstance.StopPlayerRunning();
             isRunningAudioPlaying = false;
             return;
         }
@@ -137,7 +137,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (!isRunningAudioPlaying)
             {
-                AudioManager.Instance.StartPlayerRunning();
+                GameManager.Instance.AudioInstance.StartPlayerRunning();
                 isRunningAudioPlaying = true;
             }
         }
@@ -145,7 +145,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (isRunningAudioPlaying)
             {
-                AudioManager.Instance.StopPlayerRunning();
+                GameManager.Instance.AudioInstance.StopPlayerRunning();
                 isRunningAudioPlaying = false;
             }
         }
@@ -328,19 +328,4 @@ public class PlayerMovement : MonoBehaviour
         Gizmos.color = Color.white;
         Gizmos.DrawWireCube(groundCheckPos.position, groundCheckSize);
     }
-
-    // Respawn at triggered checkpoint for player
-    public void RespawnAtCheckpoint()
-    {
-        Vector3 checkpoint = PlayerCheckpointManager.Instance.GetCheckpoint();
-        if (checkpoint != Vector3.zero)
-        {
-            transform.position = checkpoint;
-            if(rb != null)
-                rb.linearVelocity = Vector2.zero;
-        }
-    }
-
-
-
 }

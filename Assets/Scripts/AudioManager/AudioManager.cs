@@ -26,23 +26,14 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioClip ToggleShop;
     private AudioClip previousMusic;
 
-    public static AudioManager Instance { get; private set; }
-
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
-
     private void Start()
     {
+        // Ensure AudioSource volumes match the static values at startup
+        if (musicSource != null)
+            musicSource.volume = GlobalMusicVolume;
+        if (sfxSource != null)
+            sfxSource.volume = GlobalSFXVolume;
+
         PlayMusic();
     }
 
@@ -85,7 +76,24 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+   //volume settings
+    public static float GlobalSFXVolume { get; private set; } = 1f;
+    public static float GlobalMusicVolume { get; private set; } = 1f;
+    public void SetGlobalSFXVolume(float volume)
+    {
+        GlobalSFXVolume = Mathf.Clamp01(volume);
+        if (sfxSource != null)
+            sfxSource.volume = GlobalSFXVolume;
+    }
+    public void SetGlobalMusicVolume(float volume)
+    {
+        GlobalMusicVolume = Mathf.Clamp01(volume);
+        if (musicSource != null)
+            musicSource.volume = GlobalMusicVolume;
+    }
 
+
+    // playsfx
     public void PlaySFX(AudioClip clip)
     {
         if (sfxSource != null && clip != null)
