@@ -11,4 +11,9 @@ public class NPCDialogue : ScriptableObject
     public float typingSpeed = 0.05f;
     public AudioClip[] voiceSounds; //different clips per line
     public float voicePitch = 1f;
+
+    //Mission speech
+    [TextArea(2, 5)]
+    public string[] missionLines;
+    public AudioClip[] missionVoiceSounds;
 }

@@ -12,6 +12,11 @@ public class ItemObject : ScriptableObject
     public int maxStack = 1;
     // In ItemObject.cs
     public float healAmount = 0f; // Only used for consumables
+    public bool isUnknownFruit = false; // unknow fruit check
+
+    public bool isSpeedFruit = false; // Mark this fruit as a speed buff
+    public float speedBuffAmount = 2f; // How much to increase speed
+    public float speedBuffDuration = 5f; // Duration in seconds
 
 
     [Tooltip("A unique ID used for save/load")]

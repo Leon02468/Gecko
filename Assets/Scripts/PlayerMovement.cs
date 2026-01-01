@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -150,6 +151,25 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
+
+    private Coroutine speedBuffCoroutine;
+
+    public void ApplySpeedBuff(float amount, float duration)
+    {
+        if (speedBuffCoroutine != null)
+            StopCoroutine(speedBuffCoroutine);
+        speedBuffCoroutine = StartCoroutine(SpeedBuffRoutine(amount, duration));
+    }
+
+    private IEnumerator SpeedBuffRoutine(float amount, float duration)
+    {
+        float originalSpeed = speed;
+        speed += amount;
+        yield return new WaitForSeconds(duration);
+        speed = originalSpeed;
+        speedBuffCoroutine = null;
+    }
+
 
     private void Gravity()
     {

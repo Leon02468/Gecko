@@ -249,22 +249,49 @@ public class ItemSlot : MonoBehaviour,
     // In ItemSlot.cs
     public void UseItem()
     {
+
         if (item == null || quantity <= 0) return;
-        if (item.type == ItemType.Consumable && item.healAmount > 0f)
+        var playerHealth = GameObject.FindFirstObjectByType<PlayerHealth>();
+        var playerMovement = GameObject.FindFirstObjectByType<PlayerMovement>();
+
+        if (item.type == ItemType.Consumable)
         {
-            var playerHealth = GameObject.FindFirstObjectByType<PlayerHealth>();
-            if (playerHealth != null)
+            // Speed fruit logic
+            if (item.isSpeedFruit && playerMovement != null)
             {
-                playerHealth.Heal(item.healAmount);
-
-                // Play heal sound effect
-                GameManager.Instance.AudioInstance.PlayPlayerUseItemToHeal();
-
+                playerMovement.ApplySpeedBuff(item.speedBuffAmount, item.speedBuffDuration);
+                // Optionally play a SFX for speed up
+                GameManager.Instance.AudioInstance?.PlayPlayerUseItemToSpeedUp();
                 quantity--;
                 if (quantity <= 0) ClearSlot();
                 UpdateSlotUI();
+                return;
             }
+            // Check for unknown fruit by property or name
+            if ((item is ItemObject obj && obj.isUnknownFruit) || item.itemName == "Unknown Fruit")
+            {
+                if (playerHealth != null)
+                {
+                    playerHealth.TakeDamage(1); // Reduce 1 heart
+                                                // Optionally play a "bad" SFX
+                    GameManager.Instance.AudioInstance?.PlayPlayerGetHit();
+                    quantity--;
+                    if (quantity <= 0) ClearSlot();
+                    UpdateSlotUI();
+                }
+            }
+            else if (item.healAmount > 0f)
+            {
+                if (playerHealth != null)
+                {
+                    playerHealth.Heal(item.healAmount);
+                    GameManager.Instance.AudioInstance.PlayPlayerUseItemToHeal();
+                    quantity--;
+                    if (quantity <= 0) ClearSlot();
+                    UpdateSlotUI();
+                }
+            }
+            // You can add more logic for buffs or other consumable effects here
         }
-        // You can add more logic for buffs or other consumable effects here
     }
 }

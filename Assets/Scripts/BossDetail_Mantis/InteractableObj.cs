@@ -4,9 +4,11 @@ public class InteractableObj : MonoBehaviour, IInteractable
 {
     public MantisBossController boss;
     public BoxCollider2D boxCollider;
+    public GameObject bossArenaMusic;
 
     void Awake()
     {
+        bossArenaMusic.SetActive(false);
         if(boxCollider == null)
         {
             boxCollider = GetComponent<BoxCollider2D>();
@@ -20,5 +22,6 @@ public class InteractableObj : MonoBehaviour, IInteractable
         Debug.Log("Interacted with Mantis Boss Intro Trigger");
         boss.StartIntro();
         boxCollider.enabled = false;
+        bossArenaMusic?.SetActive(true);
     }
 }

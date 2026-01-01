@@ -424,6 +424,7 @@ public class MantisBossController : MonoBehaviour, IDamageable
         if (currentHP <= 0) Die();
     }
 
+    public GameObject bossArenaMusic;
     void Die()
     {
         if (dead) return;
@@ -438,6 +439,7 @@ public class MantisBossController : MonoBehaviour, IDamageable
         // disable hitboxes
         foreach (var c in GetComponentsInChildren<BoxCollider2D>()) if (c.isTrigger) c.enabled = false;
         // open door / spawn loot etc.
+        bossArenaMusic.SetActive(false);
     }
 
     public void TakeDamage(int amount, Vector2? knockback = null)
